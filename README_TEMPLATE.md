@@ -81,6 +81,16 @@ docs/adr/template.md         # ADR template
 └── settings.json           # Project settings (cache+security)
 ```
 
+## 📋 Prerequisites
+
+- **Claude Code v1.0+** installed and configured
+- **Git** for version control
+- **Python 3.7+** (optional, for advanced features):
+  - Refactoring analyzer (`refactoring-analyzer.py`)
+  - Design drift detector (`design-drift-detector.py`)
+  - Quality checks (`quality-check.py`)
+  - AI log analyzer (`analyze-ai-logs.py`)
+
 ## 🚀 Usage
 
 ### 1. Starting a Project

@@ -32,6 +32,10 @@
 - Planner workspace: @.claude/planner/
 - Builder workspace: @.claude/builder/
 - Shared resources: @.claude/shared/
+  - Design Sync: @.claude/shared/design-sync.md (NEW!)
+  - Design Tracker: @.claude/shared/design-tracker/ (NEW!)
+  - Templates: @.claude/shared/templates/ (NEW!)
+  - Checklists: @.claude/shared/checklists/ (NEW!)
 
 ## Memory Bank Structure
 ### Core (Always Referenced)
@@ -67,6 +71,14 @@
 | `/agent:builder` | Implementation + Debug + Review | Handles all coding tasks |
 | `/project:focus` | Focus on current task | Works with any agent |
 | `/project:daily` | Daily retrospective (3 min) | Works with any agent |
+
+### Enhanced Commands (NEW!)
+| Command | Purpose | Details |
+|---------|---------|---------|
+| `/tdd:start` | Start TDD cycle | Begin Red-Green-Refactor cycle |
+| `/tdd:status` | Check TDD status | View current task status (🔴🟢✅⚠️) |
+| `/adr:create` | Create new ADR | Document architectural decisions |
+| `/adr:list` | List all ADRs | View ADRs by status |
 
 ### Special Modes (Integrated into Agents)
 The following modes are now integrated into the agent system:
@@ -128,6 +140,14 @@ Detailed settings: @.claude/hooks-README.md | @.claude/security-README.md
 - 🟢 **Green**: テストを通す最小限の実装
 - 🔵 **Refactor**: リファクタリング（テストが通る状態を維持）
 
+#### タスクステータス管理 (NEW!)
+- 🔴 **Not Implemented**: 未実装（TDD Red Phase）
+- 🟢 **Minimally Implemented**: 最小実装完了（TDD Green Phase）
+- ✅ **Refactored**: リファクタリング完了
+- ⚠️ **Blocked**: ブロック中（3回失敗後）
+
+詳細: @.claude/shared/task-status.md
+
 #### TDD実践原則（必須）
 - **小さなステップ**: 一度に1つの機能のみ実装
 - **仮実装**: テストを通すためにベタ書きでもOK（例：`return 42`）
@@ -138,6 +158,15 @@ Detailed settings: @.claude/hooks-README.md | @.claude/security-README.md
 - 🔴 テストを書いたら: `test: add failing test for [feature]`
 - 🟢 テストを通したら: `feat: implement [feature] to pass test`
 - 🔵 リファクタリングしたら: `refactor: [description]`
+
+#### TDDサポートツール (NEW!)
+- `/tdd:start` - TDDサイクル開始コマンド
+- `/tdd:status` - 現在のTDDステータス確認
+- **TDD強制設定**: settings.jsonで厳格度を調整可能（strict/recommended/off）
+- **スキップ理由記録**: テスト未作成時の理由を自動記録
+- 詳細なTDDガイド: @.claude/builder/tdd-cycle.md
+- チェックリスト: @.claude/shared/checklists/
+- TDD設定ガイド: @.claude/shared/tdd-settings.md
 
 詳細なTDDルール: @.claude/shared/constraints.md
 
@@ -176,9 +205,46 @@ Detailed rules: @docs/development-rules.md
 - **Priority management**: High🔥 / Medium⚠️ / Low📝
 - **Operation**: Pre-prediction during new feature development, cleanup at sprint end
 
+## Process Optimization System (NEW!)
+
+### Refactoring Scheduler
+- **自動分析**: リファクタリングが必要な箇所を自動検出
+- **優先度算出**: 影響度・頻度・複雑度から優先順位を計算
+- **定期レポート**: 日次・週次でリファクタリング提案を生成
+- **実行**: `python .claude/scripts/refactoring-analyzer.py`
+- **設定**: @.claude/refactoring-config.json
+- **詳細**: @.claude/shared/refactoring-scheduler.md
+
+### Design Change Tracking
+- **変更履歴管理**: すべての設計変更を体系的に記録
+- **影響分析**: 設計変更がコードに与える影響を自動分析
+- **ドリフト検出**: 設計と実装の乖離を定期的にチェック
+- **実行**: `python .claude/scripts/design-drift-detector.py`
+- **変更ログ**: @.claude/shared/design-tracker/change-log/
+- **詳細**: @.claude/shared/design-tracker/design-tracker.md
+
+### Quality Gates
+- **テストカバレッジ**: 80%以上を自動チェック
+- **コード複雑度**: 循環的複雑度10以下を強制
+- **セキュリティスキャン**: ハードコードされた秘密情報を検出
+- **コード重複**: 5%以下を目標
+- **実行**: `python .claude/scripts/quality-check.py`
+- **設定**: @.claude/quality-config.json
+- **詳細**: @.claude/shared/quality-gates.md
+
+### Quality Levels
+- 🟢 **Green**: すべての品質基準をクリア
+- 🟡 **Yellow**: 軽微な問題あり（警告）
+- 🔴 **Red**: 重大な問題あり（マージ不可）
+
+### Pre-commit Integration
+```bash
+# 自動品質チェック
+.claude/scripts/quality-pre-commit.sh
+```
+
 ## Project Data
-- Settings: `config/settings.json`
-- Data: `data/`
+- Settings: `.claude/settings.json`
 - Requirements: @docs/requirements.md
 
 ## Memory Bank Usage Policy

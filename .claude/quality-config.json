@@ -1,0 +1,48 @@
+{
+  "thresholds": {
+    "coverage": {
+      "global": 80,
+      "new_code": 90,
+      "per_file": 60
+    },
+    "complexity": {
+      "cyclomatic": 10,
+      "cognitive": 15
+    },
+    "duplication": 5,
+    "security": {
+      "critical": 0,
+      "high": 0,
+      "medium": 3,
+      "low": 10
+    }
+  },
+  "exclude": [
+    "**/*.test.js",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/test_*.py",
+    "**/__tests__/**",
+    "**/tests/**",
+    "**/migrations/**",
+    "**/vendor/**",
+    "**/node_modules/**",
+    "**/__pycache__/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/.git/**",
+    "**/.claude/**"
+  ],
+  "rules": {
+    "enforce_tdd": true,
+    "require_docs": true,
+    "strict_typing": true,
+    "max_file_length": 500,
+    "max_function_length": 50
+  },
+  "reports": {
+    "format": "markdown",
+    "save_history": true,
+    "history_dir": ".claude/quality-reports/"
+  }
+}

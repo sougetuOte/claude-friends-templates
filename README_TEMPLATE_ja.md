@@ -81,6 +81,16 @@ docs/adr/template.md         # ADRテンプレート
 └── settings.json           # プロジェクト設定（キャッシュ+セキュリティ）
 ```
 
+## 📋 前提条件
+
+- **Claude Code v1.0+** インストール済み
+- **Git** バージョン管理用
+- **Python 3.7+** (オプション、高度な機能用):
+  - リファクタリング分析 (`refactoring-analyzer.py`)
+  - 設計ドリフト検出 (`design-drift-detector.py`)
+  - 品質チェック (`quality-check.py`)
+  - AIログ分析 (`analyze-ai-logs.py`)
+
 ## 🚀 使い方
 
 ### 1. プロジェクト開始

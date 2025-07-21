@@ -1,0 +1,40 @@
+{
+  "schedule": {
+    "daily": true,
+    "weekly": true,
+    "beforeCommit": false
+  },
+  "thresholds": {
+    "complexity": {
+      "cyclomatic": 10,
+      "cognitive": 15,
+      "maxLines": 100,
+      "maxParams": 5
+    },
+    "duplication": {
+      "minLines": 20,
+      "threshold": 0.8
+    },
+    "coverage": 80
+  },
+  "priorities": {
+    "performance": "high",
+    "readability": "medium",
+    "testability": "high"
+  },
+  "exclude": [
+    "vendor/",
+    "node_modules/",
+    "build/",
+    "dist/",
+    "*.min.js",
+    "*.generated.*",
+    "__pycache__",
+    ".git",
+    ".claude/",
+    "coverage/",
+    "*.test.js",
+    "*.spec.js",
+    "test_*.py"
+  ]
+}

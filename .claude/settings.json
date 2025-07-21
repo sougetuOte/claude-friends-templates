@@ -53,6 +53,13 @@
       "Bash(shred *)"
     ]
   },
+  "tdd": {
+    "enforcement": "recommended",
+    "skipReasonRequired": true,
+    "testFirstWarning": true,
+    "coverageThreshold": 80,
+    "skipReasonLog": ".claude/tdd-skip-reasons.log"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -72,6 +79,10 @@
           {
             "type": "command",
             "command": ".claude/scripts/auto-format.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/tdd-check.sh"
           }
         ]
       },
