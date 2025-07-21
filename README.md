@@ -51,8 +51,9 @@ AI-Friendly Logger V2 (powered by [Vibe Logger](https://github.com/fladdict/vibe
   - Automated test generation and quality gates
 - Just 4 simple commands, but infinite possibilities!
 
-## 🏃‍♂️ Quick Start
+## 🏃‍♂️ Quick Start (5 minutes to your first AI-powered development)
 
+### 1. Get the Template
 ```bash
 # Clone the template
 git clone https://github.com/yourusername/claude-friends-templates.git
@@ -65,8 +66,67 @@ cp -r . ../my-awesome-project/ && cd ../my-awesome-project/
 # mv README_ja.md README.md        # Use Japanese version as main
 # mv CLAUDE_ja.md CLAUDE.md        # Use Japanese version as main
 
-# Customize and start developing
+# Remove template's git history
+rm -rf .git && git init
 ```
+
+### 2. Tell AI About Your Project (30 seconds)
+Edit the first 2 lines in `CLAUDE.md`:
+```markdown
+# [Project Name]                 ← Replace with: My Todo App
+## Project Overview
+[Write a concise description...] ← Replace with: A simple todo list application
+```
+
+(Don't worry about the rest of CLAUDE.md - it contains useful settings that help the AI understand your project better)
+
+### 3. Start Planning with AI Planner
+```bash
+# In Claude Code, start the Planner agent:
+/agent:planner
+
+# Planner will greet you:
+"Hello! Let's plan your project. What kind of application do you want to create?"
+
+# Just tell what you want:
+"I want to make a todo app where users can add, complete, and delete tasks"
+
+# Planner will help you:
+"I see, a task management app. Let me help you organize the requirements..."
+```
+
+### 4. Let Planner Create Your Requirements
+The Planner will:
+- Ask clarifying questions
+- Create design documents with diagrams
+- Fill out requirements.md for you
+- Break down work into phases
+
+### 5. Start Building
+```bash
+# When planning is done, switch to Builder:
+/agent:builder
+
+# Builder will start implementing:
+"Alright, I've reviewed the requirements. Let's start with the first task!"
+```
+
+### That's It! 🎉
+Your AI team is now working for you. The Planner organized everything, and the Builder is implementing it with TDD best practices.
+
+### Want Something Different?
+- **Need it simpler?** Tell Planner: "Make it as simple as possible"
+- **Want more features?** Tell Planner: "I'd like to add user authentication"
+- **Different approach?** Tell Planner: "Should we use a different architecture?"
+- **Not sure what you need?** Just ask Planner: "What would you recommend?"
+
+The AI agents are here to help - just have a conversation!
+
+### Next Steps
+- Keep chatting naturally - agents understand context
+- Use `/project:focus` when you get distracted  
+- Use `/project:daily` for quick retrospectives
+- Read the [full guide](.claude/claude-friends-guide.md) when ready
 
 > 💡 **Language versions**: This template includes both English and Japanese versions of documentation files (*_ja suffix for Japanese). Choose the version that suits your needs.
 
