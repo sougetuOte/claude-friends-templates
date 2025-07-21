@@ -43,7 +43,12 @@ AI-Friendly Logger V2 (powered by [Vibe Logger](https://github.com/fladdict/vibe
 
 ### 🎭 **Smart Agents with Special Modes**
 - **Planner**: Strategic thinking + automatic Feature Design Mode with Mermaid diagrams
+  - Design synchronization and drift detection
+  - ADR (Architecture Decision Record) management
 - **Builder**: Coding expert + automatic Debug Mode and Code Review Mode + strict TDD enforcement
+  - Red-Green-Refactor cycle with visual status tracking
+  - Error pattern learning and recognition
+  - Automated test generation and quality gates
 - Just 4 simple commands, but infinite possibilities!
 
 ## 🏃‍♂️ Quick Start
@@ -95,6 +100,42 @@ The foundation for AI-powered development.
 - **Review Automatically**: Builder's Code Review Mode ensures quality without manual effort
 - **Remember Everything**: Memory Bank and handoff system maintain perfect project context
 
+## 🚀 Enhanced Features (NEW!)
+
+### 🔴🟢✅ Test-Driven Development (TDD) Integration
+- **Strict TDD Workflow**: Red-Green-Refactor cycle with task status tracking
+- **Visual Status Indicators**: 
+  - 🔴 Not Implemented (Red phase)
+  - 🟢 Minimally Implemented (Green phase)  
+  - ✅ Refactored (Refactor phase)
+  - ⚠️ Blocked (After 3 failed attempts)
+- **TDD Commands**: `/tdd:start` to begin cycle, `/tdd:status` to check progress
+- **Automated Test Generation**: Templates and mock support for faster testing
+
+### 🎯 Enhanced Design Synchronization
+- **Design-First Development**: All implementations align with design specs
+- **Bidirectional Sync**: Design ↔ Implementation feedback loop
+- **Design Drift Detection**: Automatic checks for design-code divergence
+- **ADR System**: Architecture Decision Records for tracking design choices
+
+### 🔍 AI-Powered Error Pattern Library
+- **Smart Error Recognition**: Learns from past debugging sessions
+- **Pattern Matching**: Instantly identifies similar errors from history
+- **Root Cause Analysis**: AI suggests likely causes and solutions
+- **Searchable Debug History**: Quick access to past solutions
+
+### 🧪 Integrated Test Framework
+- **Test Templates**: Pre-built templates for common test scenarios
+- **Mock Generation**: Automatic mock creation for dependencies
+- **Coverage Tracking**: Real-time test coverage monitoring
+- **Quality Gates**: Enforces 80%+ coverage, complexity limits
+
+### ⚡ Optimized Agent Coordination
+- **Smart Handoffs**: Context compression for efficient agent switching
+- **Parallel Task Analysis**: Identifies tasks that can run concurrently
+- **Shared Memory Bank**: Synchronized knowledge between agents
+- **Performance Monitoring**: Track agent efficiency and bottlenecks
+
 ## 🛠 What's Inside
 
 ```
@@ -111,7 +152,10 @@ Your AI-Powered Workspace:
 - **[Quick Start Guide](README_TEMPLATE.md)** - Get started with clear, step-by-step instructions
 - **[Claude Friends User Guide](.claude/claude-friends-guide.md)** - Master the AI agent system
 - **[Migration Guide](MIGRATION_GUIDE.md)** - Upgrade existing projects smoothly
-- **[Best Practices](docs/development-rules.md)** - Learn proven development patterns
+- **[Best Practices](BEST_PRACTICES.md)** - Learn proven development patterns
+- **[Architecture Overview](ARCHITECTURE.md)** - Understand the system design
+- **[TDD Guide](.claude/builder/tdd-cycle.md)** - Master Test-Driven Development
+- **[Design Sync Guide](.claude/shared/design-sync.md)** - Keep design and code aligned
 
 ## 🤝 Join the Community
 

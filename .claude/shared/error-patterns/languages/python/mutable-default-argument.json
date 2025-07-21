@@ -1,0 +1,39 @@
+{
+  "id": "python-mutable-default-argument",
+  "name": "Mutable Default Argument",
+  "category": "logic",
+  "languages": ["python"],
+  "description": "Using mutable objects as default arguments in Python functions, causing unexpected shared state",
+  "symptoms": [
+    "Function behavior changes between calls",
+    "Default values accumulate data unexpectedly",
+    "List or dict parameters retain values from previous calls",
+    "Unexpected side effects in function calls"
+  ],
+  "causes": [
+    "Default arguments are evaluated once at function definition",
+    "Mutable objects (lists, dicts) are shared between calls",
+    "Misunderstanding of Python's function definition behavior",
+    "Copy-paste from other languages with different semantics"
+  ],
+  "solutions": [
+    {
+      "description": "Use None as default and create new object inside function",
+      "code": "# Bad\ndef append_to_list(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\n# Good\ndef append_to_list(item, target_list=None):\n    if target_list is None:\n        target_list = []\n    target_list.append(item)\n    return target_list",
+      "preventive": false
+    },
+    {
+      "description": "Use immutable defaults when possible",
+      "code": "# For simple cases, use immutable types\ndef process_data(data, options=()):\n    # Convert to mutable if needed\n    options_dict = dict(options)\n    # Process...",
+      "preventive": true
+    },
+    {
+      "description": "Document the behavior if mutable default is intentional",
+      "code": "# If sharing state is intended, document it clearly\n_cache = {}\ndef cached_operation(key, cache=_cache):\n    \"\"\"Uses a shared cache across all calls.\n    \n    Warning: cache parameter shares state between calls.\n    \"\"\"\n    if key in cache:\n        return cache[key]\n    # ...",
+      "preventive": true
+    }
+  ],
+  "related": ["python-late-binding-closure", "logic-shared-state"],
+  "tags": ["python", "functions", "defaults", "mutable", "gotcha"],
+  "severity": "medium"
+}

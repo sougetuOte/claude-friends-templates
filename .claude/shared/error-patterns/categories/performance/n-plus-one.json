@@ -1,0 +1,46 @@
+{
+  "id": "performance-n-plus-one",
+  "name": "N+1 Query Problem",
+  "category": "performance",
+  "languages": ["general"],
+  "description": "Performance issue where code makes N+1 database queries instead of 1 or 2 efficient queries",
+  "symptoms": [
+    "Slow page load times with database-heavy operations",
+    "Linear performance degradation with data growth",
+    "High database connection usage",
+    "Timeouts on list/index pages",
+    "Database query logs showing repetitive patterns"
+  ],
+  "causes": [
+    "Loading related data in a loop",
+    "ORM lazy loading in iterations",
+    "Missing eager loading configuration",
+    "Nested loops with database queries",
+    "Inefficient data access patterns"
+  ],
+  "solutions": [
+    {
+      "description": "Use eager loading / includes",
+      "code": "# Python Django\n# Bad: N+1 queries\nfor author in Author.objects.all():\n    print(author.books.count())  # Query per author\n\n# Good: 2 queries total\nauthors = Author.objects.prefetch_related('books')\nfor author in authors:\n    print(author.books.count())  # No additional queries\n\n# Ruby on Rails\n# Bad\nPost.all.each { |post| puts post.comments.count }\n\n# Good\nPost.includes(:comments).each { |post| puts post.comments.count }",
+      "preventive": false
+    },
+    {
+      "description": "Use batch loading",
+      "code": "# Instead of loading one by one\nids = [1, 2, 3, 4, 5]\n# Bad\nusers = [User.find(id) for id in ids]  # N queries\n\n# Good\nusers = User.where(id: ids)  # 1 query",
+      "preventive": false
+    },
+    {
+      "description": "Use query analysis tools",
+      "code": "# Django Debug Toolbar\n# Rails Bullet gem\n# Database query logging\n# APM tools (New Relic, DataDog)\n\n# Enable query logging in development\n# to spot N+1 patterns early",
+      "preventive": true
+    },
+    {
+      "description": "Implement DataLoader pattern",
+      "code": "# For GraphQL or similar\n# Use DataLoader to batch and cache\n# database requests\n\nclass UserLoader < GraphQL::Batch::Loader\n  def perform(ids)\n    User.where(id: ids).each { |user| fulfill(user.id, user) }\n  end\nend",
+      "preventive": true
+    }
+  ],
+  "related": ["performance-slow-query", "performance-memory-leak"],
+  "tags": ["database", "orm", "queries", "optimization", "common"],
+  "severity": "high"
+}

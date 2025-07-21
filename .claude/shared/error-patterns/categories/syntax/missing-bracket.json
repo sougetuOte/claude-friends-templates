@@ -1,0 +1,39 @@
+{
+  "id": "syntax-missing-bracket",
+  "name": "Missing Bracket or Parenthesis",
+  "category": "syntax",
+  "languages": ["python", "javascript", "general"],
+  "description": "Missing closing bracket, parenthesis, or brace causing syntax error",
+  "symptoms": [
+    "SyntaxError: unexpected EOF while parsing",
+    "Unexpected end of input",
+    "Missing ) after argument list",
+    "Unmatched '{' or '['"
+  ],
+  "causes": [
+    "Forgetting to close a bracket, parenthesis, or brace",
+    "Mismatched bracket types (e.g., [ with })",
+    "Nested structures with incorrect closure order",
+    "Copy-paste errors removing closing characters"
+  ],
+  "solutions": [
+    {
+      "description": "Use IDE bracket matching features",
+      "code": "# Enable bracket highlighting in your editor\n# Most IDEs highlight matching brackets when cursor is on one",
+      "preventive": true
+    },
+    {
+      "description": "Count opening and closing brackets",
+      "code": "# Quick check:\n# Count of '(' should equal count of ')'\n# Count of '[' should equal count of ']'\n# Count of '{' should equal count of '}'",
+      "preventive": false
+    },
+    {
+      "description": "Use proper indentation to identify structure",
+      "code": "# Properly indented code makes missing brackets obvious:\nif condition:\n    array = [\n        item1,\n        item2,\n        item3\n    ]  # <- Missing bracket is obvious with indentation",
+      "preventive": true
+    }
+  ],
+  "related": ["syntax-unexpected-token", "syntax-indentation-error"],
+  "tags": ["brackets", "parenthesis", "syntax", "common"],
+  "severity": "high"
+}

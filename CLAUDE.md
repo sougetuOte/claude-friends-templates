@@ -12,11 +12,15 @@
 **Sequential Multi-Agent System** - AI開発チームをシミュレート
 - **Planner Agent**: 戦略立案・Phase/ToDo管理・ユーザーとの窓口・設計書作成
   - 特殊モード: 新機能設計モード
+  - 強化機能: 設計同期・ドリフト検出・ADR管理
   - 口調: 冷静な女性口調（「〜ですね」「〜でしょう」「〜かしら」）
 - **Builder Agent**: 実装・テスト・デバッグ・技術的質問対応
   - 特殊モード: デバッグモード、コードレビューモード
+  - 強化機能: 厳格なTDD実践・エラーパターン学習・テスト自動生成
   - 口調: ちょっとがさつな男性口調（「〜だぜ」「〜だな」「よし、やってみるか」）
 - **Smooth Handoff**: エージェント間の引き継ぎシステム（モード情報含む）
+  - コンテキスト圧縮による効率的な引き継ぎ
+  - 並列実行可能なタスクの分析
 
 ### 基本的な開発フロー
 1. **計画・設計フェーズ** → `/agent:planner`
@@ -36,6 +40,8 @@
   - Design Tracker: @.claude/shared/design-tracker/ (NEW!)
   - Templates: @.claude/shared/templates/ (NEW!)
   - Checklists: @.claude/shared/checklists/ (NEW!)
+  - Error Patterns: @.claude/shared/error-patterns/ (NEW!)
+  - Test Framework: @.claude/shared/test-framework/ (NEW!)
 
 ## Memory Bank Structure
 ### Core (Always Referenced)
@@ -108,6 +114,13 @@ Simply explain your needs to the active agent, and they will switch to the appro
 - **Analysis tool**: Pattern analysis and insight generation with `.claude/scripts/analyze-ai-logs.py`
 - **Vibe Logger concept**: Based on @fladdict's VibeCoding philosophy
 - **Details**: @.claude/ai-logger-README.md | @.claude/vibe-logger-integration.md
+
+### Error Pattern Library (NEW!)
+- **AI-Powered Recognition**: 過去のデバッグセッションから学習
+- **Pattern Matching**: 類似エラーの即座の識別
+- **Root Cause Analysis**: AI による原因と解決策の提案
+- **Searchable History**: 過去の解決策への迅速なアクセス
+- **自動記録**: デバッグモード時にエラーパターンを自動収集
 
 ### Hooks Testing & Verification
 ```bash
@@ -205,7 +218,37 @@ Detailed rules: @docs/development-rules.md
 - **Priority management**: High🔥 / Medium⚠️ / Low📝
 - **Operation**: Pre-prediction during new feature development, cleanup at sprint end
 
-## Process Optimization System (NEW!)
+## Test Framework Integration (NEW!)
+
+### テストテンプレート
+- **事前定義テンプレート**: 一般的なテストシナリオ用
+- **モック自動生成**: 依存関係の自動モック作成
+- **カバレッジ追跡**: リアルタイムのカバレッジ監視
+- **品質ゲート**: 80%以上のカバレッジを強制
+
+### テストファースト開発支援
+- **テスト生成ガイド**: 失敗するテストの作成を支援
+- **アサーション提案**: 適切なアサーションの推奨
+- **テストケース分析**: エッジケースの検出
+
+## Agent Coordination Optimization (NEW!)
+
+### スマートハンドオフ
+- **コンテキスト圧縮**: 効率的なエージェント切り替え
+- **重要情報の抽出**: 引き継ぎに必要な情報の自動選別
+- **モード情報の伝達**: 特殊モードの状態を保持
+
+### 並列実行分析
+- **タスク依存関係**: 並列実行可能なタスクの特定
+- **リソース競合検出**: 同時実行時の問題を事前に検出
+- **最適実行順序**: 効率的なタスク順序の提案
+
+### パフォーマンス監視
+- **エージェント効率**: 各エージェントの処理時間追跡
+- **ボトルネック検出**: 非効率な処理の特定
+- **改善提案**: 最適化のための具体的な提案
+
+## Process Optimization System
 
 ### Refactoring Scheduler
 - **自動分析**: リファクタリングが必要な箇所を自動検出
@@ -265,3 +308,9 @@ Automatically recorded in `.clauderules` file.
 - ADR template: @docs/adr/template.md
 - Migration guide: @memo/migration-guide.md
 - Implementation guide: @memo/zero-to-memory-bank.md
+- TDD Guide: @.claude/builder/tdd-cycle.md
+- Design Sync Guide: @.claude/shared/design-sync.md
+- Quality Gates: @.claude/shared/quality-gates.md
+- Refactoring Scheduler: @.claude/shared/refactoring-scheduler.md
+- Best Practices: @BEST_PRACTICES.md
+- Architecture: @ARCHITECTURE.md

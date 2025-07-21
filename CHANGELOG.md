@@ -5,6 +5,85 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-07-21
+
+### 🚀 Major Enhancement: TDD & Quality Engineering Integration
+
+This release brings comprehensive enhancements from the claude-kiro-template integration, focusing on Test-Driven Development, design synchronization, error pattern learning, and automated quality management.
+
+### Added
+
+#### Phase 1: TDD Integration
+- **Strict TDD Workflow**: Red-Green-Refactor cycle with visual task status tracking
+- **Task Status System**: 🔴 Not Implemented → 🟢 Minimally Implemented → ✅ Refactored → ⚠️ Blocked
+- **TDD Commands**: `/tdd:start` and `/tdd:status` for managing TDD cycles
+- **TDD Enforcement Settings**: Configurable strictness levels (strict/recommended/off)
+- **Comprehensive TDD Guide**: `.claude/builder/tdd-cycle.md` with t-wada style TDD practices
+- **Task Status Documentation**: `.claude/shared/task-status.md` for visual progress tracking
+
+#### Phase 2: Enhanced Design Synchronization
+- **Design Sync Mechanism**: `.claude/shared/design-sync.md` for design-implementation alignment
+- **Design Change Tracking**: Systematic recording of design decisions and impacts
+- **Design Drift Detection**: Automated checks for design-code divergence
+- **ADR Integration**: Enhanced Architecture Decision Records with templates
+- **Design Conflict Resolution**: Framework for handling design gaps during implementation
+
+#### Phase 3: Error Pattern Library
+- **AI-Powered Error Recognition**: Learning from past debugging sessions
+- **Pattern Matching**: Instant identification of similar errors from history
+- **Root Cause Analysis**: AI-suggested causes and solutions
+- **Searchable Debug History**: Quick access to past solutions
+- **Error Pattern Templates**: Standardized error documentation format
+
+#### Phase 4: Integrated Development Framework
+- **Test Framework Integration**:
+  - Pre-built test templates for common scenarios
+  - Automatic mock generation for dependencies
+  - Real-time coverage tracking and reporting
+  - Quality gates enforcing 80%+ coverage
+  
+- **Agent Coordination Optimization**:
+  - Smart handoff compression for efficient context transfer
+  - Parallel task execution analysis
+  - Shared memory bank synchronization
+  - Performance monitoring and bottleneck detection
+  
+- **Automated Quality Management**:
+  - Refactoring scheduler with priority scoring
+  - Design change impact analyzer
+  - Pre-commit quality gates
+  - Continuous quality monitoring
+
+### Enhanced
+- **Builder Agent**: Now enforces strict TDD practices with visual status tracking
+- **Planner Agent**: Enhanced with design synchronization and drift detection
+- **Memory Bank**: Expanded with error patterns and test templates
+- **Documentation**: Added comprehensive guides for TDD, design sync, and quality management
+
+### Added Files
+- `.claude/builder/tdd-cycle.md` - TDD practice guide
+- `.claude/shared/task-status.md` - Task status management
+- `.claude/shared/design-sync.md` - Design synchronization guide
+- `.claude/shared/design-tracker/` - Design change tracking system
+- `.claude/shared/refactoring-scheduler.md` - Automated refactoring suggestions
+- `.claude/shared/quality-gates.md` - Quality automation system
+- `.claude/shared/tdd-settings.md` - TDD configuration guide
+- `.claude/refactoring-config.json` - Refactoring scheduler configuration
+- `.claude/quality-config.json` - Quality gates configuration
+- `BEST_PRACTICES.md` - Comprehensive best practices guide
+- `ARCHITECTURE.md` - System architecture documentation
+
+### Configuration
+- **TDD Settings**: Added to `.claude/settings.json` with enforcement levels
+- **Quality Thresholds**: Configurable complexity, coverage, and duplication limits
+- **Refactoring Rules**: Automated priority calculation for technical debt
+
+### Documentation
+- Updated README.md with enhanced features section
+- Updated CLAUDE.md with new commands and features
+- Added links to new documentation files
+- Enhanced existing guides with TDD and quality practices
+
 ## [2.0.0] - 2025-07-12
 
 ### 🎉 Major Release: Claude Friends Multi-Agent System

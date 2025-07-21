@@ -1,0 +1,45 @@
+{
+  "id": "runtime-null-reference",
+  "name": "Null/Undefined Reference Error",
+  "category": "runtime",
+  "languages": ["python", "javascript", "general"],
+  "description": "Attempting to access properties or methods on null/undefined/None values",
+  "symptoms": [
+    "TypeError: Cannot read property 'x' of undefined",
+    "AttributeError: 'NoneType' object has no attribute 'x'",
+    "TypeError: Cannot read properties of null",
+    "NullPointerException"
+  ],
+  "causes": [
+    "Variable not initialized before use",
+    "Function returning None/null unexpectedly",
+    "Asynchronous operation not completed",
+    "Optional chaining not used for nullable values",
+    "Array or object access with invalid index/key"
+  ],
+  "solutions": [
+    {
+      "description": "Add null/undefined checks before access",
+      "code": "// JavaScript\nif (obj && obj.property) {\n    // Safe to use obj.property\n}\n\n# Python\nif obj is not None and hasattr(obj, 'property'):\n    # Safe to use obj.property",
+      "preventive": false
+    },
+    {
+      "description": "Use optional chaining (modern JavaScript)",
+      "code": "// Instead of: obj.prop.subprop\n// Use: obj?.prop?.subprop\n\n// With default value:\nconst value = obj?.prop?.subprop ?? 'default';",
+      "preventive": true
+    },
+    {
+      "description": "Initialize variables with default values",
+      "code": "// JavaScript\nlet data = {}; // Instead of: let data;\n\n# Python\ndata = {} # Instead of: data = None",
+      "preventive": true
+    },
+    {
+      "description": "Use type hints and static analysis",
+      "code": "# Python with type hints\nfrom typing import Optional\n\ndef get_user(id: int) -> Optional[User]:\n    # Return type clearly indicates it might be None\n    pass",
+      "preventive": true
+    }
+  ],
+  "related": ["runtime-type-error", "runtime-undefined-variable"],
+  "tags": ["null", "undefined", "none", "type-error", "common"],
+  "severity": "high"
+}

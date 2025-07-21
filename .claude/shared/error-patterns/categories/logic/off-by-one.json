@@ -1,0 +1,46 @@
+{
+  "id": "logic-off-by-one",
+  "name": "Off-by-One Error",
+  "category": "logic",
+  "languages": ["general"],
+  "description": "Logic error where loop or array access is off by one, causing incorrect behavior or out-of-bounds access",
+  "symptoms": [
+    "IndexError: list index out of range",
+    "Array index out of bounds",
+    "Missing last element in iteration",
+    "Processing one extra element",
+    "Fence post error in calculations"
+  ],
+  "causes": [
+    "Confusion between 0-based and 1-based indexing",
+    "Incorrect loop boundary conditions (< vs <=)",
+    "Wrong calculation of array length or range",
+    "Misunderstanding of inclusive vs exclusive ranges",
+    "Incorrect fence post calculations"
+  ],
+  "solutions": [
+    {
+      "description": "Use proper loop idioms for the language",
+      "code": "# Python - iterate directly over items\nfor item in array:\n    process(item)\n\n// JavaScript - use for...of for arrays\nfor (const item of array) {\n    process(item);\n}",
+      "preventive": true
+    },
+    {
+      "description": "Be explicit about boundaries",
+      "code": "# Clear about inclusive/exclusive\nfor i in range(0, len(array)):  # 0 to len-1\n    # Process array[i]\n\n# Or use enumerate\nfor i, item in enumerate(array):\n    # Have both index and item",
+      "preventive": true
+    },
+    {
+      "description": "Test edge cases explicitly",
+      "code": "# Always test:\n# - Empty array\n# - Single element\n# - First element access\n# - Last element access\n# - One past last element",
+      "preventive": true
+    },
+    {
+      "description": "Use length-1 for last index",
+      "code": "# Last valid index is always length - 1\nlast_index = len(array) - 1\nlast_element = array[last_index]\n\n// JavaScript\nconst lastIndex = array.length - 1;\nconst lastElement = array[lastIndex];",
+      "preventive": false
+    }
+  ],
+  "related": ["runtime-index-error", "logic-fence-post"],
+  "tags": ["loops", "arrays", "indexing", "boundary", "common"],
+  "severity": "medium"
+}

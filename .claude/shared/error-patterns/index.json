@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-07-21",
+  "total_patterns": 7,
+  "categories": {
+    "syntax": {
+      "description": "Syntax and parsing errors",
+      "count": 1,
+      "patterns": ["syntax-missing-bracket"]
+    },
+    "runtime": {
+      "description": "Runtime exceptions and errors",
+      "count": 2,
+      "patterns": ["runtime-null-reference", "javascript-async-await-pitfall"]
+    },
+    "logic": {
+      "description": "Logic errors and unexpected behavior",
+      "count": 2,
+      "patterns": ["logic-off-by-one", "python-mutable-default-argument"]
+    },
+    "integration": {
+      "description": "Integration and compatibility issues",
+      "count": 1,
+      "patterns": ["integration-version-mismatch"]
+    },
+    "performance": {
+      "description": "Performance-related issues",
+      "count": 1,
+      "patterns": ["performance-n-plus-one"]
+    }
+  },
+  "languages": {
+    "python": {
+      "description": "Python-specific error patterns",
+      "count": 3,
+      "patterns": ["syntax-missing-bracket", "runtime-null-reference", "python-mutable-default-argument"]
+    },
+    "javascript": {
+      "description": "JavaScript-specific error patterns",
+      "count": 3,
+      "patterns": ["syntax-missing-bracket", "runtime-null-reference", "javascript-async-await-pitfall"]
+    },
+    "typescript": {
+      "description": "TypeScript-specific error patterns",
+      "count": 1,
+      "patterns": ["javascript-async-await-pitfall"]
+    },
+    "general": {
+      "description": "Language-agnostic patterns",
+      "count": 4,
+      "patterns": ["syntax-missing-bracket", "runtime-null-reference", "logic-off-by-one", "integration-version-mismatch", "performance-n-plus-one"]
+    }
+  },
+  "recent_additions": [
+    "syntax-missing-bracket",
+    "runtime-null-reference",
+    "logic-off-by-one",
+    "integration-version-mismatch",
+    "performance-n-plus-one",
+    "python-mutable-default-argument",
+    "javascript-async-await-pitfall"
+  ],
+  "most_referenced": []
+}

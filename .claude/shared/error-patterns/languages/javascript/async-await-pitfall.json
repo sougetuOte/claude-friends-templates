@@ -1,0 +1,46 @@
+{
+  "id": "javascript-async-await-pitfall",
+  "name": "Async/Await Common Pitfalls",
+  "category": "runtime",
+  "languages": ["javascript", "typescript"],
+  "description": "Common mistakes when using async/await in JavaScript, leading to unhandled promises or race conditions",
+  "symptoms": [
+    "UnhandledPromiseRejectionWarning",
+    "Functions returning Promise<pending> instead of values",
+    "Race conditions in async operations",
+    "Memory leaks from unresolved promises",
+    "Synchronous-looking code behaving asynchronously"
+  ],
+  "causes": [
+    "Forgetting to use 'await' keyword",
+    "Using async/await in forEach loops",
+    "Not handling promise rejections",
+    "Mixing callbacks with async/await",
+    "Incorrect error handling in async functions"
+  ],
+  "solutions": [
+    {
+      "description": "Always await async functions or handle the promise",
+      "code": "// Bad\nasync function fetchData() {\n    getData(); // Missing await - promise not handled\n}\n\n// Good\nasync function fetchData() {\n    await getData();\n    // or\n    getData().catch(err => console.error(err));\n}",
+      "preventive": false
+    },
+    {
+      "description": "Use for...of instead of forEach for async operations",
+      "code": "// Bad - doesn't wait for async operations\nitems.forEach(async (item) => {\n    await processItem(item); // This doesn't block\n});\n\n// Good - sequential processing\nfor (const item of items) {\n    await processItem(item);\n}\n\n// Good - parallel processing\nawait Promise.all(items.map(item => processItem(item)));",
+      "preventive": false
+    },
+    {
+      "description": "Proper error handling with try-catch",
+      "code": "// Bad\nasync function riskyOperation() {\n    const data = await fetchData(); // Unhandled rejection\n    return data;\n}\n\n// Good\nasync function riskyOperation() {\n    try {\n        const data = await fetchData();\n        return data;\n    } catch (error) {\n        console.error('Operation failed:', error);\n        throw error; // Re-throw or handle appropriately\n    }\n}",
+      "preventive": true
+    },
+    {
+      "description": "Use Promise.allSettled for multiple operations",
+      "code": "// When you need all results regardless of failures\nconst results = await Promise.allSettled([\n    fetchUser(),\n    fetchPosts(),\n    fetchComments()\n]);\n\nresults.forEach((result, index) => {\n    if (result.status === 'fulfilled') {\n        console.log(`Operation ${index} succeeded:`, result.value);\n    } else {\n        console.error(`Operation ${index} failed:`, result.reason);\n    }\n});",
+      "preventive": true
+    }
+  ],
+  "related": ["javascript-promise-chaining", "runtime-unhandled-rejection"],
+  "tags": ["javascript", "async", "await", "promises", "common"],
+  "severity": "high"
+}

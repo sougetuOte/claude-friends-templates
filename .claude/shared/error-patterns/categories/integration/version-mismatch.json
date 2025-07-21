@@ -1,0 +1,46 @@
+{
+  "id": "integration-version-mismatch",
+  "name": "Dependency Version Mismatch",
+  "category": "integration",
+  "languages": ["general"],
+  "description": "Incompatible versions between dependencies causing integration failures",
+  "symptoms": [
+    "Module not found or import errors after update",
+    "Method or property doesn't exist",
+    "Type errors with previously working code",
+    "Conflicting dependency requirements",
+    "Breaking changes in API"
+  ],
+  "causes": [
+    "Major version updates with breaking changes",
+    "Transitive dependency conflicts",
+    "Mixing incompatible versions of related packages",
+    "Missing version pinning in requirements",
+    "Automatic updates breaking compatibility"
+  ],
+  "solutions": [
+    {
+      "description": "Pin dependency versions explicitly",
+      "code": "# Python requirements.txt\nrequests==2.28.1  # Pin exact version\nnumpy>=1.20,<2.0  # Pin major version\n\n// package.json\n\"dependencies\": {\n  \"react\": \"^18.2.0\",  // Compatible with 18.x.x\n  \"axios\": \"~1.3.0\"    // Compatible with 1.3.x\n}",
+      "preventive": true
+    },
+    {
+      "description": "Use dependency lock files",
+      "code": "# Python\npip freeze > requirements.txt\n# Or use pipenv/poetry with lock files\n\n# JavaScript/Node.js\n# Commit package-lock.json or yarn.lock",
+      "preventive": true
+    },
+    {
+      "description": "Check compatibility matrix",
+      "code": "# Before upgrading, check:\n# 1. Release notes for breaking changes\n# 2. Compatibility with other dependencies\n# 3. Required migration steps\n# 4. Test in isolated environment first",
+      "preventive": true
+    },
+    {
+      "description": "Use virtual environments",
+      "code": "# Python\npython -m venv venv\nsource venv/bin/activate  # Unix\nvenv\\Scripts\\activate  # Windows\n\n# Node.js\n# Use nvm for Node version management\nnvm use 18.0.0",
+      "preventive": true
+    }
+  ],
+  "related": ["integration-api-change", "integration-missing-dependency"],
+  "tags": ["dependencies", "versioning", "compatibility", "packages"],
+  "severity": "high"
+}
