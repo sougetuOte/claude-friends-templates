@@ -52,27 +52,66 @@ AI-Friendly Logger V2（[Vibe Logger](https://github.com/fladdict/vibe-logger)�
   - テスト自動生成と品質ゲート
 - たった4つのコマンドで、無限の可能性！
 
+## 📊 開発フロー概要
+
+```mermaid
+graph LR
+    A[要件定義<br/>📋] --> B[設計<br/>🎨]
+    B --> C[タスク生成<br/>📝]
+    C --> D[実装<br/>🔨]
+    
+    subgraph "Plannerエージェント"
+        A
+        B
+        C
+    end
+    
+    subgraph "Builderエージェント"
+        D
+    end
+    
+    D --> E{Phase<br/>レビュー}
+    E -->|合格| F[次のPhase]
+    E -->|問題| G[リファクタリング]
+    G --> D
+```
+
+### 主なプロセスの特徴:
+- **3フェーズ開発**: 要件定義 → 設計 → タスク生成
+- **厳格なTDD**: すべてのタスクでRed-Green-Refactorサイクル
+- **Phaseレビュー**: 各マイルストーンでの品質ゲート
+- **フィードバックループ**: 仕様問題の即時エスカレーション
+
 ## 🏃‍♂️ クイックスタート（5分でAI駆動開発を開始）
 
 ### 1. テンプレートを取得
 ```bash
 # テンプレートをクローン
-git clone https://github.com/yourusername/claude-friends-templates.git
+git clone https://github.com/[YOUR-USERNAME]/claude-friends-templates.git
 cd claude-friends-templates
 
 # プロジェクトにコピー
 cp -r . ../my-awesome-project/ && cd ../my-awesome-project/
 
-# 日本語版を使用する場合（推奨）
-mv README.md README_en.md          # 英語版を一時保存
-mv README_ja.md README.md           # 日本語版をメインに
-mv CLAUDE.md CLAUDE_en.md           # 英語版を一時保存  
-mv CLAUDE_ja.md CLAUDE.md           # 日本語版をメインに
-mv .clauderules .clauderules_en     # 英語版を一時保存
-mv .clauderules_ja .clauderules     # 日本語版をメインに
+# セットアップスクリプトで自動設定（新機能！）
+./setup.sh
+# スクリプトが以下を実行します：
+# - プロジェクト名と説明の入力
+# - 英語/日本語のデフォルト選択
+# - CLAUDE.mdの自動更新
+# - gitリポジトリの初期化
+# - 適切な権限の設定
 
+# または手動で（お好みの場合）：
+# 日本語版を使用する場合（推奨）
+# mv README.md README_en.md          # 英語版を一時保存
+# mv README_ja.md README.md           # 日本語版をメインに
+# mv CLAUDE.md CLAUDE_en.md           # 英語版を一時保存  
+# mv CLAUDE_ja.md CLAUDE.md           # 日本語版をメインに
+# mv .clauderules .clauderules_en     # 英語版を一時保存
+# mv .clauderules_ja .clauderules     # 日本語版をメインに
 # テンプレートのgit履歴を削除
-rm -rf .git && git init
+# rm -rf .git && git init
 ```
 
 ### 2. AIにプロジェクトを伝える（30秒）
@@ -100,14 +139,40 @@ rm -rf .git && git init
 「なるほど、タスク管理アプリですね。要件を整理させていただきますね...」
 ```
 
-### 4. プランナーが要件を作成
+### 4. 3フェーズ開発フローに従う
+
+#### 📋 フェーズ1: 要件定義
 プランナーが以下を行います：
 - 明確化のための質問
-- 図付きの設計ドキュメント作成
 - requirements.mdの自動作成
-- 作業をフェーズに分解
+- 成功基準の定義
+- リスクと制約の特定
 
-### 5. 実装開始
+#### 🎨 フェーズ2: 技術設計
+要件完了後：
+```bash
+/agent:planner
+「要件が完成しました。技術設計を作成しましょう。」
+```
+プランナーが以下を行います：
+- Mermaidでアーキテクチャ図作成
+- コンポーネントとインターフェース設計
+- データモデル定義
+- 技術的決定の文書化
+
+#### 🔨 フェーズ3: タスク生成と実装
+設計完了後：
+```bash
+/agent:planner
+「設計が完了しました。TDDでの実装タスクを生成してください。」
+```
+プランナーが以下を行います：
+- 作業をフェーズに分解（MVP → Advanced）
+- Red-Green-Refactorサイクルでタスク作成
+- 要件/設計へのトレーサビリティ確保
+- レビューチェックポイント追加
+
+### 5. TDDで実装開始
 ```bash
 # 計画が完了したら、ビルダーに切り替え：
 /agent:builder
@@ -221,6 +286,10 @@ AI駆動開発の基盤。
 - **[アーキテクチャ概要](ARCHITECTURE_ja.md)** - システム設計を理解
 - **[TDDガイド](.claude/builder/tdd-cycle.md)** - テスト駆動開発をマスター
 - **[設計同期ガイド](.claude/shared/design-sync.md)** - 設計とコードを一致させる
+- **[タスク生成ガイド](.claude/shared/templates/tasks/task-generation-intro.md)** - 要件と設計からタスクを生成
+- **[TDD厳密適用ガイド](.claude/shared/templates/tasks/tdd-strict-guide.md)** - t-wada式TDDの実践
+- **[Phaseレビューガイド](.claude/shared/templates/tasks/phase-review-template.md)** - 品質ゲートの実施
+- **[仕様フィードバック](.claude/shared/templates/tasks/specification-feedback-process.md)** - 仕様問題の迅速な解決
 
 ## 🤝 コミュニティに参加
 
@@ -234,7 +303,17 @@ AI駆動開発の未来を探求する開発者コミュニティが成長中。
 
 ## 🚀 試してみよう！
 
-Claude Friendsの実際の動作を見てみたいですか？実践的な例として**[サンプルプロジェクト](SAMPLE_PROJECTS_ja.md)**をチェックしてください：
+Claude Friendsの実際の動作を見てみたいですか？
+
+### 📂 動作するサンプル（新機能！）
+**[examples/](examples/)**ディレクトリで完全な動作コードを探索：
+- **[Todo App](examples/todo-app/)** - テスト付きの完全実装でワークフローを示す
+  - 要件定義 → 設計 → TDD実装
+  - 実際のテストファイルとタスク追跡を確認
+  - 実際のコードを調べて学習
+
+### 📚 概念プロジェクト
+さらなるプロジェクトアイデアは**[サンプルプロジェクト](SAMPLE_PROJECTS_ja.md)**をチェック：
 - 📝 マークダウン駆動型タスクマネージャー
 - 🌱 デジタルペット生態系
 - 🎮 ローグライクゲーム
@@ -245,6 +324,10 @@ Claude Friendsの実際の動作を見てみたいですか？実践的な例と
 ただコードを書くのではなく、**オーケストレート**しよう。
 
 **[→ 今すぐAIチームを手に入れる](README_TEMPLATE_ja.md)**
+
+## 📄 ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。詳細は[LICENSE](LICENSE)ファイルをご覧ください。
 
 ---
 

@@ -10,6 +10,8 @@ Imagine having a **Project Planner** who organizes your ideas and a **Code Build
 
 ### ✨ See the Magic in Action
 
+<!-- Placeholder for quickstart GIF/video - see docs/QUICKSTART_MEDIA.md for guidelines -->
+
 ```bash
 # Morning: Your AI Planner organizes the day
 $ /agent:planner
@@ -51,23 +53,62 @@ AI-Friendly Logger V2 (powered by [Vibe Logger](https://github.com/fladdict/vibe
   - Automated test generation and quality gates
 - Just 4 simple commands, but infinite possibilities!
 
+## 📊 Development Flow Overview
+
+```mermaid
+graph LR
+    A[Requirements<br/>📋] --> B[Design<br/>🎨]
+    B --> C[Task Generation<br/>📝]
+    C --> D[Implementation<br/>🔨]
+    
+    subgraph "Planner Agent"
+        A
+        B
+        C
+    end
+    
+    subgraph "Builder Agent"
+        D
+    end
+    
+    D --> E{Phase<br/>Review}
+    E -->|Pass| F[Next Phase]
+    E -->|Issues| G[Refactoring]
+    G --> D
+```
+
+### Key Process Features:
+- **3-Phase Development**: Requirements → Design → Tasks
+- **Strict TDD**: Every task follows Red-Green-Refactor cycle
+- **Phase Reviews**: Quality gates at each milestone
+- **Feedback Loop**: Immediate specification issue escalation
+
 ## 🏃‍♂️ Quick Start (5 minutes to your first AI-powered development)
 
 ### 1. Get the Template
 ```bash
 # Clone the template
-git clone https://github.com/yourusername/claude-friends-templates.git
+git clone https://github.com/[YOUR-USERNAME]/claude-friends-templates.git
 cd claude-friends-templates
 
 # Copy to your project
 cp -r . ../my-awesome-project/ && cd ../my-awesome-project/
 
-# For Japanese users (optional)
+# Run the setup script for automatic configuration (NEW!)
+./setup.sh
+# The script will:
+# - Ask for your project name and description
+# - Let you choose English or Japanese as default
+# - Update CLAUDE.md automatically
+# - Initialize git repository
+# - Set up proper permissions
+
+# Or manually (if you prefer):
+# For Japanese users
 # mv README_ja.md README.md        # Use Japanese version as main
 # mv CLAUDE_ja.md CLAUDE.md        # Use Japanese version as main
-
 # Remove template's git history
-rm -rf .git && git init
+# rm -rf .git && git init
 ```
 
 ### 2. Tell AI About Your Project (30 seconds)
@@ -95,14 +136,40 @@ Edit the first 2 lines in `CLAUDE.md`:
 "I see, a task management app. Let me help you organize the requirements..."
 ```
 
-### 4. Let Planner Create Your Requirements
+### 4. Follow the 3-Phase Development Flow
+
+#### 📋 Phase 1: Requirements Definition
 The Planner will:
 - Ask clarifying questions
-- Create design documents with diagrams
 - Fill out requirements.md for you
-- Break down work into phases
+- Define success criteria
+- Identify risks and constraints
 
-### 5. Start Building
+#### 🎨 Phase 2: Technical Design
+After requirements are complete:
+```bash
+/agent:planner
+"Requirements are done. Let's create the technical design."
+```
+The Planner will:
+- Create architecture diagrams with Mermaid
+- Design components and interfaces
+- Define data models
+- Document technical decisions
+
+#### 🔨 Phase 3: Task Generation & Implementation
+After design is complete:
+```bash
+/agent:planner
+"Design is ready. Please generate implementation tasks with TDD."
+```
+The Planner will:
+- Break down work into phases (MVP → Advanced)
+- Create tasks with Red-Green-Refactor cycles
+- Ensure traceability to requirements/design
+- Add review checkpoints
+
+### 5. Start Building with TDD
 ```bash
 # When planning is done, switch to Builder:
 /agent:builder
@@ -229,7 +296,17 @@ A growing community of developers exploring the future of AI-powered development
 
 ## 🚀 Try It Out!
 
-Want to see Claude Friends in action? Check out our **[Sample Projects](SAMPLE_PROJECTS.md)** for hands-on examples:
+Want to see Claude Friends in action? 
+
+### 📂 Working Examples (NEW!)
+Explore our **[examples/](examples/)** directory for complete, working code:
+- **[Todo App](examples/todo-app/)** - Full implementation with tests showing the complete workflow
+  - Requirements → Design → TDD Implementation
+  - See actual test files and task tracking
+  - Learn by examining real code
+
+### 📚 Conceptual Projects
+Check out our **[Sample Projects](SAMPLE_PROJECTS.md)** for more project ideas:
 - 📝 Markdown-driven task manager
 - 🌱 Digital pet ecosystem
 - 🎮 Roguelike game
@@ -244,6 +321,10 @@ Open in VS Code or GitHub Codespaces and select "Reopen in Container" for a secu
 Don't just code. **Orchestrate**.
 
 **[→ Get Your AI Team Now](README_TEMPLATE.md)**
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 

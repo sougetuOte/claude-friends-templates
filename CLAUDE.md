@@ -22,14 +22,32 @@
   - コンテキスト圧縮による効率的な引き継ぎ
   - 並列実行可能なタスクの分析
 
-### 基本的な開発フロー
-1. **計画・設計フェーズ** → `/agent:planner`
-   - 要件確認、設計書作成、ToDo分解
-2. **実装フェーズ** → `/agent:builder`
-   - コーディング、テスト、デバッグ
-3. **必要に応じて切り替え**
+### 基本的な開発フロー（3フェーズプロセス）
+
+#### 1. **要件定義フェーズ** → `/agent:planner`
+   - 要件確認、requirements.md作成
+   - 成功基準の定義、リスク分析
+   - 完了後: "Requirements → Design"への誘導
+
+#### 2. **設計フェーズ** → `/agent:planner` 続行
+   - アーキテクチャ設計、Mermaid図作成
+   - コンポーネント/インターフェース設計
+   - 完了後: "Design → Tasks"への誘導
+
+#### 3. **タスク生成・実装フェーズ** 
+   - **タスク生成** → `/agent:planner`
+     - TDD適用タスクの生成
+     - Phase分割（MVP → Advanced）
+     - レビューポイントの設定
+   - **実装** → `/agent:builder`
+     - Red-Green-Refactorサイクル厳守
+     - Phase終了時レビュー実施
+     - 仕様問題の即時フィードバック
+
+#### 4. **必要に応じて切り替え**
    - 仕様変更 → Plannerへ
    - 技術的課題 → Builderで解決
+   - レビュー結果 → 適切なエージェントへ
 
 ### Agent Structure
 - Active agent: @.claude/agents/active.md
@@ -152,6 +170,11 @@ Detailed settings: @.claude/hooks-README.md | @.claude/security-README.md
 - 🔴 **Red**: 失敗するテストを書く（実装より先にテストを書く）
 - 🟢 **Green**: テストを通す最小限の実装
 - 🔵 **Refactor**: リファクタリング（テストが通る状態を維持）
+
+#### 重要なTDD関連ドキュメント
+- **TDD厳密適用ガイド**: @.claude/shared/templates/tasks/tdd-strict-guide.md
+- **Phaseレビューテンプレート**: @.claude/shared/templates/tasks/phase-review-template.md
+- **仕様フィードバックプロセス**: @.claude/shared/templates/tasks/specification-feedback-process.md
 
 #### タスクステータス管理 (NEW!)
 - 🔴 **Not Implemented**: 未実装（TDD Red Phase）
