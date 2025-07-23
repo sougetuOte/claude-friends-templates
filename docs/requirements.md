@@ -178,3 +178,35 @@ CREATE TABLE [table_name] (
 ## 10. Notes
 
 [Describe other important matters]
+
+---
+
+## 📋 Next Step: Design Phase
+
+### Requirements are now complete! Time to move to the design phase.
+
+1. **Use the Design Generation Template**
+   - Location: `.claude/shared/templates/design/`
+   - Purpose: Transform these requirements into technical design
+
+2. **What to expect in Design Phase**
+   - Architecture decisions
+   - Component design
+   - Interface definitions
+   - Data models
+   - Technical specifications
+
+3. **Handover to Planner Agent**
+   ```
+   /agent:planner
+   "Requirements are complete. Please proceed with design phase using the requirements above."
+   ```
+
+### Design Phase Checklist
+- [ ] All functional requirements have been captured
+- [ ] Non-functional requirements are clear
+- [ ] Success criteria are measurable
+- [ ] Stakeholders have reviewed and approved
+
+---
+*Good requirements lead to good design. Good design leads to good implementation.*

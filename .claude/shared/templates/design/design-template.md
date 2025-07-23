@@ -327,4 +327,43 @@ describe('UserService.createUser', () => {
 | 1.0 | YYYY-MM-DD | 初版作成 | Planner |
 
 ---
+
+## 📋 Next Step: Task Generation Phase
+
+### Design is complete! Time to create implementation tasks.
+
+1. **Use the Task Generation Template**
+   - Location: `.claude/shared/templates/tasks/`
+   - Purpose: Transform this design into executable tasks with strict TDD
+
+2. **What to expect in Task Generation**
+   - Phased implementation plan (MVP → Advanced)
+   - TDD cycle for each task (Red-Green-Refactor)
+   - Clear traceability to requirements and design
+   - Time estimates and dependencies
+
+3. **Key Documents to Use**
+   - [Task Generation Introduction](../tasks/task-generation-intro.md)
+   - [Task Generation Template](../tasks/task-generation-template.md)
+   - [TDD Strict Guide](../tasks/tdd-strict-guide.md)
+   - [Phase Review Template](../tasks/phase-review-template.md)
+
+4. **Handover to Task Generation**
+   ```
+   /agent:planner
+   "Design is complete. Please generate implementation tasks using:
+   - Requirements: [path to requirements.md]
+   - Design: [path to this design document]
+   - Apply strict TDD methodology"
+   ```
+
+### Pre-Task Generation Checklist
+- [ ] All components are designed
+- [ ] Interfaces are clearly defined
+- [ ] Data models are complete
+- [ ] Non-functional requirements are addressed
+- [ ] Design has been reviewed and approved
+
+---
+*Good design deserves good implementation. TDD ensures quality from the start.*
 **注記**: この設計書はDesign Syncメカニズムに従って管理されます。実装中に設計変更が必要な場合は、必ず設計書を更新してから実装を変更してください。
