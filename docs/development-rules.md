@@ -20,6 +20,8 @@
 - **Function Design**: Aim for single responsibility and small functions
 - **Existing Patterns**: Always follow existing code patterns
 - **Line Length**: 80-120 characters (unified by language/team)
+- **Comments**: AI-friendly comments following the Why > What principle
+  - See `.claude/guidelines/ai-friendly-development.md` for details
 
 ## Test Requirements (Gradual TDD Learning Path)
 

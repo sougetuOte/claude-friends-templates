@@ -263,6 +263,12 @@ The foundation for AI-powered development.
 - **Shared Memory Bank**: Synchronized knowledge between agents
 - **Performance Monitoring**: Track agent efficiency and bottlenecks
 
+### 📝 AI-Friendly Comments (NEW!)
+- **Smart Commenting**: Comments that explain "Why" not "What"
+- **AI Comprehension**: Optimized for AI understanding and debugging
+- **Business Logic Documentation**: Clear explanation of rules and constraints
+- **Performance Notes**: Document optimization decisions for future reference
+
 ## 🛠 What's Inside
 
 ```

@@ -309,9 +309,27 @@ Detailed rules: @docs/development-rules.md
 .claude/scripts/quality-pre-commit.sh
 ```
 
+## Documentation Structure (NEW!)
+プロジェクトのすべてのドキュメントは `docs/` ディレクトリ以下に整理されています：
+
+```
+docs/
+├── requirements/     # 要件定義（機能要件・非機能要件）
+├── design/          # 設計書（アーキテクチャ・API・DB設計）
+├── tasks/           # タスク管理（フェーズ別・優先順位管理）
+├── adr/             # アーキテクチャ決定記録
+├── specs/           # 実装仕様書（コンポーネント別）
+├── test-specs/      # テスト仕様
+└── operations/      # 運用ドキュメント
+```
+
+### エージェントの制約
+- **Planner**: すべてのドキュメントを `docs/` 配下に作成
+- **Builder**: 実装前に必ず `docs/tasks/` → `docs/specs/` の順で確認
+
 ## Project Data
 - Settings: `.claude/settings.json`
-- Requirements: @docs/requirements.md
+- Requirements: @docs/requirements/index.md
 
 ## Memory Bank Usage Policy
 - **Normal**: Reference only core files to minimize context
@@ -320,6 +338,12 @@ Detailed rules: @docs/development-rules.md
 
 ## Project-Specific Learning
 Automatically recorded in `.clauderules` file.
+
+## Code Style
+- **AI-Friendly Comments**: Follow guidelines at `.claude/shared/ai-friendly-comments.md`
+- **Comment Philosophy**: Explain "Why" not "What"
+- **Required Comments**: Complex algorithms, business rules, performance optimizations
+- **Avoid**: Obvious comments, code translations, outdated specifications
 
 ## Related Documents
 - Development rules details: @docs/development-rules.md

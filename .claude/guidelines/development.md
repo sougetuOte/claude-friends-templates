@@ -39,6 +39,9 @@
 ## Code Quality Standards
 - **Type Annotations**: Add type information to all functions and variables
 - **Documentation**: Required for public APIs and complex processes
+  - Follow AI-friendly comment guidelines
+  - Include business context and constraints
+  - Document performance considerations
 - **Function Design**: Aim for single responsibility and small functions
 - **Existing Patterns**: Always follow existing code patterns
 - **Line Length**: 80-120 characters (unified by language/team)

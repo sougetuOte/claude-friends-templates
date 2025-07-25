@@ -214,6 +214,12 @@ tail -f ~/.claude/activity.log
 `.clauderules`ファイルに自動記録されます。
 日本語版は`.clauderules_ja`を使用できます。
 
+## コードスタイル
+- **AI-Friendlyコメント**: `.claude/shared/ai-friendly-comments.md`のガイドラインに従う
+- **コメント哲学**: 「何を」ではなく「なぜ」を説明
+- **必須コメント**: 複雑なアルゴリズム、ビジネスルール、パフォーマンス最適化
+- **避けるべきコメント**: 自明なコメント、コード翻訳、古い仕様
+
 ## 関連ドキュメント
 - 開発規約詳細: @docs/development-rules.md
 - 開発ガイドライン: @.claude/guidelines/development.md

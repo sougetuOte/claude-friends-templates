@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2025-07-25
+
+### Added
+- **AI-Friendly Comments System**: Enhanced code comprehension for AI-driven development
+  - Comprehensive comment guidelines in `.claude/shared/ai-friendly-comments.md`
+  - Integration with Planner and Builder agents for consistent comment practices
+  - Development guidelines for AI-friendly coding in `.claude/guidelines/ai-friendly-development.md`
+  - Support for "Why over What" commenting philosophy
+  - Language-specific comment format recommendations
+  - Comment update rules and team best practices
+
+### Changed
+- **Code Style Rules**: Replaced "DO NOT ADD COMMENTS" rule with AI-friendly comment guidelines
+- **Agent Skills**: Both Planner and Builder agents now include AI-friendly comment capabilities
+- **Documentation Standards**: Enhanced to emphasize business context and performance considerations
+
 ## [2.1.0] - 2025-07-21
 
 ### 🚀 Major Enhancement: TDD & Quality Engineering Integration
