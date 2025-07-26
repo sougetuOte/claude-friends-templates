@@ -1,0 +1,48 @@
+{
+  "sync_specialist": {
+    "version": "1.0.0",
+    "pattern": "2-1-enhanced-hybrid",
+    "enabled": true,
+    "mode": "monitor",
+    "description": "Pattern-2-1 Enhanced Hybrid Sync Specialist Configuration"
+  },
+  "monitoring": {
+    "trigger_on": ["/agent:planner", "/agent:builder"],
+    "exclude_patterns": [],
+    "timeout_seconds": 30,
+    "async_execution": true
+  },
+  "handover": {
+    "auto_generate": true,
+    "keep_last": 10,
+    "include_sections": {
+      "recent_activities": true,
+      "phase_todo_status": true,
+      "agent_notes": true,
+      "git_status": true,
+      "recommendations": true
+    },
+    "activity_limit": 10,
+    "notes_lines": 30
+  },
+  "logging": {
+    "level": "info",
+    "debug_mode": false,
+    "log_rotation": {
+      "enabled": true,
+      "max_size_mb": 10,
+      "keep_files": 5
+    }
+  },
+  "feature_flags": {
+    "sequential_thinking_integration": false,
+    "mcp_server_mode": false,
+    "advanced_analysis": false,
+    "context_compression": false
+  },
+  "paths": {
+    "handover_dir": ".claude/shared/handover",
+    "log_dir": "~/.claude/logs",
+    "ai_log": "~/.claude/ai-activity.jsonl"
+  }
+}

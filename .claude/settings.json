@@ -100,6 +100,17 @@
         ]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "/agent:",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/sync-specialist/sync-trigger.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
