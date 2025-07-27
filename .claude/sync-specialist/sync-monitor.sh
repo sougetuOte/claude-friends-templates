@@ -119,6 +119,13 @@ trigger_handover_generation() {
             log_info "Handover generation completed"
         fi
     ) &
+    
+    # AI Logger integration
+    local handover_file="$HANDOVER_DIR/handover-${timestamp}.md"
+    if [ -f "$SCRIPT_DIR/ai-logger-integration.sh" ]; then
+        "$SCRIPT_DIR/ai-logger-integration.sh" "$from_agent" "$to_agent" "$handover_file" &
+        log_info "Agent switch event sent to AI Logger"
+    fi
 }
 
 # ============================
