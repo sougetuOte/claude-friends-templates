@@ -51,13 +51,25 @@ get_current_agent() {
 }
 
 get_previous_agent() {
-    # Check log for previous agent state
-    local last_entry=$(grep "Agent switch detected" "$LOG_FILE" 2>/dev/null | tail -1)
-    if [ -n "$last_entry" ]; then
-        echo "$last_entry" | sed 's/.*from \([^ ]*\) to.*/\1/'
+    # Check state file for previous agent
+    local state_file="$SCRIPT_DIR/.previous-agent"
+    if [ -f "$state_file" ]; then
+        cat "$state_file"
     else
-        echo "none"
+        # Fallback: check log for previous agent state
+        local last_entry=$(grep "Agent switch recorded" "$LOG_FILE" 2>/dev/null | tail -1)
+        if [ -n "$last_entry" ]; then
+            # Extract the "to" part as the previous agent (since it's the last recorded state)
+            echo "$last_entry" | sed 's/.*to \([^ ]*\)$/\1/'
+        else
+            echo "none"
+        fi
     fi
+}
+
+save_current_agent() {
+    local agent=$1
+    echo "$agent" > "$SCRIPT_DIR/.previous-agent"
 }
 
 # ============================
@@ -119,6 +131,9 @@ monitor_agent_switch() {
     if detect_agent_switch; then
         # Trigger handover generation asynchronously
         trigger_handover_generation "$previous_agent" "$current_agent"
+        
+        # Save current agent for next detection
+        save_current_agent "$current_agent"
         
         # Update state for next detection
         log_info "Agent switch recorded: from $previous_agent to $current_agent"

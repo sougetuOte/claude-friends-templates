@@ -53,13 +53,6 @@
       "Bash(shred *)"
     ]
   },
-  "tdd": {
-    "enforcement": "recommended",
-    "skipReasonRequired": true,
-    "testFirstWarning": true,
-    "coverageThreshold": 80,
-    "skipReasonLog": ".claude/tdd-skip-reasons.log"
-  },
   "hooks": {
     "PreToolUse": [
       {
