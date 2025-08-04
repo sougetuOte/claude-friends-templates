@@ -83,6 +83,32 @@ graph LR
 - **Phase Reviews**: Quality gates at each milestone
 - **Feedback Loop**: Immediate specification issue escalation
 
+## 🚀 Quick Start
+
+### Starting a New Project
+For detailed instructions, see the [📚 Getting Started Guide](docs/GETTING_STARTED.md).
+
+```bash
+# 1. Initialize project
+mkdir my-project && cd my-project
+curl -sSL https://raw.githubusercontent.com/yourusername/claude-friends-templates/main/setup.sh | bash
+
+# 2. Start with Claude Code
+/agent:planner
+"I want to start a new project. Please begin with requirements definition."
+```
+
+### Project Flow
+```mermaid
+graph LR
+    A[Requirements<br/>Planner] -->|"Next?"| B[Design<br/>Planner]
+    B -->|"Next?"| C[Task Generation<br/>Planner]
+    C -->|Switch| D[Implementation<br/>Builder]
+    D -->|Complete| E[Next Phase]
+```
+
+After completing each phase, just ask "What should I do next?" and Planner will guide you appropriately.
+
 ## 🏃‍♂️ Quick Start (5 minutes to your first AI-powered development)
 
 ### 1. Get the Template
@@ -126,14 +152,17 @@ Edit the first 2 lines in `CLAUDE.md`:
 # In Claude Code, start the Planner agent:
 /agent:planner
 
-# Planner will greet you:
-"Hello! Let's plan your project. What kind of application do you want to create?"
+# Tell what you want:
+"I want to start a new project. Please begin with requirements definition."
 
-# Just tell what you want:
-"I want to make a todo app where users can add, complete, and delete tasks"
+# Planner will guide you:
+"Welcome to your new project! I'm the Planner and I'll guide you through.
+Let's start with the requirements definition phase.
 
-# Planner will help you:
-"I see, a task management app. Let me help you organize the requirements..."
+Please tell me about your project:
+1. What do you want to build?
+2. Who will use it?
+3. When do you need it?"
 ```
 
 ### 4. Follow the 3-Phase Development Flow
