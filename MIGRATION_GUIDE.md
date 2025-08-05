@@ -14,7 +14,7 @@ A guide to help you migrate from v1.x to v2.0.0.
 ### Major Command Simplification
 - **Before**: 7+ commands
 - **Now**: Just 4 core commands
-- **Reduction**: 40%+ command reduction
+- **Reduction**: Significant command reduction
 
 ## 🚨 Breaking Changes
 

@@ -150,7 +150,7 @@ cache_control: {"type": "ephemeral"}
 ```
 
 #### Expected Benefits
-- **Immediate**: 90% cost reduction through prompt caching
+- **Immediate**: Significant cost reduction through prompt caching
 - **Psychological**: Securing a "place for information organization"
 - **Debugging**: Improved error resolution efficiency with AI-optimized logs
 

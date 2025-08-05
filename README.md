@@ -34,14 +34,14 @@ $ /agent:builder
 
 ## 🎯 Why Developers Love Claude Friends
 
-### 📉 **90% Cost Reduction**
-Our revolutionary prompt caching means you can use AI all day without breaking the bank.
+### 📉 **Significant Cost Reduction**
+Our prompt caching technology helps you use AI throughout the day while managing costs effectively.
 
-### 🧠 **AI That Remembers Everything**
-No more "what was I working on?" - Your AI team maintains perfect project memory.
+### 🧠 **AI with Advanced Memory**
+No more "what was I working on?" - Your AI team maintains comprehensive project memory.
 
-### 🔍 **Instant Problem Analysis**
-AI-Friendly Logger V2 (powered by [Vibe Logger](https://github.com/fladdict/vibe-logger) concepts) turns cryptic errors into clear solutions in seconds.
+### 🔍 **Rapid Problem Analysis**
+AI-Friendly Logger V2 (powered by [Vibe Logger](https://github.com/fladdict/vibe-logger) concepts) turns cryptic errors into clear solutions efficiently.
 
 ### 🎭 **Smart Agents with Special Modes**
 - **Planner**: Strategic thinking + automatic Feature Design Mode with Mermaid diagrams
@@ -244,7 +244,7 @@ Perfect for complex projects that need both planning and execution.
 ### 📦 **Classic Memory Bank Template** *(Available Now)*
 The foundation for AI-powered development.
 - Hierarchical knowledge management
-- 90% cost savings with cache optimization (based on Anthropic's prompt caching)
+- Significant cost savings with cache optimization (based on Anthropic's prompt caching)
 - Ready for immediate use
 
 **[→ Full Documentation](README_TEMPLATE.md)**

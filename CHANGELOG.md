@@ -104,7 +104,7 @@ This release brings comprehensive enhancements from the claude-kiro-template int
 
 ### 🎉 Major Release: Claude Friends Multi-Agent System
 
-This is a major release introducing the revolutionary Claude Friends system, transforming solo development into an AI-powered team experience.
+This is a major release introducing the Claude Friends system, transforming solo development into an AI-powered team experience.
 
 ### Added
 - **Claude Friends Multi-Agent System**: Sequential AI agents that simulate a development team

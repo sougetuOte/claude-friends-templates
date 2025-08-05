@@ -4,7 +4,7 @@
 [プロジェクトの簡潔な説明をここに記載]
 
 ## プロンプトキャッシュ最適化設定
-- **CLAUDE_CACHE**: `./.ccache` - 90%コスト削減・85%レイテンシ短縮
+- **CLAUDE_CACHE**: `./.ccache` - 大幅なコスト削減・レイテンシ短縮
 - **cache_control**: 長期安定情報に適用済み
 - **設定**: `.claude/settings.json`参照
 

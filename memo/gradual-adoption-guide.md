@@ -25,7 +25,7 @@ A practical guide for gradually introducing new features from the previous gener
 ### 1.1 Prompt Cache Optimization
 
 #### Philosophy
-- Enjoy **90% cost reduction and 85% latency reduction** benefits in existing projects
+- Enjoy **significant cost reduction and reduced latency** benefits in existing projects
 - **Zero impact** on existing workflows
 - Improve reuse efficiency of long-term stable information (overview, tech stack, etc.)
 
@@ -368,12 +368,12 @@ mkdir -p .claude/commands
 
 ### Case 1: Small Personal Project
 **Applied**: Phase 1 + ADR System
-**Result**: 30% cost reduction, technical choice documentation
+**Result**: Cost reduction, technical choice documentation
 **Duration**: 1 day
 
 ### Case 2: Medium-sized Team Project
 **Applied**: Phase 1 + Complete Phase 2 implementation
-**Result**: 50% cost reduction, planned debt resolution
+**Result**: Significant cost reduction, planned debt resolution
 **Duration**: 2 weeks (gradual introduction)
 
 ### Case 3: Large-scale Project

@@ -4,7 +4,7 @@
 [Write a concise description of the project here]
 
 ## Prompt Cache Optimization Settings
-- **CLAUDE_CACHE**: `./.ccache` - 90% cost reduction, 85% latency reduction
+- **CLAUDE_CACHE**: `./.ccache` - Significant cost reduction, reduced latency
 - **cache_control**: Applied to long-term stable information
 - **Settings**: See `.claude/settings.json`
 
