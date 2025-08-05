@@ -10,12 +10,11 @@ This guide explains how to start a new project using claude-friends-templates.
 mkdir my-awesome-project
 cd my-awesome-project
 
-# Clone the template (or run setup.sh)
+# Clone the template
 git clone https://github.com/yourusername/claude-friends-templates.git .
-# or
-curl -sSL https://raw.githubusercontent.com/yourusername/claude-friends-templates/main/setup.sh | bash
 
-# Initialize Git
+# Initialize Git (remove template history)
+rm -rf .git
 git init
 git add .
 git commit -m "feat: initialize project with claude-friends-templates"

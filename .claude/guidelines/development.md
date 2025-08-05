@@ -2,6 +2,8 @@
 
 🌐 **English** | **[日本語](development_ja.md)**
 
+> **📌 About this document**: Quick reference for daily development. For detailed rules and comprehensive information, see [Development Rules (Detailed)](../../docs/development-rules.md).
+
 ## Claude Friends Agent Operation Rules
 
 ### Agent Role Division

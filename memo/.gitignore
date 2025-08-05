@@ -1,0 +1,22 @@
+# Temporary work files
+*-progress.md
+*-report.md
+*-analysis.md
+*-summary.md
+*-note.md
+
+# Work in progress
+WIP-*
+wip-*
+draft-*
+temp-*
+
+# Editor backup files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE specific
+.vscode/
+.idea/

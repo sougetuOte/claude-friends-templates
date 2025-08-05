@@ -353,7 +353,7 @@ Automatically recorded in `.clauderules` file.
 - AI logger system: @.claude/ai-logger-README.md | @.claude/vibe-logger-integration.md
 - Requirements specification: @docs/requirements.md
 - ADR template: @docs/adr/template.md
-- Migration guide: @memo/migration-guide.md
+- Gradual adoption guide: @memo/gradual-adoption-guide.md
 - Implementation guide: @memo/zero-to-memory-bank.md
 - TDD Guide: @.claude/builder/tdd-cycle.md
 - Design Sync Guide: @.claude/shared/design-sync.md

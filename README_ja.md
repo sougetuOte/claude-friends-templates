@@ -88,14 +88,16 @@ graph LR
 詳細な手順は [📚 Getting Started ガイド](docs/GETTING_STARTED_ja.md) を参照してください。
 
 ```bash
-# 1. プロジェクト初期化
+# 1. テンプレートをクローン
 mkdir my-project && cd my-project
-curl -sSL https://raw.githubusercontent.com/yourusername/claude-friends-templates/main/setup.sh | bash
+git clone https://github.com/yourusername/claude-friends-templates.git .
 
 # 2. Claude Codeで開始
 /agent:planner
 「新しいプロジェクトを始めたいです。要件定義から始めてください。」
 ```
+
+以上です！Plannerエージェントが対話的にセットアップ全体をガイドします。
 
 ### プロジェクトの進め方
 ```mermaid
@@ -119,25 +121,8 @@ cd claude-friends-templates
 # プロジェクトにコピー
 cp -r . ../my-awesome-project/ && cd ../my-awesome-project/
 
-# セットアップスクリプトで自動設定（新機能！）
-./setup.sh
-# スクリプトが以下を実行します：
-# - プロジェクト名と説明の入力
-# - 英語/日本語のデフォルト選択
-# - CLAUDE.mdの自動更新
-# - gitリポジトリの初期化
-# - 適切な権限の設定
-
-# または手動で（お好みの場合）：
-# 日本語版を使用する場合（推奨）
-# mv README.md README_en.md          # 英語版を一時保存
-# mv README_ja.md README.md           # 日本語版をメインに
-# mv CLAUDE.md CLAUDE_en.md           # 英語版を一時保存  
-# mv CLAUDE_ja.md CLAUDE.md           # 日本語版をメインに
-# mv .clauderules .clauderules_en     # 英語版を一時保存
-# mv .clauderules_ja .clauderules     # 日本語版をメインに
 # テンプレートのgit履歴を削除
-# rm -rf .git && git init
+rm -rf .git && git init
 ```
 
 ### 2. AIにプロジェクトを伝える（30秒）

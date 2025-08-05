@@ -1,5 +1,7 @@
 # Development Rules (Detailed)
 
+> **📌 About this document**: Comprehensive development rules and standards. For a quick reference guide, see [Development Guidelines (Quick Reference)](.claude/guidelines/development.md).
+
 ## Package Management
 
 ### Recommended Tools
@@ -23,74 +25,27 @@
 - **Comments**: AI-friendly comments following the Why > What principle
   - See `.claude/guidelines/ai-friendly-development.md` for details
 
-## Test Requirements (Gradual TDD Learning Path)
+## Test Requirements
 
-### TDD Learning Steps (For Beginners)
+For detailed test requirements, TDD learning path, and test standards, please refer to:
+- **📖 [Testing & Quality Guidelines](.claude/guidelines/testing-quality.md)**
 
-**Phase 1 (Week 1-2): No TDD Experience**
-- Focus on understanding and modifying existing code
-- Adding tests after implementation is OK
-- Master basic Claude Code operations
-
-**Phase 2 (Week 3-4): Start TDD Experience**
-- Experience TDD with small features (Claude supports test creation)
-- "Write failing test first" → Implementation → Refactoring
-- Experience Red-Green-Refactor cycle
-
-**Phase 3 (Month 2-3): Master TDD**
-- Apply TDD for new feature development
-- Utilize self-debugging group (`claude test --fix`)
-- TDD patterns become natural
-
-### Test Standards
-- **Test Framework**: Use unified framework for the project
-- **Coverage Target**: 80%+ for important features (improve gradually)
-- **Recommended Test Cases**: 
-  - Edge cases (boundary values, abnormal values)
-  - Error handling
-  - Corresponding tests for new features (create first after TDD mastery)
-  - Regression tests for bug fixes
-
-### Claude Code TDD Support Features
-- **Test Generation**: Claude guides failing test creation
-- **Self-debugging**: Auto-patch suggestions with `claude test --fix`
-- **Learning Effect**: Master TDD patterns with actual code
+Key highlights:
+- **TDD Learning Path**: Gradual 3-phase approach for beginners
+- **Coverage Target**: 80%+ for important features
+- **Test Framework**: Use unified framework per project
+- **Claude Code Support**: Test generation and self-debugging features
 
 ## Git/PR Conventions
 
-### Commit Messages
-- **Basic Format**: `[prefix]: [change description]`
-- **Prefix List**:
-  - `feat`: New feature addition
-  - `fix`: Bug fix
-  - `docs`: Documentation update
-  - `style`: Formatting, whitespace, etc. (no behavior change)
-  - `refactor`: Refactoring (no functional change)
-  - `test`: Test addition/modification
-  - `chore`: Build, dependencies, configuration changes
+For detailed Git workflow, commit message formats, PR conventions, and ADR practices, please refer to:
+- **📖 [Git Workflow & ADR Guidelines](.claude/guidelines/git-workflow.md)**
 
-### Required Trailers
-```bash
-# Bug report-based fixes
-git commit -m "fix: resolve memory leak in data processor" --trailer "Reported-by: Username"
-
-# GitHub Issue related
-git commit -m "feat: add user authentication" --trailer "Github-Issue: #123"
-```
-
-### Pull Request Conventions
-- **Title**: Same format as commit messages
-- **Description Requirements**:
-  - **Background**: Why this change is needed
-  - **Changes**: What was changed (high level)
-  - **Impact**: Where it affects
-  - **Testing**: How it was tested
-- **Review**:
-  - Assign appropriate reviewers
-  - Conduct self-review first
-- **Prohibited**:
-  - Prohibition of tool mentions like `Co-authored-by`
-  - Simple work log listings
+Key conventions:
+- **Commit Format**: `[prefix]: [change description]`
+- **PR Title**: Same format as commit messages
+- **Required Trailers**: Bug reports, GitHub issues
+- **ADR System**: Architecture Decision Records for important technical choices
 
 ## Command List
 

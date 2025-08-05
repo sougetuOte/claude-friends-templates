@@ -89,14 +89,16 @@ graph LR
 For detailed instructions, see the [📚 Getting Started Guide](docs/GETTING_STARTED.md).
 
 ```bash
-# 1. Initialize project
+# 1. Clone the template
 mkdir my-project && cd my-project
-curl -sSL https://raw.githubusercontent.com/yourusername/claude-friends-templates/main/setup.sh | bash
+git clone https://github.com/yourusername/claude-friends-templates.git .
 
 # 2. Start with Claude Code
 /agent:planner
 "I want to start a new project. Please begin with requirements definition."
 ```
+
+That's it! The Planner agent will guide you through the entire setup process interactively.
 
 ### Project Flow
 ```mermaid
@@ -313,6 +315,7 @@ Your AI-Powered Workspace:
 
 - **[Quick Start Guide](README_TEMPLATE.md)** - Get started with clear, step-by-step instructions
 - **[Claude Friends User Guide](.claude/claude-friends-guide.md)** - Master the AI agent system
+- **[Document Structure](DOCUMENT_STRUCTURE.md)** - Find information quickly with our organized docs
 - **[Migration Guide](MIGRATION_GUIDE.md)** - Upgrade existing projects smoothly
 - **[Best Practices](BEST_PRACTICES.md)** - Learn proven development patterns
 - **[Architecture Overview](ARCHITECTURE.md)** - Understand the system design

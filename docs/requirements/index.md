@@ -58,43 +58,15 @@ cache_control: {"type": "ephemeral"}
 - **Real-time Monitoring**: Command execution monitoring using Claude Code hooks
 - **Security Logging**: Recording and auditing of executed commands
 
-#### 3.3.2 Blocked Commands
-- System destruction: `rm -rf /`, `chmod 777 /`, `mv /usr`, etc.
-- External code execution: `curl | sh`, `wget | bash`, etc.
-- Configuration changes: `git config --global`, `npm config set`, etc.
-- Privilege escalation: `sudo`, `su`, `sudo -i`, etc.
-- Data erasure: `shred`, `dd if=/dev/zero`, etc.
+For detailed implementation, blocked/allowed command lists, testing procedures, and configuration:
+- **🔒 [Security Configuration Guide](.claude/security-README.md)**
+- **🔧 [Security Test Suite](.claude/scripts/test-security.sh)**
 
-#### 3.3.3 Allowed Commands
-- File operations: `ls`, `cat`, `mkdir`, `touch`, `cp`, `mv`, etc.
-- Git operations: `git status`, `git add`, `git commit`, `git push`, etc.
-- Development tools: `npm run`, `python`, `pip install`, etc.
-- Modern CLI: `eza`, `batcat`, `rg`, `fd`, `dust`, etc.
-
-#### 3.3.4 Security Testing
-- Automated test suite: `.claude/scripts/test-security.sh`
-- Test coverage: Comprehensive testing of safe commands, dangerous commands, and allow lists
-- Test frequency: Required when settings change and at project start
-
-#### 3.3.5 Access Control
-- File access: Limited to project directory and below
-- Log access: Read-only access to `~/.claude/security.log`
-- Configuration changes: Administrator privileges required
-
-#### 3.3.6 Incident Response
-- Block events: Immediate user notification and log recording
-- Emergency stop: Temporary disabling of security settings procedures
-- Recovery procedures: Settings recovery from backup procedures
-
-#### 3.3.7 Security Documentation
-- Configuration manual: `.claude/security-README.md`
-- Content: Configuration methods, emergency response, troubleshooting
-- Update frequency: Required when security settings change
-
-#### 3.3.8 General Security Requirements
+#### 3.3.2 General Security Requirements
 - [Authentication and authorization]
 - [Data encryption]
 - [Audit logs]
+- [Access control policies]
 
 ### 3.4 Development and Operation Requirements
 - Version control: [VCS to use]

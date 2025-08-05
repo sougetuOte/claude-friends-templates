@@ -228,7 +228,7 @@ tail -f ~/.claude/activity.log
 - AIロガーシステム: @.claude/ai-logger-README_ja.md
 - 要求仕様書: @docs/requirements.md
 - ADRテンプレート: @docs/adr/template.md
-- 移行ガイド: @memo/migration-guide.md
+- 段階的導入ガイド: @memo/gradual-adoption-guide.md
 - 導入手順書: @memo/zero-to-memory-bank.md
 - タスク生成ガイド: @.claude/shared/templates/tasks/task-generation-intro.md
 - TDD厳密適用ガイド: @.claude/shared/templates/tasks/tdd-strict-guide.md
