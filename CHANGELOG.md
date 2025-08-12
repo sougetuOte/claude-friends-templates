@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.5] - 2025-08-12
+
+### Added
+
+#### 🔄 Automatic Notes Rotation on Agent Switching
+Enhanced the Notes Management System with automatic rotation triggered by agent switching.
+
+- **Auto-Rotation Hook**
+  - Automatically rotates notes.md when exceeding 450 lines
+  - Triggers on `/agent:planner` or `/agent:builder` commands
+  - No manual maintenance required
+  - Script: `.claude/scripts/notes-check-hook.sh`
+
+- **Hook Integration**
+  - Added to UserPromptSubmit event in `.claude/settings.json`
+  - Seamless execution during agent switching
+  - Color-coded notifications for rotation events
+
+- **Test Coverage**
+  - Test suite for auto-rotation functionality
+  - Threshold validation tests
+  - Script: `.claude/scripts/tests/test-auto-rotation-hook.sh`
+
+### Changed
+- **Settings Configuration**: Updated `.claude/settings.json` to include auto-rotation hook
+- **Documentation**: Updated NOTES-MANAGEMENT-README.md with auto-rotation feature details
+
 ## [2.3.4] - 2025-08-12
 
 ### Added

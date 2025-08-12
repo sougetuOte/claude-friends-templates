@@ -76,11 +76,12 @@
 ### Agent Workspaces (Claude Friends)
 - Planner notes: @.claude/planner/notes.md (auto-rotated at 500 lines)
 - Builder notes: @.claude/builder/notes.md (auto-rotated at 500 lines)
+- **Auto-rotation on agent switch**: Triggers at 450 lines when using `/agent:` commands
 - Notes indexes: @.claude/planner/index.md, @.claude/builder/index.md (auto-generated)
 - Notes summaries: Auto-generated during rotation
 - Phase/ToDo tracking: @.claude/shared/phase-todo.md
 - Project constraints: @.claude/shared/constraints.md
-- **Notes Maintenance**: Run `bash .claude/scripts/notes-maintenance.sh` weekly
+- **Notes Maintenance**: Run `bash .claude/scripts/notes-maintenance.sh` weekly (or automatic via hooks)
 
 ### Others
 - Debug information: @.claude/debug/latest.md

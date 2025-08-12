@@ -52,6 +52,16 @@ This project integrates Claude Code hooks to improve development efficiency.
   - Session activity summary
   - Tool usage statistics
 
+### 6. Notes Auto-Rotation Hooks (UserPromptSubmit)
+**Script**: `.claude/scripts/notes-check-hook.sh`
+- **Purpose**: Automatic rotation of notes.md files to prevent excessive growth
+- **Trigger**: Executes on `/agent:planner` or `/agent:builder` commands
+- **Action**:
+  - Checks if notes.md exceeds 450 lines
+  - Automatically rotates and archives if threshold is exceeded
+  - Updates index files after rotation
+  - Shows color-coded notifications
+
 ## Log File Structure
 
 ```

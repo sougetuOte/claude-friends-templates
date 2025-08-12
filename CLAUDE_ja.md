@@ -68,11 +68,12 @@
 ### エージェントワークスペース（Claude Friends）
 - Plannerノート: @.claude/planner/notes.md（500行で自動ローテーション）
 - Builderノート: @.claude/builder/notes.md（500行で自動ローテーション）
+- **エージェント切り替え時の自動実行**: `/agent:`コマンド使用時に450行超過で自動ローテーション
 - ノートインデックス: @.claude/planner/index.md, @.claude/builder/index.md（自動生成）
 - ノート要約: ローテーション時に自動生成
 - Phase/ToDoトラッキング: @.claude/shared/phase-todo.md
 - プロジェクト制約: @.claude/shared/constraints.md
-- **ノートメンテナンス**: 週次で `bash .claude/scripts/notes-maintenance.sh` を実行
+- **ノートメンテナンス**: 週次で `bash .claude/scripts/notes-maintenance.sh` を実行（フックによる自動実行も可能）
 
 ### その他
 - デバッグ情報: @.claude/debug/latest.md

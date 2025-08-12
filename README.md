@@ -306,6 +306,7 @@ The foundation for AI-powered development.
 - **Index Generation**: Auto-generated table of contents for all notes and archives
 - **Flexible Configuration**: Customize thresholds and extraction patterns
 - **One-Command Maintenance**: `bash .claude/scripts/notes-maintenance.sh` handles everything
+- **🔄 Auto-Rotation on Agent Switch**: Automatically rotates when notes exceed 450 lines during `/agent:` commands
 - **Full Documentation**: [Notes Management Guide](.claude/scripts/NOTES-MANAGEMENT-README.md)
 
 ## 🛠 What's Inside
