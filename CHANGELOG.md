@@ -5,6 +5,64 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.4] - 2025-08-12
+
+### Added
+
+#### 📦 Notes Management System for Agent Workspaces
+Comprehensive solution to prevent notes.md files from growing too large in `.claude/planner/` and `.claude/builder/` directories.
+
+- **Automatic Notes Rotation** 
+  - Auto-archives notes.md when exceeding 500 lines (configurable)
+  - Preserves archived notes with timestamps in `archive/` subdirectories
+  - Generates smart summaries during rotation with key information extraction
+  - Script: `.claude/scripts/rotate-notes.sh`
+
+- **Smart Summarization During Rotation**
+  - Extracts important decisions, TODOs, and technical insights
+  - Captures statistics about work patterns and focus areas
+  - Creates concise summaries for quick reference
+  - Preserves context for future agent sessions
+
+- **Automatic Index Generation**
+  - Creates and updates `index.md` files in agent directories
+  - Provides file statistics, sizes, and line counts
+  - Includes preview snippets of current notes
+  - Lists all archived notes with metadata
+  - Script: `.claude/scripts/update-index.sh`
+
+- **Flexible Configuration System**
+  - Customizable rotation thresholds (default: 500 lines)
+  - Configurable extraction patterns for summaries
+  - Settings in `.claude/scripts/rotation-config.sh`
+  - Support for project-specific customization
+
+- **One-Command Maintenance Script**
+  - Master script: `.claude/scripts/notes-maintenance.sh`
+  - Multiple operation modes: check, rotate, index, all
+  - Color-coded output for better readability
+  - Old archive cleanup options
+  - Weekly maintenance recommendation
+
+- **Test-Driven Development Implementation**
+  - Comprehensive test suite for rotation functionality
+  - Full test coverage for index generation
+  - Test scripts in `.claude/scripts/tests/`
+  - Followed TDD Red-Green-Refactor cycle
+
+### Changed
+- **Documentation Updates**
+  - Updated README.md and README_ja.md with Notes Management System section
+  - Enhanced CLAUDE.md and CLAUDE_ja.md with auto-rotation notes
+  - Added weekly maintenance command references
+  - Created comprehensive guide: `.claude/scripts/NOTES-MANAGEMENT-README.md`
+
+### Technical Details
+- **Problem Solved**: Prevents context window pressure from oversized notes.md files
+- **Implementation**: Pure bash scripts for portability
+- **Testing**: Full TDD approach with test-first development
+- **Integration**: Seamless integration with existing Claude Friends system
+
 ## [2.2.0] - 2025-07-25
 
 ### Added
