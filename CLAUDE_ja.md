@@ -66,10 +66,13 @@
 - 技術負債: @.claude/context/debt.md
 
 ### エージェントワークスペース（Claude Friends）
-- Plannerノート: @.claude/planner/notes.md
-- Builderノート: @.claude/builder/notes.md
+- Plannerノート: @.claude/planner/notes.md（500行で自動ローテーション）
+- Builderノート: @.claude/builder/notes.md（500行で自動ローテーション）
+- ノートインデックス: @.claude/planner/index.md, @.claude/builder/index.md（自動生成）
+- ノート要約: ローテーション時に自動生成
 - Phase/ToDoトラッキング: @.claude/shared/phase-todo.md
 - プロジェクト制約: @.claude/shared/constraints.md
+- **ノートメンテナンス**: 週次で `bash .claude/scripts/notes-maintenance.sh` を実行
 
 ### その他
 - デバッグ情報: @.claude/debug/latest.md

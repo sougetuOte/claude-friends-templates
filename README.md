@@ -300,6 +300,14 @@ The foundation for AI-powered development.
 - **Business Logic Documentation**: Clear explanation of rules and constraints
 - **Performance Notes**: Document optimization decisions for future reference
 
+### 📦 Notes Management System (NEW!)
+- **Automatic Rotation**: Prevents notes.md from growing too large (500+ lines)
+- **Smart Summarization**: Extracts important decisions and tasks during rotation
+- **Index Generation**: Auto-generated table of contents for all notes and archives
+- **Flexible Configuration**: Customize thresholds and extraction patterns
+- **One-Command Maintenance**: `bash .claude/scripts/notes-maintenance.sh` handles everything
+- **Full Documentation**: [Notes Management Guide](.claude/scripts/NOTES-MANAGEMENT-README.md)
+
 ## 🛠 What's Inside
 
 ```

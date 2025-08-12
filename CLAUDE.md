@@ -74,10 +74,13 @@
 - Technical debt: @.claude/context/debt.md
 
 ### Agent Workspaces (Claude Friends)
-- Planner notes: @.claude/planner/notes.md
-- Builder notes: @.claude/builder/notes.md
+- Planner notes: @.claude/planner/notes.md (auto-rotated at 500 lines)
+- Builder notes: @.claude/builder/notes.md (auto-rotated at 500 lines)
+- Notes indexes: @.claude/planner/index.md, @.claude/builder/index.md (auto-generated)
+- Notes summaries: Auto-generated during rotation
 - Phase/ToDo tracking: @.claude/shared/phase-todo.md
 - Project constraints: @.claude/shared/constraints.md
+- **Notes Maintenance**: Run `bash .claude/scripts/notes-maintenance.sh` weekly
 
 ### Others
 - Debug information: @.claude/debug/latest.md
