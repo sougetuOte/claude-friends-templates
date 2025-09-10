@@ -5,6 +5,63 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2025-09-10
+
+### Added
+
+#### 🚀 Agent-First Development System
+Complete implementation of the Agent-First methodology to enforce proper development flow (Requirements → Design → Tasks → Implementation).
+
+- **Agent First System**
+  - New agent: `.claude/agents/first.md` - Guides users through proper methodology
+  - Stage validation: `.claude/scripts/stage-guard.sh` - Comprehensive stage checking
+  - Hook dispatcher: `.claude/scripts/stage-guard-dispatcher.sh` - Automatic agent routing
+  - Integration: UserPromptSubmit hooks in `.claude/settings.json`
+  - Commands: `/agent:first` as primary entry point
+
+- **Quality Gates**
+  - Requirements completeness checking
+  - Design consistency validation
+  - Task definition verification
+  - Implementation readiness assessment
+
+#### 🔧 Code Refactoring Infrastructure
+Created shared utilities library to reduce code duplication across shell scripts.
+
+- **Shared Utilities Library**
+  - New file: `.claude/scripts/shared-utils.sh`
+  - Standardized logging functions (log_info, log_debug, log_warn, log_error)
+  - Common utilities: timestamp generation, file operations, process management
+  - Agent management utilities
+  - Example refactored script: `activity-logger-refactored.sh`
+
+### Changed
+
+#### 🔒 Security Enhancements
+Expanded security patterns to catch previously undetected dangerous commands.
+
+- **Enhanced Deny Patterns**
+  - Added: `chmod 777 /` - Block dangerous permission changes
+  - Added: `git config --global` - Prevent global configuration changes
+  - Added: `killall -9` - Block process termination
+  - Added: `iptables -F` and `ufw disable` - Prevent firewall manipulation
+  - Added: `shred` patterns - Block system file destruction
+  - Result: 100% blocking rate for dangerous commands in security tests
+
+#### 📝 Documentation Accuracy
+Removed unsubstantiated claims and corrected misleading metrics.
+
+- **Corrected Claims**
+  - Removed: "90% Cost Reduction" → Changed to: "Cost Efficiency"
+  - Fixed: All instances of "大幅な" (significant/dramatic) to accurate descriptions
+  - Updated: 13 instances across 5 files with factual, evidence-based claims
+  - Affected files: README*.md, CLAUDE*.md, MIGRATION_GUIDE*.md
+
+### Fixed
+
+- **Security Test**: Fixed detection gaps for 5 dangerous command patterns
+- **Documentation**: Corrected all unsubstantiated numerical claims and hyperbolic statements
+
 ## [2.3.5] - 2025-08-12
 
 ### Added

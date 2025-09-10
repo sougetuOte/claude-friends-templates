@@ -17,6 +17,7 @@ DANGEROUS_PATTERNS=(
     "rm -rf /"
     "rm -rf /[^/]*$"  # rm -rf /usr, /bin, etc.
     "chmod -R 777 /"
+    "chmod 777 /"  # Block chmod 777 on root directory
     
     # Remote code execution
     "curl.*\|.*sh"
@@ -26,10 +27,22 @@ DANGEROUS_PATTERNS=(
     "sudo su"
     "sudo -i"
     
+    # Global configuration changes (security risk)
+    "git config --global"
+    
+    # Process termination (potential DoS)
+    "killall -9"
+    
+    # Network/firewall manipulation
+    "iptables -F"
+    "ufw disable"
+    
     # Data destruction
     "dd if=/dev/zero of=/dev/"
     "DROP DATABASE.*;"
     "> /dev/sda"
+    "shred.*/"  # Block shred on system directories
+    "shred.*etc"  # Block shred on system files
 )
 
 # Check command

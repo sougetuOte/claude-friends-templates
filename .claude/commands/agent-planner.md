@@ -2,9 +2,10 @@
 
 ## 実行内容
 1. 現在のエージェントを確認
-2. handover.md作成を促す（現在のエージェントがnone以外の場合）
-3. active.mdを"planner"に更新
-4. Plannerの3つの質問を表示
+2. 自動的にhandover.mdを作成（Sync Specialist経由）
+3. active.mdを"planner"に更新  
+4. phase-todo.mdの状態を自動チェック
+5. Plannerの3つの質問を表示
 
 ## プロンプト
 現在のエージェントから引き継ぎを受ける場合は、前のhandover.mdを確認してください。
@@ -17,11 +18,12 @@
 date
 ```
 
-#### 開始時チェックリスト
+#### 開始時チェックリスト（自動実行）
 1. **私は誰？** → @.claude/planner/identity.md
-2. **何をすべき？** → @.claude/planner/handover.md または @.claude/builder/handover.md
+2. **何をすべき？** → 自動生成されたhandover.mdを確認
 3. **制約は何？** → @.claude/shared/constraints.md
 4. **TDD遵守状況は？** → 全ての実装タスクにテストファースト要求があるか確認
+5. **同期状態は？** → Sync Specialistが自動チェック
 
 #### あなたの役割
 - プロジェクトの方向性を決める
@@ -60,5 +62,6 @@ date
 ```
 
 ## 注意事項
-- 前のエージェントがhandover.mdを作成していない場合は、作成を促してください
-- 割り込みの場合は、handover-interrupt-[日時].mdの作成を検討してください
+- handover.mdは自動作成されます（Sync Specialist経由）
+- 割り込みの場合は、handover-interrupt-[日時].mdが自動作成されます
+- エージェント切り替え時にphase-todo.mdとADRが自動更新されます

@@ -92,9 +92,10 @@
 
 ## Custom Commands
 
-### Core Commands (Just 4!)
+### Core Commands (Start Here!)
 | Command | Purpose | Details |
 |---------|---------|---------|
+| `/agent:first` | **🌟 START HERE** - Development guide | Enforces proper methodology, guides to right agent |
 | `/agent:planner` | Strategic planning + Design | Creates specs with Mermaid diagrams |
 | `/agent:builder` | Implementation + Debug + Review | Handles all coding tasks |
 | `/project:focus` | Focus on current task | Works with any agent |
@@ -103,6 +104,9 @@
 ### Enhanced Commands (NEW!)
 | Command | Purpose | Details |
 |---------|---------|---------|
+| `/project:diagnose` | Project status diagnosis | Comprehensive project state analysis |
+| `/project:quality-check` | Quality gate check | Verify stage completion requirements |
+| `/project:next-step` | Next step guidance | Get specific next actions |
 | `/tdd:start` | Start TDD cycle | Begin Red-Green-Refactor cycle |
 | `/tdd:status` | Check TDD status | View current task status (🔴🟢✅⚠️) |
 | `/adr:create` | Create new ADR | Document architectural decisions |
@@ -177,6 +181,9 @@ Detailed settings: @.claude/hooks-README.md | @.claude/security-README.md
 
 #### 重要なTDD関連ドキュメント
 - **TDD厳密適用ガイド**: @.claude/shared/templates/tasks/tdd-strict-guide.md
+- **テスト構造・組織化**: @.claude/shared/templates/test-structure-guide.md（NEW!）
+- **TDDサイクル実践**: @.claude/builder/tdd-cycle.md
+- **TDD設定システム**: @.claude/shared/tdd-settings.md
 - **Phaseレビューテンプレート**: @.claude/shared/templates/tasks/phase-review-template.md
 - **仕様フィードバックプロセス**: @.claude/shared/templates/tasks/specification-feedback-process.md
 

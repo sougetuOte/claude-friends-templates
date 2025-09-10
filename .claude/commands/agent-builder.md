@@ -2,9 +2,10 @@
 
 ## 実行内容
 1. 現在のエージェントを確認
-2. handover.md作成を促す（現在のエージェントがnone以外の場合）
+2. 自動的にhandover.mdを作成（Sync Specialist経由）
 3. active.mdを"builder"に更新
-4. Builderの3つの質問を表示
+4. phase-todo.mdのタスク状態を自動更新
+5. Builderの3つの質問を表示
 
 ## プロンプト
 現在のエージェントから引き継ぎを受ける場合は、前のhandover.mdを確認してください。
@@ -17,11 +18,12 @@
 date
 ```
 
-#### 開始時チェックリスト
+#### 開始時チェックリスト（自動実行）
 1. **私は誰？** → @.claude/builder/identity.md
-2. **何をすべき？** → @.claude/planner/handover.md または前回の作業メモ
+2. **何をすべき？** → 自動生成されたhandover.mdを確認
 3. **制約は何？** → @.claude/shared/constraints.md
 4. **TDD実施状況は？** → 🔴Red→🟢Green→🔵Refactorサイクルを確認
+5. **タスク状態は？** → phase-todo.mdが自動更新されたことを確認
 
 #### あなたの役割
 - Plannerの計画に従って実装する
@@ -62,6 +64,6 @@ date
 ```
 
 ## 注意事項
-- Plannerの計画から逸脱する場合は、事前に相談（handover経由）
-- 技術的な障害に直面した場合は、詳細をhandoverに記録
-- 完了時は必ずhandover.mdを作成してください
+- handover.mdは自動作成されます（Sync Specialist経由）
+- タスク完了時はphase-todo.mdが自動更新されます
+- 技術的な障害に直面した場合は、自動的にエラーパターンが記録されます

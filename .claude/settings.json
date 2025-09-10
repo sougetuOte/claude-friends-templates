@@ -76,6 +76,19 @@
           {
             "type": "command",
             "command": ".claude/scripts/tdd-check.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/task-progress-hook.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/task-progress-hook.sh"
           }
         ]
       },
@@ -99,6 +112,14 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/scripts/stage-guard-dispatcher.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/agent-switch-hook.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/sync-specialist/sync-trigger.sh"
           },
           {
@@ -114,7 +135,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/scripts/session-complete.sh"
+            "command": ".claude/scripts/session-complete-enhanced.sh"
+          },
+          {
+            "type": "command",
+            "command": "python3 .claude/scripts/security-audit.py > /dev/null 2>&1 || true"
           }
         ]
       }

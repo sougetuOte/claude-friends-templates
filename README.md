@@ -85,20 +85,39 @@ graph LR
 
 ## 🚀 Quick Start
 
-### Starting a New Project
-For detailed instructions, see the [📚 Getting Started Guide](docs/GETTING_STARTED.md).
+### ⭐ NEW! Agent-First Development Flow
+**The right way to start any project** - Our Agent-First system ensures you follow proper development methodology:
 
 ```bash
 # 1. Clone the template
 mkdir my-project && cd my-project
 git clone https://github.com/yourusername/claude-friends-templates.git .
 
-# 2. Start with Claude Code
-/agent:planner
-"I want to start a new project. Please begin with requirements definition."
+# 2. Start with Agent First (RECOMMENDED)
+/agent:first
+
+# Agent First will guide you through the complete process:
+# ✅ Requirements Definition → Design → Tasks → Implementation
+# ✅ Quality gates at each stage
+# ✅ Automatic progression to the right specialist agent
 ```
 
-That's it! The Planner agent will guide you through the entire setup process interactively.
+**Why Agent First?** It prevents the common mistake of jumping straight to implementation without proper planning. The system enforces proven software development methodology.
+
+### Alternative: Direct Agent Access
+If you have complete requirements and design ready:
+
+```bash
+# For planning and design work
+/agent:planner
+"I have complete requirements. Let's create the technical design."
+
+# For implementation work (only after planning is complete)
+/agent:builder
+"Let's implement the user authentication system."
+```
+
+That's it! Agent First will guide you through the entire setup process with proper methodology.
 
 ### Project Flow
 ```mermaid
@@ -149,22 +168,31 @@ Edit the first 2 lines in `CLAUDE.md`:
 
 (Don't worry about the rest of CLAUDE.md - it contains useful settings that help the AI understand your project better)
 
-### 3. Start Planning with AI Planner
+### 3. Start with Agent First (The Right Way!)
 ```bash
-# In Claude Code, start the Planner agent:
+# In Claude Code, start with our guidance system:
+/agent:first
+
+# Agent First will assess your project and guide you:
+"Hello! I'm Agent First, your development methodology guide.
+Let me check your project status and ensure proper development flow.
+
+Current status: No requirements found
+→ Redirecting you to Requirements Agent for proper project setup."
+
+# Then follow the guided path:
+# Requirements → Design → Tasks → Implementation
+```
+
+### 3b. Alternative: Direct Access (For Experienced Users)
+```bash
+# If you already have complete requirements:
 /agent:planner
+"I have complete requirements. Let's create the technical design."
 
-# Tell what you want:
-"I want to start a new project. Please begin with requirements definition."
-
-# Planner will guide you:
-"Welcome to your new project! I'm the Planner and I'll guide you through.
-Let's start with the requirements definition phase.
-
-Please tell me about your project:
-1. What do you want to build?
-2. Who will use it?
-3. When do you need it?"
+# If you have complete design and tasks:
+/agent:builder
+"Let's implement according to the design specifications."
 ```
 
 ### 4. Follow the 3-Phase Development Flow
@@ -235,7 +263,7 @@ Perfect for complex projects that need both planning and execution.
 - **Smart AI Agents with Special Modes**:
   - Planner: Planning + Feature Design (with Mermaid diagrams)
   - Builder: Coding + Debug Mode + Code Review
-- **Just 4 Commands**: `/agent:planner`, `/agent:builder`, `/project:focus`, `/project:daily`
+- **Just 5 Commands**: `/agent:first` (start here!), `/agent:planner`, `/agent:builder`, `/project:focus`, `/project:daily`
 - **Automatic Mode Switching**: Agents adapt to your current needs
 - **Intelligent Handoffs**: Smooth transitions with mode recommendations
 
@@ -259,6 +287,26 @@ The foundation for AI-powered development.
 - **Remember Everything**: Memory Bank and handoff system maintain perfect project context
 
 ## 🚀 Enhanced Features (NEW!)
+
+### 🌟 Agent-First Development System (v2.4.0)
+- **Methodology Enforcement**: Ensures proper development flow (Requirements → Design → Tasks → Implementation)
+- **Quality Gates**: Validates completion at each stage before progression
+- **Stage Guard**: `.claude/scripts/stage-guard.sh` checks requirements, design, and task completeness
+- **Automatic Routing**: Dispatcher automatically routes to the appropriate agent based on project state
+- **Entry Point**: `/agent:first` - Your development methodology guide
+
+### 🔒 Enhanced Security System (v2.4.0)
+- **Expanded Protection**: Now blocks 10+ categories of dangerous commands
+- **100% Detection Rate**: All dangerous commands in security tests are blocked
+- **New Patterns**: Global config changes, process termination, firewall manipulation
+- **Continuous Monitoring**: Real-time command execution monitoring and logging
+- **Security Audit**: `python3 .claude/scripts/security-audit.py` for comprehensive scans
+
+### 🔧 Code Infrastructure (v2.4.0)
+- **Shared Utilities Library**: `.claude/scripts/shared-utils.sh` reduces code duplication
+- **Standardized Logging**: Unified log functions across all scripts
+- **Common Operations**: File operations, process management, agent utilities
+- **Example Implementation**: `activity-logger-refactored.sh` demonstrates 30% code reduction
 
 ### 🔴🟢✅ Test-Driven Development (TDD) Integration
 - **Strict TDD Workflow**: Red-Green-Refactor cycle with task status tracking

@@ -216,9 +216,38 @@ git commit -m "refactor: improve calculate_total_price readability and error han
 - [ ] タスクステータスを✅に更新した
 - [ ] リファクタリングをコミットした
 
+## 関連ガイド・テンプレート
+
+### 詳細ガイド
+- **テスト構造・組織化**: `.claude/shared/templates/test-structure-guide.md`
+- **厳密TDD適用**: `.claude/shared/templates/tasks/tdd-strict-guide.md`
+- **TDD設定**: `.claude/shared/tdd-settings.md`
+- **タスクステータス管理**: `.claude/shared/task-status.md`
+
+### 実用テンプレート
+```bash
+# テストファイル作成テンプレート
+touch tests/unit/components/NewComponent.test.js
+touch tests/integration/api/new-api.test.js
+
+# テストテンプレート使用
+cp .claude/shared/templates/test-structure-guide.md ./current-test-guide.md
+```
+
+### テストファイル組織例
+```
+/tests
+  /unit           # 単体テスト
+    /components   # コンポーネントテスト
+  /integration    # 結合テスト
+  /fixtures       # テストデータ
+  /mocks          # モックファイル
+```
+
 ## 参考リンク
 - [t-wada/tdd-bc](https://github.com/t-wada/tdd-bc) - TDDブートキャンプ
 - [テスト駆動開発](https://www.amazon.co.jp/dp/4274217884) - Kent Beck著
 
 ---
 *このガイドは、BuilderエージェントがTDDを確実に実践するための指針です。*
+*詳細なテスト構造・パターンは test-structure-guide.md を参照してください。*

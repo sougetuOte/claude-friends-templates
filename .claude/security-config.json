@@ -1,0 +1,51 @@
+{
+  "scan": {
+    "exclude": [
+      "node_modules",
+      "vendor",
+      ".git",
+      "__pycache__",
+      "dist",
+      "build",
+      ".cache",
+      ".ccache",
+      "coverage",
+      "*.min.js",
+      "*.min.css"
+    ],
+    "include": [
+      "src",
+      "lib",
+      "api",
+      "app",
+      "public",
+      "scripts",
+      "config"
+    ]
+  },
+  "checks": {
+    "secrets": true,
+    "sql_injection": true,
+    "xss": true,
+    "path_traversal": true,
+    "command_injection": true,
+    "permissions": true,
+    "dependencies": false
+  },
+  "severity_threshold": "medium",
+  "auto_fix": false,
+  "report": {
+    "format": "markdown",
+    "output": ".claude/security-report.md",
+    "include_recommendations": true
+  },
+  "patterns": {
+    "custom_secrets": [
+      {
+        "pattern": "private_key",
+        "severity": "critical",
+        "message": "Private key detected"
+      }
+    ]
+  }
+}
