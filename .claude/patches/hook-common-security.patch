@@ -1,0 +1,39 @@
+--- a/.claude/hooks/common/hook-common.sh
++++ b/.claude/hooks/common/hook-common.sh
+@@ -99,9 +99,14 @@ get_agent_info() {
+     fi
+
+     # Extract prompt from JSON
+-    local prompt
+-    prompt=$(echo "$json_input" | grep -oE '"prompt"[[:space:]]*:[[:space:]]*"[^"]*"' | \
+-             sed 's/.*"prompt"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' 2>/dev/null) || prompt=""
++    local prompt=""
++    if command -v jq >/dev/null 2>&1; then
++        prompt=$(printf '%s' "$json_input" | jq -r '.prompt // ""' 2>/dev/null) || prompt=""
++    else
++        # Use printf to prevent command injection
++        prompt=$(printf '%s' "$json_input" | grep -oE '"prompt"[[:space:]]*:[[:space:]]*"[^"]*"' | \
++                 sed 's/.*"prompt"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' 2>/dev/null) || prompt=""
++    fi
+
+     # Check for agent command
+     if [[ "$prompt" =~ /agent:([a-z]+) ]]; then
+@@ -245,10 +250,14 @@ log_message() {
+     # Write to log file with file locking to prevent race conditions
+     local lock_file="${log_file}.lock"
+     {
+-        flock -x 200
+-        echo "$formatted_message" >> "$log_file"
+-    } 200>>"$lock_file" 2>/dev/null || {
+-        echo "$formatted_message" >> "$log_file"
++        if flock -x -w 10 200; then
++            printf '%s\n' "$formatted_message" >> "$log_file"
++        else
++            # Fallback without lock if timeout
++            printf '%s\n' "$formatted_message" >> "$log_file"
++        fi
++    } 200>"$lock_file" 2>/dev/null || {
++        printf '%s\n' "$formatted_message" >> "$log_file"
+     }
+
+     return 0
