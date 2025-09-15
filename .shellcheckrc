@@ -1,0 +1,39 @@
+# ShellCheck Configuration for Claude Friends Templates
+# Enhanced security and quality checks for bash scripts
+
+# Enable all available checks
+enable=all
+
+# Disable specific checks that may not be applicable
+# SC2034 - Disable "unused variable" warning temporarily for environment setup scripts
+# SC1091 - Disable "not following" warning for sourced files that may not exist in test environment
+# SC2312 - Disable "masking" warning for specific use cases
+disable=SC2034,SC1091,SC2312
+
+# Enable external sources checking
+external-sources=true
+
+# Set shell dialect (bash)
+shell=bash
+
+# Additional strict checks
+# Check for potential security issues
+check-sourced=true
+
+# Exclude directories that don't need shellcheck
+exclude=.git,node_modules,vendor
+
+# Severity threshold (error, warning, info, style)
+severity=style
+
+# Format output for CI/CD integration
+format=gcc
+
+# Enable additional checks for security
+# - Command injection vulnerabilities
+# - Unquoted variables that could lead to word splitting
+# - Globbing issues
+# - Potential privilege escalation
+
+# Custom rules configuration
+# These can be set via command line or environment variables when needed

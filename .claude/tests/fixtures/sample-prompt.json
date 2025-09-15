@@ -1,0 +1,8 @@
+{
+  "prompt": "/agent:planner test command",
+  "tool": "Edit",
+  "file_paths": ["test.md"],
+  "timestamp": "2025-09-15T13:00:00Z",
+  "user_id": "test-user",
+  "session_id": "test-session-001"
+}

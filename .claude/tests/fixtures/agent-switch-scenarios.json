@@ -1,0 +1,44 @@
+{
+  "scenarios": [
+    {
+      "name": "planner_to_builder",
+      "input": {
+        "prompt": "/agent:builder start implementation",
+        "current_agent": "planner",
+        "target_agent": "builder"
+      },
+      "expected": {
+        "handover_created": true,
+        "active_agent_updated": true,
+        "notes_rotated": false
+      }
+    },
+    {
+      "name": "builder_to_planner",
+      "input": {
+        "prompt": "/agent:planner need design review",
+        "current_agent": "builder",
+        "target_agent": "planner"
+      },
+      "expected": {
+        "handover_created": true,
+        "active_agent_updated": true,
+        "notes_rotated": false
+      }
+    },
+    {
+      "name": "notes_rotation_trigger",
+      "input": {
+        "prompt": "/agent:builder continue work",
+        "current_agent": "planner",
+        "target_agent": "builder",
+        "notes_line_count": 480
+      },
+      "expected": {
+        "handover_created": true,
+        "active_agent_updated": true,
+        "notes_rotated": true
+      }
+    }
+  ]
+}
