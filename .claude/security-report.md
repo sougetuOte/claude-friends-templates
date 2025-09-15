@@ -1,6 +1,6 @@
 # セキュリティ監査レポート
 
-日時: 2025-09-10 21:51:08
+日時: 2025-09-15 14:09:38
 スキャン対象: /home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates
 
 ## 🟠 High（早急に対応）
@@ -19,11 +19,11 @@
 - **.claude/scripts/agent-switch-hook.sh**: 相対パスの使用（パストラバーサルの可能性）
 - **.claude/scripts/session-complete-enhanced.sh**: 相対パスの使用（パストラバーサルの可能性）
 - **.claude/shared/test-framework/templates/unit/javascript/basic_test_template.js**: 相対パスの使用（パストラバーサルの可能性）
+- **.claude/tests/helpers/test-helpers.sh**: 相対パスの使用（パストラバーサルの可能性）
 - **.claude/scripts/tests/test-auto-rotation-hook.sh**: 相対パスの使用（パストラバーサルの可能性）
-- **.claude/scripts/tests/.claude/scripts/session-complete-enhanced.sh**: 相対パスの使用（パストラバーサルの可能性）
 
 ## 統計
-- スキャンファイル数: 69
+- スキャンファイル数: 74
 - 検出された問題: 15
   - Critical: 0
   - High: 1
