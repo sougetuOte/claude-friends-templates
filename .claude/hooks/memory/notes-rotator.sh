@@ -67,32 +67,39 @@ analyze_content_importance() {
         return 0
     fi
 
-    # Count critical keywords
+    # Count critical keywords - very high priority
     local critical_count
     critical_count=$(grep -cE "$CRITICAL_PATTERNS" "$file" 2>/dev/null || echo 0)
+    critical_count=$(echo "$critical_count" | tr -d '\n' | awk '{print $1}')
     if [ "$critical_count" -gt 0 ]; then
-        score=$((score + 40))
+        # Critical content gets high base score
+        score=$((score + 80))
     fi
 
-    # Count important keywords
+    # Count important keywords - high priority
     local important_count
     important_count=$(grep -cE "$IMPORTANT_PATTERNS" "$file" 2>/dev/null || echo 0)
+    important_count=$(echo "$important_count" | tr -d '\n' | awk '{print $1}')
     if [ "$important_count" -gt 0 ]; then
-        score=$((score + 35))
+        # TODO and ADR patterns get high scores
+        score=$((score + 70))
     fi
 
     # Count temporary keywords (reduce score)
     local temp_count
     temp_count=$(grep -cE "$TEMPORARY_PATTERNS" "$file" 2>/dev/null || echo 0)
+    temp_count=$(echo "$temp_count" | tr -d '\n' | awk '{print $1}')
     if [ "$temp_count" -gt 0 ]; then
         score=$((score - 10))
     fi
 
-    # Count normal keywords
+    # Count normal keywords - moderate priority
     local normal_count
     normal_count=$(grep -cE "$NORMAL_PATTERNS" "$file" 2>/dev/null || echo 0)
+    normal_count=$(echo "$normal_count" | tr -d '\n' | awk '{print $1}')
     if [ "$normal_count" -gt 0 ]; then
-        score=$((score + 20))
+        # Normal content gets moderate score
+        score=$((score + 30))
     fi
 
     # Ensure score is within bounds
@@ -226,7 +233,7 @@ perform_intelligent_rotation() {
     cp "$notes_file" "$backup_file" 2>/dev/null || return 1
 
     # Check for forced failure (for testing)
-    if [[ -n "$FORCE_ROTATION_FAILURE" ]]; then
+    if [[ -n "${FORCE_ROTATION_FAILURE:-}" ]]; then
         rm -f "$backup_file"
         return 1
     fi
@@ -238,7 +245,7 @@ perform_intelligent_rotation() {
     }
 
     # Check for custom configuration
-    if [[ -n "$ROTATION_CONFIG" ]]; then
+    if [[ -n "${ROTATION_CONFIG:-}" ]]; then
         # Parse configuration from environment
         local min_important_lines=$(echo "$ROTATION_CONFIG" | grep -o '"min_important_lines": *[0-9]*' | grep -o '[0-9]*' || echo "100")
     else
@@ -260,7 +267,7 @@ perform_intelligent_rotation() {
         grep -E "$CRITICAL_PATTERNS" "$notes_file" 2>/dev/null || true
 
         # Preserve important content with limit
-        if [[ -n "$ROTATION_CONFIG" ]]; then
+        if [[ -n "${ROTATION_CONFIG:-}" ]]; then
             grep -E "$IMPORTANT_PATTERNS" "$notes_file" 2>/dev/null | head -n "$min_important_lines" || true
         else
             grep -E "$IMPORTANT_PATTERNS" "$notes_file" 2>/dev/null || true
