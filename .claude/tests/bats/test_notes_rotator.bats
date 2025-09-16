@@ -407,3 +407,150 @@ EOF
     duration=$((end_time - start_time))
     [[ "$duration" -lt 1000000000 ]]
 }
+
+# ==============================================================================
+# Archive Search and Enhancement Tests
+# ==============================================================================
+
+@test "search_archives finds entries by keyword" {
+    # Create test index with entries
+    cat > "$ARCHIVE_DIR/archive_index.json" << EOF
+{"archives": [
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "archive1.md", "keywords": ["ERROR", "CRITICAL"]},
+    {"timestamp": "2025-09-02T10:00:00", "archive_file": "archive2.md", "keywords": ["TODO", "INFO"]}
+]}
+EOF
+
+    run search_archives "$ARCHIVE_DIR/archive_index.json" "ERROR"
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"archive1.md"* ]]
+}
+
+@test "search_archives returns no matches for missing keyword" {
+    cat > "$ARCHIVE_DIR/archive_index.json" << EOF
+{"archives": [
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "archive1.md", "keywords": ["INFO"]}
+]}
+EOF
+
+    run search_archives "$ARCHIVE_DIR/archive_index.json" "NOTFOUND"
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"No matches found"* ]] || [[ -z "$output" ]]
+}
+
+@test "get_archive_count returns correct count" {
+    cat > "$ARCHIVE_DIR/archive_index.json" << EOF
+{"archives": [
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "archive1.md", "keywords": ["ERROR"]},
+    {"timestamp": "2025-09-02T10:00:00", "archive_file": "archive2.md", "keywords": ["TODO"]},
+    {"timestamp": "2025-09-03T10:00:00", "archive_file": "archive3.md", "keywords": ["INFO"]}
+]}
+EOF
+
+    run get_archive_count "$ARCHIVE_DIR/archive_index.json"
+    [ "$status" -eq 0 ]
+    [ "$output" -eq 3 ]
+}
+
+@test "get_archive_count handles empty index" {
+    echo '{"archives": []}' > "$ARCHIVE_DIR/archive_index.json"
+
+    run get_archive_count "$ARCHIVE_DIR/archive_index.json"
+    [ "$status" -eq 0 ]
+    [ "$output" -eq 0 ]
+}
+
+@test "json_safe_append handles empty index correctly" {
+    echo '{"archives": []}' > "$ARCHIVE_DIR/test_index.json"
+    local new_entry='{"timestamp": "2025-09-01T10:00:00", "archive_file": "test.md"}'
+
+    run json_safe_append "$ARCHIVE_DIR/test_index.json" "$new_entry"
+    [ "$status" -eq 0 ]
+
+    # Verify the entry was added
+    [[ $(cat "$ARCHIVE_DIR/test_index.json") == *"test.md"* ]]
+}
+
+@test "json_safe_append handles malformed JSON safely" {
+    echo 'INVALID JSON' > "$ARCHIVE_DIR/bad_index.json"
+    local new_entry='{"timestamp": "2025-09-01T10:00:00", "archive_file": "test.md"}'
+
+    run json_safe_append "$ARCHIVE_DIR/bad_index.json" "$new_entry"
+    # Should fail but not crash
+    [ "$status" -ne 0 ] || [[ $(cat "$ARCHIVE_DIR/bad_index.json") == *"archives"* ]]
+}
+
+# ==============================================================================
+# Index Optimization Tests
+# ==============================================================================
+
+@test "cleanup_old_archives keeps only recent entries" {
+    # Skip if jq is not available
+    command -v jq &>/dev/null || skip "jq not available"
+
+    # Create index with many entries
+    cat > "$ARCHIVE_DIR/archive_index.json" << 'EOF'
+{"archives": [
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "old1.md", "keywords": ["OLD"]},
+    {"timestamp": "2025-09-02T10:00:00", "archive_file": "old2.md", "keywords": ["OLD"]},
+    {"timestamp": "2025-09-03T10:00:00", "archive_file": "recent1.md", "keywords": ["NEW"]},
+    {"timestamp": "2025-09-04T10:00:00", "archive_file": "recent2.md", "keywords": ["NEW"]},
+    {"timestamp": "2025-09-05T10:00:00", "archive_file": "recent3.md", "keywords": ["NEW"]}
+]}
+EOF
+
+    run cleanup_old_archives "$ARCHIVE_DIR/archive_index.json" 3
+    [ "$status" -eq 0 ]
+
+    # Verify only 3 entries remain
+    local count
+    count=$(get_archive_count "$ARCHIVE_DIR/archive_index.json")
+    [ "$count" -eq 3 ]
+}
+
+@test "optimize_archive_index removes duplicates and sorts" {
+    # Skip if jq is not available
+    command -v jq &>/dev/null || skip "jq not available"
+
+    # Create index with duplicates and unsorted entries
+    cat > "$ARCHIVE_DIR/archive_index.json" << 'EOF'
+{"archives": [
+    {"timestamp": "2025-09-03T10:00:00", "archive_file": "file3.md", "keywords": ["INFO"]},
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "file1.md", "keywords": ["ERROR"]},
+    {"timestamp": "2025-09-02T10:00:00", "archive_file": "file1.md", "keywords": ["ERROR"]},
+    {"timestamp": "2025-09-04T10:00:00", "archive_file": "file4.md", "keywords": ["TODO"]}
+]}
+EOF
+
+    run optimize_archive_index "$ARCHIVE_DIR/archive_index.json"
+    [ "$status" -eq 0 ]
+
+    # Verify entries are sorted and duplicates removed
+    local count
+    count=$(get_archive_count "$ARCHIVE_DIR/archive_index.json")
+    [ "$count" -eq 3 ]  # One duplicate removed
+
+    # Check if sorted (first entry should be oldest)
+    local first_file
+    if command -v jq &>/dev/null; then
+        first_file=$(jq -r '.archives[0].archive_file' "$ARCHIVE_DIR/archive_index.json")
+        [[ "$first_file" == "file1.md" ]]
+    fi
+}
+
+@test "get_archive_stats displays correct statistics" {
+    cat > "$ARCHIVE_DIR/archive_index.json" << 'EOF'
+{"archives": [
+    {"timestamp": "2025-09-01T10:00:00", "archive_file": "file1.md", "keywords": ["ERROR", "CRITICAL"]},
+    {"timestamp": "2025-09-02T10:00:00", "archive_file": "file2.md", "keywords": ["TODO", "ERROR"]},
+    {"timestamp": "2025-09-03T10:00:00", "archive_file": "file3.md", "keywords": ["INFO", "ERROR"]}
+]}
+EOF
+
+    run get_archive_stats "$ARCHIVE_DIR/archive_index.json"
+    [ "$status" -eq 0 ]
+
+    # Check output contains expected information
+    [[ "$output" == *"Total entries: 3"* ]]
+    [[ "$output" == *"Archive Statistics:"* ]]
+}

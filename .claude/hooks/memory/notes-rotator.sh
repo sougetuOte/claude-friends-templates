@@ -204,15 +204,15 @@ update_archive_index() {
 EOF
     )
 
-    # Append to index using jq
+    # Use safe JSON append function
     if command -v jq &>/dev/null; then
         local temp_index
         temp_index=$(mktemp)
         jq --argjson entry "$new_entry" '.archives += [$entry]' "$index_file" > "$temp_index"
         mv "$temp_index" "$index_file"
     else
-        # Fallback: Simple append without jq
-        sed -i 's/]$/,'"$new_entry"']/' "$index_file"
+        # Use our safe append function for non-jq environments
+        json_safe_append "$index_file" "$new_entry"
     fi
 
     return 0
@@ -325,6 +325,159 @@ rotate_notes_if_needed() {
     fi
 
     return 0
+}
+
+# ==============================================================================
+# Archive Search Functions
+# ==============================================================================
+
+# Search archives by keywords
+search_archives() {
+    local index_file="$1"
+    local search_term="$2"
+
+    if [[ ! -f "$index_file" ]]; then
+        echo "No archive index found"
+        return 1
+    fi
+
+    # Use jq if available for more accurate search
+    if command -v jq &>/dev/null; then
+        jq -r ".archives[] | select(.keywords[] | contains(\"$search_term\")) | \"\(.timestamp) - \(.archive_file) - Keywords: \(.keywords | join(\",\"))\"" "$index_file" 2>/dev/null || echo "No matches found"
+    else
+        # Fallback to grep-based search
+        grep -i "$search_term" "$index_file" 2>/dev/null | sed 's/.*"archive_file":"\([^"]*\)".*"timestamp":"\([^"]*\)".*/\2 - \1/' || echo "No matches found"
+    fi
+}
+
+# Get archive count
+get_archive_count() {
+    local index_file="$1"
+
+    if [[ ! -f "$index_file" ]]; then
+        echo "0"
+        return 0
+    fi
+
+    if command -v jq &>/dev/null; then
+        jq '.archives | length' "$index_file" 2>/dev/null || echo "0"
+    else
+        # Count occurrences of archive_file
+        grep -c '"archive_file"' "$index_file" 2>/dev/null || echo "0"
+    fi
+}
+
+# Safe JSON append without jq
+json_safe_append() {
+    local index_file="$1"
+    local new_entry="$2"
+    local temp_file
+    temp_file=$(mktemp)
+
+    if [[ ! -f "$index_file" ]]; then
+        echo '{"archives": []}' > "$index_file"
+    fi
+
+    # Create backup before modification
+    cp "$index_file" "${index_file}.bak" 2>/dev/null || true
+
+    # Remove the closing }] and append new entry
+    if grep -q '"archives": \[\]' "$index_file"; then
+        # Empty array - add first entry
+        sed 's/"archives": \[\]/"archives": ['"$new_entry"']/' "$index_file" > "$temp_file"
+    else
+        # Non-empty array - append to existing entries
+        sed 's/\]\s*}$/,'"$new_entry"']}/' "$index_file" > "$temp_file"
+    fi
+
+    # Verify the JSON structure is not broken
+    if grep -q '"archives"' "$temp_file" && grep -q '^{' "$temp_file" && grep -q '}$' "$temp_file"; then
+        mv "$temp_file" "$index_file"
+        rm -f "${index_file}.bak"
+        return 0
+    else
+        # Restore backup if JSON is broken
+        mv "${index_file}.bak" "$index_file" 2>/dev/null || true
+        rm -f "$temp_file"
+        return 1
+    fi
+}
+
+# ==============================================================================
+# Index Optimization Functions
+# ==============================================================================
+
+# Clean up old archive entries (keep recent N entries)
+cleanup_old_archives() {
+    local index_file="$1"
+    local max_entries="${2:-100}"  # Keep latest 100 entries by default
+
+    if [[ ! -f "$index_file" ]]; then
+        return 1
+    fi
+
+    if command -v jq &>/dev/null; then
+        # Use jq to keep only the latest N entries
+        local temp_file
+        temp_file=$(mktemp)
+        jq ".archives |= .[-$max_entries:]" "$index_file" > "$temp_file"
+        mv "$temp_file" "$index_file"
+    else
+        # Fallback: Create new file with limited entries
+        echo "WARNING: Archive cleanup requires jq for reliable operation" >&2
+    fi
+}
+
+# Optimize index file (remove duplicates, sort by date)
+optimize_archive_index() {
+    local index_file="$1"
+
+    if [[ ! -f "$index_file" ]]; then
+        return 1
+    fi
+
+    if command -v jq &>/dev/null; then
+        local temp_file
+        temp_file=$(mktemp)
+        # Sort by timestamp and remove duplicates based on archive_file
+        jq '.archives |= (unique_by(.archive_file) | sort_by(.timestamp))' "$index_file" > "$temp_file"
+        mv "$temp_file" "$index_file"
+    fi
+}
+
+# Get archive statistics
+get_archive_stats() {
+    local index_file="$1"
+
+    if [[ ! -f "$index_file" ]]; then
+        echo "No archive index found"
+        return 1
+    fi
+
+    local count
+    count=$(get_archive_count "$index_file")
+    local size
+    size=$(du -h "$index_file" 2>/dev/null | cut -f1)
+
+    echo "Archive Statistics:"
+    echo "  Total entries: $count"
+    echo "  Index size: $size"
+
+    if command -v jq &>/dev/null; then
+        # Get date range
+        local oldest newest
+        oldest=$(jq -r '.archives[0].timestamp // "N/A"' "$index_file" 2>/dev/null)
+        newest=$(jq -r '.archives[-1].timestamp // "N/A"' "$index_file" 2>/dev/null)
+        echo "  Date range: $oldest to $newest"
+
+        # Get keyword frequency
+        echo "  Top keywords:"
+        jq -r '.archives[].keywords[]' "$index_file" 2>/dev/null | \
+            sort | uniq -c | sort -rn | head -5 | \
+            while read count keyword; do
+                echo "    - $keyword: $count occurrences"
+            done
+    fi
 }
 
 # ==============================================================================
