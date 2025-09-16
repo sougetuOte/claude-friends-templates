@@ -35,6 +35,81 @@ readonly TEMPORARY_PATTERNS="TEMP:|TEST:|SCRATCH:"
 # Core Functions
 # ==============================================================================
 
+# Validate that a content file exists and is readable
+validate_content_file() {
+    local file="$1"
+
+    if [[ -z "$file" ]]; then
+        return 1
+    fi
+
+    if [[ ! -f "$file" ]]; then
+        return 1
+    fi
+
+    if [[ ! -r "$file" ]]; then
+        return 1
+    fi
+
+    return 0
+}
+
+# Count pattern matches in a file - extracted for reusability
+count_pattern_matches() {
+    local file="$1"
+    local pattern="$2"
+
+    if ! validate_content_file "$file"; then
+        echo "0"
+        return 0
+    fi
+
+    local count
+    count=$(grep -cE "$pattern" "$file" 2>/dev/null || echo 0)
+    count=$(echo "$count" | tr -d '\n' | awk '{print $1}')
+    echo "$count"
+    return 0
+}
+
+# Calculate importance score based on pattern match counts
+calculate_importance_score() {
+    local critical_count="$1"
+    local important_count="$2"
+    local temp_count="$3"
+    local normal_count="$4"
+    local score=0
+
+    # Critical content gets high base score
+    if [ "$critical_count" -gt 0 ]; then
+        score=$((score + 80))
+    fi
+
+    # Important content gets high score
+    if [ "$important_count" -gt 0 ]; then
+        score=$((score + 70))
+    fi
+
+    # Temporary content reduces score
+    if [ "$temp_count" -gt 0 ]; then
+        score=$((score - 10))
+    fi
+
+    # Normal content gets moderate score
+    if [ "$normal_count" -gt 0 ]; then
+        score=$((score + 30))
+    fi
+
+    # Ensure score is within bounds
+    if [ "$score" -lt 0 ]; then
+        score=0
+    elif [ "$score" -gt 100 ]; then
+        score=100
+    fi
+
+    echo "$score"
+    return 0
+}
+
 # Check if rotation is needed based on line count
 check_rotation_threshold() {
     local notes_file="$1"
@@ -60,57 +135,22 @@ check_rotation_threshold() {
 # Analyze content importance and return a score (0-100)
 analyze_content_importance() {
     local file="$1"
-    local score=0
 
-    if [[ ! -f "$file" ]]; then
+    # Validate input file first
+    if ! validate_content_file "$file"; then
         echo "0"
         return 0
     fi
 
-    # Count critical keywords - very high priority
-    local critical_count
-    critical_count=$(grep -cE "$CRITICAL_PATTERNS" "$file" 2>/dev/null || echo 0)
-    critical_count=$(echo "$critical_count" | tr -d '\n' | awk '{print $1}')
-    if [ "$critical_count" -gt 0 ]; then
-        # Critical content gets high base score
-        score=$((score + 80))
-    fi
+    # Count different pattern types using the unified function
+    local critical_count important_count temp_count normal_count
+    critical_count=$(count_pattern_matches "$file" "$CRITICAL_PATTERNS")
+    important_count=$(count_pattern_matches "$file" "$IMPORTANT_PATTERNS")
+    temp_count=$(count_pattern_matches "$file" "$TEMPORARY_PATTERNS")
+    normal_count=$(count_pattern_matches "$file" "$NORMAL_PATTERNS")
 
-    # Count important keywords - high priority
-    local important_count
-    important_count=$(grep -cE "$IMPORTANT_PATTERNS" "$file" 2>/dev/null || echo 0)
-    important_count=$(echo "$important_count" | tr -d '\n' | awk '{print $1}')
-    if [ "$important_count" -gt 0 ]; then
-        # TODO and ADR patterns get high scores
-        score=$((score + 70))
-    fi
-
-    # Count temporary keywords (reduce score)
-    local temp_count
-    temp_count=$(grep -cE "$TEMPORARY_PATTERNS" "$file" 2>/dev/null || echo 0)
-    temp_count=$(echo "$temp_count" | tr -d '\n' | awk '{print $1}')
-    if [ "$temp_count" -gt 0 ]; then
-        score=$((score - 10))
-    fi
-
-    # Count normal keywords - moderate priority
-    local normal_count
-    normal_count=$(grep -cE "$NORMAL_PATTERNS" "$file" 2>/dev/null || echo 0)
-    normal_count=$(echo "$normal_count" | tr -d '\n' | awk '{print $1}')
-    if [ "$normal_count" -gt 0 ]; then
-        # Normal content gets moderate score
-        score=$((score + 30))
-    fi
-
-    # Ensure score is within bounds
-    if [ "$score" -lt 0 ]; then
-        score=0
-    elif [ "$score" -gt 100 ]; then
-        score=100
-    fi
-
-    echo "$score"
-    return 0
+    # Calculate final importance score using the extracted function
+    calculate_importance_score "$critical_count" "$important_count" "$temp_count" "$normal_count"
 }
 
 # Classify content into categories
