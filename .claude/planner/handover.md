@@ -1,47 +1,17 @@
-# 引き継ぎ事項 - [日時を記入]
+# Handover from Planner to Builder
 
-## From: Planner
-## To: [Builder/次のPlanner]
-## Current Mode: [通常/新機能設計]
+Generated at: 2025-09-15 19:34:14 JST
 
-## 完了した作業
-- [具体的な計画立案や決定事項をリストアップ]
-- [Phase管理で更新した内容]
-- [重要な判断や方針決定]
+## Current Status
+[Auto-generated handover - Please update with current progress]
 
-## 次のエージェントへの申し送り
+## Context Summary
+- Previous agent: Planner
+- Target agent: Builder
+- Switch timestamp: 2025-09-15 19:34:14 JST
 
-### 対象: [切り替え先エージェント名]
+## Next Actions
+[To be filled by Builder agent]
 
-### 推奨モード: (Builderの場合)
-- [ ] 通常モード - 標準的な実装作業
-- [ ] デバッグモード - エラー調査や問題解決が必要
-- [ ] コードレビューモード - 実装済みコードの品質確認
-
-### 依頼事項:
-1. [具体的で実行可能なタスク1]
-2. [具体的で実行可能なタスク2]
-3. [具体的で実行可能なタスク3]
-
-### 優先順位:
-1. **最優先**: [理由と共に記載]
-2. **高**: [理由と共に記載]
-3. **中**: [理由と共に記載]
-
-### 注意事項:
-- [技術的な制約や考慮すべき点]
-- [期限やマイルストーン]
-- [リスクや懸念事項]
-
-### 参照すべき情報:
-- [関連ファイルパス]
-- [参考にすべき決定事項]
-- [確認すべきドキュメント]
-
-## 現在のコンテキスト
-- **Phase**: [現在のPhase名と進捗]
-- **全体の状況**: [プロジェクト全体の簡潔な状況説明]
-- **次の判断ポイント**: [いつ、何を判断する必要があるか]
-
----
-*このテンプレートを使用して、次のエージェントがスムーズに作業を開始できるようにしてください。*
+## Notes
+[Add any relevant context or status information]
