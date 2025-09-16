@@ -1,0 +1,6 @@
+{
+  "check_tdd_compliance": true,
+  "check_design_compliance": true,
+  "warning_threshold": "medium",
+  "ignored_patterns": ["*.test.js", "*.spec.ts", "__tests__/*", "tests/*"]
+}

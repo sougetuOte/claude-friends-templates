@@ -1,0 +1,18 @@
+{
+  "metrics_retention_days": 30,
+  "log_aggregation_limit": 100,
+  "alert_thresholds": {
+    "error_rate": 0.1,
+    "response_time": 1.0
+  },
+  "performance": {
+    "max_parallel_hooks": 5,
+    "timeout_seconds": 300,
+    "batch_size": 1000
+  },
+  "logging": {
+    "level": "info",
+    "rotate_size_mb": 10,
+    "keep_files": 7
+  }
+}
