@@ -1,0 +1,1 @@
+echo task2 completed > /tmp/parallel_final2.txt; sleep 0.2

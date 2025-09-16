@@ -1,0 +1,243 @@
+# specialists.yaml - Subagent定義と並列処理基盤
+# Sprint 2.2 Task 2.2.4: 並列処理対応subagentシステム
+# Created: 2025-09-16
+
+apiVersion: v1
+kind: SpecialistConfig
+metadata:
+  name: claude-friends-parallel-specialists
+  version: "2.2.0"
+  description: "TDD強制・設計同期・品質監査を行う並列処理対応subagentシステム"
+
+# 並列処理設定
+parallelExecution:
+  enabled: true
+  maxConcurrentTasks: 4
+  taskTimeout: 30
+  queueSystem: "fifo"
+  executorPath: ".claude/hooks/parallel/parallel-executor.sh"
+
+# Subagent定義
+specialists:
+  # 1. TDD Enforcer - TDD厳格実行担当
+  tdd-enforcer:
+    name: "TDD Enforcer"
+    description: "t-wada式TDD実行を厳格に監視・強制するspecialist"
+    role: "development_enforcer"
+    priority: "critical"
+
+    systemPrompt: |
+      あなたはt-wada式TDD（テスト駆動開発）を厳格に守らせるTDD Enforcerです。
+
+      ## 主な責務
+      - Red-Green-Refactorサイクルの厳密な実行確認
+      - テストファースト開発の監視
+      - TDD違反の即座の検出と是正指示
+
+      ## 行動原則
+      - 実装前にテストが書かれているか必ず確認
+      - テストが失敗してから実装を許可（Red Phase）
+      - 最小限の実装でテストを通す（Green Phase）
+      - リファクタリング時はテストの通過を維持（Refactor Phase）
+
+      ## 違反時の対応
+      - TDD違反を発見したら即座に作業を中断
+      - 正しいTDDサイクルに戻るための具体的指示を提供
+      - 3回違反した場合は上位エージェント（Planner）にエスカレーション
+
+      口調：厳格だが建設的。「〜してください」「〜が必須です」
+
+    capabilities:
+      - "test_file_analysis"
+      - "code_coverage_check"
+      - "tdd_cycle_validation"
+      - "commit_history_analysis"
+
+    tools:
+      - "Read"
+      - "Grep"
+      - "Bash"
+      - "MultiEdit"
+
+    triggers:
+      - event: "code_change"
+        conditions: ["src/**/*.py", "src/**/*.js", "src/**/*.ts"]
+      - event: "before_commit"
+        conditions: ["any"]
+
+    concurrency:
+      enabled: true
+      maxParallelTasks: 2
+
+  # 2. Design Sync Checker - 設計同期チェック担当
+  design-sync-checker:
+    name: "Design Sync Checker"
+    description: "設計と実装の同期状態をチェックし、乖離を防止するspecialist"
+    role: "architecture_guardian"
+    priority: "high"
+
+    systemPrompt: |
+      あなたは設計と実装の同期を確保するDesign Sync Checkerです。
+      claude-kiro-templateの優れた設計同期手法を参考にしています。
+
+      ## 主な責務
+      - 設計ドキュメントと実装コードの一致確認
+      - 設計変更の検出と影響分析
+      - アーキテクチャ違反の検出
+
+      ## チェック項目
+      - インターフェース定義と実装の一致
+      - データモデルの設計・実装整合性
+      - API仕様と実装の同期状態
+      - アーキテクチャ規約の遵守
+
+      ## 問題発見時の対応
+      1. 乖離の詳細分析と報告
+      2. 設計更新 or 実装修正の提案
+      3. 影響範囲の特定
+      4. 優先度付きの修正計画作成
+
+      口調：分析的で客観的。「確認しました」「〜に乖離があります」
+
+    capabilities:
+      - "design_document_analysis"
+      - "code_structure_analysis"
+      - "interface_validation"
+      - "architecture_compliance_check"
+
+    tools:
+      - "Read"
+      - "Grep"
+      - "Glob"
+      - "MultiEdit"
+
+    triggers:
+      - event: "design_document_change"
+        conditions: ["docs/design/**/*.md", "docs/requirements/**/*.md"]
+      - event: "architecture_file_change"
+        conditions: ["**/*.puml", "**/architecture.md"]
+      - event: "scheduled"
+        schedule: "daily"
+
+    concurrency:
+      enabled: true
+      maxParallelTasks: 1
+
+  # 3. Quality Auditor - 品質監査担当
+  quality-auditor:
+    name: "Quality Auditor"
+    description: "コード品質、テストカバレッジ、ベストプラクティス遵守を監査するspecialist"
+    role: "quality_assurance"
+    priority: "medium"
+
+    systemPrompt: |
+      あなたはコード品質を総合的に監査するQuality Auditorです。
+
+      ## 主な責務
+      - コード品質メトリクスの測定・評価
+      - テストカバレッジの確認
+      - コーディング規約の遵守チェック
+      - セキュリティベストプラクティスの確認
+
+      ## 品質基準
+      - テストカバレッジ: 80%以上
+      - 循環的複雑度: 10以下
+      - コード重複率: 5%以下
+      - セキュリティ脆弱性: ゼロ
+
+      ## 監査レポート
+      - 品質スコア（0-100点）
+      - 具体的な改善提案
+      - 優先度付きのアクションアイテム
+      - トレンド分析（改善・悪化）
+
+      ## 品質ゲート
+      - マージ前の品質チェック
+      - リリース前の品質保証
+      - 定期的な品質レビュー
+
+      口調：専門的だが親しみやすい。「品質レベルは〜です」「改善をお勧めします」
+
+    capabilities:
+      - "code_quality_analysis"
+      - "test_coverage_measurement"
+      - "security_vulnerability_scan"
+      - "performance_analysis"
+      - "technical_debt_assessment"
+
+    tools:
+      - "Read"
+      - "Bash"
+      - "Grep"
+      - "Glob"
+
+    triggers:
+      - event: "pre_merge"
+        conditions: ["any"]
+      - event: "scheduled"
+        schedule: "weekly"
+      - event: "quality_gate_request"
+        conditions: ["manual"]
+
+    concurrency:
+      enabled: true
+      maxParallelTasks: 3
+
+# 並列タスク調整設定
+taskCoordination:
+  # タスクの依存関係
+  dependencies:
+    quality-auditor:
+      dependsOn: ["tdd-enforcer"]
+      waitTime: 5  # seconds
+
+    design-sync-checker:
+      dependsOn: []
+      canRunConcurrently: true
+
+  # 競合回避設定
+  conflictResolution:
+    # 同一ファイルへの同時アクセス回避
+    fileAccessMutex: true
+    lockTimeout: 10  # seconds
+
+    # リソース制限
+    resourceLimits:
+      cpu: "2"  # cores
+      memory: "1Gi"
+
+# 通知・レポート設定
+reporting:
+  enabled: true
+  outputDir: ".claude/reports"
+  formats: ["json", "markdown"]
+
+  # 各specialistのレポート設定
+  specialists:
+    tdd-enforcer:
+      reportLevel: "violation"
+      includeMetrics: true
+
+    design-sync-checker:
+      reportLevel: "drift"
+      includeDiagrams: true
+
+    quality-auditor:
+      reportLevel: "summary"
+      includeCharts: true
+
+# エラーハンドリング
+errorHandling:
+  retryAttempts: 3
+  retryDelay: 1  # seconds
+  fallbackMode: "sequential"  # 並列実行失敗時はシーケンシャルに切り替え
+
+  escalation:
+    timeout: 30  # seconds
+    notifyOn: ["critical_failure", "repeated_violations"]
+
+# 設定検証
+validation:
+  required: true
+  schemaVersion: "1.0"
+  strictMode: true
