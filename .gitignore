@@ -63,4 +63,9 @@ temp/
 .vscode/settings.json
 
 # Project specific ignores
-# Add your project-specific files here
+# Add your project-specific files here# Parallel execution temporary files
+*.task
+**/results/task_*
+**/locks/*.lock
+**/.claude/parallel/
+
