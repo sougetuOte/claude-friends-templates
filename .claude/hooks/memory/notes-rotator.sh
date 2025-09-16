@@ -1,8 +1,13 @@
 #!/bin/bash
 
 # notes-rotator.sh - Memory Bank intelligent rotation system
-# TDD Green Phase implementation - minimal code to pass tests
+# TDD implementation with enhanced archive management
 # Created: 2025-09-16
+# Version: 2.0.0
+
+# ==============================================================================
+# Script Setup and Dependencies
+# ==============================================================================
 
 # Source common utilities
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,23 +18,44 @@ source "${SCRIPT_DIR}/../common/json-utils.sh" 2>/dev/null || true
 # Configuration Constants
 # ==============================================================================
 
-# Default rotation threshold
+# Rotation thresholds
 readonly NOTES_ROTATION_THRESHOLD="${NOTES_ROTATION_THRESHOLD:-450}"
 readonly NOTES_ARCHIVE_HEADER_LINES="${NOTES_ARCHIVE_HEADER_LINES:-40}"
+readonly MAX_ARCHIVE_ENTRIES="${MAX_ARCHIVE_ENTRIES:-100}"
 
-# Importance scoring weights
-readonly KEYWORD_WEIGHT="${KEYWORD_WEIGHT:-25}"
-readonly RECENCY_WEIGHT="${RECENCY_WEIGHT:-20}"
-readonly FORMAT_WEIGHT="${FORMAT_WEIGHT:-15}"
-readonly CONTEXT_WEIGHT="${CONTEXT_WEIGHT:-20}"
-readonly FREQUENCY_WEIGHT="${FREQUENCY_WEIGHT:-10}"
-readonly AGENT_WEIGHT="${AGENT_WEIGHT:-10}"
+# Importance scoring configuration
+readonly SCORE_CRITICAL=80
+readonly SCORE_IMPORTANT=70
+readonly SCORE_NORMAL=30
+readonly SCORE_TEMPORARY_PENALTY=10
+readonly SCORE_MIN=0
+readonly SCORE_MAX=100
 
-# Content category patterns
+# Content pattern definitions
 readonly CRITICAL_PATTERNS="ERROR:|CRITICAL:|SECURITY:|🔴"
 readonly IMPORTANT_PATTERNS="TODO:|DECISION:|ADR-|⚠️"
 readonly NORMAL_PATTERNS="INFO:|DEBUG:|TRACE:"
 readonly TEMPORARY_PATTERNS="TEMP:|TEST:|SCRATCH:"
+
+# Archive configuration
+readonly ARCHIVE_INDEX_FILENAME="archive_index.json"
+readonly ARCHIVE_DATE_FORMAT="%Y%m%d-%H%M%S"
+
+# ==============================================================================
+# Utility Functions
+# ==============================================================================
+
+# Consistent error logging
+log_error() {
+    local message="$1"
+    echo "ERROR: $message" >&2
+}
+
+# Consistent info logging
+log_info() {
+    local message="$1"
+    echo "INFO: $message" >&2
+}
 
 # ==============================================================================
 # Core Functions
@@ -81,29 +107,29 @@ calculate_importance_score() {
 
     # Critical content gets high base score
     if [ "$critical_count" -gt 0 ]; then
-        score=$((score + 80))
+        score=$((score + SCORE_CRITICAL))
     fi
 
     # Important content gets high score
     if [ "$important_count" -gt 0 ]; then
-        score=$((score + 70))
+        score=$((score + SCORE_IMPORTANT))
     fi
 
     # Temporary content reduces score
     if [ "$temp_count" -gt 0 ]; then
-        score=$((score - 10))
+        score=$((score - SCORE_TEMPORARY_PENALTY))
     fi
 
     # Normal content gets moderate score
     if [ "$normal_count" -gt 0 ]; then
-        score=$((score + 30))
+        score=$((score + SCORE_NORMAL))
     fi
 
     # Ensure score is within bounds
-    if [ "$score" -lt 0 ]; then
-        score=0
-    elif [ "$score" -gt 100 ]; then
-        score=100
+    if [ "$score" -lt "$SCORE_MIN" ]; then
+        score=$SCORE_MIN
+    elif [ "$score" -gt "$SCORE_MAX" ]; then
+        score=$SCORE_MAX
     fi
 
     echo "$score"
@@ -186,7 +212,7 @@ create_archive() {
 
     # Generate timestamp
     local timestamp
-    timestamp=$(date +%Y%m%d-%H%M%S)
+    timestamp=$(date +"${ARCHIVE_DATE_FORMAT}")
     local archive_file="${archive_dir}/${timestamp}-notes.md"
 
     # Create archive with metadata header
@@ -214,7 +240,7 @@ update_archive_index() {
     local original_size="$4"
     local archived_size="$5"
 
-    local index_file="${archive_dir}/archive_index.json"
+    local index_file="${archive_dir}/${ARCHIVE_INDEX_FILENAME}"
 
     # Create initial index if it doesn't exist
     if [[ ! -f "$index_file" ]]; then
@@ -450,7 +476,7 @@ json_safe_append() {
 # Clean up old archive entries (keep recent N entries)
 cleanup_old_archives() {
     local index_file="$1"
-    local max_entries="${2:-100}"  # Keep latest 100 entries by default
+    local max_entries="${2:-${MAX_ARCHIVE_ENTRIES}}"  # Use configured default
 
     if [[ ! -f "$index_file" ]]; then
         return 1
