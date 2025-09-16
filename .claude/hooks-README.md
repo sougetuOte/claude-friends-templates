@@ -4,6 +4,10 @@
 
 This project integrates Claude Code hooks to improve development efficiency.
 
+## ⚠️ Important: Bats is NOT Required
+
+**The hooks system works completely without Bats installation.** Bats is only needed for developers who want to run the test suite. General users can use all features without installing Bats. See [Test System Guide](.claude/tests/README.md) for details.
+
 ## Implemented Hooks Features
 
 ### 1. Security Hooks (PreToolUse)

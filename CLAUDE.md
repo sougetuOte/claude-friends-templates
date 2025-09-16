@@ -254,6 +254,11 @@ Detailed rules: @docs/development-rules.md
 
 ## Test Framework Integration (NEW!)
 
+### 📝 注意: Batsは必須ではありません
+- **一般利用者**: Batsインストール不要。すべての機能は正常動作
+- **開発者**: Batsインストール推奨（テスト実行用）
+- **詳細**: [テストシステムガイド](.claude/tests/README.md)参照
+
 ### テストテンプレート
 - **事前定義テンプレート**: 一般的なテストシナリオ用
 - **モック自動生成**: 依存関係の自動モック作成
