@@ -33,6 +33,223 @@ _error() {
     return 1
 }
 
+# ===== セキュリティ関数 =====
+
+# validate_agent_name - エージェント名の厳格な検証
+# 引数: agent_name - 検証するエージェント名
+# 戻り値: 0=有効, 1=無効
+secure_validate_agent_name() {
+    local -r agent_name="${1:-}"
+
+    # 空文字チェック
+    if [[ -z "$agent_name" ]]; then
+        _error "Empty agent name provided"
+        return 1
+    fi
+
+    # 長さ制限（最大32文字）
+    if [[ ${#agent_name} -gt 32 ]]; then
+        _error "Agent name too long: ${#agent_name} chars (max: 32)"
+        return 1
+    fi
+
+    # 厳格な文字種制限（英数字、ハイフン、アンダースコアのみ）
+    if [[ ! "$agent_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        _error "Invalid agent name format: $agent_name"
+        return 1
+    fi
+
+    # 許可されたエージェント名のホワイトリスト
+    local -r allowed_agents=("planner" "builder" "none")
+    local allowed_agent
+    for allowed_agent in "${allowed_agents[@]}"; do
+        if [[ "$agent_name" == "$allowed_agent" ]]; then
+            _debug "Agent name validated: $agent_name"
+            return 0
+        fi
+    done
+
+    _error "Unauthorized agent name: $agent_name"
+    return 1
+}
+
+# sanitize_path - パスの安全性を検証し、危険な文字列を除去
+# 引数: path - 検証するパス
+# 戻り値: 0=有効, 1=無効
+# 出力: サニタイズされたパス
+secure_sanitize_path() {
+    local path="${1:-}"
+
+    # 空文字チェック
+    if [[ -z "$path" ]]; then
+        _error "Empty path provided"
+        return 1
+    fi
+
+    # パス長制限（最大4096文字）
+    if [[ ${#path} -gt 4096 ]]; then
+        _error "Path too long: ${#path} chars (max: 4096)"
+        return 1
+    fi
+
+    # 危険なパターンをチェック
+    local dangerous_patterns=(
+        "../"          # ディレクトリトラバーサル
+        "..\\\\"
+        "~/.ssh"        # SSHキー
+        "/etc/"         # システム設定
+        "/proc/"        # プロセス情報
+        "/dev/"         # デバイスファイル
+        "\\x00"         # ヌルバイト
+        ";"             # コマンド区切り
+        "&"             # バックグラウンド実行
+        "|"             # パイプ
+        "\`"            # コマンド置換
+        "\$("           # コマンド置換
+    )
+
+    local pattern
+    for pattern in "${dangerous_patterns[@]}"; do
+        if [[ "$path" == *"$pattern"* ]]; then
+            _error "Dangerous pattern detected in path: $pattern"
+            return 1
+        fi
+    done
+
+    # プロジェクトディレクトリ内に制限
+    local -r safe_base="${PROJECT_ROOT}/.claude"
+    local normalized_path
+    normalized_path=$(readlink -f "$path" 2>/dev/null) || normalized_path="$path"
+
+    if [[ "$normalized_path" != "$safe_base"* ]]; then
+        _error "Path outside safe directory: $normalized_path"
+        return 1
+    fi
+
+    echo "$normalized_path"
+    return 0
+}
+
+# sanitize_json_input - JSON入力のサニタイズ
+# 引数: json_input - サニタイズするJSON
+# 戻り値: 0=有効, 1=無効
+# 出力: サニタイズされたJSON
+secure_sanitize_json_input() {
+    local json_input="${1:-}"
+
+    # 空文字チェック
+    if [[ -z "$json_input" ]]; then
+        echo "{}"
+        return 0
+    fi
+
+    # サイズ制限（最大1MB）
+    if [[ ${#json_input} -gt 1048576 ]]; then
+        _error "JSON input too large: ${#json_input} bytes (max: 1MB)"
+        return 1
+    fi
+
+    # 危険な文字列をチェック
+    local dangerous_json_patterns=(
+        "</script>"     # XSS攻撃
+        "javascript:"   # JavaScript実行
+        "eval("         # コード実行
+        "system("       # システムコール
+        "exec("         # コマンド実行
+        "\\x00"         # ヌルバイト
+        "\\u0000"       # ヌルバイト（Unicode）
+    )
+
+    local pattern
+    for pattern in "${dangerous_json_patterns[@]}"; do
+        if [[ "$json_input" == *"$pattern"* ]]; then
+            _error "Dangerous pattern in JSON: $pattern"
+            return 1
+        fi
+    done
+
+    # JSON形式の基本的な検証
+    if command -v jq >/dev/null 2>&1; then
+        if ! echo "$json_input" | jq . >/dev/null 2>&1; then
+            _error "Invalid JSON format"
+            return 1
+        fi
+    fi
+
+    # プリント可能文字とホワイトスペースのみ許可
+    if [[ ! "$json_input" =~ ^[[:print:][:space:]]*$ ]]; then
+        _error "Non-printable characters in JSON input"
+        return 1
+    fi
+
+    echo "$json_input"
+    return 0
+}
+
+# secure_command_execution - 安全なコマンド実行
+# 引数: command, args...
+# 戻り値: コマンドの戻り値
+secure_command_execution() {
+    local -r command="${1:-}"
+    shift
+    local -r args=("$@")
+
+    if [[ -z "$command" ]]; then
+        _error "Empty command provided"
+        return 1
+    fi
+
+    # 許可されたコマンドのホワイトリスト
+    local -r allowed_commands=("jq" "grep" "sed" "awk" "wc" "head" "tail" "cat" "mkdir" "touch" "mv" "cp" "rm" "date" "stat")
+
+    local allowed_cmd
+    local command_found=false
+    for allowed_cmd in "${allowed_commands[@]}"; do
+        if [[ "$command" == "$allowed_cmd" ]]; then
+            command_found=true
+            break
+        fi
+    done
+
+    if [[ "$command_found" != "true" ]]; then
+        _error "Command not allowed: $command"
+        return 1
+    fi
+
+    # コマンドの存在確認
+    if ! command -v "$command" >/dev/null 2>&1; then
+        _error "Command not found: $command"
+        return 1
+    fi
+
+    # 安全に実行
+    "$command" "${args[@]}"
+}
+
+# validate_file_size - ファイルサイズの検証
+# 引数: file_path, max_size_bytes
+# 戻り値: 0=有効, 1=無効
+validate_file_size() {
+    local -r file_path="${1:-}"
+    local -r max_size="${2:-1048576}"  # デフォルト1MB
+
+    if [[ ! -f "$file_path" ]]; then
+        _error "File not found: $file_path"
+        return 1
+    fi
+
+    local file_size
+    file_size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null || echo 0)
+
+    if [[ $file_size -gt $max_size ]]; then
+        _error "File too large: $file_size bytes (max: $max_size)"
+        return 1
+    fi
+
+    _debug "File size validated: $file_size bytes"
+    return 0
+}
+
 # ===== 公開関数 =====
 
 # init_hooks_system - Hooksシステムの初期化と必要なディレクトリの作成

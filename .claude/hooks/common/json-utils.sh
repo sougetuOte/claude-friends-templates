@@ -4,13 +4,16 @@
 
 set -euo pipefail
 
-# validate_json - JSONの妥当性を検証
+# validate_json - セキュリティ強化されたJSON検証
 validate_json() {
     local json_input=""
 
-    # 標準入力からJSONを読み取り
+    # 標準入力からJSONを読み取り（サイズ制限付き）
     if ! [[ -t 0 ]]; then
-        json_input=$(cat)
+        # 1MB制限で入力を読み取り
+        if ! json_input=$(head -c 1048576 2>/dev/null); then
+            return 1
+        fi
     fi
 
     # 空入力チェック
@@ -18,64 +21,165 @@ validate_json() {
         return 1
     fi
 
+    # セキュリティチェック：危険なパターンを検出
+    local dangerous_patterns=(
+        '</script>'     # XSS攻撃
+        'javascript:'   # JavaScript実行
+        'eval('         # コード実行
+        'system('       # システムコール
+        'exec('         # コマンド実行
+        '$('            # コマンド置換
+        '`'             # コマンド置換
+        '../'           # ディレクトリトラバーサル
+        ';'             # コマンド区切り
+        '&'             # バックグラウンド実行
+        '|'             # パイプ
+        $'\x00'         # ヌルバイト
+        $'\u0000'       # ヌルバイト（Unicode）
+    )
+
+    for pattern in "${dangerous_patterns[@]}"; do
+        if [[ "$json_input" == *"$pattern"* ]]; then
+            echo "[ERROR] Dangerous pattern detected in JSON: $pattern" >&2
+            return 1
+        fi
+    done
+
+    # サイズ制限（既存より厳格に）
+    if [[ ${#json_input} -gt 1048576 ]]; then  # 1MB制限
+        echo "[ERROR] JSON input too large: ${#json_input} bytes" >&2
+        return 1
+    fi
+
     # jqが使える場合
     if command -v jq >/dev/null 2>&1; then
-        echo "$json_input" | jq . >/dev/null 2>&1
-        return $?
+        # 安全なオプションでjqを実行
+        if ! echo "$json_input" | timeout 10s jq . >/dev/null 2>&1; then
+            echo "[ERROR] Invalid JSON format" >&2
+            return 1
+        fi
     else
-        # jqがない場合の簡易チェック（最小実装）
-        # 入力のサイズ制限と基本的な構造チェック
-        if [[ ${#json_input} -gt 100000 ]]; then
-            return 1  # サイズが大きすぎる
+        # jqがない場合の簡易チェック（セキュリティ強化）
+
+        # プリント可能文字とホワイトスペースのみ許可
+        if [[ ! "$json_input" =~ ^[[:print:][:space:]]*$ ]]; then
+            echo "[ERROR] Non-printable characters in JSON" >&2
+            return 1
         fi
 
         # 基本的な構造チェックとバランスチェック
         if [[ "$json_input" =~ ^\{.*\}$ ]]; then
             # 中括弧のバランスを簡易チェック
-            local open_count=$(grep -o '{' <<< "$json_input" | wc -l)
-            local close_count=$(grep -o '}' <<< "$json_input" | wc -l)
+            local open_count=$(grep -o '{' <<< "$json_input" | wc -l 2>/dev/null || echo 0)
+            local close_count=$(grep -o '}' <<< "$json_input" | wc -l 2>/dev/null || echo 0)
             [[ $open_count -eq $close_count ]] && return 0
         elif [[ "$json_input" =~ ^\[.*\]$ ]]; then
             # 角括弧のバランスを簡易チェック
-            local open_count=$(grep -o '\[' <<< "$json_input" | wc -l)
-            local close_count=$(grep -o '\]' <<< "$json_input" | wc -l)
+            local open_count=$(grep -o '\[' <<< "$json_input" | wc -l 2>/dev/null || echo 0)
+            local close_count=$(grep -o '\]' <<< "$json_input" | wc -l 2>/dev/null || echo 0)
             [[ $open_count -eq $close_count ]] && return 0
         fi
+        echo "[ERROR] Invalid JSON structure" >&2
         return 1
     fi
 }
 
-# extract_json_value - JSONから値を抽出
+# extract_json_value - セキュリティ強化されたJSON値抽出
 extract_json_value() {
-    local key="$1"
+    local -r key="${1:-}"
     local json_input=""
 
-    # 標準入力からJSONを読み取り
+    # 入力検証
+    if [[ -z "$key" ]]; then
+        echo "[ERROR] Key parameter required" >&2
+        return 1
+    fi
+
+    # キー名のセキュリティチェック
+    if [[ ${#key} -gt 256 ]]; then
+        echo "[ERROR] Key too long: ${#key} chars" >&2
+        return 1
+    fi
+
+    # 安全なキー名のみ許可
+    if [[ ! "$key" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+        echo "[ERROR] Invalid key format: $key" >&2
+        return 1
+    fi
+
+    # 標準入力からJSONを読み取り（サイズ制限付き）
     if ! [[ -t 0 ]]; then
-        json_input=$(cat)
+        if ! json_input=$(head -c 1048576 2>/dev/null); then
+            echo "[ERROR] Failed to read JSON input" >&2
+            return 1
+        fi
+    fi
+
+    # JSONのセキュリティ検証
+    if ! echo "$json_input" | validate_json; then
+        echo "[ERROR] Invalid JSON input" >&2
+        return 1
     fi
 
     # jqが使える場合
     if command -v jq >/dev/null 2>&1; then
         local result
-        # ネストしたパスの処理
+
+        # 安全なオプションでjqを実行（タイムアウト付き）
         if [[ "$key" == *"."* ]]; then
-            result=$(echo "$json_input" | jq -r ".$key // \"\"" 2>/dev/null)
+            result=$(echo "$json_input" | timeout 5s jq -r ".$key // \"\"" 2>/dev/null) || {
+                echo "[ERROR] JSON extraction failed for key: $key" >&2
+                return 1
+            }
         else
-            result=$(echo "$json_input" | jq -r ".$key // \"\"" 2>/dev/null)
+            result=$(echo "$json_input" | timeout 5s jq -r ".$key // \"\"" 2>/dev/null) || {
+                echo "[ERROR] JSON extraction failed for key: $key" >&2
+                return 1
+            }
+        fi
+
+        # 結果のセキュリティチェック
+        if [[ ${#result} -gt 10000 ]]; then
+            echo "[ERROR] Result too large: ${#result} chars" >&2
+            return 1
         fi
 
         # nullの場合は空文字を返す
         if [[ "$result" == "null" ]]; then
             echo ""
         else
+            # 危険な文字列をチェック
+            local dangerous_chars=('$(' '`' ';' '&' '|' '../' $'\x00')
+            local char
+            for char in "${dangerous_chars[@]}"; do
+                if [[ "$result" == *"$char"* ]]; then
+                    echo "[ERROR] Dangerous character in result: $char" >&2
+                    return 1
+                fi
+            done
             echo "$result"
         fi
     else
-        # jqがない場合の簡易実装（基本的なキーのみ）
+        # jqがない場合の簡易実装（セキュリティ強化）
         local pattern="\"$key\"[[:space:]]*:[[:space:]]*\"([^\"]*)\""
+
+        # パターンマッチングの安全性を確認
         if [[ "$json_input" =~ $pattern ]]; then
-            echo "${BASH_REMATCH[1]}"
+            local match="${BASH_REMATCH[1]}"
+
+            # 結果のセキュリティチェック
+            if [[ ${#match} -gt 1000 ]]; then
+                echo "[ERROR] Match too large: ${#match} chars" >&2
+                return 1
+            fi
+
+            # 危険な文字列をチェック
+            if [[ "$match" == *'$('* ]] || [[ "$match" == *'`'* ]] || [[ "$match" == *';'* ]]; then
+                echo "[ERROR] Dangerous characters in extracted value" >&2
+                return 1
+            fi
+
+            echo "$match"
         else
             # 数値やbooleanの場合
             pattern="\"$key\"[[:space:]]*:[[:space:]]*([0-9]+|true|false)"

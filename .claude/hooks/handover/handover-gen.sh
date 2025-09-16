@@ -238,10 +238,10 @@ generate_recommendations() {
     return "$E_SUCCESS"
 }
 
-# get_git_status - Retrieve comprehensive Git repository status
+# get_git_status - Secure Git repository status retrieval
 #
 # Safely retrieves Git status information from the specified directory,
-# handling both Git and non-Git directories gracefully.
+# handling both Git and non-Git directories gracefully with security validation.
 #
 # Args:
 #   $1 - Project directory path
@@ -254,21 +254,43 @@ get_git_status() {
     local original_pwd
     local git_status
 
-    # Input validation
+    # Security: Input validation
     if [[ -z "${project_dir:-}" ]]; then
-        echo "Invalid directory path" >&2
+        echo "[ERROR] Invalid directory path" >&2
         return "$E_INVALID_ARGS"
     fi
+
+    # Security: Path length validation
+    if [[ ${#project_dir} -gt 4096 ]]; then
+        echo "[ERROR] Directory path too long: ${#project_dir} chars" >&2
+        return "$E_INVALID_ARGS"
+    fi
+
+    # Security: Check for dangerous path patterns
+    local dangerous_patterns=("../" "~/.ssh" "/etc/" "/proc/" "/dev/" "\$(" "\`" ";" "&" "|")
+    local pattern
+    for pattern in "${dangerous_patterns[@]}"; do
+        if [[ "$project_dir" == *"$pattern"* ]]; then
+            echo "[ERROR] Dangerous pattern in path: $pattern" >&2
+            return "$E_INVALID_ARGS"
+        fi
+    done
 
     if [[ ! -d "$project_dir" ]]; then
         echo "Directory not found: $project_dir" >&2
         return "$E_INVALID_DIR"
     fi
 
+    # Security: Validate directory is readable
+    if [[ ! -r "$project_dir" ]]; then
+        echo "[ERROR] Directory not readable: $project_dir" >&2
+        return "$E_INVALID_DIR"
+    fi
+
     # Save current directory for safe restoration
     original_pwd="$(pwd)"
 
-    # Safely change to project directory
+    # Safely change to project directory with validation
     if ! cd "$project_dir" 2>/dev/null; then
         echo "Cannot access directory: $project_dir" >&2
         return "$E_INVALID_DIR"
@@ -278,14 +300,24 @@ get_git_status() {
     trap "cd '$original_pwd'" RETURN
 
     # Check if it's a Git repository
-    if ! git rev-parse --git-dir >/dev/null 2>&1; then
+    if ! timeout 10s git rev-parse --git-dir >/dev/null 2>&1; then
         echo "not a git repository"
         return "$E_SUCCESS"
     fi
 
-    # Get Git status with error handling
-    if git_status=$(git status --porcelain 2>/dev/null); then
+    # Get Git status with timeout and error handling
+    if git_status=$(timeout 30s git status --porcelain 2>/dev/null); then
+        # Security: Validate git status output size
+        if [[ ${#git_status} -gt 10000 ]]; then
+            echo "[ERROR] Git status output too large: ${#git_status} chars" >&2
+            return "$E_GIT_ERROR"
+        fi
+
         if [[ -n "$git_status" ]]; then
+            # Security: Sanitize git status output
+            git_status="${git_status//\$(/_DOLLAR_}"
+            git_status="${git_status//\`/_BACKTICK_}"
+            git_status="${git_status//;/_SEMICOLON_}"
             echo "$git_status"
         else
             # No changes detected, but ensure test compatibility
@@ -298,7 +330,7 @@ get_git_status() {
     return "$E_SUCCESS"
 }
 
-# validate_agent_name - Validate agent name against allowed values
+# validate_agent_name - Secure agent name validation with strict security checks
 #
 # Args:
 #   $1 - Agent name to validate
@@ -306,14 +338,34 @@ get_git_status() {
 #   0 if valid, 1 if invalid
 validate_agent_name() {
     local -r agent_name="$1"
-    local valid_agent
 
+    # Security: Input validation
+    if [[ -z "$agent_name" ]]; then
+        echo "[ERROR] Empty agent name provided" >&2
+        return "$E_INVALID_AGENT"
+    fi
+
+    # Security: Length limit
+    if [[ ${#agent_name} -gt 32 ]]; then
+        echo "[ERROR] Agent name too long: ${#agent_name} chars" >&2
+        return "$E_INVALID_AGENT"
+    fi
+
+    # Security: Character restrictions
+    if [[ ! "$agent_name" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        echo "[ERROR] Invalid agent name format: $agent_name" >&2
+        return "$E_INVALID_AGENT"
+    fi
+
+    # Security: Whitelist validation
+    local valid_agent
     for valid_agent in "${VALID_AGENTS[@]}"; do
         if [[ "$agent_name" == "$valid_agent" ]]; then
             return "$E_SUCCESS"
         fi
     done
 
+    echo "[ERROR] Unauthorized agent name: $agent_name" >&2
     return "$E_INVALID_AGENT"
 }
 
@@ -362,10 +414,10 @@ Switch timestamp: $timestamp
 EOF
 }
 
-# generate_handover - Main handover generation function
+# generate_handover - Security-enhanced handover generation function
 #
 # Orchestrates the complete handover generation process with comprehensive
-# validation, error handling, and structured output generation.
+# validation, error handling, and security controls.
 #
 # Args:
 #   $1 - Source agent name (planner|builder)
@@ -383,55 +435,114 @@ generate_handover() {
     local handover_file
     local timestamp
     local handover_content
+    local normalized_project_dir
 
-    # Comprehensive input validation
+    # Security: Comprehensive input validation
     if [[ -z "${from_agent:-}" || -z "${to_agent:-}" || -z "${project_dir:-}" ]]; then
-        echo "Missing required parameters" >&2
+        echo "[ERROR] Missing required parameters" >&2
         return "$E_INVALID_ARGS"
     fi
 
-    # Validate agent names
+    # Security: Parameter length validation
+    if [[ ${#from_agent} -gt 32 ]] || [[ ${#to_agent} -gt 32 ]] || [[ ${#project_dir} -gt 4096 ]]; then
+        echo "[ERROR] Parameter too long" >&2
+        return "$E_INVALID_ARGS"
+    fi
+
+    # Security: Validate agent names with strict checks
     if ! validate_agent_name "$from_agent"; then
-        echo "Invalid agent: $from_agent"
+        echo "[ERROR] Security: Invalid source agent: $from_agent" >&2
         return "$E_INVALID_AGENT"
     fi
 
     if ! validate_agent_name "$to_agent"; then
-        echo "Invalid agent: $to_agent"
+        echo "[ERROR] Security: Invalid target agent: $to_agent" >&2
         return "$E_INVALID_AGENT"
     fi
 
-    # Validate project directory
-    if [[ ! -d "$project_dir" ]]; then
-        echo "Project directory not found: $project_dir"
+    # Security: Normalize and validate project directory
+    if ! normalized_project_dir=$(readlink -f "$project_dir" 2>/dev/null); then
+        normalized_project_dir="$project_dir"
+    fi
+
+    # Security: Check for dangerous patterns in project directory
+    local dangerous_patterns=("../" "~/.ssh" "/etc/" "/proc/" "/dev/" "\$(" "\`" ";" "&" "|")
+    local pattern
+    for pattern in "${dangerous_patterns[@]}"; do
+        if [[ "$normalized_project_dir" == *"$pattern"* ]]; then
+            echo "[ERROR] Security: Dangerous pattern in project directory: $pattern" >&2
+            return "$E_INVALID_DIR"
+        fi
+    done
+
+    # Validate project directory exists and is accessible
+    if [[ ! -d "$normalized_project_dir" ]]; then
+        echo "[ERROR] Project directory not found: $normalized_project_dir" >&2
         return "$E_INVALID_DIR"
     fi
 
-    # Setup handover file paths
-    handover_dir="$project_dir/.claude/$from_agent"
+    if [[ ! -r "$normalized_project_dir" ]] || [[ ! -w "$normalized_project_dir" ]]; then
+        echo "[ERROR] Insufficient permissions for project directory: $normalized_project_dir" >&2
+        return "$E_INVALID_DIR"
+    fi
+
+    # Security: Setup handover file paths with validation
+    handover_dir="$normalized_project_dir/.claude/$from_agent"
+
+    # Security: Ensure handover directory path is within project bounds
+    if [[ ! "$handover_dir" == "$normalized_project_dir"* ]]; then
+        echo "[ERROR] Security: Handover directory outside project bounds" >&2
+        return "$E_INVALID_DIR"
+    fi
+
     handover_file="$handover_dir/handover.md"
 
-    # Create directory with proper error handling
+    # Security: Create directory with proper error handling and permissions
     if ! mkdir -p "$handover_dir" 2>/dev/null; then
-        echo "Failed to create handover directory: $handover_dir" >&2
+        echo "[ERROR] Failed to create handover directory: $handover_dir" >&2
         return "$E_INVALID_DIR"
     fi
 
-    # Generate timestamp
-    timestamp=$(date "+$TIMESTAMP_FORMAT")
+    # Security: Set secure permissions on directory
+    chmod 755 "$handover_dir" 2>/dev/null || true
 
-    # Generate handover content
-    handover_content=$(create_handover_template "$from_agent" "$to_agent" "$timestamp")
+    # Generate timestamp with validation
+    if ! timestamp=$(date "+$TIMESTAMP_FORMAT" 2>/dev/null); then
+        echo "[ERROR] Failed to generate timestamp" >&2
+        return "$E_INVALID_ARGS"
+    fi
 
-    # Write handover file with error handling
-    if ! echo "$handover_content" > "$handover_file" 2>/dev/null; then
-        echo "Failed to write handover file: $handover_file" >&2
+    # Generate handover content with security validation
+    if ! handover_content=$(create_handover_template "$from_agent" "$to_agent" "$timestamp"); then
+        echo "[ERROR] Failed to generate handover content" >&2
+        return "$E_INVALID_ARGS"
+    fi
+
+    # Security: Validate content size
+    if [[ ${#handover_content} -gt 1048576 ]]; then  # 1MB limit
+        echo "[ERROR] Handover content too large: ${#handover_content} bytes" >&2
+        return "$E_INVALID_ARGS"
+    fi
+
+    # Security: Write handover file atomically
+    local temp_file="${handover_file}.tmp.$$"
+    if ! echo "$handover_content" > "$temp_file" 2>/dev/null; then
+        echo "[ERROR] Failed to write temporary handover file: $temp_file" >&2
+        rm -f "$temp_file" 2>/dev/null || true
+        return "$E_INVALID_DIR"
+    fi
+
+    # Security: Set secure permissions and atomic move
+    chmod 644 "$temp_file" 2>/dev/null || true
+    if ! mv "$temp_file" "$handover_file" 2>/dev/null; then
+        echo "[ERROR] Failed to finalize handover file: $handover_file" >&2
+        rm -f "$temp_file" 2>/dev/null || true
         return "$E_INVALID_DIR"
     fi
 
     # Verify file was created successfully
     if [[ ! -f "$handover_file" ]]; then
-        echo "Handover file creation failed: $handover_file" >&2
+        echo "[ERROR] Handover file creation failed: $handover_file" >&2
         return "$E_INVALID_DIR"
     fi
 
