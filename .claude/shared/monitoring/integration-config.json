@@ -1,0 +1,463 @@
+{
+  "monitoring_integration": {
+    "version": "2025.1.0",
+    "description": "Integration configuration for claude-friends-templates enhanced monitoring system",
+    "last_updated": "2025-09-17",
+    "integration_points": {
+      "existing_logging": {
+        "ai_logger_script": ".claude/scripts/ai-logger.sh",
+        "vibe_logger_format": "jsonl",
+        "correlation_id_field": "correlation_id",
+        "context_enrichment": true,
+        "backwards_compatibility": true
+      },
+      "hook_system": {
+        "hooks_config": ".claude/hooks.yaml",
+        "performance_tracker": ".claude/shared/monitoring/hook-performance-tracker.sh",
+        "auto_instrumentation": true,
+        "threshold_alerts": true
+      },
+      "memory_bank": {
+        "operations_monitor": ".claude/shared/monitoring/metrics-collector.py",
+        "context_tracking": true,
+        "file_size_categorization": true,
+        "efficiency_scoring": true
+      },
+      "agent_coordination": {
+        "switch_tracker": ".claude/shared/monitoring/metrics-collector.py",
+        "handover_analysis": true,
+        "context_preservation_scoring": true,
+        "optimization_recommendations": true
+      },
+      "tdd_framework": {
+        "cycle_analyzer": ".claude/shared/monitoring/tdd-cycle-analyzer.py",
+        "phase_tracking": true,
+        "efficiency_measurement": true,
+        "quality_correlation": true
+      }
+    },
+    "data_flow": {
+      "collection_layer": {
+        "metrics_collector": ".claude/shared/monitoring/metrics-collector.py",
+        "hook_tracker": ".claude/shared/monitoring/hook-performance-tracker.sh",
+        "tdd_analyzer": ".claude/shared/monitoring/tdd-cycle-analyzer.py",
+        "output_format": "jsonl",
+        "buffer_size": 100,
+        "flush_interval_seconds": 5
+      },
+      "processing_layer": {
+        "ai_analyzer": ".claude/shared/monitoring/ai-performance-analyzer.py",
+        "real_time_processing": true,
+        "batch_processing": true,
+        "anomaly_detection": true,
+        "pattern_recognition": true,
+        "prediction_engine": true
+      },
+      "storage_layer": {
+        "metrics_directory": "~/.claude/metrics",
+        "time_series_data": "metrics.jsonl",
+        "alerts_data": "alerts.jsonl",
+        "ai_insights": "ai_insights.jsonl",
+        "performance_baselines": "performance_baselines.json",
+        "ml_models": "ml_models/",
+        "retention_days": 30,
+        "compression": true
+      },
+      "presentation_layer": {
+        "dashboard": ".claude/shared/monitoring/realtime-dashboard.html",
+        "websocket_port": 8080,
+        "update_frequency_ms": 3000,
+        "chart_libraries": ["chart.js"],
+        "mobile_responsive": true
+      }
+    },
+    "metrics_taxonomy": {
+      "hook_metrics": {
+        "execution_duration_ms": "Hook execution time in milliseconds",
+        "memory_delta_mb": "Memory change during hook execution in MB",
+        "cpu_usage_percent": "CPU usage during hook execution",
+        "success_rate": "Hook execution success rate",
+        "energy_consumption_wh": "Energy consumed during hook execution in Wh",
+        "carbon_footprint_g": "Carbon footprint in grams CO2",
+        "efficiency_score": "Overall efficiency score (0-1)"
+      },
+      "memory_bank_metrics": {
+        "operation_duration_ms": "Memory bank operation duration in milliseconds",
+        "file_size_bytes": "Size of file being processed",
+        "operation_type": "Type of operation (read, write, update, delete)",
+        "cache_hit_rate": "Cache hit rate percentage",
+        "memory_efficiency": "Memory usage efficiency score",
+        "access_pattern": "File access pattern analysis"
+      },
+      "agent_switch_metrics": {
+        "switch_duration_ms": "Agent switch duration in milliseconds",
+        "context_preservation_score": "Context preservation quality (0-1)",
+        "handover_size_bytes": "Size of handover data in bytes",
+        "handover_quality_score": "Quality of handover content (0-1)",
+        "switch_frequency": "Frequency of agent switches per hour",
+        "optimization_score": "Switch optimization effectiveness"
+      },
+      "tdd_cycle_metrics": {
+        "cycle_duration_minutes": "Total TDD cycle duration in minutes",
+        "red_phase_duration_ms": "Red phase (failing tests) duration",
+        "green_phase_duration_ms": "Green phase (passing tests) duration",
+        "refactor_phase_duration_ms": "Refactor phase duration",
+        "test_coverage_delta": "Change in test coverage percentage",
+        "code_quality_delta": "Change in code quality score",
+        "efficiency_score": "TDD cycle efficiency (0-1)",
+        "phase_balance_score": "Balance of TDD phases (0-1)"
+      },
+      "green_computing_metrics": {
+        "energy_consumption_wh": "Energy consumption in watt-hours",
+        "carbon_footprint_g": "Carbon footprint in grams CO2",
+        "efficiency_score": "Energy efficiency score (0-1)",
+        "power_usage_w": "Current power usage in watts",
+        "sustainability_score": "Overall sustainability score (0-10)",
+        "optimization_potential": "Potential for efficiency improvements"
+      },
+      "ai_analysis_metrics": {
+        "anomaly_score": "Anomaly detection score (0-1)",
+        "prediction_confidence": "Prediction confidence level (0-1)",
+        "pattern_strength": "Strength of detected pattern (0-1)",
+        "insight_actionability": "How actionable the insight is (0-1)",
+        "recommendation_priority": "Priority of recommendation (low/medium/high/critical)"
+      }
+    },
+    "alert_configuration": {
+      "severity_levels": {
+        "info": {
+          "description": "Informational messages and insights",
+          "notification_channels": ["dashboard"],
+          "retention_hours": 24
+        },
+        "warning": {
+          "description": "Performance degradation or inefficiencies",
+          "notification_channels": ["dashboard", "log"],
+          "retention_hours": 72,
+          "escalation_threshold": 5
+        },
+        "error": {
+          "description": "System errors or significant issues",
+          "notification_channels": ["dashboard", "log", "alert_file"],
+          "retention_hours": 168,
+          "escalation_threshold": 3
+        },
+        "critical": {
+          "description": "Critical performance issues requiring immediate attention",
+          "notification_channels": ["dashboard", "log", "alert_file", "console"],
+          "retention_hours": 720,
+          "escalation_threshold": 1,
+          "auto_escalation": true
+        }
+      },
+      "alert_rules": {
+        "hook_performance": {
+          "duration_warning_ms": 5000,
+          "duration_critical_ms": 15000,
+          "memory_warning_mb": 100,
+          "efficiency_threshold": 0.7,
+          "failure_rate_threshold": 0.1
+        },
+        "memory_bank": {
+          "operation_warning_ms": 2000,
+          "operation_critical_ms": 10000,
+          "cache_hit_rate_threshold": 0.6,
+          "efficiency_threshold": 0.8
+        },
+        "agent_switch": {
+          "duration_warning_ms": 3000,
+          "duration_critical_ms": 10000,
+          "context_preservation_threshold": 0.9,
+          "frequency_warning_per_hour": 20
+        },
+        "tdd_cycle": {
+          "duration_warning_minutes": 30,
+          "duration_critical_minutes": 60,
+          "efficiency_threshold": 0.7,
+          "coverage_degradation_threshold": 0.05
+        },
+        "green_computing": {
+          "energy_efficiency_threshold": 0.6,
+          "carbon_footprint_warning_g": 50,
+          "sustainability_score_threshold": 7.0
+        }
+      }
+    },
+    "integration_hooks": {
+      "pre_hook_execution": {
+        "script": ".claude/shared/monitoring/hook-performance-tracker.sh",
+        "function": "track_hook_execution",
+        "parameters": ["hook_name", "operation", "command"],
+        "timeout_seconds": 60
+      },
+      "post_tool_use": {
+        "script": ".claude/shared/monitoring/metrics-collector.py",
+        "function": "track_memory_bank_operation",
+        "condition": "tool in ['Edit', 'Write', 'Read', 'MultiEdit']",
+        "async": true
+      },
+      "agent_switch_trigger": {
+        "script": ".claude/shared/monitoring/metrics-collector.py",
+        "function": "track_agent_switch",
+        "parameters": ["from_agent", "to_agent"],
+        "context_analysis": true
+      },
+      "tdd_cycle_start": {
+        "script": ".claude/shared/monitoring/tdd-cycle-analyzer.py",
+        "function": "track_tdd_cycle",
+        "parameters": ["test_files", "implementation_files"],
+        "phase_tracking": true
+      }
+    },
+    "ai_configuration": {
+      "anomaly_detection": {
+        "algorithm": "isolation_forest",
+        "contamination_rate": 0.1,
+        "training_window_days": 7,
+        "minimum_samples": 100,
+        "retrain_frequency_hours": 24,
+        "confidence_threshold": 0.8
+      },
+      "prediction_engine": {
+        "algorithm": "random_forest",
+        "prediction_horizon_hours": 12,
+        "feature_window_size": 50,
+        "confidence_interval": 0.95,
+        "update_frequency_hours": 6
+      },
+      "pattern_recognition": {
+        "correlation_threshold": 0.7,
+        "seasonal_detection": true,
+        "degradation_window_size": 50,
+        "trend_analysis": true,
+        "statistical_significance": 0.05
+      },
+      "model_management": {
+        "auto_training": true,
+        "model_versioning": true,
+        "a_b_testing": false,
+        "performance_monitoring": true,
+        "backup_strategy": "daily"
+      }
+    },
+    "performance_optimization": {
+      "data_collection": {
+        "batch_size": 100,
+        "compression_enabled": true,
+        "async_processing": true,
+        "queue_size_limit": 1000,
+        "overflow_strategy": "drop_oldest"
+      },
+      "processing": {
+        "parallel_analysis": true,
+        "worker_threads": 4,
+        "memory_limit_mb": 512,
+        "processing_timeout_seconds": 30,
+        "cache_results": true
+      },
+      "storage": {
+        "index_optimization": true,
+        "compression_algorithm": "gzip",
+        "archival_strategy": "monthly",
+        "cleanup_frequency_days": 7,
+        "backup_retention_days": 90
+      }
+    },
+    "compatibility": {
+      "existing_systems": {
+        "ai_logger_v2": "full_compatibility",
+        "vibe_logger": "format_compatible",
+        "hook_system": "seamless_integration",
+        "agent_coordination": "enhanced_features"
+      },
+      "migration_strategy": {
+        "rollback_support": true,
+        "gradual_deployment": true,
+        "feature_flags": true,
+        "compatibility_mode": true
+      },
+      "version_support": {
+        "minimum_claude_version": "2025.1.0",
+        "backward_compatibility_versions": ["2024.12.x", "2024.11.x"],
+        "deprecation_timeline": "6_months"
+      }
+    },
+    "security_and_privacy": {
+      "data_protection": {
+        "pii_scrubbing": true,
+        "sensitive_data_masking": true,
+        "encryption_at_rest": true,
+        "secure_transmission": true
+      },
+      "access_control": {
+        "role_based_access": false,
+        "local_only_processing": true,
+        "audit_logging": true,
+        "data_anonymization": true
+      },
+      "compliance": {
+        "gdpr_compliant": true,
+        "data_retention_policies": true,
+        "user_consent_management": false,
+        "right_to_deletion": true
+      }
+    },
+    "extensibility": {
+      "plugin_architecture": {
+        "custom_metrics": true,
+        "custom_analyzers": true,
+        "custom_alerts": true,
+        "custom_visualizations": true
+      },
+      "api_endpoints": {
+        "metrics_ingestion": "/api/metrics",
+        "real_time_stream": "/api/stream",
+        "dashboard_data": "/api/dashboard",
+        "ai_insights": "/api/insights",
+        "configuration": "/api/config"
+      },
+      "webhook_support": {
+        "alert_webhooks": true,
+        "insight_webhooks": true,
+        "custom_integrations": true,
+        "authentication_methods": ["api_key", "bearer_token"]
+      }
+    },
+    "deployment": {
+      "installation": {
+        "dependency_check": true,
+        "auto_setup": true,
+        "configuration_validation": true,
+        "migration_scripts": true
+      },
+      "monitoring_health": {
+        "self_monitoring": true,
+        "health_checks": true,
+        "performance_metrics": true,
+        "error_reporting": true
+      },
+      "maintenance": {
+        "auto_updates": false,
+        "scheduled_maintenance": true,
+        "backup_automation": true,
+        "cleanup_automation": true
+      }
+    }
+  },
+  "activation_steps": [
+    {
+      "step": 1,
+      "description": "Verify existing logging system compatibility",
+      "command": "test -f .claude/scripts/ai-logger.sh && echo 'Compatible'",
+      "required": true
+    },
+    {
+      "step": 2,
+      "description": "Create monitoring directory structure",
+      "command": "mkdir -p ~/.claude/metrics ~/.claude/metrics/ml_models",
+      "required": true
+    },
+    {
+      "step": 3,
+      "description": "Install Python dependencies for AI analysis",
+      "command": "pip install numpy pandas scikit-learn joblib",
+      "required": false,
+      "fallback": "Basic monitoring without AI features"
+    },
+    {
+      "step": 4,
+      "description": "Initialize performance baselines",
+      "command": "python .claude/shared/monitoring/ai-performance-analyzer.py train",
+      "required": false
+    },
+    {
+      "step": 5,
+      "description": "Update hook configuration for performance tracking",
+      "command": "cp .claude/hooks.yaml .claude/hooks.yaml.backup",
+      "required": true
+    },
+    {
+      "step": 6,
+      "description": "Start real-time monitoring",
+      "command": "python .claude/shared/monitoring/metrics-collector.py",
+      "required": false,
+      "background": true
+    },
+    {
+      "step": 7,
+      "description": "Verify monitoring system health",
+      "command": "python .claude/shared/monitoring/ai-performance-analyzer.py analyze --metrics-file ~/.claude/metrics/metrics.jsonl",
+      "required": false
+    }
+  ],
+  "usage_examples": {
+    "hook_performance_tracking": {
+      "description": "Track hook execution with comprehensive metrics",
+      "code": "#!/bin/bash\n# Enhanced hook with performance tracking\nsource .claude/shared/monitoring/hook-performance-tracker.sh\ntrack_hook_execution \"pre-commit\" \"quality-check\" \"npm run lint\""
+    },
+    "memory_bank_monitoring": {
+      "description": "Monitor Memory Bank operations in Python",
+      "code": "from claude.shared.monitoring.metrics_collector import track_memory_bank_operation\n\nwith track_memory_bank_operation('read', '/path/to/file.md'):\n    content = read_file('/path/to/file.md')\n    # Memory usage, duration, and efficiency automatically tracked"
+    },
+    "agent_switch_tracking": {
+      "description": "Track agent switching performance",
+      "code": "from claude.shared.monitoring.metrics_collector import track_agent_switch\n\nwith track_agent_switch('planner', 'builder'):\n    # Perform agent switch\n    # Context preservation and switch quality automatically measured"
+    },
+    "tdd_cycle_analysis": {
+      "description": "Comprehensive TDD cycle efficiency measurement",
+      "code": "from claude.shared.monitoring.tdd_cycle_analyzer import track_tdd_cycle\n\nwith track_tdd_cycle(['test_user.py'], ['user.py']) as cycle:\n    with cycle.track_red_phase():\n        # Write failing tests\n        pass\n    with cycle.track_green_phase():\n        # Make tests pass\n        pass\n    with cycle.track_refactor_phase():\n        # Improve code quality\n        pass"
+    },
+    "ai_powered_analysis": {
+      "description": "AI-assisted performance analysis and insights",
+      "code": "from claude.shared.monitoring.ai_performance_analyzer import create_ai_analyzer\n\nanalyzer = create_ai_analyzer()\nreport = analyzer.generate_performance_report(days=7)\nprint(f\"Health Status: {report['executive_summary']['health_status']}\")\nfor insight in report['analysis_results']['recommendations']:\n    print(f\"- {insight}\")"
+    },
+    "dashboard_integration": {
+      "description": "Access real-time dashboard",
+      "code": "# Open dashboard in browser\nopen .claude/shared/monitoring/realtime-dashboard.html\n# Or start WebSocket server for live updates\npython -m http.server 8080 --directory .claude/shared/monitoring/"
+    }
+  },
+  "troubleshooting": {
+    "common_issues": {
+      "missing_dependencies": {
+        "symptoms": ["ImportError for numpy/pandas", "AI analysis unavailable"],
+        "solution": "Install with: pip install numpy pandas scikit-learn joblib",
+        "fallback": "Monitoring works without AI features"
+      },
+      "permission_errors": {
+        "symptoms": ["Cannot write to ~/.claude/metrics", "File permission denied"],
+        "solution": "chmod +w ~/.claude/metrics && mkdir -p ~/.claude/metrics",
+        "alternative": "Set CLAUDE_METRICS_DIR environment variable"
+      },
+      "high_memory_usage": {
+        "symptoms": ["Python processes consuming excess memory", "System slowdown"],
+        "solution": "Reduce batch_size in configuration, enable compression",
+        "monitoring": "Track memory usage in dashboard"
+      },
+      "webhook_connection_failed": {
+        "symptoms": ["Dashboard shows 'Demo Mode'", "No real-time updates"],
+        "solution": "Check WebSocket server, verify port 8080 availability",
+        "fallback": "Dashboard works in demo mode with simulated data"
+      }
+    },
+    "performance_tuning": {
+      "high_throughput": {
+        "batch_size": 500,
+        "flush_interval_seconds": 2,
+        "parallel_processing": true,
+        "compression": true
+      },
+      "low_resource": {
+        "batch_size": 50,
+        "flush_interval_seconds": 10,
+        "disable_ai_analysis": true,
+        "reduce_retention_days": 7
+      },
+      "development": {
+        "verbose_logging": true,
+        "immediate_flush": true,
+        "detailed_metrics": true,
+        "debug_mode": true
+      }
+    }
+  }
+}
