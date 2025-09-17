@@ -1,0 +1,767 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude-friends-templates.org/schemas/settings-phase2.schema.json",
+  "title": "Phase 2 Enhanced Capabilities Configuration Schema",
+  "description": "JSON Schema for validating claude-friends-templates Phase 2 settings",
+  "type": "object",
+  "required": ["phase2"],
+  "properties": {
+    "phase2": {
+      "type": "object",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version of Phase 2 configuration"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "memory_bank": {
+              "$ref": "#/$defs/MemoryBankConfig"
+            },
+            "parallel_execution": {
+              "$ref": "#/$defs/ParallelExecutionConfig"
+            },
+            "tdd_checks": {
+              "$ref": "#/$defs/TddChecksConfig"
+            },
+            "monitoring": {
+              "$ref": "#/$defs/MonitoringConfig"
+            }
+          },
+          "additionalProperties": false
+        },
+        "integration": {
+          "$ref": "#/$defs/IntegrationConfig"
+        },
+        "performance": {
+          "$ref": "#/$defs/PerformanceConfig"
+        },
+        "security": {
+          "$ref": "#/$defs/SecurityConfig"
+        },
+        "debugging": {
+          "$ref": "#/$defs/DebuggingConfig"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "MemoryBankConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_lines_per_file": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 5000,
+          "default": 1000,
+          "description": "Maximum lines before triggering rotation"
+        },
+        "importance_threshold": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 7,
+          "description": "Minimum importance score for content retention"
+        },
+        "archive": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "retention_days": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3650,
+              "default": 90
+            },
+            "compression": {
+              "type": "boolean",
+              "default": true
+            },
+            "archive_path": {
+              "type": "string",
+              "pattern": "^\\./.*[^/]$",
+              "default": "./memo/archive/"
+            }
+          },
+          "additionalProperties": false
+        },
+        "categorization": {
+          "type": "object",
+          "properties": {
+            "auto_categorize": {
+              "type": "boolean",
+              "default": true
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z_]+$"
+              },
+              "uniqueItems": true,
+              "minItems": 1,
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "indexing": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "rebuild_interval_hours": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 168,
+              "default": 24
+            },
+            "search_boost_factors": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "number",
+                  "minimum": 0.1,
+                  "maximum": 10.0
+                },
+                "recent": {
+                  "type": "number",
+                  "minimum": 0.1,
+                  "maximum": 10.0
+                },
+                "importance": {
+                  "type": "number",
+                  "minimum": 0.1,
+                  "maximum": 10.0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ParallelExecutionConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_workers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32,
+          "default": 4,
+          "description": "Maximum number of concurrent workers"
+        },
+        "queue_management": {
+          "type": "object",
+          "properties": {
+            "max_queue_size": {
+              "type": "integer",
+              "minimum": 10,
+              "maximum": 1000,
+              "default": 100
+            },
+            "priority_levels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["urgent", "high", "normal", "low"]
+              },
+              "uniqueItems": true,
+              "minItems": 2,
+              "maxItems": 10
+            },
+            "timeout_per_task_seconds": {
+              "type": "integer",
+              "minimum": 30,
+              "maximum": 3600,
+              "default": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "worker_pools": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z_]+$": {
+              "type": "object",
+              "properties": {
+                "max_workers": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 16
+                },
+                "timeout_seconds": {
+                  "type": "integer",
+                  "minimum": 30,
+                  "maximum": 3600
+                }
+              },
+              "required": ["max_workers", "timeout_seconds"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "retry_policy": {
+          "type": "object",
+          "properties": {
+            "max_retries": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10,
+              "default": 3
+            },
+            "backoff_factor": {
+              "type": "number",
+              "minimum": 1.0,
+              "maximum": 10.0,
+              "default": 2.0
+            },
+            "retry_on_timeout": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "TddChecksConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "enforcement_level": {
+          "type": "string",
+          "enum": ["strict", "recommended", "off"],
+          "default": "strict",
+          "description": "Level of TDD enforcement"
+        },
+        "design_compliance": {
+          "type": "object",
+          "properties": {
+            "check_enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "require_tests_first": {
+              "type": "boolean",
+              "default": true
+            },
+            "require_design_doc": {
+              "type": "boolean",
+              "default": true
+            },
+            "allowed_deviation_percentage": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 50,
+              "default": 10
+            }
+          },
+          "additionalProperties": false
+        },
+        "red_green_refactor": {
+          "type": "object",
+          "properties": {
+            "enforce_cycle": {
+              "type": "boolean",
+              "default": true
+            },
+            "require_failing_test": {
+              "type": "boolean",
+              "default": true
+            },
+            "require_passing_test": {
+              "type": "boolean",
+              "default": true
+            },
+            "refactor_threshold_lines": {
+              "type": "integer",
+              "minimum": 10,
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          "additionalProperties": false
+        },
+        "quality_gates": {
+          "type": "object",
+          "properties": {
+            "minimum_test_coverage": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "default": 80
+            },
+            "maximum_complexity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10
+            },
+            "require_documentation": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "integration": {
+          "type": "object",
+          "properties": {
+            "pre_commit_checks": {
+              "type": "boolean",
+              "default": true
+            },
+            "continuous_validation": {
+              "type": "boolean",
+              "default": true
+            },
+            "block_on_failure": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "MonitoringConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "real_time": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "update_interval_seconds": {
+              "type": "integer",
+              "minimum": 5,
+              "maximum": 300,
+              "default": 30
+            }
+          },
+          "additionalProperties": false
+        },
+        "thresholds": {
+          "type": "object",
+          "properties": {
+            "error_rate": {
+              "$ref": "#/$defs/ThresholdConfig"
+            },
+            "response_time_ms": {
+              "$ref": "#/$defs/ThresholdConfig"
+            },
+            "memory_usage_mb": {
+              "$ref": "#/$defs/ThresholdConfig"
+            },
+            "cpu_usage_percentage": {
+              "$ref": "#/$defs/ThresholdConfig"
+            }
+          },
+          "additionalProperties": false
+        },
+        "alerts": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "channels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["console", "file", "webhook", "email"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "file_path": {
+              "type": "string",
+              "pattern": "^\\./.*\\.log$"
+            },
+            "severity_levels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["info", "warning", "error", "critical"]
+              },
+              "uniqueItems": true
+            },
+            "rate_limiting": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "max_alerts_per_minute": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100,
+                  "default": 10
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "metrics_collection": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "retention_days": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 365,
+              "default": 30
+            },
+            "detailed_logging": {
+              "type": "boolean",
+              "default": true
+            },
+            "performance_profiling": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ThresholdConfig": {
+      "type": "object",
+      "properties": {
+        "warning": {
+          "type": "number",
+          "minimum": 0
+        },
+        "critical": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": ["warning", "critical"],
+      "additionalProperties": false
+    },
+    "IntegrationConfig": {
+      "type": "object",
+      "properties": {
+        "cross_feature_communication": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "event_bus": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "max_subscribers": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100,
+                  "default": 50
+                },
+                "event_buffer_size": {
+                  "type": "integer",
+                  "minimum": 100,
+                  "maximum": 10000,
+                  "default": 1000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "shared_resources": {
+          "type": "object",
+          "properties": {
+            "cache": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "max_size_mb": {
+                  "type": "integer",
+                  "minimum": 10,
+                  "maximum": 1024,
+                  "default": 256
+                },
+                "ttl_seconds": {
+                  "type": "integer",
+                  "minimum": 60,
+                  "maximum": 86400,
+                  "default": 3600
+                }
+              },
+              "additionalProperties": false
+            },
+            "locks": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "timeout_seconds": {
+                  "type": "integer",
+                  "minimum": 5,
+                  "maximum": 300,
+                  "default": 30
+                },
+                "deadlock_detection": {
+                  "type": "boolean",
+                  "default": true
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "health_checks": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "interval_seconds": {
+              "type": "integer",
+              "minimum": 30,
+              "maximum": 3600,
+              "default": 60
+            },
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["memory_bank", "parallel_execution", "tdd_checks", "monitoring"]
+              },
+              "uniqueItems": true,
+              "minItems": 1,
+              "maxItems": 10
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "PerformanceConfig": {
+      "type": "object",
+      "properties": {
+        "optimization": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "lazy_loading": {
+              "type": "boolean",
+              "default": true
+            },
+            "connection_pooling": {
+              "type": "boolean",
+              "default": true
+            },
+            "request_batching": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "resource_limits": {
+          "type": "object",
+          "properties": {
+            "max_memory_mb": {
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 8192,
+              "default": 2048
+            },
+            "max_cpu_percentage": {
+              "type": "integer",
+              "minimum": 10,
+              "maximum": 100,
+              "default": 80
+            },
+            "max_file_descriptors": {
+              "type": "integer",
+              "minimum": 64,
+              "maximum": 65536,
+              "default": 1024
+            }
+          },
+          "additionalProperties": false
+        },
+        "profiling": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "sample_rate": {
+              "type": "number",
+              "minimum": 0.01,
+              "maximum": 1.0,
+              "default": 0.1
+            },
+            "output_path": {
+              "type": "string",
+              "pattern": "^\\./.*\\.log$",
+              "default": "./logs/phase2-profile.log"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "SecurityConfig": {
+      "type": "object",
+      "properties": {
+        "access_control": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "require_authentication": {
+              "type": "boolean",
+              "default": false
+            },
+            "role_based_access": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "data_protection": {
+          "type": "object",
+          "properties": {
+            "encrypt_sensitive_data": {
+              "type": "boolean",
+              "default": false
+            },
+            "audit_logging": {
+              "type": "boolean",
+              "default": true
+            },
+            "data_retention_days": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2555,
+              "default": 90
+            }
+          },
+          "additionalProperties": false
+        },
+        "input_validation": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "strict_mode": {
+              "type": "boolean",
+              "default": true
+            },
+            "sanitize_inputs": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "DebuggingConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "log_level": {
+          "type": "string",
+          "enum": ["debug", "info", "warning", "error"],
+          "default": "info"
+        },
+        "verbose_logging": {
+          "type": "boolean",
+          "default": false
+        },
+        "trace_execution": {
+          "type": "boolean",
+          "default": false
+        },
+        "performance_metrics": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

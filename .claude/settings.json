@@ -80,6 +80,10 @@
           {
             "type": "command",
             "command": ".claude/scripts/task-progress-hook.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/monitoring/structured-logger.sh"
           }
         ]
       },
@@ -89,6 +93,10 @@
           {
             "type": "command",
             "command": ".claude/scripts/task-progress-hook.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/monitoring/structured-logger.sh"
           }
         ]
       },
@@ -102,6 +110,10 @@
           {
             "type": "command",
             "command": ".claude/scripts/ai-logger.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/monitoring/structured-logger.sh"
           }
         ]
       }
