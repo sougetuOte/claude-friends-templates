@@ -47,5 +47,54 @@
         "message": "Private key detected"
       }
     ]
+  },
+  "zero_trust": {
+    "enabled": true,
+    "access_control": {
+      "principle": "least_privilege",
+      "session_timeout": 3600,
+      "verification_level": "continuous",
+      "max_failed_attempts": 3,
+      "lockout_duration": 300
+    },
+    "session_monitoring": {
+      "enabled": true,
+      "anomaly_detection": true,
+      "log_level": "info",
+      "alert_threshold": "medium"
+    },
+    "authentication": {
+      "multi_factor": false,
+      "continuous_validation": true,
+      "risk_based": true
+    }
+  },
+  "sbom": {
+    "enabled": true,
+    "auto_generate": true,
+    "format": "spdx",
+    "output_path": ".claude/security/sbom.json",
+    "vulnerability_check": true,
+    "cisa_compliance": true
+  },
+  "sast": {
+    "cvss_version": "4.0",
+    "ai_assisted": true,
+    "false_positive_reduction": true,
+    "custom_rules": true
+  },
+  "input_validation": {
+    "prompt_injection_protection": true,
+    "sanitization_level": "strict",
+    "max_input_length": 10000,
+    "allowed_patterns": [
+      "^[a-zA-Z0-9\\s\\-_\\.\\(\\)\\[\\]\\{\\}\\@\\#\\$\\%\\^\\&\\*\\+\\=\\!\\?\\,\\;\\:\\\\\\/]*$"
+    ]
+  },
+  "devsecops": {
+    "ci_cd_integration": true,
+    "github_actions": true,
+    "auto_security_scan": true,
+    "policy_enforcement": "strict"
   }
 }

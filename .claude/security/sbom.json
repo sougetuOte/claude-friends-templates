@@ -1,0 +1,5104 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "claude-friends-templates-sbom",
+  "documentNamespace": "https://claude-friends-templates/75738208-36cc-4b66-b22b-1d4cbfd0285a",
+  "creators": [
+    "Tool: claude-friends-templates-sbom-generator",
+    "Organization: claude-friends-templates",
+    "Created: 2025-09-17T12:44:45.862933"
+  ],
+  "created": "2025-09-17T12:44:45.862942",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-0",
+      "name": "MIGRATION_GUIDE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/MIGRATION_GUIDE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d7d35bdaccc53775e6aeee88dc1d9165c5d3a6484b94a48168f69023c718a506"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-1",
+      "name": "README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc2aef8344c6e33745a791a7e524288aa7be9bf37ecbd40d0a095b3c6d6f2eae"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-2",
+      "name": "CHANGELOG.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/CHANGELOG.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6fe1215064cf3f0bd07222ccc1f7052a803c172e0406ecfc7b7fd62df6db58d3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-3",
+      "name": "MIGRATION_GUIDE_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/MIGRATION_GUIDE_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "20ead3e95b46ba7f712026da12714e4ff1847b585caa625c8ab6254626ea44f2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-4",
+      "name": "CLAUDE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/CLAUDE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aad4f6d935a98697290fccd1b16c6e16134a5c404a8e5142b59206d42c5b6293"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-5",
+      "name": "README_TEMPLATE_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/README_TEMPLATE_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc702c5bb78a8aa34c47a28af5fc36a10c900f2bf80c78cc3bfe9b90962ec81d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-6",
+      "name": "DOCUMENT_STRUCTURE_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/DOCUMENT_STRUCTURE_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d887b863fb144944663e1e355f3a72a2dcd60a07107b9bbaf6f328480684903f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-7",
+      "name": "DOCUMENT_STRUCTURE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/DOCUMENT_STRUCTURE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8952e3bf953201b63fe8fb7c203a996b366d83d079f4b3bb062d29ce840ccaa8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-8",
+      "name": "README_TEMPLATE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/README_TEMPLATE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "599c6201b0380837ba637ceab64ceef7ba8549581dddb556a12ef8181d1149d8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-9",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6401d6361f69504c6eef138749c0d255f3e5fb95082bd392916c3676a901f134"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-10",
+      "name": "CLAUDE_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/CLAUDE_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b0bac7fa1358e0a7de93a42c9c38776937ab4c0c8ea849e43f67879804efc42d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-11",
+      "name": "HOOK_SPECIFICATION.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/HOOK_SPECIFICATION.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d074d59da2117ac839d0e4d40823b6952af5f465182eb33615eda74a17753a32"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-12",
+      "name": "GETTING_STARTED_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/GETTING_STARTED_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "de4876f8251f72e2ceb3bfdc318952fe230b90c25f2b66e3f809ca858eef00ac"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-13",
+      "name": "PHASE2_CONFIGURATION_GUIDE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/PHASE2_CONFIGURATION_GUIDE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f8b0e4b725a15a74ecc54b259c307f87badbfdf5752235ab412e74dae3eece09"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-14",
+      "name": "api_design.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/api_design.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "03f3f6ddacef03792c046cc05f1001f6a92ed74cb4ab027a8e0cfb2e9eec46ca"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-15",
+      "name": "development-rules_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/development-rules_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "acb9d9bba30d77d7b753fc22621dd13cc0a941a180a7dc4d5489c1f2c481a74b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-16",
+      "name": "development-rules.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/development-rules.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bc18494d02c946f8392e1c7552962749cfd751a5ff65324595cae15c93ca16b5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-17",
+      "name": "TROUBLESHOOTING_GUIDE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/TROUBLESHOOTING_GUIDE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b92ca7b2ef384351503dcccbb833425b69e5266689a8b006f724f6e59577a0fe"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-18",
+      "name": "GETTING_STARTED.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/GETTING_STARTED.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "44e5dc1a4d44126bba0187de990be74989d69d7e04e606ce134850355c790a4d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-19",
+      "name": "QUICKSTART_MEDIA.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/QUICKSTART_MEDIA.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c45ee3a625f947aed2e89918a87eb9a24113b644e8f08a01acb208d4e6a167ab"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-20",
+      "name": "SECURITY-AUTOMATION.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/SECURITY-AUTOMATION.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "222031a518857e1418fb0f51cf0badf7375cbfee55dc540d938937713659f9dc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-21",
+      "name": "ai-logger-README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/ai-logger-README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3ce99838a93af81ebec76f843f802414189ee99ca95a69309dcff14e41afeea5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-22",
+      "name": "MIGRATION_GUIDE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/MIGRATION_GUIDE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dadb77950ac21db011aeb1652279038bc5c2ae1c6c9f2b0d65cda16320430052"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-23",
+      "name": "README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a57ee57e174873e6f8abfbdc6e457ed29bf314df27e950e6b160749265af89a9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-24",
+      "name": "AUTOMATIC-UPDATE-SYSTEM.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/AUTOMATIC-UPDATE-SYSTEM.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4bbbabbc0c4d3d345ea6a0773f5a88d0f081b0e9809c8ade30b644cd2faa9bb3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-25",
+      "name": "claude-friends-guide_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/claude-friends-guide_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2af069fa3b11e1c4c78d21e451c277989ee981964e0b684a98ab3b819db5e397"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-26",
+      "name": "tdd_checker_config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tdd_checker_config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "96e3255718a8653c2c237627a0e15660e05fcbc357a6db35e0edcf315bbac1bf"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-27",
+      "name": "hooks.yaml",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks.yaml",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0b00849b467cc7afa5570f6bd1655f6d7f8b5b37c134b6acc63df2b08260b09e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-28",
+      "name": "security-config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security-config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c8692007c3614bd24b6fa91e913af4792bf3d40481844aa847498cf210a6ac04"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-29",
+      "name": "settings.local.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/settings.local.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "22017a452cf410a6659ead8ed974cbd239b33d3378e07f13ec4aef498550a8ae"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-30",
+      "name": "agent-log-integration.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agent-log-integration.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "71edae9011a9d1a362783ccbc24cfa9d41075cfe3ade739a47724e98f0923682"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-31",
+      "name": "refactoring-config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/refactoring-config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c3f466e911529652eddacdce8a098b002dcaa9639858a67a62587a874a827687"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-32",
+      "name": "settings.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/settings.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "23e732f8a255ba4110907e208ed8a78501275d21126a61ad80adffe48017d95f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-33",
+      "name": "monitoring-config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/monitoring-config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c9e71816e0b80d67c930b818a24b9f4466b5b0d49d40a5c1822ac02a7674ea3d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-34",
+      "name": "ai-logger-README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/ai-logger-README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6f3b3da611a45d8b3ea3d8ebf9f1693156a2771faaee0e9255aa83a263b1c8e2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-35",
+      "name": "security-README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security-README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "85c70c29e2d3b4c069fbbeef0dbe067adb2da5265d2932967376f0f97ff811fb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-36",
+      "name": "vibe-logger-integration.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/vibe-logger-integration.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "156311bf86300034b1e140460b264aa194dcfd3919ca25eba75953e0f9332ae5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-37",
+      "name": "security-report.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security-report.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1779a104839feddb925dc248adea858ee201120f30a275ba1e063095ed9eccb9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-38",
+      "name": "quality-config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/quality-config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e559747a051a2906014c4f2825cd6d69eb92e8cfd53a09b79e959cea3f2f45bf"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-39",
+      "name": "settings-phase2.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/settings-phase2.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3b3566b9fc88ade2a6e9e075a3b6d7b8f431cc94050ad5d702ac061f63291734"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-40",
+      "name": "hooks-README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks-README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "137ffd0ef0efe37205e50b507b2a6796b5e24ca4607604cc5adc64278d12bffc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-41",
+      "name": "claude-friends-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/claude-friends-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dd9f64e937be95ef8906b47e01010cada91acb9d719a304c2412db9cc5338f42"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-42",
+      "name": "security-README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security-README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "047412acd9533656f94130395efb030ed60d8fb61fbcf81b5a2bcc92105c652a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-43",
+      "name": "hooks-README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks-README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "41a5dfae69bf96751d731b14ab5f807ff7c2e0d80dbc03c947ebdffc27472690"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-44",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dd55f4d673ffa67499e2ff87ca0daff4096f662cc1c38b413941f86fd592fba1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-45",
+      "name": "ARCHITECTURE.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/ARCHITECTURE.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bc9b5e5d250e38b806dee55e493ba138fa33631903e19a15945a4f509d402a8f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-46",
+      "name": "test-structured-logging.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/test-structured-logging.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cec9bbe1f52245ea27fc259c6ceda859dcb316999693086112ac2f6d310ff588"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-47",
+      "name": "specialists.yaml",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/specialists.yaml",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "eeea80f68238c774c5648be9208b549f4a0ea2c154fd346766e92ec23c9c118d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-48",
+      "name": "BEST_PRACTICES.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/BEST_PRACTICES.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dce8355dc802037f74ae470a4798cb31428fb862f9d2ec43caab450c3da27dee"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-49",
+      "name": "zero-to-memory-bank_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/zero-to-memory-bank_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4881097e30974567a60c1ca4c4002acf752fdfa6f6bd29d1f9a04e347bcc2b6b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-50",
+      "name": "performance-analysis-report.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/performance-analysis-report.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c494e009117e17de7213a302f95defea7b28f05b9202756349029f9535fd5b48"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-51",
+      "name": "refactoring-phase1-progress.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/refactoring-phase1-progress.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4c2a5abb941a3c18023d442104f2a3a266f0756459b646891ef195966fd33ad0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-52",
+      "name": "tdd_technical_fixes.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/tdd_technical_fixes.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7769c7a6682b40123553ff57122b29f625e4a581d776c81b4b488e02c2bfd160"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-53",
+      "name": "gradual-adoption-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/gradual-adoption-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "18d6d19ec1c8ff1d246d5bda1edd751eb583591f75a57522eae023c4ef28358d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-54",
+      "name": "refactoring-analysis-notes-rotator.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/refactoring-analysis-notes-rotator.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ad4cf53bb34a387db2afb55d4e682c1bb2c3717c19a6e331a8c0448355d2e3f2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-55",
+      "name": "hook-system-analysis.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/hook-system-analysis.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9f6f3913b822d430fa4921fdd0e5f967f33e7a43b08aecd0b67b372df48d6d14"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-56",
+      "name": "tdd_fixes_summary.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/tdd_fixes_summary.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d28a3c48a69f1fbc61a7e4e1fc69efce03481a8332b853c8c1c39541faa01e19"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-57",
+      "name": "tdd_analysis_fixes.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/tdd_analysis_fixes.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0c223cd949c55fdad856d2c798fe93b082d44849f59122a51a3c23b3579bc02a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-58",
+      "name": "refactoring-phase2-complete.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/refactoring-phase2-complete.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b49f68b93319db011525e7626f2f47ded25e03157a921444841cb84538f1f0e4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-59",
+      "name": "comprehensive-system-review-report.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/comprehensive-system-review-report.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e09de9f7b84cc75f3f88bd993472da8e1cd5a9376c188b3d452154458fc3e0b3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-60",
+      "name": "performance-monitoring-2025-analysis.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/performance-monitoring-2025-analysis.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "85bb43aff075a4b54c9ddb1c193205ccc2e307dbe4f39bf7095251729e0c33d9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-61",
+      "name": "security-enhancement-report-2025.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/security-enhancement-report-2025.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "25328511ccf2dc10b20d25cee9e2ee143f80841b1d8bd1e47ea4d4a3bd521606"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-62",
+      "name": "architecture-quality-review-report.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/architecture-quality-review-report.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7b8fb9731028314899052518b05afe4dd0c9727f847e30c5318b9a425a903c9a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-63",
+      "name": "gitignore-recommendation.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/gitignore-recommendation.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "646c67a91dcaeae2c308261054b3fd2bbd9e913391e887b91126163c7a3621dc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-64",
+      "name": "refactoring-phase1-plan.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/refactoring-phase1-plan.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fb65a1968ff419105d5fe20d23a7595c072c1d79a275fee29ee2995afd24b74d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-65",
+      "name": "zero-to-memory-bank.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/zero-to-memory-bank.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1af9d3bc2d52bcaa2e79fe061a6a7e3537fa8650bd7f4082092940bb3ce23c0a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-66",
+      "name": "gradual-adoption-guide_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/memo/gradual-adoption-guide_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a3227895f23d457f79ad5be087655b6851d040a1e25c4804c8d877d5fc87657b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-67",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "109912dfd47d56b300fa6293ebe67de86a7fdb6a39b6f7c8c926789750e6caae"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-68",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/test-specs/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d7329bddc0e13d773b2af863c827cd63c8865baff1697a567339509e1b52791f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-69",
+      "name": "user_service_design.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/design/user_service_design.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e1187b4ff714167deebfc2cb969c8169b781d5b213050a8b3ee8552d3323bd33"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-70",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/design/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f09d6dd79c9e62e6b63091b32e17d179f3cf6b3fd3bc28495c615f0456f74798"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-71",
+      "name": "user_service.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/design/user_service.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e1187b4ff714167deebfc2cb969c8169b781d5b213050a8b3ee8552d3323bd33"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-72",
+      "name": "index_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/requirements/index_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "20b7853825a99219a2d89265ed2975f666c10777fd7bf0f9f0d2559c4f76ee56"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-73",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/requirements/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5ab64516d528541dad5b56f215f8647561b944138505dd2c336244a26c57e16a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-74",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/operations/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c44f30cd3f9898c69b0c41d4bb2cb87b96e6966982e20a6bf7f9bf2eb9cd26cf"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-75",
+      "name": "template_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/adr/template_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d057b817ec2877ee5d436468811e89a25ae5c9508d0afe09566999b668f69cf3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-76",
+      "name": "template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/adr/template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "72c5fc6cc9b075efbb1f41ab5985cf6b2cad87f67fca24433771bb7b8f846991"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-77",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/tasks/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8cbc7c1e9ebedb83d916e051397b800efde9990c5f8467d131f63d45555eb44e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-78",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/docs/specs/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "28092b1106155534758f87fb5c7f7f42b6dfd71793bbe9f7b7d84f926b2a7407"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-79",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/archive/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1e307ba27dea8f0bbdaa624d697dd576e7ec896975a8ce207226c5e6145f53b4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-80",
+      "name": "handover-interrupt-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/handover-interrupt-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bc991f9e3d4af51c5db218db54eaac0d135387cfe89e067e1b9e4d883d11941b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-81",
+      "name": "task-status.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/task-status.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e78d4ca3870660d7a49de9037c79ae8769dd8c515e6a8cd0fc84b5a13d4a5cf0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-82",
+      "name": "quality-gates.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/quality-gates.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ada453599a196c0a25395ccd14e2399d9a0777844aa84edab512665f3c3a8b04"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-83",
+      "name": "next-step-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/next-step-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fef300a32fcf66ea2da020af4a98f36b85d1f638e990938ea4c60ba5fcd63834"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-84",
+      "name": "refactoring-scheduler.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/refactoring-scheduler.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e52c4049923d614c1b9dd4359a25c2dba32a295422d8343c713b2e36b255456e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-85",
+      "name": "design-sync.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/design-sync.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7dd2b91a59a6779f8ad7b8b1fa6054148c754b2301cad936283101a3dede42a6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-86",
+      "name": "ai-friendly-comments.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/ai-friendly-comments.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "656858f81af5438d70404afb2f7a2db1e2852edde094c16a9de278d6429a5742"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-87",
+      "name": "tdd-settings.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/tdd-settings.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2b9069fdbe80ebd8e0ef0986f70b0ab8a51ddeeccbf282d305afb5d053d2b6db"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-88",
+      "name": "constraints.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/constraints.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "97f369f429f3eb6b5c8d3f19ef835b64920b230461fec7cfe0f03f3f412944d0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-89",
+      "name": "latest.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/debug/latest.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "13ed3cce6e5ab6f10a320f9c0d2c57926c879c101fdc3d1135e6da2eae22fa86"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-90",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "09689d0f9e163acebcd27db3a6d1cf9f4737707cb8450a59fb963c4ea10cbec6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-91",
+      "name": "tech.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/context/tech.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3619240060cc525fbe2efa83965dccce8113f19b342b914819db9332fe1f02a0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-92",
+      "name": "history.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/context/history.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ae1f33603be7eb0399f273c4c50bdebafb9de6282aa9055bd674f76776b96188"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-93",
+      "name": "debt.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/context/debt.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4b4e6800d49666bd21aaf8eb15090db35aa874706986d84a78a1476e5f2a3f35"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-94",
+      "name": "first.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/first.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5ccbf7f7071e5ec7de0d1c91de0671d0fdae3d4497c94e4910093ff6ffb4b5a8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-95",
+      "name": "README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "09f2b9805291b0131f3cdeacf3467844a37f5bcdd45c63178e181e2dff322ac3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-96",
+      "name": "sync-specialist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/sync-specialist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d15a4e85d91acb861f371656884910828e67bfd7d53bf7bd43a678267431c2fb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-97",
+      "name": "active.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/active.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0f7c056698fa3e14b02e35382aa69909a10eb397f603fbb7aa57c20719a2885e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-98",
+      "name": "active.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/active.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3df84fa41bf1439067d04498b4096f152477abb4d4558281adcca59aca972bd1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-99",
+      "name": "security-auditor.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/security-auditor.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "882249b8eaa06a1ae7698a97f2ffcd01292d02fb6ab8e24d2382d559f348ebe9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-100",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "31e79536e388321ba983ef4f8cc777df0a2514445a8cb8fb3624f2e7f8c1182b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-101",
+      "name": "test-writer.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/agents/test-writer.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1486e13e7ab3ad78de997279212b8fd3a74df40c86886f4b79bf5b622dc44a7e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-102",
+      "name": "security-patch-20250915.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/patches/security-patch-20250915.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1cf588222106bd522267b107910d473b7dce651be28d55fcc144fe96adc0c700"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-103",
+      "name": "security-report.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/.claude/security-report.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dd8be7d5dbed8384e31604f1cd66bfad658d941235b8b5b4f4107f93636a8d20"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-104",
+      "name": "adr-create.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/adr-create.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f72f3a5b193930ae7343743b0c19d5c370df90d631df5a323ad5e78cdeeda74e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-105",
+      "name": "agent-builder.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/agent-builder.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "655e59b7bf4c0533f2fd366cd8c25d22bc50854622136838e5d54aeae6df2348"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-106",
+      "name": "agent-planner.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/agent-planner.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6ab7fbb195ce22952843398459bcdde0c8af0fd624d0f7fe0f4b2811c882bf74"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-107",
+      "name": "project-commands.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/project-commands.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a4541e45c40cb6ee79172a383eecbea6d256e0acc13a02bd3469297d7c1f2e2e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-108",
+      "name": "daily.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/daily.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8a337d2c6fb45128f5cf5a45cd8115066dd1a1a2813daa0a9faac969a060214c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-109",
+      "name": "agent-first.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/agent-first.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9f2315f333824e9b79898b15dc6b2c3d036ebe9523e572d4e83058e037884b12"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-110",
+      "name": "tdd-commands.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/tdd-commands.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f0431ec956ebf65eb5e40342228e88e92da7e32b678b41e80f88e8bde96f3b8b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-111",
+      "name": "focus.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/commands/focus.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "48abc434abac25a14510484d41130fb37b8709a28b5c93c6dd97ad693a7d5892"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-112",
+      "name": "dashboard.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security/dashboard.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "72af5f7848f725dbc433966f792b8966fca94a229167b19d8f23cc40aff13332"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-113",
+      "name": "sbom.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security/sbom.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fb0f1d00e621ad9d82c5b7d8f55eb1373f1a9fe2e661db66e7c23545e0471071"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-114",
+      "name": "SECURITY_FIXES_REPORT.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/security/SECURITY_FIXES_REPORT.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "34f3613eb3d747545425bd13ae73e1f1480016e607c2b0d5f87a5324c7164e07"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-115",
+      "name": "test-error-handling.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/test-error-handling.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c49f94e742c79bccf09ea9e8864f98191d3f4ec93e63e629a38f15844d337f4a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-116",
+      "name": "handover-gen.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/handover-gen.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "eece74c288d1ac4b763d073a0e9f6f268b5aaf94d9cac39fc2ec66a31fdf5cab"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-117",
+      "name": "enhanced-sync-monitor.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/enhanced-sync-monitor.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "20279cbb6359e2bb138a33626886288b127c59f8419058caacace0cdeba23cb8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-118",
+      "name": "make-executable.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/make-executable.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc9498668f6c47dbaca8d32cc28b3c2b86d0fb1c15c728847a5715c1d18ef655"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-119",
+      "name": "sync-monitor.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/sync-monitor.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "35b2c11941a2a6bb46f044166680bcfc592c7fa5b79cb7ad6d1db493bea75a6a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-120",
+      "name": "config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9f3be982868f23ae3eb7b2327c617479314f4b55717fbf6cf24c5ed14e9a011c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-121",
+      "name": "integration-demo.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/integration-demo.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "293403992a0e0a1f0e4fc25f5c02952e8411b7017dbf1d799eea306a9d72e13a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-122",
+      "name": "ai-logger-integration.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/ai-logger-integration.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fc02df72240e9674cd179459171cd8d09afed03ecc74235b2a3227b1ae162432"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-123",
+      "name": "run-tdd-cycle.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/run-tdd-cycle.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0abc621205195f575bc96f69a8cfb1a0dfb62264d044eff71848bf82e716518d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-124",
+      "name": "test-sync-integration.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/test-sync-integration.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1052e307ea69efdfecc5e46f07494f63745c47056ffd4db8d4c816a080faa5c1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-125",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ead5ad94225f7cf534ede0235f0bd2e0df3fb54790a726949eb5fc8486f4836e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-126",
+      "name": "sync-trigger.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/sync-specialist/sync-trigger.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "21eb0dcdcf8599f366cdb682a4bee600ec8a4d7f73da55a27f461b56a304145e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-127",
+      "name": "security-pre-commit.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/security-pre-commit.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "75a0cad9589467a905d9b52023ebf41a39a7c95cc4d5ba7264e9367d6086ec43"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-128",
+      "name": "quality-pre-commit.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/quality-pre-commit.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d23dfecdbae05021b06754910a1d8bf5164d93a75476b6613078290b2ae38a67"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-129",
+      "name": "quality-check.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/quality-check.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "46b989fabd6a0ddda9f41caf428652c8801c14fb9a58126fbdf7ee8d97f201d8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-130",
+      "name": "sbom-generator.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/sbom-generator.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "425b492ab50f04f505b5e2898e4e8b63a54b7b66871c848488abaeca9fc24419"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-131",
+      "name": "rotate-notes.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/rotate-notes.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6402b2ad49f91f13efe8380a756d4a7e023e174949dd3a11f190ebdd3c479a7a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-132",
+      "name": "stage-guard-dispatcher.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/stage-guard-dispatcher.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "447a3415919b5aa6d97d427285ea6375c807565cadc734be276da7d793288392"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-133",
+      "name": "memory-update.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/memory-update.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dd88d1c472eb57d33f2f529c95253c08841d15fe6d01e2bfb0ffe05f5a2dbbb8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-134",
+      "name": "notes-maintenance.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/notes-maintenance.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b9bedf3b7442f9f017b79f8a2a49500a88e24a7094b272fdafcb22a7f8337531"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-135",
+      "name": "sync-monitor.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/sync-monitor.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3a297c5989bf580dd77cae925b656602189f5e2d171554594ffb90cccbf0751e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-136",
+      "name": "deny-check.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/deny-check.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "18aa6699a8043afbaf70caceb65931710362d230f807329445fa9e4dd74acec1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-137",
+      "name": "input-validator.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/input-validator.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "51e08bef73857c0806dbd59f30ff741c1f8c49d840cf157d0919a73bd094c4b2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-138",
+      "name": "activity-logger-refactored.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/activity-logger-refactored.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b3c28845a6d6a847e6364099a4915136b555c11845d1d34cf2cea9c6deed4346"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-139",
+      "name": "stage-guard.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/stage-guard.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "21cdb5211ceee952ddf99f6c37fdd75569db216b25c5d324abd3e2c80fbb845f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-140",
+      "name": "update-index.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/update-index.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4780507a81d8cd0b44681e627d7d564a4f261d71291c4b17bf8f97dec37402ac"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-141",
+      "name": "tdd-check.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/tdd-check.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9770c463527a0da907ce76487584de4f06b40645880815c099bae37ee88a6609"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-142",
+      "name": "security-manager.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/security-manager.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "34ea24ccf7ec56dd5df1cd30fe610e6732016a471e458500e240eca0426199ba"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-143",
+      "name": "notes-check-hook.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/notes-check-hook.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "347fe4a4f17357074c2e335ba03fe049c1d4ec0e7118c59bc5e72618b523b475"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-144",
+      "name": "task-progress-hook.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/task-progress-hook.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f11a520fec2696ee06a4e4ffa107bf59e0c6fafbddcb6569a454b1ba2ff525fc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-145",
+      "name": "analyze-ai-logs.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/analyze-ai-logs.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cecc739459134483950ac073598b341f3669c0506faf0504fa0e8d043e341573"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-146",
+      "name": "agent-switch-hook.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/agent-switch-hook.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4bda67f20c5224b91cdc09cedc422a7b3db5c2180c0e53939c895aae8a989393"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-147",
+      "name": "shared-utils.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/shared-utils.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "19d484a655743e76413cd99e53bc14a6fd39d619f5fc52a2a40d76de2733047a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-148",
+      "name": "auto-format.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/auto-format.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "47732da766711e9a8e9c90c8425cf89c69d6b62ca85223e9468fffd9eef5fdef"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-149",
+      "name": "NOTES-MANAGEMENT-README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/NOTES-MANAGEMENT-README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bba0afd8ee5f80635dd2c3b4d10c6ec383c3e36864f2057accc469f392e0990b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-150",
+      "name": "security-audit.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/security-audit.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fdfb9b6cf42a77a7a693882b6c892a8e4f3aa577e073ab5292d444d191890438"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-151",
+      "name": "activity-logger.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/activity-logger.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9ca80378a981b75a5195b2f12a467d195438d190f6428eaaf3404b85a5719fa5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-152",
+      "name": "test-hooks.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/test-hooks.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a9dab2cae4712f48467227a4a62e90aa82dd7e09be8faa79efb7f1eb03435918"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-153",
+      "name": "rotation-config.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/rotation-config.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "94e0985f800ca576c800106c9b7343e64f6bd9d381c69ea145919fd6c7ec3302"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-154",
+      "name": "test-security.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/test-security.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5c003d28db3e417614d9f0b05248f97535608edc0183f8ec4de8ca8369086382"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-155",
+      "name": "session-complete.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/session-complete.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1c9ebad8193900f69256ae16d09b4af5c776b1ef387d75ac9b67436945ce1eb2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-156",
+      "name": "allow-check.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/allow-check.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fd6235f740b008128e3c536b067eeef69e3b4d7711233a12a807a72d4a021b9b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-157",
+      "name": "validate-config.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/validate-config.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4226889daf096d1ddac1eb94fe7225c67bb269cf54f5c7e12bb8e1178816aa1f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-158",
+      "name": "design-drift-detector.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/design-drift-detector.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9e3ce0a7d472d3d28989fc6c68b3b92416aaa0fff1c3279b59b11c87b5815560"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-159",
+      "name": "refactoring-analyzer.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/refactoring-analyzer.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "20183ebd050f53a11742b6a5bf8b5af4833b1b895b3263864a10b625d5f734f5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-160",
+      "name": "setup-security.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/setup-security.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6b284bad238fb2701764e0b0b094f5d89b16b307e6c4baf39c76f84eb1f516a4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-161",
+      "name": "session-complete-enhanced.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/session-complete-enhanced.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f4bbdcb4d9bd50b298c3f9258d64a0496a7a3163c010b863a9a060bd9c69c8f6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-162",
+      "name": "zero-trust-controller.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/zero-trust-controller.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "12279d126904bda04b80f56898157ef9cc344acd2320e0e25a6e875f7e820cb7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-163",
+      "name": "ai-logger.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/ai-logger.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8ba7d20774fd05333088a581096c005c1961d6ed4c4e8161798856f0462b6b9f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-164",
+      "name": "rollback-phase1.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/rollback-phase1.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "52fd681c64041202681acbe738cdaaddc6e3d629c2628fb1aa3b262900d9769c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-165",
+      "name": "notes.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/builder/notes.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "68c24e69ea79f16abe4c8ae54ec9443e0d802f5e302248942bfe729b058f74d9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-166",
+      "name": "identity.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/builder/identity.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e4627728bda4eae4328f26e75c08841b607bfe4e09bf450ddd5811b92130a576"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-167",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/builder/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5b4ac64f48f3d9263662ff3041a86b858d2506f669d1ace8e1731dec1a786c70"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-168",
+      "name": "handover.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/builder/handover.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9c7003afe2373b07634c6c92859e9471121af3787d95db7b1540dbd496f640c9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-169",
+      "name": "tdd-cycle.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/builder/tdd-cycle.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ddc8a84c55005d6d85ca33577c0547a78b216f4b2f7f4fcc5c0957df2b17bfdc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-170",
+      "name": "testing-quality_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/testing-quality_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b54473cb97fca3ce21d894fe5966d60bbd5dbedb9c4bc1b65e2204901e9d68d0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-171",
+      "name": "ai-friendly-development_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/ai-friendly-development_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7cf67652f0a20ed35112c79ad57923fb896e86badd2b4edf52126a13eb3ac1d6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-172",
+      "name": "git-workflow_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/git-workflow_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "173467cc92a619631ae22a7cd99fd3f1245e107bdc70f08dd5cb53571903c6c5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-173",
+      "name": "git-workflow.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/git-workflow.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fcef767339919935eb95e15046b35a48b7fc70d32ddcfa8ba684b71e82800ed1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-174",
+      "name": "development.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/development.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0871cc1e803faa579a1ab1b57b98d7ae5f0ea0dd4c931d61409969ad46d7c089"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-175",
+      "name": "ai-friendly-development.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/ai-friendly-development.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3d79ac8fc150d1212967643fc7516b5b0a97acc5ae411fb9f957498fbecfaad0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-176",
+      "name": "development_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/development_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "39ce419c196134135d4ba5efdc561fb112c1937edf6632de6468768873fb07fc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-177",
+      "name": "testing-quality.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/guidelines/testing-quality.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ba31a739a7d93f7f3c4db4df1bd2d83ee6bf196abaf8beb8d6e7f1083bba18c3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-178",
+      "name": "notes.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/planner/notes.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "56123627fdc4fd52d8aab91870c817178828d1402cd1b7743d8c082c2d616762"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-179",
+      "name": "identity.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/planner/identity.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4e83b4ffe559017f5db34e1887575fd1d0b89606cf4ef0e67612475e302aca1b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-180",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/planner/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1c65904e963a2daac248205ce92fe62bc7b4f1e9a4de45ffeeb47bf7950a7e2e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-181",
+      "name": "handover.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/planner/handover.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cdda6886dc974d7dec6d0ee7793c7205fb1613f6b8b5302e909473755097cbb8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-182",
+      "name": "README_ja.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/README_ja.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "69d9023f6d15f62258be5b18a451b26c4c0e712184d6e0a3a8d129aef84ca059"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-183",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "38a93dc477258b66a2520d1acffd661205583324e05cc7f7ff57f02a3d33c689"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-184",
+      "name": "overview.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/core/overview.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ee0f01d33fefd8ebdced8969ab1523aea8257b958142f2779c44be186ce56890"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-185",
+      "name": "templates.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/core/templates.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "16959a596ba489fd0df8403a0e0f38ca0043163dd199fe8675547b0b13d0c485"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-186",
+      "name": "current.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/core/current.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0e7acfeacd78d947bc87f98dc2a2c20774cfa36175721845f8fbe34dd38cf02a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-187",
+      "name": "next.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/core/next.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fa6bdc032536e1669c070a5cbfa64471f5eb0a633886f6585ef00b290068c295"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-188",
+      "name": "settings-phase2.schema.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/schemas/settings-phase2.schema.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "368524cc306ffcd250ca5a1fc9ade48c7baf3b02afb801478a7250f3b270c87b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-189",
+      "name": "ai-logger-v2-integration-checklist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/archive/ai-logger-v2-migration/ai-logger-v2-integration-checklist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f8bf9824c038bd8dc36c8441b2ddd9409de93d3194198d3964afcc29f01fa8eb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-190",
+      "name": "ai-logger-v2-migration-complete.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/archive/ai-logger-v2-migration/ai-logger-v2-migration-complete.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "819b043b1ec903efb74b98cdd9fc0bdea6f9c7b27323d1a8e06efd141eb26e1a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-191",
+      "name": "analyze-ai-logs.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/archive/ai-logger-v1/analyze-ai-logs.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e70629f8505d0bbeb852cabf3d0fd16cce76e4fca8101cac10e159b30392ba50"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-192",
+      "name": "ai-logger.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/archive/ai-logger-v1/ai-logger.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0196db0b362d2185b6c1001fc1435f3d612e1a0f3323b84dc1bbbaf988f24320"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-193",
+      "name": "post-task-checklist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/checklists/post-task-checklist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "722bbe3567c089c4fbde0b1340a7c69e9d45d700aead53fb47f1b849afa5aa4b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-194",
+      "name": "design-review-checklist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/checklists/design-review-checklist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0eec43e8f8187a3e6c6968eaf44e193182d78b144615ac7644dc3f3881f4b270"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-195",
+      "name": "pre-task-checklist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/checklists/pre-task-checklist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f56c973d64b900b3d4a2910fe6f1054785558d82cb975f89c72da8d267b1dd09"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-196",
+      "name": "during-task-checklist.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/checklists/during-task-checklist.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "671120dbc577172c37da584e97f93ce8cc2775107318ed032d2dd2c4760133e9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-197",
+      "name": "usage-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/usage-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "33f1fa10377e5c44a8a4322466ed940ab534474c6c309549eccfc63cbca777ee"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-198",
+      "name": "index.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/index.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dcb228bed3d291277563cd5777bf2226c38d85e72cb6b37e2c62253f026e35a2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-199",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "56353c599eb097a400c3dd692fc60fd58fc5e90d5b69590cbd6171cddcca73e8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-200",
+      "name": "search-patterns.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/search-patterns.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9807261e6e839ee4b1538af8c27d3e5486c064e3aefb8dbc7fe3bc197eb64ca7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-201",
+      "name": "handover-20250727-110844.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/handover/handover-20250727-110844.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7fb5a5695902cb3151a4a518a82df231833b17ed270b8cac650a047e7c79140d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-202",
+      "name": "handover-20250727-110901.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/handover/handover-20250727-110901.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b8cca9dba2b7cf488a14e11da3559e03d55e9b13e964338d7f0eb1d892f81809"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-203",
+      "name": "handover-20250727-210314.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/handover/handover-20250727-210314.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "009b7aedb5285bdddfdc117092c3b6ab4ff11d2604152c5e3728a0772dadd38d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-204",
+      "name": "latest.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/handover/latest.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "009b7aedb5285bdddfdc117092c3b6ab4ff11d2604152c5e3728a0772dadd38d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-205",
+      "name": "design-tracker.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/design-tracker/design-tracker.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "23f962682b7e88404be0a71c8fe579636f178f4e5b97937d2123813c19eeb89f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-206",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e63a37d7f61f60b59f1a933fdb6b476e83ed99db11d1ac1335abb78d2140b613"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-207",
+      "name": "hook-performance-tracker.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/hook-performance-tracker.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3c1d73c5e2315ab07261823d89e53e946bc647eca59296501095158c0c2c47c4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-208",
+      "name": "realtime-dashboard.html",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/realtime-dashboard.html",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3e214146338841ac90288f33059fa2ce01dcda73c41e5a97e3904c5bb7a3e11d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-209",
+      "name": "ai-performance-analyzer.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/ai-performance-analyzer.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "762337b387bd9d0201c65600242beb1718312d232d04c8925f899311cb3de467"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-210",
+      "name": "metrics-collector.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/metrics-collector.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e81cbf2fa2a3f7d1ee376fbc6fc828dd6098b003dc7aa1228c7049fd6a79cd0d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-211",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e65a0d718af50dad8e8794a7f25cd7de0394635b2a49a6d8eab219d4319511cd"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-212",
+      "name": "tdd-cycle-analyzer.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/tdd-cycle-analyzer.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "eb30748bbb8d89a8df6f06b4717ac36834e7b56fa7f917dec9a1d81800befea5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-213",
+      "name": "integration-config.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/monitoring/integration-config.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bb23ebc1cd55b0277df68292cc3dc1743f4040127df95f1eaa0f8646cb08b389"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-214",
+      "name": "test-structure-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/test-structure-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6022c51e2a6aed7ff1aeaabf1fd03885142dcf6001b0f4b9e98d43af5571d7f0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-215",
+      "name": "quick-start.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/quick-start.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "daf688e86eab62d857d3ba604b37a2ffe86db84ac5a8364afbfb180491cefc5e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-216",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ddd43ec5923052f8246e81900b4c2192c41433c7f17dc4590d2565a28825ef9c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-217",
+      "name": "ci-cd-integration.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/ci-cd-integration.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5e85e38e8a09f474b3073e7653ea534d988ee6da33d0e4d2cb1e79bb0f7b0c10"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-218",
+      "name": "null-reference.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/categories/runtime/null-reference.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "86733bde56a2ee00f14a20d7603db5004ca293d8e8f8d811139a428e72cbc570"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-219",
+      "name": "off-by-one.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/categories/logic/off-by-one.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d87cdcbeff02bcd3fe8f433be51d9e164be81fe9e2bff84f2ccb4e80c52e5d95"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-220",
+      "name": "version-mismatch.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/categories/integration/version-mismatch.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4ece55c176b803649f3193d9b7e5ead0f855b41fe35194e4f128dcd8d0e5a163"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-221",
+      "name": "missing-bracket.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/categories/syntax/missing-bracket.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "64c567ea9e468fa8c2d71659115d4b2129125a8f98898f2989d05f8f1dcfdb88"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-222",
+      "name": "n-plus-one.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/categories/performance/n-plus-one.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2f384bfb0e0c3b97eef0cbdd9253d9503720d7c1643017985721cf4f3dd1f6a8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-223",
+      "name": "mutable-default-argument.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/languages/python/mutable-default-argument.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8470d6bd33d593ef472d9503ad683b536befd7241c77dbcd4e4284ee26bd6aae"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-224",
+      "name": "async-await-pitfall.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/error-patterns/languages/javascript/async-await-pitfall.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6a097473aadb8974ab280c8a378a5bcd47454be67691d9ab8046602115b73aed"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-225",
+      "name": "index.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/design-tracker/change-log/index.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "64b6426cf38e40e247b0a2fc70536eccd3dec0cde7043fbda0fc0b26f789f89c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-226",
+      "name": "DC-2025-07-21-001.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/design-tracker/change-log/2025-07/DC-2025-07-21-001.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "351221a9849203f3a5abcc85e239e75c521e6bc2de9ef9e9f59acd1be9d77896"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-227",
+      "name": "sync-protocol.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/context/sync-protocol.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fcf27bbfe6eecaf4dd4ddcafdeef68c97667319f0721fee7a71dad02067c2b4b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-228",
+      "name": "shared-memory.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/context/shared-memory.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "704cda4da12161a1cd8580ef311bc53cf3e676bd64d5618452e6326095c24f2a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-229",
+      "name": "builder-to-planner.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/templates/builder-to-planner.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e909ce2316bc944597c9703ab48712065848246be8096bb8e5e33fc7ca0f3a5c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-230",
+      "name": "planner-to-builder.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/templates/planner-to-builder.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b6612f5b6604f968947cf7bc351e3ecda3bc194891c810514cefb50fd49fb8a3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-231",
+      "name": "parallel-analyzer.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/optimizers/parallel-analyzer.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4cd893011ba0e98f48f8ee41733849b992c4d18fcc6fc615f4008885ae4687bc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-232",
+      "name": "handover-optimizer.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/agent-coordination/optimizers/handover-optimizer.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6c38bf9cdad69086edd5f0ed40513d0eaef352f0420ba8be6f4ff48e3b7584da"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-233",
+      "name": "design-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/design/design-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3c213467022e691cefdbf636f37d84ed90fde5affe540d403938080dab86e393"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-234",
+      "name": "mermaid-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/design/mermaid-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e951abdbbd31df8fea08d635f2190883877061e7c5e5a70f2427316c4be8e8d1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-235",
+      "name": "requirements-interview-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/requirements/requirements-interview-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f4a676502018b1d80e71e94a9db7889533ff6515bcbc6f3eb7cd694caa7eeb2b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-236",
+      "name": "requirements-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/requirements/requirements-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4e642f165157f1d30b2866cb49d53a25971393dc56635473029a27d79755b9ad"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-237",
+      "name": "adr-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/adr/adr-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1fb6f0217befcd3da5aa3229925262a1a644af4247c5647adc7e0f48ff6b8fd2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-238",
+      "name": "adr-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/adr/adr-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f099600f32bf2edb8af94025d35ab21c16d30d8ed3259e425dad82fc08707ea4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-239",
+      "name": "task-generation-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/task-generation-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3c8d0fb29dfa43d37b98dd529458135427612e1e31bb0e435f964446f4992708"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-240",
+      "name": "task-execution-checklists.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/task-execution-checklists.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0c039ca6628731faabe0360bade7741209012d88f1f23c607d43978b6fd73241"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-241",
+      "name": "phase-review-template.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/phase-review-template.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "09ddb0aa44dcdbece3c4cb37e1ca8c7e980fdaa196918f0312eb858bafa3392b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-242",
+      "name": "task-generation-intro.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/task-generation-intro.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6328b1cf04ed4613def6fb2875a47bdb898a582041d3a8273192b9f0cd20fb06"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-243",
+      "name": "tdd-strict-guide.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/tdd-strict-guide.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7a51f21840697fea312e052d58f86972c94ad9f47cfd91022e2a0d325ece71d1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-244",
+      "name": "specification-feedback-process.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/templates/tasks/specification-feedback-process.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4412a0dce89881b4c52741d8edc6188133ce9337b52935427f955a5ff1bbde20"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-245",
+      "name": "mock-generator.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/mocks/mock-generator.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bf6670bdcb0c3038c97210fc578646414cadcdd086ccbddf417267c81a222c33"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-246",
+      "name": "basic_test_template.py",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/templates/unit/python/basic_test_template.py",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ea0076b8e6e346806f184471ace25fbabd58e500112056f7fb7dbdb83b69ad80"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-247",
+      "name": "basic_test_template.js",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/templates/unit/javascript/basic_test_template.js",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fcbc68f5d6ad117148b1835273cb9b681916ee12182db39bd64aaae8f8744b7f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-248",
+      "name": "authentication-scenarios.yaml",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/shared/test-framework/scenarios/common/authentication-scenarios.yaml",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d3b2a2e40aa1e79d4264ce2775156afee60b0197181cb281ed6f2eed33f3b4b1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-249",
+      "name": "mock-claude-env.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/mocks/mock-claude-env.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "29b096506e1a53384a509a25c501459550ae347f2f33a96889fbea788a414b51"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-250",
+      "name": "sample-prompt.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/fixtures/sample-prompt.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4b211c0cf4fdcb24562d9f09e3a3f8c825bdd485d309fb9d742beab1e7d13474"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-251",
+      "name": "agent-switch-scenarios.json",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/fixtures/agent-switch-scenarios.json",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bdc3f67d0c85f7ca035e4fb1526be54f1fb20c66d1b00b1cd89aaaa9ad6df3b8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-252",
+      "name": "test-helpers.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/helpers/test-helpers.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e04a215ec3a968b7aeecd42da44b37cc06f8c15b6d86a16216ea31a9fba85abb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-253",
+      "name": "test-helpers-simple.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/helpers/test-helpers-simple.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f1c49ae0c5074baaa689b6b754e6d87a8edb16a4e25a81f9ea3e9021a024369d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-254",
+      "name": "test_simple.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/e2e/test_simple.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "51fae06f7c101ca0a2a9f4470982b52baff8736720c20715a8de2767d67f2583"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-255",
+      "name": "benchmark-hooks.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/performance/benchmark-hooks.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dc856c3e5445100beb31a4929a24a7bad9ce266aac316c2c6231a1cb2e56d5ec"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-256",
+      "name": "detailed-performance-test.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/performance/detailed-performance-test.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "11d0bbfd56cdb9b447b2795125662847b40c8f2c783a880df6e579066f5d350e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-257",
+      "name": "comprehensive-performance-test.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/tests/performance/comprehensive-performance-test.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "03f524e073d62e0857835613d5760c6dbb437e628f36c36a1a2e4e689ab4a5dc"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-258",
+      "name": "test-index-generation.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/tests/test-index-generation.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e6cea5264179311fbdb089b0c6c35a7ca30685addee28170f449052f3d6f4b9c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-259",
+      "name": "test-auto-rotation-hook.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/tests/test-auto-rotation-hook.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b5b08e4c03bdd6e4c2b74df54514efd641f1fd9cd24aaf05516dd82da91a562c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-260",
+      "name": "test-session-complete.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/tests/test-session-complete.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "573a436c8481d32f66aaf2a4650fd0b3a4078b201e3f137be5b9fbf279f8401b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-261",
+      "name": "test-notes-rotation.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/scripts/tests/test-notes-rotation.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bf9ec53e970e72658675a7873e41840fb88a11c4f830b563c2415104dfb33ea0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-262",
+      "name": "handover-gen.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/handover/handover-gen.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "56e9287d8d84d4b7908e810c6605be90a42572acb9ab4fc075da34b244d308be"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-263",
+      "name": "tdd-checker.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/tdd/tdd-checker.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ff6833bb3e761a47b8a647970d0da5fdd88e7b96a7f8376487cde60d6ea1ebd3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-264",
+      "name": "agent-switch.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/agent/agent-switch.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e7d79ba33baaed6f54bc4064c455797cfac873636c3fbbd6064ecac70c8db582"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-265",
+      "name": "structured-logger.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/monitoring/structured-logger.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9508b8c70031c438b4bda6ccde4aff6d54b7ceb18f8b872fec36347e4e15b6ac"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-266",
+      "name": "alert-system.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/monitoring/alert-system.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e310118e775caca4f173bc3a900ba5d0318ab8ca215c6162b87d8f1ef8b4bd6d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-267",
+      "name": "metrics-collector.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/monitoring/metrics-collector.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bce3c99c221017389e4e5209b16c5577b0fcd131f1299668e2f138ced69e8455"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-268",
+      "name": "parallel-executor.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/parallel/parallel-executor.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "81e8df5dedac7154884b06bf192d3d17dcc72f81aa018f9ecaf05094ec78b2e5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-269",
+      "name": "hook-common.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/common/hook-common.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a8d52c25ba7aba3312268712928ac0c5b2e6b5e8c864458ed0660cb32c00ba63"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-270",
+      "name": "json-utils.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/common/json-utils.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f22dd811f1da5e701900e71b30d71f8581d09a004d62a3565a59d78fec9e308f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-271",
+      "name": "notes-rotator.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/notes-rotator.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "be276be7a0b3082e46e0009d4208a168b5a54825758876ef70c99afc6a283fcf"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-272",
+      "name": "utils.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/lib/utils.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "48f8e7b34488d3c62996d8c0112e8bbef0dd727673ae6faebe34e9954e38e434"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-273",
+      "name": "analysis.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/lib/analysis.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc42faada0d778674583897477f60fc2a96b9706acf1c0d0fc39684d3076901a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-274",
+      "name": "rotation.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/lib/rotation.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "776b2aa6849e9d81c5f7769d64c8157436d5fce718f3df0a7221a70628c4cb8a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-275",
+      "name": "archive.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/lib/archive.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "604312e5a95f0b112ad86fca4acab19518080cb7cf4a7a5407a8270ffe8c22e1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-276",
+      "name": "config.sh",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/.claude/hooks/memory/lib/config.sh",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a9d201ea677b76ce5091d9920547745c9261f97dcb8ac9af562d8541675247b0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-277",
+      "name": "tasks.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/todo-app/tasks.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "57f8179abaa0e49e1cf791bf4595e17f6140bbf24e30f2cc84348bc853cefd8f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-278",
+      "name": "requirements.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/todo-app/requirements.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a1e3d169ef8b92111601f853407a0e2cb60615be67396f7692404d367100a15c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-279",
+      "name": "README.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/todo-app/README.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f20c537a0c8ba2d2bd26506b9ce1e4dba653043941b43e46acda42d94a79b3a1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-280",
+      "name": "design.md",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/todo-app/design.md",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0d8982097dfe38d1a4663a7557c798f24094ec9e8203ed700b528e498287292c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-281",
+      "name": "taskManager.test.js",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "/home/ote/work3/claude-friends-templates-workspace_3/claude-friends-templates/examples/todo-app/tests/taskManager.test.js",
+      "filesAnalyzed": true,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: local",
+      "externalRefs": [],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ac8f8674c5a1d53622d61a606b4d0383215a8d118d934c28df06fa1076210a19"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-282",
+      "name": "claude-friends-templates",
+      "versionInfo": "2.0.0",
+      "downloadLocation": "https://github.com/sougetuOte/claude-friends-templates.git",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) 2025 claude-friends-templates",
+      "supplier": "Organization: local",
+      "externalRefs": []
+    }
+  ],
+  "relationships": []
+}
