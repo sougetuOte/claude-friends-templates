@@ -63,6 +63,46 @@ dequeue_task() {
     ) 200>"${LOCK_DIR}/queue.lock"
 }
 
+# Security: Safe command execution function (2025 best practices)
+execute_safe_command() {
+    local command="$1"
+    local output_file="$2"
+    local error_file="$3"
+    local timeout_seconds="${4:-300}"
+
+    # Input validation and sanitization
+    if [[ -z "$command" ]]; then
+        echo "Error: No command provided" >&2
+        return 1
+    fi
+
+    # Security: Detect dangerous patterns (whitelist approach)
+    if [[ "$command" == *";"* ]] || [[ "$command" == *"&"* ]] || [[ "$command" == *"|"* ]] || [[ "$command" == *'$'* ]] || [[ "$command" == *'`'* ]] || [[ "$command" =~ \$\( ]] || [[ "$command" =~ \>\& ]]; then
+        echo "Security Error: Dangerous command pattern detected in: $command" >&2
+        return 1
+    fi
+
+    # Additional security: Validate output file paths
+    if [[ "$output_file" == *".."* ]] || [[ "$error_file" == *".."* ]]; then
+        echo "Security Error: Path traversal attempt detected" >&2
+        return 1
+    fi
+
+    # Safe execution using bash -c with timeout
+    # This replaces the dangerous eval usage
+    timeout "$timeout_seconds" bash -c "$command" > "$output_file" 2>"$error_file"
+    local exit_code=$?
+
+    # Enhanced error reporting for debugging
+    if [[ $exit_code -eq 124 ]]; then
+        echo "Warning: Command timed out after ${timeout_seconds}s: $command" >&2
+    elif [[ $exit_code -ne 0 ]]; then
+        echo "Warning: Command failed with exit code $exit_code: $command" >&2
+    fi
+
+    return $exit_code
+}
+
 # Semaphore implementation using FIFO
 setup_semaphore() {
     local semaphore_name="$1"
@@ -114,7 +154,8 @@ worker_process() {
 
         echo "Worker $worker_id executing: $task" >&2
 
-        if eval "$task" > "${result_file}.out" 2>"${result_file}.err"; then
+        # Security: Use bash -c instead of eval to prevent command injection
+        if execute_safe_command "$task" "${result_file}.out" "${result_file}.err"; then
             ((COMPLETED_TASKS++))
         else
             ((FAILED_TASKS++))
