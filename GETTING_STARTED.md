@@ -1,192 +1,194 @@
-# 🚀 Claude Friends Templates - はじめの一歩
+# 🚀 Claude Friends Templates - Get Up and Running in 5 Minutes
 
-> **初めての方へ**: このガイドは Claude Friends を**最小限の機能から段階的に**学ぶための道しるべです
+🌐 **English** | **[日本語](GETTING_STARTED_ja.md)**
 
-## 🎯 このドキュメントの目的
+> **For newcomers**: This guide helps you learn Claude Friends with a **progressive enhancement approach** - start minimal, scale as needed
 
-Claude Friends Templates は非常に多機能ですが、**すべてを一度に使う必要はありません**。
-まずは最小限の機能から始めて、必要に応じて徐々に機能を追加していきましょう。
+## 🎯 Developer-First Experience
+
+Claude Friends Templates is incredibly powerful, but **you don't need to use everything at once**.
+Start with minimal setup and gradually add features as your project grows. Focus on reducing friction and boosting productivity from day one.
 
 ---
 
-## 📱 Day 1: 最小限から始めよう（所要時間: 5分）
+## 📱 Day 1: Start with Minimal Setup (5 minutes)
 
-### 1. 最小構成でスタート
+### 1. One-Command Minimal Setup
 
 ```bash
-# 最小構成をコピー（これで十分動きます！）
+# Copy minimal configuration (this is all you need!)
 cp .claude/settings-minimal.json .claude/settings.json
 ```
 
-### 2. 使うコマンドはたった2つ
+### 2. Just Two Commands to Remember
 
 ```bash
-/agent:planner  # 計画・設計をする時
-/agent:builder  # 実装・コーディングする時
+/agent:planner  # For planning & design work
+/agent:builder  # For implementation & coding
 ```
 
-**これだけです！** 他の機能は一旦忘れましょう。
+**That's it!** Forget about other features for now.
 
-### 3. 基本的な使い方
+### 3. Basic Workflow
 
 ```bash
-# 朝、作業を始める時
+# Morning: Starting your work session
 /agent:planner
-"今日はユーザー認証機能を作りましょう"
+"Let's build a user authentication feature today"
 
-# 実装に移る時
+# Moving to implementation
 /agent:builder
-"Plannerの計画に従って実装します"
-# → 自動的に引き継ぎ文書(handover.md)が作成されます
+"Implementing based on Planner's design"
+# → Automatic handover.md is created for you
 ```
 
 ---
 
-## 🎓 段階的な習熟パス
+## 🎓 Progressive Enhancement Path
 
-### 🥚 **Week 1: 基本を押さえる**
+### 🥚 **Week 1: Master the Basics**
 
-**やること**:
-- `/agent:planner` と `/agent:builder` の切り替えだけ使う
-- 自動生成される `handover.md` を眺めてみる
-- セキュリティブロック（危険なコマンドの自動防止）を体感
+**Focus on**:
+- Switch between `/agent:planner` and `/agent:builder` only
+- Observe the auto-generated `handover.md` files
+- Experience security blocks (automatic prevention of dangerous commands)
 
-**無視していいこと**:
-- 並列実行、メトリクス、TDD強制など高度な機能
-- 複雑な設定ファイル
-- テストフレームワーク
+**Safely ignore**:
+- Parallel execution, metrics, TDD enforcement - all advanced features
+- Complex configuration files
+- Testing frameworks
 
-**チェックポイント**:
-- [ ] エージェントの切り替えができる
-- [ ] handover.mdが自動生成されることを確認
-- [ ] 基本的な開発フローに慣れた
+**Checkpoint**:
+- [ ] Comfortable switching between agents
+- [ ] Understand handover.md auto-generation
+- [ ] Found your development rhythm
 
 ---
 
-### 🐣 **Week 2-4: 便利機能を少しずつ**
+### 🐣 **Week 2-4: Add Convenience Features**
 
-**新しく試すこと**:
+**Try these new things**:
 ```bash
-# notes.mdが500行を超えると自動でローテーション
-# → 重要な情報は自動で保持される
+# When notes.md exceeds 500 lines, automatic rotation happens
+# → Important information is automatically preserved
 ```
 
 ```bash
-# エラーが発生したら、AI最適化ログを見る
+# When errors occur, check AI-optimized logs
 cat ~/.claude/ai-activity.jsonl | tail -20
 python .claude/scripts/analyze-ai-logs.py --errors-only
 ```
 
-**まだ無視していいこと**:
-- 並列実行
-- Prometheusメトリクス
+**Still ignore**:
+- Parallel execution
+- Prometheus metrics
 - specialists.yaml
 
-**チェックポイント**:
-- [ ] Memory Bankの自動ローテーションを体験
-- [ ] AIログでエラー分析を試した
-- [ ] 作業効率が上がったと感じる
+**Checkpoint**:
+- [ ] Experienced Memory Bank auto-rotation
+- [ ] Used AI logs for error analysis
+- [ ] Feel more productive than before
 
 ---
 
-### 🦅 **Month 2+: 必要に応じて高度な機能へ**
+### 🦅 **Month 2+: Scale to Advanced Features**
 
-**準備ができたら**:
+**When you're ready**:
 ```bash
-# フル機能を有効化（必要性を感じたら）
+# Enable full features (only when you feel the need)
 cp .claude/settings-full.json .claude/settings.json
 ```
 
-**高度な機能の例**:
-- **並列実行**: 複数タスクを同時処理（大規模プロジェクト向け）
-- **TDD強制**: テストファーストを自動チェック
-- **メトリクス監視**: システムの健康状態を可視化
+**Advanced features include**:
+- **Parallel execution**: Handle multiple tasks simultaneously (for large projects)
+- **TDD enforcement**: Automatic test-first validation
+- **Metrics monitoring**: Visualize system health
 
-**判断基準**:
-- チームが3人以上 → 並列実行を検討
-- 品質にこだわる → TDD強制を有効化
-- 長期運用 → メトリクス監視を導入
-
----
-
-## ⚠️ よくある勘違い
-
-### ❌ **間違った考え方**
-- 「全機能を使わないともったいない」
-- 「設定を完璧に理解してから始める」
-- 「最初からフル機能で使う」
-
-### ✅ **正しい考え方**
-- 「必要な機能だけ使えばいい」
-- 「使いながら学んでいけばいい」
-- 「最小限から始めて段階的に」
+**Decision criteria**:
+- Team of 3+ people → Consider parallel execution
+- Quality-focused → Enable TDD enforcement
+- Long-term project → Add metrics monitoring
 
 ---
 
-## 🆘 困ったときは
+## ⚠️ Common Misconceptions
 
-### Q: 機能が多すぎて混乱する
-**A**: `settings-minimal.json` に戻りましょう
+### ❌ **Wrong mindset**
+- "I must use all features or I'm wasting it"
+- "I need to understand every setting before starting"
+- "Start with full configuration from day one"
+
+### ✅ **Right mindset**
+- "Use only what you need"
+- "Learn while doing"
+- "Start minimal, enhance progressively"
+
+---
+
+## 🆘 Troubleshooting
+
+### Q: Too many features, feeling overwhelmed
+**A**: Return to minimal settings
 ```bash
 cp .claude/settings-minimal.json .claude/settings.json
 ```
 
-### Q: エラーが起きて原因が分からない
-**A**: AIログ分析を使いましょう
+### Q: Errors with unclear causes
+**A**: Use AI log analysis
 ```bash
 python .claude/scripts/analyze-ai-logs.py --format summary
 ```
 
-### Q: どの機能を使えばいいか分からない
-**A**: 基本の2コマンドだけで十分です
-- `/agent:planner` - 計画
-- `/agent:builder` - 実装
+### Q: Don't know which features to use
+**A**: Two basic commands are sufficient
+- `/agent:planner` - Planning
+- `/agent:builder` - Implementation
 
-### Q: 元の状態に戻したい
-**A**: いつでも戻せます
+### Q: Want to revert to previous state
+**A**: You can always rollback
 ```bash
-# v2.4.0（今回の更新前）に戻す
+# Revert to v2.4.0 (before current updates)
 git checkout v2.4.0 .claude/
 ```
 
 ---
 
-## 📊 機能の必要性チェックリスト
+## 📊 Feature Necessity Checklist
 
-自分のプロジェクトに必要な機能を判断する目安：
+Assess which features your project actually needs:
 
-| 機能 | 必要になる条件 | あなたの状況 |
-|------|--------------|------------|
-| **エージェント切替** | ほぼ全員必要 | ☐ |
-| **自動handover** | ほぼ全員必要 | ☐ |
-| **セキュリティブロック** | ほぼ全員必要 | ☐ |
-| **Memory Bank自動化** | notes.mdが頻繁に500行超える | ☐ |
-| **AIログ分析** | デバッグ時間を短縮したい | ☐ |
-| **並列実行** | 大規模プロジェクト | ☐ |
-| **TDD強制** | チーム開発で品質管理 | ☐ |
-| **メトリクス** | 長期運用・監視が必要 | ☐ |
-
----
-
-## 🎯 最初の1週間の目標
-
-1. **Day 1-2**: エージェント切替に慣れる
-2. **Day 3-4**: handover.mdの内容を理解する
-3. **Day 5-7**: 自分のペースをつかむ
-
-**覚えておいてください**:
-> 💡 Claude Friends の機能の**20%を使うだけで、80%の価値**を得られます
+| Feature | When You Need It | Your Situation |
+|---------|-----------------|----------------|
+| **Agent switching** | Almost everyone | ☐ |
+| **Auto handover** | Almost everyone | ☐ |
+| **Security blocks** | Almost everyone | ☐ |
+| **Memory Bank automation** | notes.md frequently exceeds 500 lines | ☐ |
+| **AI log analysis** | Want to reduce debugging time | ☐ |
+| **Parallel execution** | Large-scale projects | ☐ |
+| **TDD enforcement** | Team development with quality control | ☐ |
+| **Metrics** | Long-term operation & monitoring | ☐ |
 
 ---
 
-## 📚 次のステップ
+## 🎯 First Week Goals
 
-慣れてきたら、以下のドキュメントも参照してください：
+1. **Day 1-2**: Get comfortable with agent switching
+2. **Day 3-4**: Understand handover.md content
+3. **Day 5-7**: Find your personal workflow rhythm
 
-1. **[README.md](README.md)** - 全機能の概要
-2. **[Claude Friends Guide](.claude/claude-friends-guide.md)** - エージェントの詳細
-3. **[Hooks README](.claude/hooks-README.md)** - 自動化機能の詳細
+**Remember**:
+> 💡 Using just **20% of Claude Friends features gives you 80% of the value**
 
 ---
 
-**最後に**: 焦らず、自分のペースで、必要な機能だけを使いましょう。それが Claude Friends を最大限活用する秘訣です！ 🚀
+## 📚 Next Steps
+
+Once you're comfortable, explore these documents:
+
+1. **[README.md](README.md)** - Complete feature overview
+2. **[Claude Friends Guide](.claude/claude-friends-guide.md)** - Agent details
+3. **[Hooks README](.claude/hooks-README.md)** - Automation features
+
+---
+
+**Final note**: Don't rush. Use your own pace. Use only the features you need. That's the secret to maximizing Claude Friends! 🚀

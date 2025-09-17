@@ -9,45 +9,45 @@
 - **Settings**: See `.claude/settings.json`
 
 ## Claude Friends System (NEW!)
-**Sequential Multi-Agent System** - AI開発チームをシミュレート
-- **Planner Agent**: 戦略立案・Phase/ToDo管理・ユーザーとの窓口・設計書作成
-  - 特殊モード: 新機能設計モード
-  - 強化機能: 設計同期・ドリフト検出・ADR管理
-  - 口調: 冷静な女性口調（「〜ですね」「〜でしょう」「〜かしら」）
-- **Builder Agent**: 実装・テスト・デバッグ・技術的質問対応
-  - 特殊モード: デバッグモード、コードレビューモード
-  - 強化機能: 厳格なTDD実践・エラーパターン学習・テスト自動生成
-  - 口調: ちょっとがさつな男性口調（「〜だぜ」「〜だな」「よし、やってみるか」）
-- **Smooth Handoff**: エージェント間の引き継ぎシステム（モード情報含む）
-  - コンテキスト圧縮による効率的な引き継ぎ
-  - 並列実行可能なタスクの分析
+**Sequential Multi-Agent System** - Simulates an AI development team
+- **Planner Agent**: Strategic planning, Phase/ToDo management, user interface, design document creation
+  - Special mode: New feature design mode
+  - Enhanced features: Design synchronization, drift detection, ADR management
+  - Speaking style: Calm, professional feminine tone (uses polite, thoughtful expressions)
+- **Builder Agent**: Implementation, testing, debugging, technical question handling
+  - Special mode: Debug mode, code review mode
+  - Enhanced features: Strict TDD practice, error pattern learning, automated test generation
+  - Speaking style: Casual, direct masculine tone (uses informal, confident expressions)
+- **Smooth Handoff**: Inter-agent handoff system (including mode information)
+  - Efficient handoff through context compression
+  - Analysis of tasks that can be executed in parallel
 
-### 基本的な開発フロー（3フェーズプロセス）
+### Basic Development Flow (3-Phase Process)
 
-#### 1. **要件定義フェーズ** → `/agent:planner`
-   - 要件確認、requirements.md作成
-   - 成功基準の定義、リスク分析
-   - 完了後: "Requirements → Design"への誘導
+#### 1. **Requirements Definition Phase** → `/agent:planner`
+   - Requirements confirmation, requirements.md creation
+   - Success criteria definition, risk analysis
+   - Upon completion: Guide to "Requirements → Design"
 
-#### 2. **設計フェーズ** → `/agent:planner` 続行
-   - アーキテクチャ設計、Mermaid図作成
-   - コンポーネント/インターフェース設計
-   - 完了後: "Design → Tasks"への誘導
+#### 2. **Design Phase** → Continue with `/agent:planner`
+   - Architecture design, Mermaid diagram creation
+   - Component/interface design
+   - Upon completion: Guide to "Design → Tasks"
 
-#### 3. **タスク生成・実装フェーズ** 
-   - **タスク生成** → `/agent:planner`
-     - TDD適用タスクの生成
-     - Phase分割（MVP → Advanced）
-     - レビューポイントの設定
-   - **実装** → `/agent:builder`
-     - Red-Green-Refactorサイクル厳守
-     - Phase終了時レビュー実施
-     - 仕様問題の即時フィードバック
+#### 3. **Task Generation & Implementation Phase**
+   - **Task Generation** → `/agent:planner`
+     - Generate TDD-applicable tasks
+     - Phase division (MVP → Advanced)
+     - Set review points
+   - **Implementation** → `/agent:builder`
+     - Strict adherence to Red-Green-Refactor cycle
+     - Phase completion review
+     - Immediate feedback on specification issues
 
-#### 4. **必要に応じて切り替え**
-   - 仕様変更 → Plannerへ
-   - 技術的課題 → Builderで解決
-   - レビュー結果 → 適切なエージェントへ
+#### 4. **Switch as Needed**
+   - Specification changes → Switch to Planner
+   - Technical challenges → Resolve with Builder
+   - Review results → Switch to appropriate agent
 
 ### Agent Structure
 - Active agent: @.claude/agents/active.md
@@ -133,7 +133,7 @@ Simply explain your needs to the active agent, and they will switch to the appro
 - **AI logging**: Vibe Logger concept adoption with structured JSON format optimized for AI analysis
 - **Session management**: Automatic summary and Git status recording at work end
 
-### AI-Friendly Logger V2 (Vibe Logger準拠)
+### AI-Friendly Logger V2 (Vibe Logger Compliant)
 - **Structured logs**: JSONL format optimized for AI analysis (@~/.claude/ai-activity.jsonl)
 - **Rich context**: Automatically collects project, environment, and file information
 - **AI metadata**: Adds debug hints, priority, and recommended actions
@@ -142,11 +142,11 @@ Simply explain your needs to the active agent, and they will switch to the appro
 - **Details**: @.claude/ai-logger-README.md | @.claude/vibe-logger-integration.md
 
 ### Error Pattern Library (NEW!)
-- **AI-Powered Recognition**: 過去のデバッグセッションから学習
-- **Pattern Matching**: 類似エラーの即座の識別
-- **Root Cause Analysis**: AI による原因と解決策の提案
-- **Searchable History**: 過去の解決策への迅速なアクセス
-- **自動記録**: デバッグモード時にエラーパターンを自動収集
+- **AI-Powered Recognition**: Learning from past debugging sessions
+- **Pattern Matching**: Immediate identification of similar errors
+- **Root Cause Analysis**: AI-powered suggestions for causes and solutions
+- **Searchable History**: Quick access to past solutions
+- **Automatic Recording**: Automatic collection of error patterns during debug mode
 
 ### Hooks Testing & Verification
 ```bash
@@ -171,51 +171,51 @@ Detailed settings: @.claude/hooks-README.md | @.claude/security-README.md
 
 ### Code Quality
 - **Type annotations**: Required for all functions and variables
-- **Testing**: TDD（テスト駆動開発）を厳格に遵守
+- **Testing**: Strict adherence to TDD (Test-Driven Development)
 - **Formatting**: Quality check with `[tool] run format/lint/typecheck`
 
-### TDD開発手法（t-wada流）- 必須要件
-- 🔴 **Red**: 失敗するテストを書く（実装より先にテストを書く）
-- 🟢 **Green**: テストを通す最小限の実装
-- 🔵 **Refactor**: リファクタリング（テストが通る状態を維持）
+### TDD Development Methodology (t-wada Style) - Required
+- 🔴 **Red**: Write failing test (write test before implementation)
+- 🟢 **Green**: Minimal implementation to pass test
+- 🔵 **Refactor**: Refactoring (maintain passing test state)
 
-#### 重要なTDD関連ドキュメント
-- **TDD厳密適用ガイド**: @.claude/shared/templates/tasks/tdd-strict-guide.md
-- **テスト構造・組織化**: @.claude/shared/templates/test-structure-guide.md（NEW!）
-- **TDDサイクル実践**: @.claude/builder/tdd-cycle.md
-- **TDD設定システム**: @.claude/shared/tdd-settings.md
-- **Phaseレビューテンプレート**: @.claude/shared/templates/tasks/phase-review-template.md
-- **仕様フィードバックプロセス**: @.claude/shared/templates/tasks/specification-feedback-process.md
+#### Important TDD-Related Documents
+- **TDD Strict Application Guide**: @.claude/shared/templates/tasks/tdd-strict-guide.md
+- **Test Structure & Organization**: @.claude/shared/templates/test-structure-guide.md (NEW!)
+- **TDD Cycle Practice**: @.claude/builder/tdd-cycle.md
+- **TDD Configuration System**: @.claude/shared/tdd-settings.md
+- **Phase Review Template**: @.claude/shared/templates/tasks/phase-review-template.md
+- **Specification Feedback Process**: @.claude/shared/templates/tasks/specification-feedback-process.md
 
-#### タスクステータス管理 (NEW!)
-- 🔴 **Not Implemented**: 未実装（TDD Red Phase）
-- 🟢 **Minimally Implemented**: 最小実装完了（TDD Green Phase）
-- ✅ **Refactored**: リファクタリング完了
-- ⚠️ **Blocked**: ブロック中（3回失敗後）
+#### Task Status Management (NEW!)
+- 🔴 **Not Implemented**: Not yet implemented (TDD Red Phase)
+- 🟢 **Minimally Implemented**: Minimal implementation complete (TDD Green Phase)
+- ✅ **Refactored**: Refactoring complete
+- ⚠️ **Blocked**: Blocked (after 3 failures)
 
-詳細: @.claude/shared/task-status.md
+Details: @.claude/shared/task-status.md
 
-#### TDD実践原則（必須）
-- **小さなステップ**: 一度に1つの機能のみ実装
-- **仮実装**: テストを通すためにベタ書きでもOK（例：`return 42`）
-- **三角測量**: 2つ目、3つ目のテストケースで一般化する
-- **即座にコミット**: 各フェーズ完了後すぐにコミット
+#### TDD Practice Principles (Required)
+- **Small Steps**: Implement only one feature at a time
+- **Fake Implementation**: Hard-coding is OK to pass tests (e.g., `return 42`)
+- **Triangulation**: Generalize with 2nd and 3rd test cases
+- **Immediate Commit**: Commit immediately after each phase completion
 
-#### TDDコミットルール（必須）
-- 🔴 テストを書いたら: `test: add failing test for [feature]`
-- 🟢 テストを通したら: `feat: implement [feature] to pass test`
-- 🔵 リファクタリングしたら: `refactor: [description]`
+#### TDD Commit Rules (Required)
+- 🔴 After writing test: `test: add failing test for [feature]`
+- 🟢 After passing test: `feat: implement [feature] to pass test`
+- 🔵 After refactoring: `refactor: [description]`
 
-#### TDDサポートツール (NEW!)
-- `/tdd:start` - TDDサイクル開始コマンド
-- `/tdd:status` - 現在のTDDステータス確認
-- **TDD強制設定**: settings.jsonで厳格度を調整可能（strict/recommended/off）
-- **スキップ理由記録**: テスト未作成時の理由を自動記録
-- 詳細なTDDガイド: @.claude/builder/tdd-cycle.md
-- チェックリスト: @.claude/shared/checklists/
-- TDD設定ガイド: @.claude/shared/tdd-settings.md
+#### TDD Support Tools (NEW!)
+- `/tdd:start` - Start TDD cycle command
+- `/tdd:status` - Check current TDD status
+- **TDD Enforcement Settings**: Adjustable strictness in settings.json (strict/recommended/off)
+- **Skip Reason Recording**: Automatic recording of reasons when tests aren't created
+- Detailed TDD guide: @.claude/builder/tdd-cycle.md
+- Checklists: @.claude/shared/checklists/
+- TDD configuration guide: @.claude/shared/tdd-settings.md
 
-詳細なTDDルール: @.claude/shared/constraints.md
+Detailed TDD rules: @.claude/shared/constraints.md
 
 ### Git Conventions
 - **Commit format**: `[prefix]: [change description]` (feat/fix/docs/test etc.)
@@ -254,94 +254,94 @@ Detailed rules: @docs/development-rules.md
 
 ## Test Framework Integration (NEW!)
 
-### 📝 注意: Batsは必須ではありません
-- **一般利用者**: Batsインストール不要。すべての機能は正常動作
-- **開発者**: Batsインストール推奨（テスト実行用）
-- **詳細**: [テストシステムガイド](.claude/tests/README.md)参照
+### 📝 Note: Bats is not required
+- **General users**: No Bats installation needed. All features work normally
+- **Developers**: Bats installation recommended (for test execution)
+- **Details**: See [Test System Guide](.claude/tests/README.md)
 
-### テストテンプレート
-- **事前定義テンプレート**: 一般的なテストシナリオ用
-- **モック自動生成**: 依存関係の自動モック作成
-- **カバレッジ追跡**: リアルタイムのカバレッジ監視
-- **品質ゲート**: 80%以上のカバレッジを強制
+### Test Templates
+- **Pre-defined templates**: For common test scenarios
+- **Automatic mock generation**: Automatic mock creation for dependencies
+- **Coverage tracking**: Real-time coverage monitoring
+- **Quality gates**: Enforce 80%+ coverage
 
-### テストファースト開発支援
-- **テスト生成ガイド**: 失敗するテストの作成を支援
-- **アサーション提案**: 適切なアサーションの推奨
-- **テストケース分析**: エッジケースの検出
+### Test-First Development Support
+- **Test generation guide**: Assists in creating failing tests
+- **Assertion suggestions**: Recommends appropriate assertions
+- **Test case analysis**: Edge case detection
 
 ## Agent Coordination Optimization (NEW!)
 
-### スマートハンドオフ
-- **コンテキスト圧縮**: 効率的なエージェント切り替え
-- **重要情報の抽出**: 引き継ぎに必要な情報の自動選別
-- **モード情報の伝達**: 特殊モードの状態を保持
+### Smart Handoff
+- **Context compression**: Efficient agent switching
+- **Important information extraction**: Automatic selection of information needed for handoff
+- **Mode information transmission**: Preserve special mode states
 
-### 並列実行分析
-- **タスク依存関係**: 並列実行可能なタスクの特定
-- **リソース競合検出**: 同時実行時の問題を事前に検出
-- **最適実行順序**: 効率的なタスク順序の提案
+### Parallel Execution Analysis
+- **Task dependencies**: Identify tasks that can be executed in parallel
+- **Resource conflict detection**: Pre-detect issues during concurrent execution
+- **Optimal execution order**: Suggest efficient task ordering
 
-### パフォーマンス監視
-- **エージェント効率**: 各エージェントの処理時間追跡
-- **ボトルネック検出**: 非効率な処理の特定
-- **改善提案**: 最適化のための具体的な提案
+### Performance Monitoring
+- **Agent efficiency**: Track processing time for each agent
+- **Bottleneck detection**: Identify inefficient processes
+- **Improvement suggestions**: Specific suggestions for optimization
 
 ## Process Optimization System
 
 ### Refactoring Scheduler
-- **自動分析**: リファクタリングが必要な箇所を自動検出
-- **優先度算出**: 影響度・頻度・複雑度から優先順位を計算
-- **定期レポート**: 日次・週次でリファクタリング提案を生成
-- **実行**: `python .claude/scripts/refactoring-analyzer.py`
-- **設定**: @.claude/refactoring-config.json
-- **詳細**: @.claude/shared/refactoring-scheduler.md
+- **Automatic analysis**: Automatically detect areas requiring refactoring
+- **Priority calculation**: Calculate priorities based on impact, frequency, and complexity
+- **Regular reports**: Generate daily/weekly refactoring suggestions
+- **Execution**: `python .claude/scripts/refactoring-analyzer.py`
+- **Configuration**: @.claude/refactoring-config.json
+- **Details**: @.claude/shared/refactoring-scheduler.md
 
 ### Design Change Tracking
-- **変更履歴管理**: すべての設計変更を体系的に記録
-- **影響分析**: 設計変更がコードに与える影響を自動分析
-- **ドリフト検出**: 設計と実装の乖離を定期的にチェック
-- **実行**: `python .claude/scripts/design-drift-detector.py`
-- **変更ログ**: @.claude/shared/design-tracker/change-log/
-- **詳細**: @.claude/shared/design-tracker/design-tracker.md
+- **Change history management**: Systematically record all design changes
+- **Impact analysis**: Automatically analyze the impact of design changes on code
+- **Drift detection**: Regularly check for divergence between design and implementation
+- **Execution**: `python .claude/scripts/design-drift-detector.py`
+- **Change log**: @.claude/shared/design-tracker/change-log/
+- **Details**: @.claude/shared/design-tracker/design-tracker.md
 
 ### Quality Gates
-- **テストカバレッジ**: 80%以上を自動チェック
-- **コード複雑度**: 循環的複雑度10以下を強制
-- **セキュリティスキャン**: ハードコードされた秘密情報を検出
-- **コード重複**: 5%以下を目標
-- **実行**: `python .claude/scripts/quality-check.py`
-- **設定**: @.claude/quality-config.json
-- **詳細**: @.claude/shared/quality-gates.md
+- **Test coverage**: Automatically check for 80%+ coverage
+- **Code complexity**: Enforce cyclomatic complexity ≤10
+- **Security scan**: Detect hardcoded secrets
+- **Code duplication**: Target ≤5%
+- **Execution**: `python .claude/scripts/quality-check.py`
+- **Configuration**: @.claude/quality-config.json
+- **Details**: @.claude/shared/quality-gates.md
 
 ### Quality Levels
-- 🟢 **Green**: すべての品質基準をクリア
-- 🟡 **Yellow**: 軽微な問題あり（警告）
-- 🔴 **Red**: 重大な問題あり（マージ不可）
+- 🟢 **Green**: All quality standards met
+- 🟡 **Yellow**: Minor issues present (warnings)
+- 🔴 **Red**: Critical issues present (merge blocked)
 
 ### Pre-commit Integration
 ```bash
-# 自動品質チェック
+# Automatic quality check
 .claude/scripts/quality-pre-commit.sh
 ```
 
 ## Documentation Structure (NEW!)
-プロジェクトのすべてのドキュメントは `docs/` ディレクトリ以下に整理されています：
+All project documents are organized under the `docs/` directory:
 
 ```
 docs/
-├── requirements/     # 要件定義（機能要件・非機能要件）
-├── design/          # 設計書（アーキテクチャ・API・DB設計）
-├── tasks/           # タスク管理（フェーズ別・優先順位管理）
-├── adr/             # アーキテクチャ決定記録
-├── specs/           # 実装仕様書（コンポーネント別）
-├── test-specs/      # テスト仕様
-└── operations/      # 運用ドキュメント
+├── requirements/     # Requirements definition (functional & non-functional requirements)
+├── design/          # Design documents (architecture, API, DB design)
+├── tasks/           # Task management (phase-based, priority management)
+├── adr/             # Architecture Decision Records
+├── specs/           # Implementation specifications (by component)
+├── test-specs/      # Test specifications
+└── operations/      # Operations documentation
 ```
 
-### エージェントの制約
-- **Planner**: すべてのドキュメントを `docs/` 配下に作成
-- **Builder**: 実装前に必ず `docs/tasks/` → `docs/specs/` の順で確認
+### Agent Constraints
+- **Planner**: Create all documents under `docs/`
+- **Builder**: Always check `docs/tasks/` → `docs/specs/` in order before implementation
 
 ## Project Data
 - Settings: `.claude/settings.json`

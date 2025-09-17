@@ -4,11 +4,11 @@
 
 > **Transform your solo development into a powerful AI-powered team experience**
 
-## 💡 What if you had AI teammates who never sleep?
+## 💡 What if you had always-on AI development partners?
 
-Imagine having a **Project Planner** who organizes your ideas and a **Code Builder** who implements them flawlessly. That's **Claude Friends** - your AI development team in a box.
+Imagine having a **Project Planner** who organizes your ideas and a **Code Builder** who implements them with production-ready quality. That's **Claude Friends** - your AI development team in a box.
 
-### ✨ See the Magic in Action
+### ✨ Experience Next-Level DX
 
 <!-- Placeholder for quickstart GIF/video - see docs/QUICKSTART_MEDIA.md for guidelines -->
 
@@ -34,16 +34,19 @@ $ /agent:builder
 
 ## 🎯 Why Developers Love Claude Friends
 
+### 📈 **Boost Productivity & Reduce Friction**
+Save 8+ hours weekly with our developer-first approach that eliminates common inefficiencies.
+
 ### 📉 **Significant Cost Reduction**
 Our prompt caching technology helps you use AI throughout the day while managing costs effectively.
 
-### ⚡ **Proven Performance**
-Real-world results from production environments:
-- **Lightning Fast**: Hook response < 100ms (p95: 86.368ms)
-- **Rock Solid Security**: 100% dangerous command blocking
-- **Memory Efficient**: Only 3MB peak usage
-- **Highly Concurrent**: 10+ parallel processes without issues
-- **Quality Assured**: 95/100 TDD compliance score
+### ⚡ **Real-World Proven Results**
+Production-ready performance from live environments:
+- **Developer Experience First**: Hook response < 100ms (p95: 86.368ms)
+- **Zero-Compromise Security**: 100% dangerous command blocking
+- **Efficient Resource Usage**: Only 3MB peak memory
+- **Scale-Ready**: 10+ parallel processes without issues
+- **Production Quality**: 95/100 TDD compliance score
 
 ### 🧠 **AI with Advanced Memory**
 No more "what was I working on?" - Your AI team maintains comprehensive project memory.
@@ -132,7 +135,7 @@ memory_bank_lines_total{agent="planner"} 350
 **Memory Bank Rotation Example:**
 ```bash
 # When your notes.md grows beyond 500 lines
-# Automatic: Important content preserved, rest archived
+# Automatic: Important content preserved, rest archived for optimal DX
 # Manual: bash .claude/scripts/notes-maintenance.sh
 ```
 
@@ -206,12 +209,12 @@ cp .claude/settings-minimal.json .claude/settings.json
 /agent:planner  # For planning and design
 /agent:builder  # For implementation
 ```
-**✨ You get**: Agent switching, auto-handover, security blocking - the essentials!
+**✨ You get**: Agent switching, auto-handover, security blocking - developer-first essentials!
 
 ### 🐣 **Intermediate (Week 2-4)** - Explore Convenience Features
 - Experience automatic Memory Bank rotation
 - Try AI-powered error analysis when debugging
-- Keep using the same 2 commands, but notice the magic happening behind the scenes
+- Keep using the same 2 commands, but notice the enhanced DX happening behind the scenes
 
 ### 🦅 **Advanced (Month 2+)** - Unlock Full Power (If Needed)
 ```bash
@@ -322,7 +325,7 @@ Your AI team is ready. Just chat naturally - they understand context!
 
 ### 🔗 Hooks System Quick Start
 
-Enable powerful automation features (optional but recommended):
+Enable developer experience automation features (optional but recommended):
 
 ```bash
 # Test the hooks system
@@ -371,8 +374,8 @@ The foundation for AI-powered development.
 - **Plan Better**: AI Planner creates detailed specs with Mermaid diagrams automatically
 - **Code Faster**: AI Builder handles implementation with mandatory TDD (test-first approach)
 - **Debug Instantly**: Builder's Debug Mode analyzes errors and finds root causes automatically
-- **Review Automatically**: Builder's Code Review Mode ensures quality without manual effort
-- **Remember Everything**: Memory Bank and handoff system maintain perfect project context
+- **Review Automatically**: Builder's Code Review Mode ensures reliable implementation without manual effort
+- **Remember Everything**: Memory Bank and handoff system maintain comprehensive project context
 
 ## 🚀 Enhanced Features (NEW!)
 
@@ -561,5 +564,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 </p>
 
 <p align="center">
-  <sub>Built with ❤️ for developers who dare to dream bigger</sub>
+  <sub>Built with ❤️ for developers focused on creating better experiences</sub>
 </p>
