@@ -195,6 +195,35 @@ graph LR
 - **Phase Reviews**: Quality gates at each milestone
 - **Feedback Loop**: Immediate specification issue escalation
 
+## 🎓 Gradual Learning Path - Start Simple, Grow Naturally
+
+### 🥚 **Beginner Mode (Day 1)** - Just 2 Commands
+```bash
+# Start with minimal configuration
+cp .claude/settings-minimal.json .claude/settings.json
+
+# That's it! Just use these two:
+/agent:planner  # For planning and design
+/agent:builder  # For implementation
+```
+**✨ You get**: Agent switching, auto-handover, security blocking - the essentials!
+
+### 🐣 **Intermediate (Week 2-4)** - Explore Convenience Features
+- Experience automatic Memory Bank rotation
+- Try AI-powered error analysis when debugging
+- Keep using the same 2 commands, but notice the magic happening behind the scenes
+
+### 🦅 **Advanced (Month 2+)** - Unlock Full Power (If Needed)
+```bash
+# Ready for everything?
+cp .claude/settings-full.json .claude/settings.json
+```
+- Parallel execution (for large projects)
+- TDD enforcement (for team quality)
+- Metrics monitoring (for production)
+
+**📚 New to Claude Friends?** Start with our **[Getting Started Guide](GETTING_STARTED.md)** - it shows you exactly what to use and what to ignore!
+
 ## 🚀 Quick Start
 
 ## 🏃‍♂️ Quick Start (5 minutes to your first AI-powered development)

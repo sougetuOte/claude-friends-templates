@@ -1,0 +1,30 @@
+{
+  "env": {
+    "CLAUDE_CACHE": "./.ccache",
+    "CLAUDE_PROJECT_DIR": "$PWD"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "/agent:",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/agent/agent-switch.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/deny-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
