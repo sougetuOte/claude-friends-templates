@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-09-17T12:44:45.648801",
+  "scan_type": "full",
+  "results": {
+    "sast": {
+      "status": "completed",
+      "issues": []
+    },
+    "sbom": {
+      "status": "completed",
+      "path": ".claude/security/sbom.json",
+      "components": 283,
+      "vulnerabilities": {
+        "vulnerable": 0,
+        "not_vulnerable": 0,
+        "unknown": 283
+      }
+    },
+    "zero_trust": {
+      "status": "completed",
+      "active_sessions": 0,
+      "high_risk_sessions": 0,
+      "anomalies": 0
+    },
+    "input_validation": {
+      "status": "completed",
+      "violations": 1,
+      "high_risk_violations": 0
+    }
+  },
+  "summary": {
+    "total_issues": 0,
+    "critical_issues": 0,
+    "high_issues": 0,
+    "medium_issues": 0,
+    "low_issues": 0
+  },
+  "security_score": 10
+}
