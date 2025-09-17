@@ -1,0 +1,210 @@
+{
+  "phase2": {
+    "version": "2.5.2",
+    "description": "Phase 2 unified configuration - Memory Bank, Parallel Execution, TDD Checks, and Monitoring",
+    "enabled": true,
+    "features": {
+      "memory_bank": {
+        "enabled": true,
+        "max_lines_per_file": 1000,
+        "importance_threshold": 7,
+        "archive": {
+          "enabled": true,
+          "retention_days": 90,
+          "compression": true,
+          "archive_path": "./memo/archive/"
+        },
+        "categorization": {
+          "auto_categorize": true,
+          "categories": [
+            "analysis",
+            "design",
+            "implementation",
+            "testing",
+            "documentation",
+            "requirements",
+            "architecture"
+          ]
+        },
+        "indexing": {
+          "enabled": true,
+          "rebuild_interval_hours": 24,
+          "search_boost_factors": {
+            "title": 2.0,
+            "recent": 1.5,
+            "importance": 1.8
+          }
+        }
+      },
+      "parallel_execution": {
+        "enabled": true,
+        "max_workers": 4,
+        "queue_management": {
+          "max_queue_size": 100,
+          "priority_levels": ["urgent", "high", "normal", "low"],
+          "timeout_per_task_seconds": 300
+        },
+        "worker_pools": {
+          "tdd_checks": {
+            "max_workers": 2,
+            "timeout_seconds": 120
+          },
+          "memory_operations": {
+            "max_workers": 2,
+            "timeout_seconds": 60
+          },
+          "monitoring": {
+            "max_workers": 1,
+            "timeout_seconds": 30
+          }
+        },
+        "retry_policy": {
+          "max_retries": 3,
+          "backoff_factor": 2,
+          "retry_on_timeout": true
+        }
+      },
+      "tdd_checks": {
+        "enabled": true,
+        "enforcement_level": "strict",
+        "design_compliance": {
+          "check_enabled": true,
+          "require_tests_first": true,
+          "require_design_doc": true,
+          "allowed_deviation_percentage": 10
+        },
+        "red_green_refactor": {
+          "enforce_cycle": true,
+          "require_failing_test": true,
+          "require_passing_test": true,
+          "refactor_threshold_lines": 50
+        },
+        "quality_gates": {
+          "minimum_test_coverage": 80,
+          "maximum_complexity": 10,
+          "require_documentation": true
+        },
+        "integration": {
+          "pre_commit_checks": true,
+          "continuous_validation": true,
+          "block_on_failure": true
+        }
+      },
+      "monitoring": {
+        "enabled": true,
+        "real_time": {
+          "enabled": true,
+          "update_interval_seconds": 30
+        },
+        "thresholds": {
+          "error_rate": {
+            "warning": 0.05,
+            "critical": 0.1
+          },
+          "response_time_ms": {
+            "warning": 500,
+            "critical": 1000
+          },
+          "memory_usage_mb": {
+            "warning": 512,
+            "critical": 1024
+          },
+          "cpu_usage_percentage": {
+            "warning": 70,
+            "critical": 90
+          }
+        },
+        "alerts": {
+          "enabled": true,
+          "channels": ["console", "file"],
+          "file_path": "./logs/phase2-alerts.log",
+          "severity_levels": ["info", "warning", "error", "critical"],
+          "rate_limiting": {
+            "enabled": true,
+            "max_alerts_per_minute": 10
+          }
+        },
+        "metrics_collection": {
+          "enabled": true,
+          "retention_days": 30,
+          "detailed_logging": true,
+          "performance_profiling": true
+        }
+      }
+    },
+    "integration": {
+      "cross_feature_communication": {
+        "enabled": true,
+        "event_bus": {
+          "enabled": true,
+          "max_subscribers": 50,
+          "event_buffer_size": 1000
+        }
+      },
+      "shared_resources": {
+        "cache": {
+          "enabled": true,
+          "max_size_mb": 256,
+          "ttl_seconds": 3600
+        },
+        "locks": {
+          "enabled": true,
+          "timeout_seconds": 30,
+          "deadlock_detection": true
+        }
+      },
+      "health_checks": {
+        "enabled": true,
+        "interval_seconds": 60,
+        "components": [
+          "memory_bank",
+          "parallel_execution",
+          "tdd_checks",
+          "monitoring"
+        ]
+      }
+    },
+    "performance": {
+      "optimization": {
+        "enabled": true,
+        "lazy_loading": true,
+        "connection_pooling": true,
+        "request_batching": true
+      },
+      "resource_limits": {
+        "max_memory_mb": 2048,
+        "max_cpu_percentage": 80,
+        "max_file_descriptors": 1024
+      },
+      "profiling": {
+        "enabled": false,
+        "sample_rate": 0.1,
+        "output_path": "./logs/phase2-profile.log"
+      }
+    },
+    "security": {
+      "access_control": {
+        "enabled": true,
+        "require_authentication": false,
+        "role_based_access": false
+      },
+      "data_protection": {
+        "encrypt_sensitive_data": false,
+        "audit_logging": true,
+        "data_retention_days": 90
+      },
+      "input_validation": {
+        "enabled": true,
+        "strict_mode": true,
+        "sanitize_inputs": true
+      }
+    },
+    "debugging": {
+      "enabled": false,
+      "log_level": "info",
+      "verbose_logging": false,
+      "trace_execution": false,
+      "performance_metrics": true
+    }
+  }
+}
