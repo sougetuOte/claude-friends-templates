@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Friends Templates - Performance Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .dashboard {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .card-badge {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .metric-item:hover {
+            transform: scale(1.05);
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .metric-trend {
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        .trend-up { color: #27ae60; }
+        .trend-down { color: #e74c3c; }
+        .trend-stable { color: #f39c12; }
+
+        .alert-panel {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 4px solid #f39c12;
+        }
+
+        .alert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .alert-critical { border-left-color: #e74c3c; }
+        .alert-warning { border-left-color: #f39c12; }
+        .alert-info { border-left-color: #3498db; }
+
+        .alert-message {
+            flex-grow: 1;
+            font-size: 0.9rem;
+        }
+
+        .alert-time {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-left: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .control-group select,
+        .control-group button {
+            padding: 0.4rem 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .control-group select:focus,
+        .control-group button:hover {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .control-group button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border-color: transparent;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #7f8c8d;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #ecf0f1;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .phase-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .phase-step {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .phase-step.active {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .phase-step.completed {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .eco-metrics {
+            background: linear-gradient(135deg, #d5f4e6, #a8e6cf);
+            border-left: 4px solid #27ae60;
+        }
+
+        .eco-score {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #27ae60;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .responsive-hide {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .responsive-hide {
+                display: none;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .status-bar {
+                gap: 0.5rem;
+            }
+
+            .status-item {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Claude Friends Templates - Performance Dashboard</h1>
+        <p class="subtitle">Real-time monitoring with AI-assisted analysis & Green Computing insights</p>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>Live Monitoring</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" style="background: #f39c12;"></div>
+                <span id="metrics-count">0 Metrics Collected</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" style="background: #e74c3c;"></div>
+                <span id="alerts-count">0 Active Alerts</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" style="background: #9b59b6;"></div>
+                <span id="connection-status">Connecting...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <!-- System Overview -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📊 System Overview</div>
+                <div class="card-badge">Real-time</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="hook-execution-avg">0ms</div>
+                    <div class="metric-label">Avg Hook Time</div>
+                    <div class="metric-trend trend-stable" id="hook-trend">Stable</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="memory-usage">0MB</div>
+                    <div class="metric-label">Memory Usage</div>
+                    <div class="metric-trend trend-up" id="memory-trend">+2.3%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="agent-switches">0</div>
+                    <div class="metric-label">Agent Switches</div>
+                    <div class="metric-trend trend-down" id="switch-trend">-15%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="tdd-efficiency">85%</div>
+                    <div class="metric-label">TDD Efficiency</div>
+                    <div class="metric-trend trend-up" id="tdd-trend">+5.2%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hook Performance -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">⚡ Hook Performance</div>
+                <div class="card-badge">Live</div>
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Time Range:</label>
+                    <select id="hook-time-range">
+                        <option value="1h">Last Hour</option>
+                        <option value="24h" selected>Last 24 Hours</option>
+                        <option value="7d">Last Week</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Hook Type:</label>
+                    <select id="hook-filter">
+                        <option value="all">All Hooks</option>
+                        <option value="pre-commit">Pre-commit</option>
+                        <option value="quality">Quality Check</option>
+                        <option value="test">Test Hooks</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="hook-performance-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Memory Bank Operations -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🧠 Memory Bank Operations</div>
+                <div class="card-badge">AI Optimized</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="memory-bank-chart"></canvas>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="mb-operations">42</div>
+                    <div class="metric-label">Operations/Hour</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="mb-efficiency">92%</div>
+                    <div class="metric-label">Efficiency Score</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="mb-cache-hit">78%</div>
+                    <div class="metric-label">Cache Hit Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Switch Quality -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔄 Agent Switch Quality</div>
+                <div class="card-badge">Context Aware</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="agent-switch-chart"></canvas>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="switch-duration">2.3s</div>
+                    <div class="metric-label">Avg Duration</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="context-preservation">95%</div>
+                    <div class="metric-label">Context Score</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TDD Cycle Analysis -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔴🟢🔵 TDD Cycle Analysis</div>
+                <div class="card-badge">Live Cycle</div>
+            </div>
+
+            <div class="phase-progress">
+                <div class="phase-step completed">Red</div>
+                <div class="phase-step active">Green</div>
+                <div class="phase-step">Refactor</div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="tdd-cycle-chart"></canvas>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="cycle-time">12m</div>
+                    <div class="metric-label">Current Cycle</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="test-coverage">87%</div>
+                    <div class="metric-label">Coverage</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="quality-score">8.4</div>
+                    <div class="metric-label">Quality Score</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Green Computing Metrics -->
+        <div class="card eco-metrics">
+            <div class="card-header">
+                <div class="card-title">🌱 Green Computing</div>
+                <div class="card-badge">Eco Friendly</div>
+            </div>
+
+            <div class="eco-score" id="eco-score">8.7</div>
+            <p style="text-align: center; color: #27ae60; font-weight: 600;">Sustainability Score</p>
+
+            <div class="chart-container">
+                <canvas id="green-computing-chart"></canvas>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="energy-consumption">45W</div>
+                    <div class="metric-label">Power Usage</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="carbon-footprint">12g</div>
+                    <div class="metric-label">CO₂/Hour</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="efficiency-trend">+3%</div>
+                    <div class="metric-label">Efficiency</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights & Alerts -->
+        <div class="card alert-panel">
+            <div class="card-header">
+                <div class="card-title">🤖 AI Insights & Alerts</div>
+                <div class="card-badge">Smart Analysis</div>
+            </div>
+
+            <div id="alerts-container">
+                <div class="alert-item alert-warning">
+                    <div class="alert-message">
+                        <strong>Performance Alert:</strong> Hook execution time increased by 23% in the last hour. Consider optimizing pre-commit hooks.
+                    </div>
+                    <div class="alert-time">2m ago</div>
+                </div>
+
+                <div class="alert-item alert-info">
+                    <div class="alert-message">
+                        <strong>TDD Insight:</strong> Red phase taking 35% longer than optimal. Consider breaking down test cases.
+                    </div>
+                    <div class="alert-time">8m ago</div>
+                </div>
+
+                <div class="alert-item alert-info">
+                    <div class="alert-message">
+                        <strong>Green Computing:</strong> Energy efficiency improved by 12% this week. Great work on optimization!
+                    </div>
+                    <div class="alert-time">1h ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dashboard JavaScript for real-time updates and charts
+        class PerformanceDashboard {
+            constructor() {
+                this.charts = {};
+                this.websocket = null;
+                this.metricsCount = 0;
+                this.alertsCount = 0;
+                this.isConnected = false;
+
+                this.initializeCharts();
+                this.connectWebSocket();
+                this.startDataGeneration(); // For demo purposes
+            }
+
+            initializeCharts() {
+                // Hook Performance Chart
+                const hookCtx = document.getElementById('hook-performance-chart').getContext('2d');
+                this.charts.hookPerformance = new Chart(hookCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Execution Time (ms)',
+                            data: [],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Time (ms)' }
+                            },
+                            x: {
+                                title: { display: true, text: 'Time' }
+                            }
+                        }
+                    }
+                });
+
+                // Memory Bank Chart
+                const memoryCtx = document.getElementById('memory-bank-chart').getContext('2d');
+                this.charts.memoryBank = new Chart(memoryCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Read Operations', 'Write Operations', 'Cache Hits', 'Cache Misses'],
+                        datasets: [{
+                            data: [45, 25, 20, 10],
+                            backgroundColor: ['#3498db', '#2ecc71', '#f39c12', '#e74c3c'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+
+                // Agent Switch Chart
+                const agentCtx = document.getElementById('agent-switch-chart').getContext('2d');
+                this.charts.agentSwitch = new Chart(agentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Planner→Builder', 'Builder→Planner', 'Quality→Review'],
+                        datasets: [{
+                            label: 'Switch Duration (s)',
+                            data: [2.3, 1.8, 3.1],
+                            backgroundColor: ['#9b59b6', '#3498db', '#2ecc71'],
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Duration (s)' }
+                            }
+                        }
+                    }
+                });
+
+                // TDD Cycle Chart
+                const tddCtx = document.getElementById('tdd-cycle-chart').getContext('2d');
+                this.charts.tddCycle = new Chart(tddCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Test Coverage', 'Cycle Time', 'Code Quality', 'Refactor Rate', 'Efficiency'],
+                        datasets: [{
+                            label: 'Current Performance',
+                            data: [87, 75, 84, 92, 85],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                            pointBackgroundColor: '#e74c3c'
+                        }, {
+                            label: 'Target',
+                            data: [90, 80, 90, 85, 90],
+                            borderColor: '#27ae60',
+                            backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                            pointBackgroundColor: '#27ae60'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // Green Computing Chart
+                const greenCtx = document.getElementById('green-computing-chart').getContext('2d');
+                this.charts.greenComputing = new Chart(greenCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Energy Consumption (W)',
+                            data: [],
+                            borderColor: '#27ae60',
+                            backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                            yAxisID: 'y'
+                        }, {
+                            label: 'Efficiency Score',
+                            data: [],
+                            borderColor: '#f39c12',
+                            backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                            yAxisID: 'y1'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: { display: true, text: 'Power (W)' }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: { display: true, text: 'Efficiency Score' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            }
+
+            connectWebSocket() {
+                // Try to connect to WebSocket server (fallback to demo mode if not available)
+                try {
+                    this.websocket = new WebSocket('ws://localhost:8080/metrics');
+
+                    this.websocket.onopen = () => {
+                        this.isConnected = true;
+                        this.updateConnectionStatus('Connected');
+                    };
+
+                    this.websocket.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        this.handleMetricUpdate(data);
+                    };
+
+                    this.websocket.onclose = () => {
+                        this.isConnected = false;
+                        this.updateConnectionStatus('Demo Mode');
+                    };
+
+                    this.websocket.onerror = () => {
+                        this.isConnected = false;
+                        this.updateConnectionStatus('Demo Mode');
+                    };
+                } catch (error) {
+                    this.isConnected = false;
+                    this.updateConnectionStatus('Demo Mode');
+                }
+            }
+
+            updateConnectionStatus(status) {
+                document.getElementById('connection-status').textContent = status;
+            }
+
+            handleMetricUpdate(data) {
+                switch (data.type) {
+                    case 'metric':
+                        this.updateMetric(data.data);
+                        break;
+                    case 'alert':
+                        this.addAlert(data.data);
+                        break;
+                }
+            }
+
+            updateMetric(metric) {
+                this.metricsCount++;
+                document.getElementById('metrics-count').textContent = `${this.metricsCount} Metrics Collected`;
+
+                // Update relevant charts based on metric type
+                if (metric.metric.includes('hook')) {
+                    this.updateHookChart(metric);
+                } else if (metric.metric.includes('memory_bank')) {
+                    this.updateMemoryBankChart(metric);
+                } else if (metric.metric.includes('agent_switch')) {
+                    this.updateAgentSwitchChart(metric);
+                } else if (metric.metric.includes('tdd')) {
+                    this.updateTDDChart(metric);
+                } else if (metric.metric.includes('green')) {
+                    this.updateGreenChart(metric);
+                }
+            }
+
+            updateHookChart(metric) {
+                const chart = this.charts.hookPerformance;
+                const now = new Date();
+
+                chart.data.labels.push(now.toLocaleTimeString());
+                chart.data.datasets[0].data.push(metric.value);
+
+                // Keep only last 50 data points
+                if (chart.data.labels.length > 50) {
+                    chart.data.labels.shift();
+                    chart.data.datasets[0].data.shift();
+                }
+
+                chart.update('none');
+            }
+
+            updateMemoryBankChart(metric) {
+                // Update memory bank metrics display
+                if (metric.metric.includes('operation')) {
+                    const currentOps = parseInt(document.getElementById('mb-operations').textContent) || 0;
+                    document.getElementById('mb-operations').textContent = currentOps + 1;
+                }
+            }
+
+            updateAgentSwitchChart(metric) {
+                // Update agent switch metrics
+                if (metric.metric.includes('duration')) {
+                    document.getElementById('switch-duration').textContent = `${(metric.value / 1000).toFixed(1)}s`;
+                }
+            }
+
+            updateTDDChart(metric) {
+                // Update TDD cycle metrics
+                if (metric.metric.includes('efficiency')) {
+                    document.getElementById('tdd-efficiency').textContent = `${(metric.value * 100).toFixed(0)}%`;
+                }
+            }
+
+            updateGreenChart(metric) {
+                const chart = this.charts.greenComputing;
+                const now = new Date();
+
+                if (metric.metric.includes('energy')) {
+                    chart.data.labels.push(now.toLocaleTimeString());
+                    chart.data.datasets[0].data.push(metric.value);
+
+                    // Update energy consumption display
+                    document.getElementById('energy-consumption').textContent = `${metric.value.toFixed(0)}W`;
+                } else if (metric.metric.includes('efficiency')) {
+                    chart.data.datasets[1].data.push(metric.value * 100);
+
+                    // Update efficiency display
+                    const trend = metric.value > 0.8 ? '+' : metric.value > 0.6 ? '' : '-';
+                    document.getElementById('efficiency-trend').textContent = `${trend}${(metric.value * 10).toFixed(1)}%`;
+                }
+
+                // Keep only last 30 data points
+                if (chart.data.labels.length > 30) {
+                    chart.data.labels.shift();
+                    chart.data.datasets.forEach(dataset => dataset.data.shift());
+                }
+
+                chart.update('none');
+            }
+
+            addAlert(alert) {
+                this.alertsCount++;
+                document.getElementById('alerts-count').textContent = `${this.alertsCount} Active Alerts`;
+
+                const alertsContainer = document.getElementById('alerts-container');
+                const alertElement = document.createElement('div');
+                alertElement.className = `alert-item alert-${alert.severity}`;
+                alertElement.innerHTML = `
+                    <div class="alert-message">
+                        <strong>${alert.alert_type}:</strong> ${alert.message}
+                    </div>
+                    <div class="alert-time">now</div>
+                `;
+
+                alertsContainer.insertBefore(alertElement, alertsContainer.firstChild);
+
+                // Remove old alerts (keep max 10)
+                while (alertsContainer.children.length > 10) {
+                    alertsContainer.removeChild(alertsContainer.lastChild);
+                }
+            }
+
+            // Demo data generation (when WebSocket is not available)
+            startDataGeneration() {
+                if (this.isConnected) return;
+
+                setInterval(() => {
+                    // Generate demo hook performance data
+                    this.updateMetric({
+                        metric: 'hook.execution.duration_ms',
+                        value: Math.random() * 1000 + 500,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    // Generate demo green computing data
+                    this.updateMetric({
+                        metric: 'green.energy_consumption_wh',
+                        value: Math.random() * 20 + 30,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    this.updateMetric({
+                        metric: 'green.efficiency_score',
+                        value: Math.random() * 0.4 + 0.6,
+                        timestamp: new Date().toISOString()
+                    });
+                }, 3000);
+
+                // Generate occasional alerts
+                setInterval(() => {
+                    const alertTypes = [
+                        { type: 'Performance Alert', message: 'Hook execution time spike detected', severity: 'warning' },
+                        { type: 'TDD Insight', message: 'Test coverage increased by 5%', severity: 'info' },
+                        { type: 'Green Computing', message: 'Energy efficiency improved', severity: 'info' }
+                    ];
+
+                    const alert = alertTypes[Math.floor(Math.random() * alertTypes.length)];
+                    this.addAlert({
+                        alert_type: alert.type,
+                        message: alert.message,
+                        severity: alert.severity
+                    });
+                }, 15000);
+            }
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new PerformanceDashboard();
+        });
+
+        // Control handlers
+        document.getElementById('hook-time-range').addEventListener('change', function(e) {
+            console.log('Time range changed to:', e.target.value);
+            // Implementation would update chart data based on time range
+        });
+
+        document.getElementById('hook-filter').addEventListener('change', function(e) {
+            console.log('Hook filter changed to:', e.target.value);
+            // Implementation would filter chart data based on hook type
+        });
+    </script>
+</body>
+</html>
