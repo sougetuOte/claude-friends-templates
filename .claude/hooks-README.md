@@ -20,7 +20,7 @@ This project integrates Claude Code hooks to improve development efficiency.
 **Script**: `.claude/scripts/auto-format.sh`
 - **Purpose**: Automatic code formatting after file edits
 - **Target**: `.py`, `.js`, `.ts`, `.rs`, `.go`, `.json` files
-- **Action**: 
+- **Action**:
   - Python: `ruff format` or `black`
   - JavaScript/TypeScript: `prettier`
   - Rust: `rustfmt`
@@ -31,7 +31,7 @@ This project integrates Claude Code hooks to improve development efficiency.
 **Script**: `.claude/scripts/activity-logger.sh`
 - **Purpose**: Automatic recording and tracking of development activities
 - **Log files**: `~/.claude/activity.log`, `~/.claude/metrics.log`
-- **Records**: 
+- **Records**:
   - Tool name and execution time
   - Edited files, sizes, and extensions
   - Operation type classification (CODE_EDIT, FILE_READ, COMMAND_EXEC, etc.)

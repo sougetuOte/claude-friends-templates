@@ -16,7 +16,7 @@
 **スクリプト**: `.claude/scripts/auto-format.sh`
 - **目的**: ファイル編集後の自動コードフォーマット
 - **対象**: `.py`, `.js`, `.ts`, `.rs`, `.go`, `.json` ファイル
-- **動作**: 
+- **動作**:
   - Python: `ruff format` または `black`
   - JavaScript/TypeScript: `prettier`
   - Rust: `rustfmt`
@@ -27,7 +27,7 @@
 **スクリプト**: `.claude/scripts/activity-logger.sh`
 - **目的**: 開発活動の自動記録・追跡
 - **ログファイル**: `~/.claude/activity.log`, `~/.claude/metrics.log`
-- **記録内容**: 
+- **記録内容**:
   - 使用ツール名・実行時刻
   - 編集対象ファイル・サイズ・拡張子
   - 操作種別の分類（CODE_EDIT, FILE_READ, COMMAND_EXEC等）

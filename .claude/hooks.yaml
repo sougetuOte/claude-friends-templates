@@ -24,7 +24,7 @@ hooks:
     matcher:
       tool: Bash
       command_contains: "test"
-    command: |14
+    command: |
       if [ $CLAUDE_EXIT_CODE -eq 0 ]; then
         echo "### $(date '+%Y-%m-%d %H:%M') - Test Success" >> .claude/context/history.md
         echo "- Command: $CLAUDE_COMMAND" >> .claude/context/history.md

@@ -10,8 +10,14 @@ readonly NOTES_ROTATION_THRESHOLD=450
 readonly NOTES_ARCHIVE_HEADER_LINES=40
 readonly TEMP_FILE_PREFIX="agent-switch"
 
-# Load common functions
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Load common functions - Handle symlinks properly
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+readonly SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 readonly HOOKS_COMMON_DIR="${SCRIPT_DIR}/../common"
 
 # Source common libraries with error checking

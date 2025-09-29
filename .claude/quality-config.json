@@ -1,4 +1,14 @@
 {
+  "complexity_thresholds": {
+    "cyclomatic_complexity": 10,
+    "cognitive_complexity": 15,
+    "max_lines_per_function": 100,
+    "max_parameters": 5
+  },
+  "duplication": {
+    "min_lines": 20,
+    "threshold_percentage": 0.05
+  },
   "thresholds": {
     "coverage": {
       "global": 80,
