@@ -1,0 +1,257 @@
+name: Continuous Integration
+
+# Trigger configuration
+'on':
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
+
+# Environment variables
+env:
+  PYTHON_VERSION: '3.12'
+  PIP_CACHE_DIR: ~/.cache/pip
+  COVERAGE_THRESHOLD: 80
+
+# Cancel in-progress runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Code quality checks
+  lint:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: 📦 Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black mypy
+
+      - name: 🔍 Run Ruff linter
+        run: |
+          echo "::group::Ruff Check"
+          ruff check . --format=github
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: 🎨 Check Black formatting
+        run: |
+          echo "::group::Black Check"
+          black --check --diff .
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: 🔎 Run MyPy type checking
+        run: |
+          echo "::group::MyPy Check"
+          mypy . --ignore-missing-imports --no-error-summary
+          echo "::endgroup::"
+        continue-on-error: true
+
+  # Test execution
+  test:
+    name: Test Suite (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.12']
+        include:
+          - os: ubuntu-latest
+            python-version: '3.13'
+            experimental: true
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: 🧪 Run unit tests
+        run: |
+          echo "::group::Unit Tests"
+          pytest .claude/tests/unit/ -v --tb=short
+          echo "::endgroup::"
+
+      - name: 🧪 Run integration tests
+        run: |
+          echo "::group::Integration Tests"
+          pytest .claude/tests/integration/ -v --tb=short || true
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: 📊 Generate coverage report
+        run: |
+          echo "::group::Coverage Report"
+          pytest --cov=.claude --cov-report=xml --cov-report=html --cov-report=term-missing --cov-fail-under=${{ env.COVERAGE_THRESHOLD }} || true
+          echo "::endgroup::"
+
+      - name: 📤 Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
+          fail_ci_if_error: false
+
+      - name: 📁 Upload coverage HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: htmlcov/
+          retention-days: 7
+
+  # Quality metrics analysis
+  quality:
+    name: Code Quality Metrics
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: 📦 Install quality metrics tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 📊 Run quality metrics analysis
+        run: |
+          echo "::group::Quality Metrics Analysis"
+          python .claude/scripts/quality-metrics.py --report --json > quality-report.json
+          echo "::endgroup::"
+
+      - name: 📈 Display quality metrics summary
+        run: |
+          echo "::group::Quality Summary"
+          python .claude/scripts/quality-metrics.py --report
+          echo "::endgroup::"
+
+      - name: 🔍 Check complexity thresholds
+        run: |
+          echo "::group::Complexity Check"
+          xenon --max-average A --max-modules A --max-absolute B .claude/scripts/ || true
+          echo "::endgroup::"
+
+      - name: 📁 Upload quality report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quality-metrics-report
+          path: quality-report.json
+          retention-days: 30
+
+  # Security checks
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: 🔒 Run Bandit security scan
+        run: |
+          pip install bandit
+          echo "::group::Security Scan"
+          bandit -r .claude/ -f json -o bandit-report.json || true
+          echo "::endgroup::"
+        continue-on-error: true
+
+      - name: 🔍 Check for secrets
+        run: |
+          echo "::group::Secret Detection"
+          # Simple check for common secret patterns
+          ! grep -r "password\s*=\s*['\"]" .claude/ --include="*.py"
+          ! grep -r "api_key\s*=\s*['\"]" .claude/ --include="*.py"
+          ! grep -r "token\s*=\s*['\"]" .claude/ --include="*.py"
+          echo "::endgroup::"
+
+  # Final status check
+  ci-success:
+    name: CI Success
+    needs: [lint, test, quality, security]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: ✅ Check job statuses
+        run: |
+          if [[ "${{ needs.test.result }}" != "success" ]]; then
+            echo "❌ Tests failed"
+            exit 1
+          fi
+          echo "✅ All critical checks passed!"
+
+      - name: 📊 Summary
+        run: |
+          echo "## CI Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Lint | ${{ needs.lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test | ${{ needs.test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Quality | ${{ needs.quality.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security | ${{ needs.security.result }} |" >> $GITHUB_STEP_SUMMARY

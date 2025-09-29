@@ -2,6 +2,10 @@
 .ccache/
 *.cache
 
+# python
+venv/
+.venv/
+
 # OS generated files
 .DS_Store
 .DS_Store?
@@ -37,6 +41,14 @@ target/
 bin/
 obj/
 
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+*.coverage
+coverage.xml
+coverage.json
+
 # Environment files
 .env
 .env.local
@@ -62,10 +74,81 @@ temp/
 *.code-workspace
 .vscode/settings.json
 
+# Testing files and outputs
+.pytest_cache/
+*.pytest_cache
+test_*.tmp
+test-*.tmp
+.tox/
+nosetests.xml
+pytest.xml
+.testmondata
+
+# Python specific
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv*/
+ENV/
+env.bak/
+venv.bak/
+
+# Security and audit files
+.claude/security/scan-results/
+*.scan
+*.audit
+*.sbom.json
+vulnerability-*.json
+security_scan_*.json
+
+# Temporary test directories
+/tmp/*/
+**/tmp/test_*
+**/temp/test_*
+
 # Project specific ignores
-# Add your project-specific files here# Parallel execution temporary files
+# Add your project-specific files here
+
+# Parallel execution temporary files
 *.task
 **/results/task_*
 **/locks/*.lock
 **/.claude/parallel/
 
+# Debug and development files
+debug_*.py
+test_debug_*
+*_debug.log
+
+# Coverage and quality reports
+.coverage.*
+coverage-reports/
+quality-reports/
+.mypy_cache/
+.radon/
+
+# Additional test artifacts
+**/test_*.tmp
+test_debug*
+debug_test*
+*/tmp/test*
+test-results/
+.hypothesis/
+
+# IDE and editor specific files
+*.code-workspace
+.history/
+.vscode/launch.json
+.vscode/tasks.json
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*.rej
+
+# Specific to this project
+.claude/.claude/security-report.md.backup
+.claude/security/scan-results/*.tmp
