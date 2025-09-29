@@ -1,0 +1,55 @@
+# Claude Friends Templates - Python Dependencies
+# Python 3.12+ compatible
+# Last updated: 2025-09-29
+
+# Core Dependencies
+# -----------------
+
+# Type Checking and Validation
+typing_extensions==4.12.2  # For backward compatibility
+pydantic==2.10.5           # Data validation with Python 3.12 support
+dataclasses-json==0.6.7    # JSON serialization for dataclasses
+
+# JSON and Schema Validation
+jsonschema==4.25.1         # JSON schema validation
+
+# CLI Framework
+click==8.1.8               # Command-line interface creation
+
+# Async Support
+aiofiles==24.1.0           # Async file operations
+asyncio-mqtt==0.16.2       # MQTT async client (optional)
+
+# Logging and Monitoring
+structlog==24.4.0          # Structured logging
+python-json-logger==3.2.1  # JSON log formatting
+
+# Utilities
+python-dotenv==1.0.1       # Environment variable management
+
+# Testing and Coverage
+# --------------------
+pytest==8.4.1             # Testing framework
+pytest-cov==6.2.1         # Coverage integration for pytest
+coverage==7.6.9           # Code coverage measurement
+
+# Code Quality and Metrics
+# -------------------------
+radon==6.0.1               # Code complexity metrics and analysis
+xenon==0.9.1               # CI-friendly complexity threshold checker
+mccabe==0.7.0              # Cyclomatic complexity checker
+# flake8-complexity plugin not available - using radon and xenon directly
+
+# Security Tools and SBOM Generation
+# ------------------------------------
+cyclonedx-bom==5.3.0       # Software Bill of Materials (SBOM) generation - CycloneDX standard
+pip-audit==2.8.0           # Vulnerability scanning for Python dependencies
+bandit==1.8.0              # Python security linter for code analysis
+safety==3.6.2              # Safety database checking for vulnerable packages
+
+# API Documentation and OpenAPI
+# ------------------------------
+fastapi==0.115.6           # Modern API framework with automatic OpenAPI documentation
+uvicorn==0.32.1            # ASGI server for FastAPI applications
+openapi-spec-validator==0.7.1  # OpenAPI specification validation
+pyyaml==6.0.2              # YAML parsing for OpenAPI specification files

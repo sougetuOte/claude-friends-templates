@@ -1,0 +1,104 @@
+[run]
+# Source directories to measure
+source = .claude
+
+# Enable branch coverage analysis
+branch = True
+
+# Support for parallel execution
+parallel = True
+
+# Files and directories to exclude from coverage
+omit =
+    # Python cache and compiled files
+    */__pycache__/*
+    *.pyc
+    *.pyo
+    *.pyd
+
+    # Test files (we measure test coverage separately)
+    */tests/*
+    */test_*.py
+    *_test.py
+    */conftest.py
+
+    # Development and build directories
+    */venv/*
+    */node_modules/*
+    */.pytest_cache/*
+    */setup.py
+    */build/*
+    */dist/*
+
+    # Generated and temporary files
+    *.generated.py
+    */migrations/*
+    */locale/*
+    */static/*
+    */media/*
+
+[report]
+# Minimum coverage percentage (adjusted for realistic goals)
+fail_under = 80
+precision = 2
+
+# Report formatting options
+skip_empty = True
+skip_covered = False
+show_missing = True
+sort = Cover
+
+# Exclude patterns for lines that shouldn't count toward coverage
+exclude_lines =
+    # Standard pragmas
+    pragma: no cover
+    pragma: nocover
+
+    # Debug-only code
+    def __repr__
+    if self\.debug
+    if settings\.DEBUG
+
+    # Defensive programming and error handling
+    raise AssertionError
+    raise NotImplementedError
+    raise ValueError.*not implemented
+
+    # Non-runnable code
+    if __name__ == .__main__.:
+    pass
+
+    # Type checking imports and annotations
+    if TYPE_CHECKING:
+    @overload
+    @abstractmethod
+    @abc\.abstractmethod
+
+    # Platform-specific code
+    if sys\.platform
+    if os\.name
+
+    # Development and testing helpers
+    def test_.*
+    class Test.*
+
+    # Logger and CLI-only code patterns
+    logger\.debug
+    print\(.*\)  # Exclude debug prints
+
+    # TODO and placeholder code
+    # TODO:
+    # FIXME:
+    # XXX:
+    raise NotImplementedError
+
+[html]
+directory = htmlcov
+title = Claude Friends Templates Coverage Report
+
+[xml]
+output = coverage.xml
+
+[json]
+output = coverage.json
+pretty_print = True
