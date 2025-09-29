@@ -1,0 +1,1 @@
+"""Claude Friends Templates - Claude Package."""
