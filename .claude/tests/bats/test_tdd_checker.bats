@@ -354,7 +354,7 @@ EOF
     mkdir -p "$TEST_DIR/tests/integration"
     touch "$TEST_DIR/src/lib/config.rs"
     touch "$TEST_DIR/tests/integration/config_test.rs"
-    
+
     run find_test_file "$TEST_DIR/src/lib/config.rs"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "config_test.rs" ]]
@@ -366,7 +366,7 @@ EOF
     mkdir -p "$TEST_DIR/src/test/java/com/example"
     touch "$TEST_DIR/src/main/java/com/example/UserService.java"
     touch "$TEST_DIR/src/test/java/com/example/UserServiceTest.java"
-    
+
     run find_test_file "$TEST_DIR/src/main/java/com/example/UserService.java"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "UserServiceTest.java" ]]
@@ -377,7 +377,7 @@ EOF
     mkdir -p "$TEST_DIR/src" "$TEST_DIR/tests"
     touch "$TEST_DIR/src/calculator.cpp"
     touch "$TEST_DIR/tests/test_calculator.cpp"
-    
+
     run find_test_file "$TEST_DIR/src/calculator.cpp"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "test_calculator.cpp" ]]
@@ -386,9 +386,9 @@ EOF
 @test "find_test_file should find PHP unit test file" {
     # Red Phase: PHP support
     mkdir -p "$TEST_DIR/src" "$TEST_DIR/tests/Unit"
-    touch "$TEST_DIR/src/UserModel.php" 
+    touch "$TEST_DIR/src/UserModel.php"
     touch "$TEST_DIR/tests/Unit/UserModelTest.php"
-    
+
     run find_test_file "$TEST_DIR/src/UserModel.php"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "UserModelTest.php" ]]
@@ -400,7 +400,7 @@ EOF
     touch "$TEST_DIR/src/service.js"
     touch "$TEST_DIR/tests/service.test.js"
     touch "$TEST_DIR/__tests__/service.test.js"
-    
+
     run find_test_file "$TEST_DIR/src/service.js"
     [ "$status" -eq 0 ]
     # Should prefer __tests__ over tests directory
@@ -416,7 +416,7 @@ EOF
     touch "$TEST_DIR/src/original.js"
     touch "$TEST_DIR/__tests__/original.test.js"
     ln -s "$TEST_DIR/src/original.js" "$TEST_DIR/src/symlink.js"
-    
+
     run perform_tdd_check "$TEST_DIR/src/symlink.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "TDD_COMPLIANT" ]]
@@ -426,7 +426,7 @@ EOF
     # Red Phase: Special characters in filenames
     touch "$TEST_DIR/src/my file.js"
     touch "$TEST_DIR/__tests__/my file.test.js"
-    
+
     run perform_tdd_check "$TEST_DIR/src/my file.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "TDD_COMPLIANT" ]]
@@ -437,7 +437,7 @@ EOF
     touch "$TEST_DIR/src/precise.js"
     sleep 0.1
     touch "$TEST_DIR/__tests__/precise.test.js"
-    
+
     run perform_tdd_check "$TEST_DIR/src/precise.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "TDD_COMPLIANT" ]]
@@ -459,7 +459,7 @@ EOF
     echo "# User API" > "$TEST_DIR/docs/design/user_api.md"
     echo "openapi: 3.0.0" > "$TEST_DIR/docs/specs/user_api.yaml"
     echo "syntax proto3;" > "$TEST_DIR/docs/specs/user_api.proto"
-    
+
     run check_design_compliance "$TEST_DIR/src/user_api.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "DESIGN_DOC_FOUND" ]]
@@ -477,7 +477,7 @@ EOF
 - createUser(data: UserData): Promise<User>
 - deleteUser(id: string): Promise<void>
 DESIGN
-    
+
     cat > "$TEST_DIR/src/user_service.js" << 'IMPL'
 class UserService {
     async getUserById(id) { return null; }
@@ -485,7 +485,7 @@ class UserService {
     // Missing: deleteUser method
 }
 IMPL
-    
+
     run check_design_compliance "$TEST_DIR/src/user_service.js"
     [ "$status" -eq 1 ]
     [[ "$output" =~ "MISSING_METHOD.*deleteUser" ]]
@@ -496,7 +496,7 @@ IMPL
     mkdir -p "$TEST_DIR/docs/versions"
     echo "version: 2.0.0" > "$TEST_DIR/docs/versions/api_v2.md"
     echo "// API version: 1.0.0" > "$TEST_DIR/src/api.js"
-    
+
     run check_design_compliance "$TEST_DIR/src/api.js"
     [ "$status" -eq 1 ]
     [[ "$output" =~ "VERSION_MISMATCH" ]]
@@ -512,9 +512,9 @@ paths:
     get:
       operationId: getUserById
 OPENAPI
-    
+
     echo "function getUserById() {}" > "$TEST_DIR/src/users_api.js"
-    
+
     run check_design_compliance "$TEST_DIR/src/users_api.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "OPENAPI_COMPLIANT" ]]
@@ -527,7 +527,7 @@ OPENAPI
 @test "generate_warning should include contextual code snippets" {
     # Red Phase: Enhanced warning details
     echo "function badCode() { /* violation */ }" > "$TEST_DIR/src/bad.js"
-    
+
     run generate_warning "CODE_QUALITY" "$TEST_DIR/src/bad.js" "Poor implementation detected"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "CODE_SNIPPET:" ]]
@@ -554,7 +554,7 @@ OPENAPI
     # Red Phase: Warning aggregation
     generate_warning "TDD_VIOLATION" "$TEST_DIR/src/file1.js" "Issue 1" > /dev/null
     generate_warning "TDD_VIOLATION" "$TEST_DIR/src/file2.js" "Issue 2" > /dev/null
-    
+
     run generate_warning "TDD_VIOLATION" "$TEST_DIR/src/file3.js" "Issue 3"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "AGGREGATED_COUNT: 3" ]]
@@ -568,11 +568,11 @@ OPENAPI
     # Red Phase: Concurrency handling
     export CLAUDE_TOOL="MultiEdit"
     export CLAUDE_FILE_PATHS="$TEST_DIR/src/concurrent1.js $TEST_DIR/src/concurrent2.js"
-    
+
     # Create files concurrently (simulated)
     touch "$TEST_DIR/src/concurrent1.js" "$TEST_DIR/src/concurrent2.js"
     touch "$TEST_DIR/__tests__/concurrent1.test.js" "$TEST_DIR/__tests__/concurrent2.test.js"
-    
+
     run tdd_checker_hook
     [ "$status" -eq 0 ]
     [[ "$output" =~ "CONCURRENCY_HANDLED" ]]
@@ -583,9 +583,9 @@ OPENAPI
     export CLAUDE_IDE="vscode"
     export CLAUDE_TOOL="Edit"
     export CLAUDE_FILE_PATHS="$TEST_DIR/src/ide_test.js"
-    
+
     touch "$TEST_DIR/src/ide_test.js"
-    
+
     run tdd_checker_hook
     [ "$status" -eq 0 ]
     [[ "$output" =~ "IDE_NOTIFICATION_SENT" ]]
@@ -596,10 +596,10 @@ OPENAPI
     mkdir -p "$TEST_DIR/.git/hooks"
     echo '#!/bin/bash' > "$TEST_DIR/.git/hooks/pre-commit"
     chmod +x "$TEST_DIR/.git/hooks/pre-commit"
-    
+
     export CLAUDE_TOOL="Edit"
     export CLAUDE_FILE_PATHS="$TEST_DIR/src/git_test.js"
-    
+
     run tdd_checker_hook
     [ "$status" -eq 0 ]
     [[ "$output" =~ "GIT_HOOKS_COMPATIBLE" ]]
@@ -609,20 +609,20 @@ OPENAPI
     # Red Phase: Performance with many files
     export CLAUDE_TOOL="BatchEdit"
     local files=""
-    
+
     # Create 50 test files
     for i in {1..50}; do
         touch "$TEST_DIR/src/batch_$i.js"
         touch "$TEST_DIR/__tests__/batch_$i.test.js"
         files="$files $TEST_DIR/src/batch_$i.js"
     done
-    
+
     export CLAUDE_FILE_PATHS="$files"
-    
+
     local start_time=$(date +%s.%N)
     run tdd_checker_hook
     local end_time=$(date +%s.%N)
-    
+
     [ "$status" -eq 0 ]
     # Should complete within reasonable time (< 2 seconds for 50 files)
     local duration=$(echo "$end_time - $start_time" | bc -l 2>/dev/null || echo "1.0")
@@ -642,7 +642,7 @@ OPENAPI
     "invalid_syntax": [missing_bracket,
     "warning_threshold": "medium"
 MALFORMED
-    
+
     run load_tdd_checker_config
     [ "$status" -eq 0 ]  # Should handle gracefully
     [[ "$output" =~ "CONFIG_PARSE_ERROR" ]]
@@ -653,14 +653,14 @@ MALFORMED
     # Red Phase: Environment variable precedence
     export TDD_CHECK_ENABLED="false"
     export TDD_WARNING_THRESHOLD="strict"
-    
+
     cat > "$TEST_DIR/.claude/tdd_checker_config.json" << 'CONFIG'
 {
     "check_tdd_compliance": true,
     "warning_threshold": "medium"
 }
 CONFIG
-    
+
     run load_tdd_checker_config
     [ "$status" -eq 0 ]
     [[ "$output" =~ "ENV_OVERRIDE_APPLIED" ]]
@@ -678,7 +678,7 @@ CONFIG
     "ignored_patterns": "not_an_array"
 }
 INVALID
-    
+
     run load_tdd_checker_config
     [ "$status" -eq 1 ]
     [[ "$output" =~ "CONFIG_VALIDATION_FAILED" ]]
@@ -688,16 +688,16 @@ INVALID
 @test "should_ignore_file should handle complex glob patterns" {
     # Red Phase: Advanced pattern matching
     export TDD_IGNORE_PATTERNS="**/*.generated.* **/node_modules/** **/{build,dist}/**"
-    
+
     run should_ignore_file "$TEST_DIR/src/auto.generated.js"
     [ "$status" -eq 0 ]  # Should be ignored
-    
+
     run should_ignore_file "$TEST_DIR/node_modules/lib/index.js"
     [ "$status" -eq 0 ]  # Should be ignored
-    
+
     run should_ignore_file "$TEST_DIR/dist/app.js"
     [ "$status" -eq 0 ]  # Should be ignored
-    
+
     run should_ignore_file "$TEST_DIR/src/regular.js"
     [ "$status" -eq 1 ]  # Should not be ignored
 }
@@ -709,17 +709,17 @@ INVALID
 @test "tdd_checker should recover from temporary file system errors" {
     # Red Phase: Resilience testing
     touch "$TEST_DIR/src/temp_error.js"
-    
+
     # Simulate temporary filesystem issue
     chmod 000 "$TEST_DIR/src"
-    
+
     run perform_tdd_check "$TEST_DIR/src/temp_error.js"
     [ "$status" -eq 3 ]
     [[ "$output" =~ "TEMP_ERROR_DETECTED" ]]
-    
+
     # Restore permissions and retry
     chmod 755 "$TEST_DIR/src"
-    
+
     run perform_tdd_check "$TEST_DIR/src/temp_error.js"
     [ "$status" -eq 2 ]  # Should recover to normal operation
 }
@@ -735,7 +735,7 @@ INVALID
     # Simulate processing of very large files
     dd if=/dev/zero of="$TEST_DIR/src/large_file.js" bs=1M count=10 2>/dev/null
     echo "// Large JavaScript file" >> "$TEST_DIR/src/large_file.js"
-    
+
     run perform_tdd_check "$TEST_DIR/src/large_file.js"
     [ "$status" -ne 137 ]  # Should not be killed by OOM
     [[ "$output" =~ "LARGE_FILE_HANDLED" ]]
@@ -748,14 +748,14 @@ INVALID
 @test "tdd_checker should integrate with ESLint for quality checks" {
     # Red Phase: External tool integration
     echo "function badCode ( ) { var unused = 1 }" > "$TEST_DIR/src/linting.js"
-    
+
     # Simulate ESLint availability
     export PATH="$TEST_DIR/mock_tools:$PATH"
     mkdir -p "$TEST_DIR/mock_tools"
     echo '#!/bin/bash' > "$TEST_DIR/mock_tools/eslint"
     echo 'echo "1:1 error Unexpected token"' >> "$TEST_DIR/mock_tools/eslint"
     chmod +x "$TEST_DIR/mock_tools/eslint"
-    
+
     run perform_tdd_check "$TEST_DIR/src/linting.js"
     [ "$status" -eq 1 ]
     [[ "$output" =~ "LINTING_VIOLATIONS" ]]
@@ -765,11 +765,11 @@ INVALID
     # Red Phase: Coverage integration
     touch "$TEST_DIR/src/coverage.js"
     touch "$TEST_DIR/__tests__/coverage.test.js"
-    
+
     # Mock coverage report
     mkdir -p "$TEST_DIR/coverage"
     echo '{"coverage": 85, "threshold": 80}' > "$TEST_DIR/coverage/coverage-summary.json"
-    
+
     run perform_tdd_check "$TEST_DIR/src/coverage.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "COVERAGE_SUFFICIENT.*85%" ]]
@@ -779,12 +779,12 @@ INVALID
     # Red Phase: Monorepo support
     mkdir -p "$TEST_DIR/packages/"{frontend,backend}"/src"
     mkdir -p "$TEST_DIR/packages/"{frontend,backend}"/__tests__"
-    
+
     echo "export const api = {}" > "$TEST_DIR/packages/frontend/src/api.js"
     echo "test('api exists', () => {})" > "$TEST_DIR/packages/frontend/__tests__/api.test.js"
-    
+
     export CLAUDE_PROJECT_DIR="$TEST_DIR/packages/frontend"
-    
+
     run perform_tdd_check "$TEST_DIR/packages/frontend/src/api.js"
     [ "$status" -eq 0 ]
     [[ "$output" =~ "MONOREPO_CONTEXT_DETECTED" ]]
@@ -798,22 +798,22 @@ INVALID
     # Red Phase: Performance optimization
     touch "$TEST_DIR/src/cached.js"
     touch "$TEST_DIR/__tests__/cached.test.js"
-    
+
     # First run - should populate cache
     local start1=$(date +%s.%N)
     run find_test_file "$TEST_DIR/src/cached.js"
     local end1=$(date +%s.%N)
-    
+
     # Second run - should use cache
     local start2=$(date +%s.%N)
     run find_test_file "$TEST_DIR/src/cached.js"
     local end2=$(date +%s.%N)
-    
+
     [ "$status" -eq 0 ]
     # Second run should be faster (cached)
     local duration1=$(echo "$end1 - $start1" | bc -l 2>/dev/null || echo "1.0")
     local duration2=$(echo "$end2 - $start2" | bc -l 2>/dev/null || echo "1.0")
-    
+
     # Cache should provide speedup
     [[ $(echo "$duration2 < $duration1" | bc -l 2>/dev/null || echo "1") -eq 1 ]]
     [[ "$output" =~ "CACHE_HIT" ]]
@@ -823,14 +823,14 @@ INVALID
     # Red Phase: Deep nesting performance
     local deep_path="$TEST_DIR/very/deep/nested/directory/structure/that/goes/many/levels/down"
     mkdir -p "$deep_path/src" "$deep_path/__tests__"
-    
+
     touch "$deep_path/src/deep.js"
     touch "$deep_path/__tests__/deep.test.js"
-    
+
     local start_time=$(date +%s.%N)
     run find_test_file "$deep_path/src/deep.js"
     local end_time=$(date +%s.%N)
-    
+
     [ "$status" -eq 0 ]
     # Should complete within reasonable time
     local duration=$(echo "$end_time - $start_time" | bc -l 2>/dev/null || echo "1.0")
@@ -840,14 +840,13 @@ INVALID
 # Helper test to verify extended test environment
 @test "extended test environment should support all languages" {
     [ -d "$TEST_DIR" ]
-    
+
     # Verify we can create language-specific directory structures
     mkdir -p "$TEST_DIR/src/main/java/com/example"
     mkdir -p "$TEST_DIR/tests/integration"
     mkdir -p "$TEST_DIR/docs/openapi"
-    
+
     [ -d "$TEST_DIR/src/main/java/com/example" ]
     [ -d "$TEST_DIR/tests/integration" ]
     [ -d "$TEST_DIR/docs/openapi" ]
 }
-
