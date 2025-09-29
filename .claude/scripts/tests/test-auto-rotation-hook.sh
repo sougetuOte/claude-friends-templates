@@ -42,13 +42,13 @@ setup() {
     mkdir -p "$TEST_DIR/.claude/planner"
     mkdir -p "$TEST_DIR/.claude/builder"
     mkdir -p "$TEST_DIR/.claude/scripts"
-    
+
     # Copy necessary scripts
     cp "$SCRIPT_DIR/../rotate-notes.sh" "$TEST_DIR/.claude/scripts/"
     cp "$SCRIPT_DIR/../update-index.sh" "$TEST_DIR/.claude/scripts/"
     cp "$SCRIPT_DIR/../rotation-config.sh" "$TEST_DIR/.claude/scripts/"
     cp "$HOOK_SCRIPT" "$TEST_DIR/.claude/scripts/"
-    
+
     cd "$TEST_DIR"
 }
 
@@ -61,15 +61,15 @@ cleanup() {
 # Test 1: No rotation when under 450 lines
 test_no_rotation_under_threshold() {
     run_test "No rotation when under 450 lines"
-    
+
     # Create notes with 400 lines
     for i in {1..400}; do
         echo "Line $i" >> .claude/planner/notes.md
     done
-    
+
     # Run hook
     output=$(bash .claude/scripts/notes-check-hook.sh 2>&1)
-    
+
     # Check no rotation happened
     if [[ ! "$output" =~ "Auto-rotating" ]]; then
         pass_test
@@ -81,15 +81,15 @@ test_no_rotation_under_threshold() {
 # Test 2: Auto rotation when over 450 lines
 test_auto_rotation_over_threshold() {
     run_test "Auto rotation when over 450 lines"
-    
+
     # Create notes with 451 lines
     for i in {1..451}; do
         echo "Line $i" >> .claude/builder/notes.md
     done
-    
+
     # Run hook
     output=$(bash .claude/scripts/notes-check-hook.sh 2>&1)
-    
+
     # Check rotation happened
     if [[ "$output" =~ "Auto-rotating" ]] && [[ "$output" =~ "Builder" ]]; then
         # Verify archive was created
@@ -111,20 +111,20 @@ test_auto_rotation_over_threshold() {
 # Test 3: Both agents rotation
 test_both_agents_rotation() {
     run_test "Both agents rotation when both exceed threshold"
-    
+
     # Clean previous test files
     rm -rf .claude/planner/archive .claude/builder/archive
     rm -f .claude/planner/notes.md .claude/builder/notes.md
-    
+
     # Create notes for both agents
     for i in {1..460}; do
         echo "Planner line $i" >> .claude/planner/notes.md
         echo "Builder line $i" >> .claude/builder/notes.md
     done
-    
+
     # Run hook
     output=$(bash .claude/scripts/notes-check-hook.sh 2>&1)
-    
+
     # Check both rotations happened
     if [[ "$output" =~ "Planner" ]] && [[ "$output" =~ "Builder" ]]; then
         if [ -d ".claude/planner/archive" ] && [ -d ".claude/builder/archive" ]; then
@@ -141,24 +141,24 @@ test_both_agents_rotation() {
 main() {
     echo "=== Testing Auto-Rotation Hook ==="
     echo
-    
+
     # Setup test environment
     setup
-    
+
     # Run tests
     test_no_rotation_under_threshold
     test_auto_rotation_over_threshold
     test_both_agents_rotation
-    
+
     # Cleanup
     cleanup
-    
+
     # Summary
     echo
     echo "==================================="
     echo -e "Tests run: $TESTS_RUN"
     echo -e "Tests passed: ${GREEN}$TESTS_PASSED${NC}"
-    
+
     if [ "$TESTS_PASSED" -eq "$TESTS_RUN" ]; then
         echo -e "${GREEN}All tests passed!${NC}"
         exit 0

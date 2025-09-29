@@ -24,7 +24,7 @@ This document defines best practices for AI-driven development. By writing code 
    def calculate_discount(user, cart_total):
        """
        Calculate user discount based on loyalty status
-       
+
        Business rules:
        - Gold members: 20% off on orders over $100
        - Silver members: 10% off on orders over $150
@@ -49,7 +49,7 @@ This document defines best practices for AI-driven development. By writing code 
    ```javascript
    // ❌ Bad
    i++; // Increment i by 1
-   
+
    // ❌ Bad
    const users = []; // Array of users
    ```
@@ -153,7 +153,7 @@ describe('UserAuthentication', () => {
   it('should reject login with invalid email format', () => {
     // Test implementation
   });
-  
+
   it('should lock account after 5 failed attempts', () => {
     // Test implementation
   });
@@ -165,7 +165,7 @@ describe('UserAuthentication', () => {
 def test_payment_retry_logic():
     """
     Test that payment system retries failed transactions
-    
+
     Scenario:
     1. First attempt fails with network error
     2. System waits 1 second
@@ -198,14 +198,14 @@ Use the same patterns throughout the codebase:
 class UserRepository:
     def find_by_id(self, user_id: int) -> User:
         pass
-    
+
     def save(self, user: User) -> None:
         pass
 
 class OrderRepository:
     def find_by_id(self, order_id: int) -> Order:
         pass
-    
+
     def save(self, order: Order) -> None:
         pass
 ```

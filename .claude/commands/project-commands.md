@@ -4,7 +4,7 @@
 
 **Purpose**: Comprehensive project status diagnosis
 
-**Usage**: 
+**Usage**:
 ```
 /project:diagnose
 ```
@@ -45,7 +45,7 @@ Recommendation: Complete API design, then generate detailed tasks
 
 **Purpose**: Verify completion of development stage requirements
 
-**Usage**: 
+**Usage**:
 ```
 /project:quality-check
 ```
@@ -82,7 +82,7 @@ Missing items must be completed first.
 
 **Purpose**: Provide specific, actionable next steps based on current project state
 
-**Usage**: 
+**Usage**:
 ```
 /project:next-step
 ```
@@ -104,7 +104,7 @@ Immediate Next Actions:
    - Define all endpoints with request/response schemas
    - Include authentication and error handling
 
-2. Create database design (docs/design/database.md)  
+2. Create database design (docs/design/database.md)
    - Entity relationship diagram
    - Table schemas with constraints
 
@@ -121,6 +121,6 @@ Once design is complete, Agent First will approve progression to task generation
 
 ## Integration Notes
 - These commands work seamlessly with Agent First's guidance system
-- Can be used independently by experienced users who want specific assessments  
+- Can be used independently by experienced users who want specific assessments
 - Integrate with the stage-guard.sh system for consistent evaluation criteria
 - Support both beginners (guided flow) and experts (direct access)

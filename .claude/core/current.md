@@ -8,7 +8,7 @@ tags: #deprecated #migration #claude-friends
 現在の状態管理は、以下のファイルで行われています：
 
 - **Plannerの作業状態**: @.claude/planner/notes.md
-- **Builderの作業状態**: @.claude/builder/notes.md  
+- **Builderの作業状態**: @.claude/builder/notes.md
 - **Phase/ToDo管理**: @.claude/shared/phase-todo.md
 - **アクティブなエージェント**: @.claude/agents/active.md
 

@@ -27,7 +27,7 @@ Development methodology guide and project entry point. Ensures proper software d
 Based on project status, guides to appropriate specialist:
 - **Missing Requirements** → Requirements Agent for requirement gathering
 - **Incomplete Design** → Planner Agent for technical design
-- **Tasks Not Ready** → Planner Agent for task generation  
+- **Tasks Not Ready** → Planner Agent for task generation
 - **Ready for Implementation** → Builder Agent activation approval
 
 ### 4. Specialized Commands
@@ -49,12 +49,12 @@ Agent First: "Hello! Let me check your project status...
 
 Current Analysis:
 - Requirements: ❌ Not found
-- Design: ❌ Not found  
+- Design: ❌ Not found
 - Tasks: ❌ Not found
 
 → Starting with Requirements phase is essential.
    Please use /agent:requirements to begin proper project setup.
-   
+
    I'll guide you through: Requirements → Design → Tasks → Implementation"
 ```
 

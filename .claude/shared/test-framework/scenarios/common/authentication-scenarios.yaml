@@ -11,36 +11,36 @@ scenarios:
       - action: navigate
         target: "/login"
         description: "Navigate to login page"
-      
+
       - action: input
         target: "[data-testid='email']"
         value: "{{valid_email}}"
         description: "Enter valid email"
-      
+
       - action: input
         target: "[data-testid='password']"
         value: "{{valid_password}}"
         description: "Enter valid password"
-      
+
       - action: click
         target: "[data-testid='login-button']"
         description: "Click login button"
-      
+
       - action: wait
         condition: "url_contains"
         value: "/dashboard"
         timeout: 5000
         description: "Wait for redirect to dashboard"
-      
+
       - action: assert
         type: "element_visible"
         target: "[data-testid='user-menu']"
         description: "Verify user menu is visible"
-    
+
     test_data:
       valid_email: "testuser@example.com"
       valid_password: "SecurePassword123!"
-    
+
     expected_outcome:
       - User is redirected to dashboard
       - User session is created
@@ -54,37 +54,37 @@ scenarios:
     steps:
       - action: navigate
         target: "/login"
-      
+
       - action: input
         target: "[data-testid='email']"
         value: "{{valid_email}}"
-      
+
       - action: input
         target: "[data-testid='password']"
         value: "{{invalid_password}}"
-      
+
       - action: click
         target: "[data-testid='login-button']"
-      
+
       - action: assert
         type: "element_visible"
         target: "[data-testid='error-message']"
         description: "Error message should be visible"
-      
+
       - action: assert
         type: "text_contains"
         target: "[data-testid='error-message']"
         value: "Invalid credentials"
-      
+
       - action: assert
         type: "url_contains"
         value: "/login"
         description: "Should remain on login page"
-    
+
     test_data:
       valid_email: "testuser@example.com"
       invalid_password: "WrongPassword"
-    
+
     expected_outcome:
       - Error message is displayed
       - User remains on login page
@@ -98,23 +98,23 @@ scenarios:
     steps:
       - action: navigate
         target: "/login"
-      
+
       - action: click
         target: "[data-testid='login-button']"
         description: "Click login without entering credentials"
-      
+
       - action: assert
         type: "element_has_class"
         target: "[data-testid='email']"
         value: "error"
         description: "Email field should show error state"
-      
+
       - action: assert
         type: "element_has_class"
         target: "[data-testid='password']"
         value: "error"
         description: "Password field should show error state"
-    
+
     expected_outcome:
       - Form validation errors are shown
       - Submit is prevented
@@ -131,21 +131,21 @@ scenarios:
       - action: click
         target: "[data-testid='user-menu']"
         description: "Open user menu"
-      
+
       - action: click
         target: "[data-testid='logout-button']"
         description: "Click logout"
-      
+
       - action: wait
         condition: "url_contains"
         value: "/login"
         timeout: 3000
-      
+
       - action: assert
         type: "element_not_visible"
         target: "[data-testid='user-menu']"
         description: "User menu should not be visible"
-    
+
     expected_outcome:
       - User is redirected to login page
       - Session is destroyed
@@ -159,29 +159,29 @@ scenarios:
     steps:
       - action: navigate
         target: "/login"
-      
+
       - action: click
         target: "[data-testid='forgot-password-link']"
-      
+
       - action: input
         target: "[data-testid='reset-email']"
         value: "{{user_email}}"
-      
+
       - action: click
         target: "[data-testid='send-reset-button']"
-      
+
       - action: assert
         type: "element_visible"
         target: "[data-testid='success-message']"
-      
+
       - action: assert
         type: "text_contains"
         target: "[data-testid='success-message']"
         value: "Reset link sent"
-    
+
     test_data:
       user_email: "testuser@example.com"
-    
+
     expected_outcome:
       - Reset email is sent
       - Success message is displayed
@@ -199,16 +199,16 @@ scenarios:
       - action: click
         target: "[data-testid='protected-action']"
         description: "Attempt action requiring authentication"
-      
+
       - action: wait
         condition: "url_contains"
         value: "/login"
         timeout: 3000
-      
+
       - action: assert
         type: "element_visible"
         target: "[data-testid='session-expired-message']"
-    
+
     expected_outcome:
       - User is redirected to login
       - Session expired message is shown
@@ -222,40 +222,40 @@ scenarios:
     steps:
       - action: navigate
         target: "/login"
-      
+
       - action: input
         target: "[data-testid='email']"
         value: "{{valid_email}}"
-      
+
       - action: input
         target: "[data-testid='password']"
         value: "{{valid_password}}"
-      
+
       - action: click
         target: "[data-testid='remember-me-checkbox']"
-      
+
       - action: click
         target: "[data-testid='login-button']"
-      
+
       - action: wait
         condition: "url_contains"
         value: "/dashboard"
-      
+
       - action: close_browser
         description: "Close and reopen browser"
-      
+
       - action: navigate
         target: "/"
-      
+
       - action: assert
         type: "element_visible"
         target: "[data-testid='user-menu']"
         description: "User should still be logged in"
-    
+
     test_data:
       valid_email: "testuser@example.com"
       valid_password: "SecurePassword123!"
-    
+
     expected_outcome:
       - Persistent cookie is set
       - User remains logged in after browser restart
@@ -270,25 +270,25 @@ scenarios:
       - action: login
         browser: "browser1"
         credentials: "{{user_credentials}}"
-      
+
       - action: login
         browser: "browser2"
         credentials: "{{user_credentials}}"
-      
+
       - action: navigate
         browser: "browser1"
         target: "/dashboard"
-      
+
       - action: assert
         browser: "browser1"
         type: "element_visible"
         target: "[data-testid='session-terminated-message']"
-    
+
     test_data:
       user_credentials:
         email: "testuser@example.com"
         password: "SecurePassword123!"
-    
+
     expected_outcome:
       - Second login invalidates first session
       - First browser shows session terminated message

@@ -3,7 +3,7 @@
 ## 実行内容
 1. 現在のエージェントを確認
 2. 自動的にhandover.mdを作成（Sync Specialist経由）
-3. active.mdを"planner"に更新  
+3. active.mdを"planner"に更新
 4. phase-todo.mdの状態を自動チェック
 5. Plannerの3つの質問を表示
 

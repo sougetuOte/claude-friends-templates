@@ -45,7 +45,7 @@ get_current_agent() {
         echo "none"
         return
     fi
-    
+
     # Extract current agent from active.md
     grep -E "^## Current Agent:" "$ACTIVE_FILE" | sed 's/^## Current Agent: *//' | tr -d ' '
 }
@@ -78,9 +78,9 @@ save_current_agent() {
 detect_agent_switch() {
     local current_agent=$(get_current_agent)
     local previous_agent=$(get_previous_agent)
-    
+
     log_debug "Current agent: $current_agent, Previous agent: $previous_agent"
-    
+
     # Check if switch occurred
     if [ "$current_agent" != "$previous_agent" ] && [ "$current_agent" != "none" ]; then
         log_info "Agent switch detected: from $previous_agent to $current_agent"
@@ -97,21 +97,21 @@ trigger_handover_generation() {
     local from_agent=$1
     local to_agent=$2
     local timestamp=$(date '+%Y%m%d-%H%M%S')
-    
+
     log_info "Triggering handover generation: $from_agent -> $to_agent"
-    
+
     # Call handover generator in background
     (
         "$SCRIPT_DIR/handover-gen.sh" "$from_agent" "$to_agent" "$timestamp" &
         local pid=$!
-        
+
         # Monitor with timeout (30 seconds)
         local count=0
         while kill -0 $pid 2>/dev/null && [ $count -lt 30 ]; do
             sleep 1
             ((count++))
         done
-        
+
         if kill -0 $pid 2>/dev/null; then
             log_error "Handover generation timeout, killing process"
             kill -9 $pid 2>/dev/null
@@ -119,7 +119,7 @@ trigger_handover_generation() {
             log_info "Handover generation completed"
         fi
     ) &
-    
+
     # AI Logger integration
     local handover_file="$HANDOVER_DIR/handover-${timestamp}.md"
     if [ -f "$SCRIPT_DIR/ai-logger-integration.sh" ]; then
@@ -134,14 +134,14 @@ trigger_handover_generation() {
 monitor_agent_switch() {
     local current_agent=$(get_current_agent)
     local previous_agent=$(get_previous_agent)
-    
+
     if detect_agent_switch; then
         # Trigger handover generation asynchronously
         trigger_handover_generation "$previous_agent" "$current_agent"
-        
+
         # Save current agent for next detection
         save_current_agent "$current_agent"
-        
+
         # Update state for next detection
         log_info "Agent switch recorded: from $previous_agent to $current_agent"
     else
@@ -154,16 +154,16 @@ monitor_agent_switch() {
 # ============================
 main() {
     log_info "Sync monitor started"
-    
+
     # Check if active.md exists
     if [ ! -f "$ACTIVE_FILE" ]; then
         log_error "Active agent file not found: $ACTIVE_FILE"
         exit 1
     fi
-    
+
     # Run monitoring
     monitor_agent_switch
-    
+
     log_info "Sync monitor completed"
 }
 

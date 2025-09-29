@@ -40,18 +40,18 @@ handle_error() {
     local exit_code=$1
     local error_msg="$2"
     local context="${3:-unknown}"
-    
+
     log_error "$error_msg (exit code: $exit_code, context: $context)"
-    
+
     # Create emergency handover if main process fails
     create_emergency_handover "$error_msg" "$context"
-    
+
     # Notify user if possible
     notify_user_of_error "$error_msg" "$context"
-    
+
     # Clean up resources
     cleanup_on_error
-    
+
     exit $exit_code
 }
 
@@ -59,10 +59,10 @@ handle_error() {
 handle_timeout() {
     local operation="$1"
     local duration="$2"
-    
+
     log_warn "Operation '$operation' timed out after ${duration}s"
     create_emergency_handover "Timeout during $operation" "timeout"
-    
+
     return 124  # Timeout exit code
 }
 
@@ -70,10 +70,10 @@ handle_timeout() {
 notify_user_of_error() {
     local error_msg="$1"
     local context="$2"
-    
+
     # Ensure memo directory exists
     mkdir -p memo
-    
+
     # Create user-visible error notification
     cat > memo/sync-error.md << EOF
 # Sync Specialist Error Notification
@@ -107,18 +107,18 @@ cleanup_on_error() {
 acquire_lock() {
     local timeout=${1:-10}
     local count=0
-    
+
     while [[ $count -lt $timeout ]]; do
         if (set -C; echo $$ > "$LOCK_FILE") 2>/dev/null; then
             log_debug "Lock acquired: $LOCK_FILE"
             return 0
         fi
-        
+
         sleep 1
         count=$((count + 1))
         log_debug "Waiting for lock... ($count/$timeout)"
     done
-    
+
     log_error "Failed to acquire lock after ${timeout}s"
     return 1
 }
@@ -139,17 +139,17 @@ ensure_memo_dirs() {
 create_emergency_handover() {
     local error_reason="${1:-Unknown error}"
     local context="${2:-unknown}"
-    
+
     log_info "Creating emergency handover due to: $error_reason (context: $context)"
-    
+
     # Acquire lock to prevent concurrent access
     if ! acquire_lock 5; then
         log_error "Could not acquire lock for emergency handover"
         return 1
     fi
-    
+
     ensure_memo_dirs
-    
+
     cat > memo/handover.md << EOF
 # 🚨 EMERGENCY HANDOVER
 
@@ -175,7 +175,7 @@ EOF
         head -20 memo/active.md >> memo/handover.md 2>/dev/null || echo "Could not read active.md"
         echo "\`\`\`" >> memo/handover.md
     fi
-    
+
     if [[ -f memo/phase-todo.md ]]; then
         echo "" >> memo/handover.md
         echo "### Phase TODO" >> memo/handover.md
@@ -183,7 +183,7 @@ EOF
         head -20 memo/phase-todo.md >> memo/handover.md 2>/dev/null || echo "Could not read phase-todo.md"
         echo "\`\`\`" >> memo/handover.md
     fi
-    
+
     cat >> memo/handover.md << EOF
 
 ## 🔧 Recovery Actions Required
@@ -200,7 +200,7 @@ EOF
 ---
 *This emergency handover was generated automatically by the Sync Specialist*
 EOF
-    
+
     release_lock
     log_info "Emergency handover created successfully with recovery code SYNC-$(date +%s)"
 }
@@ -208,7 +208,7 @@ EOF
 # Enhanced create_handover with timeout and error handling
 create_handover_with_fallback() {
     log_info "Creating handover with fallback protection"
-    
+
     # Set up timeout
     (
         sleep $TIMEOUT_DURATION
@@ -218,7 +218,7 @@ create_handover_with_fallback() {
         fi
     ) &
     local timeout_pid=$!
-    
+
     # Try to create normal handover
     if create_handover; then
         kill $timeout_pid 2>/dev/null || true
@@ -229,7 +229,7 @@ create_handover_with_fallback() {
         local exit_code=$?
         kill $timeout_pid 2>/dev/null || true
         wait $timeout_pid 2>/dev/null || true
-        
+
         log_error "Normal handover creation failed (exit code: $exit_code)"
         create_emergency_handover "Normal handover creation failed" "fallback"
         return $exit_code
@@ -239,14 +239,14 @@ create_handover_with_fallback() {
 # Handover quality validation
 validate_handover() {
     local handover_file="memo/handover.md"
-    
+
     if [[ ! -f "$handover_file" ]]; then
         log_error "Handover file does not exist: $handover_file"
         return 1
     fi
-    
+
     local validation_errors=0
-    
+
     # Check for minimum required sections
     local required_sections=("Current Status" "Next Steps" "Tasks")
     for section in "${required_sections[@]}"; do
@@ -255,20 +255,20 @@ validate_handover() {
             validation_errors=$((validation_errors + 1))
         fi
     done
-    
+
     # Check file size (should not be too small)
     local file_size=$(wc -c < "$handover_file")
     if [[ $file_size -lt 200 ]]; then
         log_warn "Handover file seems too small (${file_size} bytes)"
         validation_errors=$((validation_errors + 1))
     fi
-    
+
     # Check for emergency handover markers
     if grep -q "EMERGENCY HANDOVER" "$handover_file"; then
         log_warn "Handover is an emergency handover - manual review required"
         validation_errors=$((validation_errors + 1))
     fi
-    
+
     if [[ $validation_errors -eq 0 ]]; then
         log_info "Handover validation passed"
         return 0
@@ -281,21 +281,21 @@ validate_handover() {
 # Agent switch detection
 detect_agent_switch() {
     local switch_file=".claude/last_agent_switch"
-    
+
     if [[ ! -f "$switch_file" ]]; then
         log_debug "No agent switch file found"
         return 1
     fi
-    
+
     local switch_timestamp
     switch_timestamp=$(grep "timestamp:" "$switch_file" 2>/dev/null | cut -d: -f2) || {
         log_warn "Could not read switch timestamp"
         return 1
     }
-    
+
     local current_timestamp=$(date +%s)
     local time_diff=$((current_timestamp - switch_timestamp))
-    
+
     # Consider switch recent if within last 30 seconds
     if [[ $time_diff -le 30 ]]; then
         log_info "Recent agent switch detected (${time_diff}s ago)"
@@ -308,20 +308,20 @@ detect_agent_switch() {
 
 create_handover() {
     log_info "Creating handover document"
-    
+
     # Acquire lock to prevent concurrent access
     if ! acquire_lock; then
         log_error "Could not acquire lock for handover creation"
         return 1
     fi
-    
+
     ensure_memo_dirs
-    
+
     # Extract current status from active.md with error handling
     local current_phase="unknown"
     local current_agent="unknown"
     local current_progress="unknown"
-    
+
     if [[ -f memo/active.md ]]; then
         current_phase=$(grep -i "phase:" memo/active.md 2>/dev/null | head -1 | cut -d: -f2- | xargs) || {
             log_warn "Could not extract phase from active.md"
@@ -338,7 +338,7 @@ create_handover() {
     else
         log_warn "active.md not found - using default values"
     fi
-    
+
     # Create handover document
     cat > memo/handover.md << EOF
 # 🎯 Project Handover
@@ -350,7 +350,7 @@ create_handover() {
 
 ## 📊 Current Status
 - **Phase**: $current_phase
-- **Agent**: $current_agent  
+- **Agent**: $current_agent
 - **Progress**: $current_progress
 - **Last Update**: $(date '+%Y-%m-%d %H:%M:%S')
 
@@ -396,7 +396,7 @@ EOF
 EOF
 
     release_lock
-    
+
     # Validate the created handover
     if validate_handover; then
         log_info "Handover created and validated successfully"
@@ -443,19 +443,19 @@ show_status() {
     echo "Lock File: $LOCK_FILE"
     echo "Error Log: $ERROR_LOG"
     echo
-    
+
     if [[ -f "$LOCK_FILE" ]]; then
         echo "Status: LOCKED (PID: $(cat "$LOCK_FILE" 2>/dev/null || echo "unknown"))"
     else
         echo "Status: Available"
     fi
-    
+
     if [[ -f memo/handover.md ]]; then
         echo "Last Handover: $(stat -c %y memo/handover.md 2>/dev/null || echo "unknown")"
     else
         echo "Last Handover: None"
     fi
-    
+
     if [[ -f "$ERROR_LOG" ]] && [[ -s "$ERROR_LOG" ]]; then
         echo
         echo "Recent Errors:"
@@ -467,10 +467,10 @@ show_status() {
 main() {
     local command="${1:-help}"
     local exit_code=0
-    
+
     # Ensure error log directory exists
     mkdir -p "$(dirname "$ERROR_LOG")"
-    
+
     case "$command" in
         "create_handover")
             create_handover || exit_code=$?
@@ -494,7 +494,7 @@ main() {
             show_help
             ;;
     esac
-    
+
     return $exit_code
 }
 
@@ -508,27 +508,27 @@ trap 'handle_timeout "sync-monitor" "$TIMEOUT_DURATION"' TERM
 rotate_error_log_if_needed() {
     local max_size_mb=10
     local keep_files=5
-    
+
     if [[ ! -f "$ERROR_LOG" ]]; then
         log_debug "Error log does not exist, no rotation needed"
         return 0
     fi
-    
+
     local file_size_mb=$(( $(stat -c%s "$ERROR_LOG" 2>/dev/null || echo 0) / 1024 / 1024 ))
-    
+
     if [[ $file_size_mb -gt $max_size_mb ]]; then
         log_info "Rotating error log (${file_size_mb}MB > ${max_size_mb}MB)"
-        
+
         # Rotate existing logs
         for i in $(seq $((keep_files - 1)) -1 1); do
             if [[ -f "${ERROR_LOG}.$i" ]]; then
                 mv "${ERROR_LOG}.$i" "${ERROR_LOG}.$((i + 1))"
             fi
         done
-        
+
         # Move current log to .1
         mv "$ERROR_LOG" "${ERROR_LOG}.1"
-        
+
         # Create new log file
         touch "$ERROR_LOG"
         log_info "Error log rotated successfully"
@@ -542,11 +542,11 @@ rotate_error_log_if_needed() {
 # Fallback handover creation
 create_fallback_handover() {
     local failure_reason="${1:-Unknown failure}"
-    
+
     log_info "Creating fallback handover due to: $failure_reason"
-    
+
     ensure_memo_dirs
-    
+
     cat > memo/handover-fallback.md << EOF
 # 🔄 FALLBACK HANDOVER
 
@@ -587,7 +587,7 @@ EOF
 # Concurrent access protection
 check_concurrent_access() {
     local lock_file="${1:-$LOCK_FILE}"
-    
+
     if [[ -f "$lock_file" ]]; then
         local lock_pid
         lock_pid=$(cat "$lock_file" 2>/dev/null || echo "unknown")
@@ -602,22 +602,22 @@ check_concurrent_access() {
 # Recovery mechanism after error
 attempt_recovery_after_error() {
     local error_context="${1:-unknown_context}"
-    
+
     log_info "Attempting recovery after error in context: $error_context"
-    
+
     # Try to clean up any stale resources
     cleanup_on_error
-    
+
     # Try to create a basic handover if possible
     if create_fallback_handover "Recovery attempt from $error_context"; then
         log_info "Recovery handover created successfully"
     else
         log_error "Recovery handover creation also failed"
     fi
-    
+
     # Log recovery attempt
     echo "[RECOVERY] $(date '+%Y-%m-%d %H:%M:%S') Attempted recovery from $error_context" >> "$ERROR_LOG"
-    
+
     log_info "Recovery attempt completed for context: $error_context"
     return 0
 }
@@ -625,17 +625,17 @@ attempt_recovery_after_error() {
 # Dependency validation
 validate_dependencies() {
     log_info "Validating system dependencies"
-    
+
     local missing_deps=()
     local warnings=0
-    
+
     # Check basic shell commands
     for cmd in "date" "cat" "grep" "head" "tail" "mkdir" "touch"; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
             missing_deps+=("$cmd")
         fi
     done
-    
+
     # Check optional but recommended commands
     for cmd in "git" "jq"; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
@@ -643,18 +643,18 @@ validate_dependencies() {
             warnings=$((warnings + 1))
         fi
     done
-    
+
     if [[ ${#missing_deps[@]} -gt 0 ]]; then
         log_error "Missing required dependencies: ${missing_deps[*]}"
         return 1
     fi
-    
+
     if [[ $warnings -gt 0 ]]; then
         log_warn "Dependency validation completed with $warnings warnings"
     else
         log_info "All dependencies validated successfully"
     fi
-    
+
     return 0
 }
 

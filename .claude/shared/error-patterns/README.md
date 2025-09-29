@@ -63,7 +63,7 @@ Each error pattern follows this structure:
    ```bash
    # Search by error message
    grep -r "error message" .claude/shared/error-patterns/
-   
+
    # Search by category
    ls .claude/shared/error-patterns/categories/runtime/
    ```

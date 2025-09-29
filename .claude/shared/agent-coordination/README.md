@@ -77,12 +77,12 @@ shared_context:
     name: "Project Name"
     tech_stack: ["Python", "React", "PostgreSQL"]
     constraints: ["No external APIs", "Mobile-first"]
-  
+
   current_state:
     completed_tasks: ["task-1", "task-2"]
     active_branches: ["feature/auth", "feature/ui"]
     blockers: []
-  
+
   decisions:
     - id: "arch-001"
       decision: "Use microservices"
@@ -94,9 +94,9 @@ shared_context:
 
 Before optimization:
 ```markdown
-The user wants to implement a authentication system. They mentioned they prefer JWT tokens. 
-The system should support email and OAuth login. We discussed using bcrypt for password 
-hashing. The user also wants rate limiting on login attempts. They mentioned they want 
+The user wants to implement a authentication system. They mentioned they prefer JWT tokens.
+The system should support email and OAuth login. We discussed using bcrypt for password
+hashing. The user also wants rate limiting on login attempts. They mentioned they want
 the system to be scalable...
 ```
 
@@ -119,17 +119,17 @@ priority_levels:
     - Current task requirements
     - Blocking issues
     - Security constraints
-  
+
   high:
     - Architecture decisions
     - Technology choices
     - User preferences
-  
+
   medium:
     - Performance goals
     - Future considerations
     - Nice-to-have features
-  
+
   low:
     - Historical context
     - Resolved issues
@@ -161,26 +161,26 @@ execution_phases:
       - task: "Database Schema"
         agent: builder_1
         estimated_time: 30m
-      
+
       - task: "UI Components"
         agent: builder_2
         estimated_time: 45m
-      
+
       - task: "Testing Framework"
         agent: builder_3
         estimated_time: 20m
-  
+
   phase_2:
     depends_on: ["Database Schema"]
     parallel:
       - task: "Authentication Module"
         agent: builder_1
         estimated_time: 60m
-      
+
       - task: "API Endpoints"
         agent: builder_2
         estimated_time: 40m
-  
+
   phase_3:
     depends_on: ["Authentication Module", "API Endpoints", "UI Components"]
     task: "User Dashboard"

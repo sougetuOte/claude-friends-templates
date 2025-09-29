@@ -8,7 +8,7 @@
    ```bash
    # Search by error message
    python .claude/shared/error-patterns/search-patterns.py "TypeError"
-   
+
    # Search with filters
    python .claude/shared/error-patterns/search-patterns.py -c runtime -l python
    ```
@@ -74,7 +74,7 @@ graph TD
    cd .claude/shared/error-patterns/categories/[category]/
    # or
    cd .claude/shared/error-patterns/languages/[language]/
-   
+
    # Create new pattern file
    touch new-error-pattern.json
    ```

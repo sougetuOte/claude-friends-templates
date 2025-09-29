@@ -144,7 +144,7 @@ if [ "$exit_code" != "0" ] && [ -n "$output" ]; then
                 "context": "Error occurred during operation"
             }
         }' 2>/dev/null)
-    
+
     if [ -n "$error_context" ]; then
         echo "$error_context" >> "$AI_LOG_FILE"
     fi

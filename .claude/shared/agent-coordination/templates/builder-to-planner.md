@@ -15,7 +15,7 @@ implemented:
   - feature: "{feature_name}"
     location: "{file:line}"
     type: "new|modified|refactored"
-    
+
   - feature: "{feature_name}"
     location: "{file:line}"
     deviation: "{if_different_from_plan}"
@@ -57,11 +57,11 @@ context_updates:
   new_dependencies:
     - name: "{dependency}"
       reason: "{why_added}"
-      
+
   modified_files:
     - path: "{file_path}"
       change_type: "structure|api|logic"
-      
+
   learned_constraints:
     - "{new_constraint_discovered}"
 ```
@@ -74,7 +74,7 @@ recommendations:
     - action: "{what_should_be_done_next}"
       reason: "{why_its_important}"
       estimated_effort: "{time_estimate}"
-      
+
   future_considerations:
     - "{thing_to_keep_in_mind}"
 ```
@@ -87,7 +87,7 @@ parallel_tasks:
     independent: true
     estimated_effort: "{time}"
     prerequisites: []
-    
+
   - task: "{task_description}"
     independent: false
     depends_on: ["{task_id}"]
@@ -102,7 +102,7 @@ performance:
   code_quality:
     lint_issues: {number}
     complexity: "{metric}"
-    
+
 lines_changed:
   added: {number}
   modified: {number}

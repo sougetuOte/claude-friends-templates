@@ -44,21 +44,21 @@ const { UserService } = require('../src/services/user-service');
 
 describe('UserService', () => {
   let userService;
-  
+
   beforeEach(() => {
     userService = new UserService();
   });
-  
+
   test('should create user successfully', async () => {
     // Arrange
     const userData = {
       email: 'test@example.com',
       name: 'Test User'
     };
-    
+
     // Act
     const user = await userService.createUser(userData);
-    
+
     // Assert
     expect(user).toHaveProperty('id');
     expect(user.email).toBe(userData.email);
@@ -77,17 +77,17 @@ from src.services.user_service import UserService
 class TestUserService(unittest.TestCase):
     def setUp(self):
         self.user_service = UserService()
-    
+
     def test_create_user_success(self):
         # Arrange
         user_data = {
             'email': 'test@example.com',
             'name': 'Test User'
         }
-        
+
         # Act
         user = self.user_service.create_user(user_data)
-        
+
         # Assert
         self.assertIsNotNone(user['id'])
         self.assertEqual(user['email'], user_data['email'])
@@ -156,9 +156,9 @@ jest.mock('../src/services/email-service');
 test('sends email on user creation', async () => {
   const { EmailService } = require('../src/services/email-service');
   EmailService.send = jest.fn().mockResolvedValue(true);
-  
+
   await userService.createUser(userData);
-  
+
   expect(EmailService.send).toHaveBeenCalledWith(
     expect.objectContaining({
       to: userData.email,
@@ -180,7 +180,7 @@ test('GET /api/users', async () => {
     .get('/api/users')
     .expect('Content-Type', /json/)
     .expect(200);
-  
+
   expect(response.body).toHaveProperty('users');
   expect(Array.isArray(response.body.users)).toBe(true);
 });
@@ -194,9 +194,9 @@ test('GET /api/users', async () => {
 test('calculates discount correctly', () => {
   const price = 100;
   const discountPercent = 20;
-  
+
   const discounted = calculateDiscount(price, discountPercent);
-  
+
   expect(discounted).toBe(80); // This will fail initially
 });
 ```
@@ -216,7 +216,7 @@ function calculateDiscount(price, discountPercent) {
   if (price < 0 || discountPercent < 0 || discountPercent > 100) {
     throw new Error('Invalid input');
   }
-  
+
   const discountAmount = price * (discountPercent / 100);
   return Number((price - discountAmount).toFixed(2));
 }

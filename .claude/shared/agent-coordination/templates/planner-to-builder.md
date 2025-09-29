@@ -40,7 +40,7 @@ steps:
     location: "{where}"
     details: "{only_if_complex}"
     test_first: true|false
-    
+
   - id: "step_2"
     action: "{verb} {what}"
     depends_on: ["step_1"]

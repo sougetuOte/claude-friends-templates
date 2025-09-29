@@ -33,11 +33,11 @@ log_error() {
 # 1. Sync Specialistによる自動handover作成
 create_automatic_handover() {
     log_info "Creating automatic handover from $PREVIOUS_AGENT to $CURRENT_AGENT"
-    
+
     if [[ -x "$SYNC_MONITOR" ]]; then
         # Sync Specialistを呼び出して自動的にhandoverを作成
         "$SYNC_MONITOR" create_handover_with_fallback
-        
+
         if [[ $? -eq 0 ]]; then
             log_info "Handover created successfully"
         else
@@ -76,13 +76,13 @@ EOF
 # 2. Phase-ToDo自動更新
 update_phase_todo() {
     log_info "Updating phase-todo.md with current task status"
-    
+
     if [[ ! -f "$PHASE_TODO" ]]; then
         log_error "Phase-todo.md not found, creating new one"
         create_initial_phase_todo
         return
     }
-    
+
     # タスクステータスの自動更新ロジック
     # Builderからの引き継ぎの場合、完了タスクをマーク
     if [[ "$PREVIOUS_AGENT" == "builder" ]]; then
@@ -91,7 +91,7 @@ update_phase_todo() {
         echo "" >> "$PHASE_TODO"
         echo "## Last Update: $SWITCH_TIME by $PREVIOUS_AGENT" >> "$PHASE_TODO"
     fi
-    
+
     log_info "Phase-todo.md updated"
 }
 
@@ -120,10 +120,10 @@ EOF
 # 3. ADR自動記録（重要な技術的決定があった場合）
 check_and_create_adr() {
     log_info "Checking for technical decisions requiring ADR"
-    
+
     # Builder's notes.mdから技術的決定を検出
     BUILDER_NOTES="$PROJECT_ROOT/.claude/builder/notes.md"
-    
+
     if [[ -f "$BUILDER_NOTES" ]]; then
         # "Decision:", "Decided:", "選択:" などのキーワードを検索
         if grep -qi "decision:\|decided:\|選択:\|決定:" "$BUILDER_NOTES"; then
@@ -136,12 +136,12 @@ check_and_create_adr() {
 # ADRドラフト作成
 create_adr_draft() {
     mkdir -p "$ADR_DIR"
-    
+
     # 次のADR番号を決定
     NEXT_NUM=$(find "$ADR_DIR" -name "ADR-*.md" | wc -l | xargs -I {} expr {} + 1)
     NEXT_NUM=$(printf "%03d" $NEXT_NUM)
     ADR_FILE="$ADR_DIR/ADR-${NEXT_NUM}-draft.md"
-    
+
     cat > "$ADR_FILE" << EOF
 # ADR-${NEXT_NUM}: [Decision Title - DRAFT]
 
@@ -166,16 +166,16 @@ Agent: $PREVIOUS_AGENT
 ---
 *Draft ADR auto-generated during agent switch*
 EOF
-    
+
     log_info "ADR draft created: $ADR_FILE"
 }
 
 # 4. エージェント切り替え記録
 record_agent_switch() {
     local switch_log="$PROJECT_ROOT/.claude/agent-switches.log"
-    
+
     echo "[$SWITCH_TIME] $PREVIOUS_AGENT -> $CURRENT_AGENT" >> "$switch_log"
-    
+
     # 統計情報の更新
     update_agent_statistics
 }
@@ -183,7 +183,7 @@ record_agent_switch() {
 # エージェント使用統計
 update_agent_statistics() {
     local stats_file="$PROJECT_ROOT/.claude/agent-stats.json"
-    
+
     # 簡易的な統計更新（実際にはjqなどを使用）
     if [[ ! -f "$stats_file" ]]; then
         cat > "$stats_file" << EOF
@@ -200,11 +200,11 @@ EOF
 check_for_interrupt() {
     # 短時間での頻繁な切り替えを検出
     local switch_log="$PROJECT_ROOT/.claude/agent-switches.log"
-    
+
     if [[ -f "$switch_log" ]]; then
         # 最後の5分間の切り替え回数をカウント
         recent_switches=$(tail -10 "$switch_log" | grep "$(date '+%Y-%m-%d %H:')" | wc -l)
-        
+
         if [[ $recent_switches -gt 3 ]]; then
             log_info "Frequent agent switches detected - possible interrupt scenario"
             create_interrupt_handover
@@ -215,7 +215,7 @@ check_for_interrupt() {
 # 割り込みhandover作成
 create_interrupt_handover() {
     local interrupt_file="$HANDOVER_DIR/handover-interrupt-$(date '+%Y%m%d-%H%M%S').md"
-    
+
     cat > "$interrupt_file" << EOF
 # Interrupt Handover
 
@@ -238,7 +238,7 @@ create_interrupt_handover() {
 ---
 *Auto-generated interrupt handover*
 EOF
-    
+
     log_info "Interrupt handover created: $interrupt_file"
 }
 
@@ -246,29 +246,29 @@ EOF
 main() {
     log_info "=== Agent Switch Hook Started ==="
     log_info "Previous: $PREVIOUS_AGENT, Current: $CURRENT_AGENT"
-    
+
     # エージェント切り替えが実際に発生した場合のみ処理
     if [[ "$PREVIOUS_AGENT" != "none" ]] && [[ "$PREVIOUS_AGENT" != "$CURRENT_AGENT" ]]; then
         # 1. 自動handover作成
         create_automatic_handover
-        
+
         # 2. Phase-ToDo更新
         update_phase_todo
-        
+
         # 3. ADRチェック
         check_and_create_adr
-        
+
         # 4. 切り替え記録
         record_agent_switch
-        
+
         # 5. 割り込みチェック
         check_for_interrupt
-        
+
         log_info "=== Agent Switch Hook Completed ==="
     else
         log_info "No actual agent switch detected, skipping automation"
     fi
-    
+
     exit 0
 }
 

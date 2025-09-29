@@ -26,32 +26,32 @@ jobs:
       matrix:
         node-version: [16.x, 18.x, 20.x]
         python-version: [3.8, 3.9, 3.10]
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
-    
+
     - name: Install dependencies
       run: |
         npm ci
         pip install -r requirements.txt
-    
+
     - name: Run unit tests
       run: |
         npm run test:unit
         python -m pytest tests/unit/
-    
+
     - name: Upload coverage
       uses: codecov/codecov-action@v3
       with:
@@ -63,7 +63,7 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     needs: unit-tests
-    
+
     services:
       postgres:
         image: postgres:14
@@ -76,7 +76,7 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-      
+
       redis:
         image: redis:7
         options: >-
@@ -86,15 +86,15 @@ jobs:
           --health-retries 5
         ports:
           - 6379:6379
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up test environment
       run: |
         cp .env.test .env
         docker-compose up -d
-    
+
     - name: Run integration tests
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
@@ -107,23 +107,23 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     needs: integration-tests
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
-    
+
     - name: Install Playwright
       run: |
         npm ci
         npx playwright install --with-deps
-    
+
     - name: Run E2E tests
       run: npm run test:e2e
-    
+
     - name: Upload test artifacts
       if: failure()
       uses: actions/upload-artifact@v3
@@ -153,12 +153,12 @@ jobs:
         include:
           - os: ubuntu-latest
             test-suite: performance
-    
+
     runs-on: ${{ matrix.os }}
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
@@ -167,11 +167,11 @@ jobs:
           ~/.cache/pip
           ~/.cache/playwright
         key: ${{ runner.os }}-deps-${{ hashFiles('**/package-lock.json', '**/requirements.txt') }}
-    
+
     - name: Run ${{ matrix.test-suite }} tests
       run: |
         npm run test:${{ matrix.test-suite }}
-    
+
     - name: Performance metrics
       if: matrix.test-suite == 'performance'
       uses: benchmark-action/github-action-benchmark@v1
@@ -268,12 +268,12 @@ test-report:
 // Jenkinsfile
 pipeline {
     agent any
-    
+
     environment {
         NODE_VERSION = '18'
         PYTHON_VERSION = '3.10'
     }
-    
+
     stages {
         stage('Setup') {
             steps {
@@ -285,7 +285,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
                 sh '''
@@ -294,7 +294,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Parallel Tests') {
             parallel {
                 stage('Unit Tests') {
@@ -303,14 +303,14 @@ pipeline {
                         junit 'reports/unit-tests.xml'
                     }
                 }
-                
+
                 stage('Integration Tests') {
                     steps {
                         sh 'npm run test:integration'
                         junit 'reports/integration-tests.xml'
                     }
                 }
-                
+
                 stage('Lint & Security') {
                     steps {
                         sh '''
@@ -322,7 +322,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('E2E Tests') {
             when {
                 branch 'main'
@@ -331,7 +331,7 @@ pipeline {
                 sh 'npm run test:e2e'
             }
         }
-        
+
         stage('Performance Tests') {
             when {
                 expression { params.RUN_PERFORMANCE_TESTS }
@@ -349,7 +349,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             archiveArtifacts artifacts: '**/test-results/**', allowEmptyArchive: true
@@ -362,7 +362,7 @@ pipeline {
                 reportName: 'Coverage Report'
             ])
         }
-        
+
         failure {
             emailext(
                 subject: "Build Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",

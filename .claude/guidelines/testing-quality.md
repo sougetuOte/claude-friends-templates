@@ -23,7 +23,7 @@
 ### Test Standards
 - **Test Framework**: Use unified framework for the project
 - **Coverage Target**: 80%+ for important features (improve gradually)
-- **Recommended Test Cases**: 
+- **Recommended Test Cases**:
   - Edge cases (boundary values, abnormal values)
   - Error handling
   - Corresponding tests for new features (create first after TDD mastery)

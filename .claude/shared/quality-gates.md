@@ -88,7 +88,7 @@ coverage:
   line_coverage: 80%      # 行カバレッジ
   branch_coverage: 75%    # 分岐カバレッジ
   function_coverage: 85%  # 関数カバレッジ
-  
+
   per_file:
     minimum: 60%         # ファイル単位の最小値
     new_code: 90%        # 新規コードの要求値
@@ -101,7 +101,7 @@ quality:
   cognitive_complexity: 15     # 認知的複雑度
   duplication: 5%             # 重複率
   maintainability_index: 20   # 保守性指標
-  
+
   naming:
     min_length: 3
     max_length: 50
@@ -114,7 +114,7 @@ security:
   vulnerability_scan: true
   dependency_check: true
   secret_detection: true
-  
+
   severity_threshold:
     critical: 0    # 許容数
     high: 0
@@ -243,7 +243,7 @@ exceptions:
   - file: "src/legacy/old-module.js"
     reason: "レガシーコード、段階的改善中"
     until: "2025-12-31"
-    
+
   - pattern: "**/generated/**"
     reason: "自動生成コード"
     permanent: true

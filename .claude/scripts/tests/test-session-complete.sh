@@ -33,12 +33,12 @@ setup_test_env() {
     mkdir -p "$TEST_DIR/.claude"
     mkdir -p "$TEST_DIR/project"
     cd "$TEST_DIR/project"
-    
+
     # Initialize git repo for testing
     git init --quiet
     git config user.email "test@example.com"
     git config user.name "Test User"
-    
+
     # Create some test files
     echo "test content" > file1.txt
     echo "more content" > file2.txt
@@ -54,12 +54,12 @@ teardown_test_env() {
 run_test() {
     local test_name="$1"
     local test_function="$2"
-    
+
     echo -e "${YELLOW}Running test: $test_name${NC}"
     TOTAL_TESTS=$((TOTAL_TESTS + 1))
-    
+
     setup_test_env
-    
+
     if $test_function; then
         echo -e "${GREEN}✓ PASS: $test_name${NC}"
         PASSED_TESTS=$((PASSED_TESTS + 1))
@@ -67,7 +67,7 @@ run_test() {
         echo -e "${RED}✗ FAIL: $test_name${NC}"
         FAILED_TESTS=$((FAILED_TESTS + 1))
     fi
-    
+
     teardown_test_env
     echo
 }
@@ -106,9 +106,9 @@ test_records_git_status() {
     # Make changes to test
     echo "new content" > file3.txt
     git add file3.txt
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_contains "$LOG_FILE" "Git Status:" &&
     assert_file_contains "$LOG_FILE" "Changed files:" &&
     assert_file_contains "$LOG_FILE" "Current branch:"
@@ -122,9 +122,9 @@ test_generates_work_summary() {
 [$(date '+%Y-%m-%d %H:%M:%S')] Tool: Write | File: new.py | Size: 512
 [$(date '+%Y-%m-%d %H:%M:%S')] Tool: Bash | Command: npm test
 EOF
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_exists "$SUMMARY_FILE" &&
     assert_file_contains "$SUMMARY_FILE" "## Work Summary" &&
     assert_file_contains "$SUMMARY_FILE" "### Files Modified" &&
@@ -135,9 +135,9 @@ test_creates_handover_notes() {
     # Setup context
     echo "changed" >> file1.txt
     git add file1.txt
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_exists "$HANDOVER_FILE" &&
     assert_file_contains "$HANDOVER_FILE" "## Next Session Handover" &&
     assert_file_contains "$HANDOVER_FILE" "### Uncommitted Changes" &&
@@ -150,9 +150,9 @@ test_handles_no_git_repo() {
     rm -rf project
     mkdir plain_dir
     cd plain_dir
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_exists "$LOG_FILE" &&
     assert_file_contains "$LOG_FILE" "Not a git repository"
 }
@@ -162,13 +162,13 @@ test_analyzes_commit_patterns() {
     echo "feat: add feature" > feature.txt
     git add feature.txt
     git commit -m "feat: add new feature" --quiet
-    
+
     echo "fix: bug fix" > bugfix.txt
     git add bugfix.txt
     git commit -m "fix: resolve issue #123" --quiet
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_contains "$SUMMARY_FILE" "### Recent Commits" &&
     assert_file_contains "$SUMMARY_FILE" "feat:" &&
     assert_file_contains "$SUMMARY_FILE" "fix:"
@@ -184,9 +184,9 @@ test_tracks_task_progress() {
 - [ ] Task 3 🟡
 - [ ] Task 4 🔴
 EOF
-    
+
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_contains "$SUMMARY_FILE" "### Task Progress" &&
     assert_file_contains "$SUMMARY_FILE" "Completed: 2" &&
     assert_file_contains "$SUMMARY_FILE" "In Progress: 1"
@@ -195,7 +195,7 @@ EOF
 test_generates_time_report() {
     # Test session duration tracking
     HOME="$TEST_DIR" bash "$SCRIPT_PATH"
-    
+
     assert_file_contains "$SUMMARY_FILE" "### Session Duration" &&
     assert_file_contains "$SUMMARY_FILE" "Start time:" &&
     assert_file_contains "$SUMMARY_FILE" "End time:"
@@ -210,7 +210,7 @@ main() {
     echo "Session Complete Hook Test Suite (TDD Red Phase)"
     echo "==============================================================================="
     echo
-    
+
     # Run all tests
     run_test "Creates session log" test_creates_session_log
     run_test "Records git status" test_records_git_status
@@ -220,7 +220,7 @@ main() {
     run_test "Analyzes commit patterns" test_analyzes_commit_patterns
     run_test "Tracks task progress" test_tracks_task_progress
     run_test "Generates time report" test_generates_time_report
-    
+
     # Test Summary
     echo "==============================================================================="
     echo "Test Results Summary"
@@ -229,7 +229,7 @@ main() {
     echo -e "${GREEN}Passed: $PASSED_TESTS${NC}"
     echo -e "${RED}Failed: $FAILED_TESTS${NC}"
     echo
-    
+
     if [[ $FAILED_TESTS -gt 0 ]]; then
         echo -e "${RED}RED PHASE: Tests failing as expected - ready for implementation${NC}"
         exit 1

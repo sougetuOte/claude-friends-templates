@@ -2,7 +2,7 @@
 +++ .claude/hooks/common/hook-common.sh
 @@ -99,9 +99,14 @@ get_agent_info() {
      fi
- 
+
      # Extract prompt from JSON
 -    local prompt
 -    prompt=$(echo "$json_input" | grep -oE '"prompt"[[:space:]]*:[[:space:]]*"[^"]*"' | \
@@ -15,7 +15,7 @@
 +        prompt=$(printf '%s' "$json_input" | grep -oE '"prompt"[[:space:]]*:[[:space:]]*"[^"]*"' | \
 +                 sed 's/.*"prompt"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' 2>/dev/null) || prompt=""
 +    fi
- 
+
      # Check for agent command
      if [[ "$prompt" =~ /agent:([a-z]+) ]]; then
 @@ -245,10 +250,14 @@ log_message() {
@@ -35,5 +35,5 @@
 +    } 200>"$lock_file" 2>/dev/null || {
 +        printf '%s\n' "$formatted_message" >> "$log_file"
      }
- 
+
      return 0

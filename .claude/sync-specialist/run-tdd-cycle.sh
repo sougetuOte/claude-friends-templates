@@ -151,7 +151,7 @@ fi
 echo
 echo "Files created/modified:"
 echo "- .claude/sync-specialist/test-sync-integration.sh (NEW - Integration tests)"
-echo "- .claude/sync-specialist/enhanced-sync-monitor.sh (NEW - Enhanced implementation)"  
+echo "- .claude/sync-specialist/enhanced-sync-monitor.sh (NEW - Enhanced implementation)"
 echo "- .claude/sync-specialist/sync-monitor.sh (UPDATED - Production version)"
 echo "- .claude/sync-specialist/sync-monitor.sh.backup (BACKUP - Original version)"
 
@@ -174,7 +174,7 @@ echo "Testing Commands:"
 echo "# Test enhanced error handling"
 echo "./.claude/sync-specialist/sync-monitor.sh create_handover_with_fallback"
 echo
-echo "# Test validation"  
+echo "# Test validation"
 echo "./.claude/sync-specialist/sync-monitor.sh validate_handover"
 echo
 echo "# Test with debug mode"

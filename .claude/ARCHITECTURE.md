@@ -8,14 +8,14 @@ graph TB
         U[User] --> |Commands| CMD[Command Interface]
         U --> |Direct Chat| CHAT[Chat Interface]
     end
-    
+
     subgraph "Agent Layer"
         CMD --> PLANNER[Planner Agent]
         CHAT --> PLANNER
         CHAT --> BUILDER[Builder Agent]
         PLANNER <--> |Handover| BUILDER
     end
-    
+
     subgraph "Core Systems"
         PLANNER --> TDD[TDD System]
         PLANNER --> DESIGN[Design Sync]
@@ -23,7 +23,7 @@ graph TB
         BUILDER --> TEST[Test Framework]
         BUILDER --> ERROR[Error Patterns]
     end
-    
+
     subgraph "Shared Resources"
         DESIGN --> MEMORY[Shared Memory]
         TDD --> MEMORY
@@ -31,7 +31,7 @@ graph TB
         ERROR --> MEMORY
         COORD[Agent Coordination] --> MEMORY
     end
-    
+
     subgraph "Support Systems"
         MEMORY --> HOOKS[Hook System]
         MEMORY --> MONITOR[Monitoring]
@@ -51,25 +51,25 @@ graph LR
         P2[Task Planning]
         P3[Design Decisions]
         P4[Handover Creation]
-        
+
         P1 --> P2
         P2 --> P3
         P3 --> P4
     end
-    
+
     subgraph "Builder Agent"
         B1[Task Reception]
         B2[TDD Implementation]
         B3[Code Generation]
         B4[Testing & Validation]
         B5[Handover Response]
-        
+
         B1 --> B2
         B2 --> B3
         B3 --> B4
         B4 --> B5
     end
-    
+
     P4 --> |Optimized Handover| B1
     B5 --> |Status Update| P1
 ```
@@ -86,7 +86,7 @@ stateDiagram-v2
     TestsPassing --> Refactoring: Improve Code
     Refactoring --> Completed: Done
     Completed --> [*]
-    
+
     TestsFailing --> Blocked: Can't Proceed
     Blocked --> TestsFailing: Issue Resolved
 ```
@@ -97,7 +97,7 @@ stateDiagram-v2
 test-framework/
 ├── templates/              # Test templates by type
 │   ├── unit/              # Component isolation
-│   ├── integration/       # Component interaction  
+│   ├── integration/       # Component interaction
 │   ├── e2e/              # Full workflow
 │   └── performance/       # Load testing
 ├── mocks/                 # Mock generation
@@ -129,7 +129,7 @@ sequenceDiagram
     participant O as Optimizer
     participant M as Memory
     participant B as Builder
-    
+
     P->>O: Create Handover
     O->>O: Compress & Structure
     O->>M: Store Context
@@ -152,39 +152,39 @@ graph TD
         CODE[Existing Code]
         DOCS[Documentation]
     end
-    
+
     subgraph "Processing"
         ANALYSIS[Analysis Engine]
         PLANNING[Planning Engine]
         IMPL[Implementation Engine]
     end
-    
+
     subgraph "Storage"
         ACTIVE[Active Memory]
         CACHE[Cache Layer]
         ARCHIVE[Historical Archive]
     end
-    
+
     subgraph "Output"
         TASKS[Task Lists]
         SOURCE[Source Code]
         TESTS[Test Suites]
         REPORTS[Reports]
     end
-    
+
     USER --> ANALYSIS
     CODE --> ANALYSIS
     DOCS --> ANALYSIS
-    
+
     ANALYSIS --> PLANNING
     PLANNING --> ACTIVE
     ACTIVE --> IMPL
     IMPL --> SOURCE
     IMPL --> TESTS
-    
+
     ACTIVE --> CACHE
     CACHE --> ARCHIVE
-    
+
     PLANNING --> TASKS
     IMPL --> REPORTS
 ```
@@ -201,7 +201,7 @@ memory_hierarchy:
       - Active tasks
       - Current context
       - Recent decisions
-  
+
   L2_warm:
     type: "File system"
     size: "100MB"
@@ -210,7 +210,7 @@ memory_hierarchy:
       - Completed tasks
       - Patterns cache
       - Test results
-  
+
   L3_cold:
     type: "Compressed archive"
     size: "Unlimited"
@@ -233,7 +233,7 @@ graph TD
         AUTHZ --> |Allowed| EXEC[Execute]
         AUTHZ --> |Denied| REJECT[Reject]
     end
-    
+
     subgraph "Audit"
         EXEC --> LOG[Activity Log]
         REJECT --> LOG
@@ -248,12 +248,12 @@ security_layers:
     - HTTPS only
     - Certificate validation
     - TLS 1.3 minimum
-  
+
   storage:
     - Encryption at rest
     - Key rotation
     - Access logging
-  
+
   processing:
     - Input validation
     - Output sanitization
@@ -272,7 +272,7 @@ graph LR
         PARALLEL[Parallelization]
         INDEX[Indexing]
     end
-    
+
     subgraph "Bottlenecks"
         HANDOVER[Large Handovers] --> COMPRESS
         SEARCH[Pattern Search] --> INDEX
@@ -289,12 +289,12 @@ scalability:
     - Multiple builder agents
     - Distributed task queue
     - Load balancing
-  
+
   vertical:
     - Memory optimization
     - CPU utilization
     - I/O efficiency
-  
+
   patterns:
     - Task batching
     - Lazy loading
@@ -310,24 +310,24 @@ graph TD
     subgraph "claude-friends-templates"
         CORE[Core System]
     end
-    
+
     subgraph "Version Control"
         GIT[Git]
         GITHUB[GitHub]
     end
-    
+
     subgraph "CI/CD"
         GHA[GitHub Actions]
         JENKINS[Jenkins]
         GITLAB[GitLab CI]
     end
-    
+
     subgraph "Development Tools"
         IDE[IDEs]
         LINT[Linters]
         TEST[Test Runners]
     end
-    
+
     CORE <--> GIT
     GIT <--> GITHUB
     GITHUB --> GHA
@@ -349,7 +349,7 @@ api_layers:
       - /agent:builder
       - /tdd:start
       - /project:status
-  
+
   file_api:
     interface: "FileSystem"
     operations:
@@ -357,7 +357,7 @@ api_layers:
       - write
       - watch
       - lock
-  
+
   hook_api:
     interface: "Events"
     events:
@@ -379,7 +379,7 @@ local_setup:
       - src/             # Source code
       - tests/           # Test suites
       - docs/            # Documentation
-  
+
   requirements:
     - Python 3.8+
     - Node.js 16+
@@ -394,7 +394,7 @@ team_setup:
     - Central pattern library
     - Shared memory bank
     - Team templates
-  
+
   synchronization:
     - Git for templates
     - Shared drive for memory
@@ -410,14 +410,14 @@ graph TD
     subgraph "Core System"
         CORE[claude-friends-templates]
     end
-    
+
     subgraph "Extensions"
         LANG[Language Support]
         PATTERN[Pattern Plugins]
         TEST[Test Adapters]
         AGENT[Custom Agents]
     end
-    
+
     LANG --> CORE
     PATTERN --> CORE
     TEST --> CORE
@@ -432,12 +432,12 @@ roadmap:
     - Multi-language support
     - Advanced error patterns
     - Visual debugging
-  
+
   phase_2:
     - AI-powered optimization
     - Predictive planning
     - Auto-refactoring
-  
+
   phase_3:
     - Multi-agent mesh
     - Distributed execution
@@ -454,12 +454,12 @@ metrics:
     - Task completion time
     - Test execution speed
     - Build performance
-  
+
   quality:
     - Test coverage
     - Error frequency
     - Code complexity
-  
+
   usage:
     - Feature adoption
     - Command frequency
@@ -475,17 +475,17 @@ graph LR
         METRICS[Metrics]
         TRACES[Traces]
     end
-    
+
     subgraph "Processing"
         COLLECT[Collector]
         ANALYZE[Analyzer]
     end
-    
+
     subgraph "Visualization"
         DASH[Dashboard]
         ALERT[Alerts]
     end
-    
+
     LOGS --> COLLECT
     METRICS --> COLLECT
     TRACES --> COLLECT

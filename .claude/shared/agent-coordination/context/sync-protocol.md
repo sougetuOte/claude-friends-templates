@@ -8,7 +8,7 @@ This protocol ensures consistent context sharing between agents, minimizing redu
 
 ### 1. Real-time Sync (Critical)
 - **Frequency**: Immediate
-- **Triggers**: 
+- **Triggers**:
   - Blocking issues discovered
   - Critical decisions made
   - Security vulnerabilities found
@@ -46,7 +46,7 @@ shared_context:
   version: "2.0"
   last_sync: "2024-01-20T10:30:00Z"
   sync_level: "checkpoint"
-  
+
   project_state:
     current_phase: "implementation"
     active_tasks:
@@ -54,37 +54,37 @@ shared_context:
         status: "in_progress"
         owner: "builder"
         started: "2024-01-20T09:00:00Z"
-    
+
     completed_tasks:
       - id: "task-122"
         result: "success"
         summary: "Database schema created"
-    
+
     blocked_tasks:
       - id: "task-124"
         reason: "Awaiting API specification"
         blocker_owner: "planner"
-  
+
   technical_context:
     architecture:
       pattern: "microservices"
       last_modified: "2024-01-19T15:00:00Z"
       hash: "a3f5b8c9"
-    
+
     dependencies:
       added:
         - name: "redis"
           version: "7.0"
           reason: "Caching layer"
-      
+
       removed: []
-      
+
       updated:
         - name: "postgres"
           from: "14"
           to: "15"
           reason: "Performance improvements"
-    
+
     code_changes:
       summary:
         files_added: 5
@@ -92,12 +92,12 @@ shared_context:
         files_deleted: 0
         lines_added: 450
         lines_removed: 120
-      
+
       significant_changes:
         - file: "src/auth/auth.service.ts"
           type: "new_api"
           description: "Added OAuth2 support"
-  
+
   decisions_log:
     recent:
       - id: "dec-2024-01-20-001"
@@ -107,10 +107,10 @@ shared_context:
         impact: ["auth", "session"]
         decided_by: "planner"
         timestamp: "2024-01-20T08:30:00Z"
-    
+
     archived_count: 45
     archive_location: ".claude/context/decisions-archive.yaml"
-  
+
   communication:
     last_handover:
       from: "planner"
@@ -118,7 +118,7 @@ shared_context:
       timestamp: "2024-01-20T09:00:00Z"
       document: "handover-2024-01-20-001.md"
       acknowledged: true
-    
+
     pending_questions:
       - id: "q-001"
         from: "builder"
@@ -126,7 +126,7 @@ shared_context:
         question: "Should we implement rate limiting?"
         context: "Login endpoint security"
         priority: "high"
-    
+
     notes:
       - "Performance testing scheduled for next phase"
       - "Client prefers PostgreSQL over MySQL"
@@ -170,7 +170,7 @@ conflict_resolution:
   detected: "2024-01-20T10:40:00Z"
   type: "concurrent_update"
   field: "project_state.active_tasks"
-  
+
   resolution_strategy: "merge"
   result:
     - Planner's task additions retained
@@ -264,13 +264,13 @@ sync_metrics:
   sync_failures: 2
   context_size: "2.3MB"
   compression_ratio: 0.65
-  
+
   by_level:
     critical: 3
     checkpoint: 15
     periodic: 25
     session: 2
-  
+
   performance:
     fastest_sync: "45ms"
     slowest_sync: "1.2s"

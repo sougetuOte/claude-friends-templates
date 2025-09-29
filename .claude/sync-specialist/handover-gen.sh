@@ -49,7 +49,7 @@ get_recent_activities() {
     # Extract recent activities from AI log (last 50 entries)
     if [ -f "$AI_LOG" ]; then
         tail -50 "$AI_LOG" 2>/dev/null | \
-        jq -r 'select(.operation.type != null) | 
+        jq -r 'select(.operation.type != null) |
                "\(.timestamp) - \(.operation.type): \(.operation.command // .operation.files[0].path // "N/A")"' \
         2>/dev/null || echo "活動ログの取得に失敗しました"
     else
@@ -60,7 +60,7 @@ get_recent_activities() {
 get_agent_notes() {
     local agent=$1
     local notes_file=""
-    
+
     case "$agent" in
         "planner")
             notes_file="$PLANNER_DIR/notes.md"
@@ -73,7 +73,7 @@ get_agent_notes() {
             return
             ;;
     esac
-    
+
     if [ -f "$notes_file" ]; then
         # Extract recent notes (last 30 lines)
         echo "=== 最近のノート ==="
@@ -85,7 +85,7 @@ get_agent_notes() {
 
 get_phase_todo_status() {
     local phase_todo="$SHARED_DIR/phase-todo.md"
-    
+
     if [ -f "$phase_todo" ]; then
         echo "=== Phase/ToDo状況 ==="
         # Extract current phase and pending todos
@@ -189,26 +189,26 @@ EOF
 # ============================
 main() {
     log_info "Handover generation started: $FROM_AGENT -> $TO_AGENT"
-    
+
     # Generate handover filename
     local handover_file="$HANDOVER_DIR/handover-$TIMESTAMP.md"
     local latest_link="$HANDOVER_DIR/latest.md"
-    
+
     # Generate and save handover content
     generate_handover_content > "$handover_file"
-    
+
     if [ $? -eq 0 ]; then
         log_info "Handover generated: $handover_file"
-        
+
         # Create/update symbolic link to latest
         ln -sf "$(basename "$handover_file")" "$latest_link"
         log_info "Updated latest link: $latest_link"
-        
+
         # Clean up old handovers (keep last 10)
         cd "$HANDOVER_DIR"
         ls -t handover-*.md 2>/dev/null | tail -n +11 | xargs -r rm -f
         cd - >/dev/null
-        
+
         log_info "Handover generation completed successfully"
     else
         log_error "Failed to generate handover"

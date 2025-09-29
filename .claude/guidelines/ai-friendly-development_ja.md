@@ -24,7 +24,7 @@
    def calculate_discount(user, cart_total):
        """
        ロイヤリティステータスに基づいてユーザー割引を計算
-       
+
        ビジネスルール:
        - ゴールド会員: 100ドル以上の注文で20%オフ
        - シルバー会員: 150ドル以上の注文で10%オフ
@@ -49,7 +49,7 @@
    ```javascript
    // ❌ 悪い例
    i++; // iを1増やす
-   
+
    // ❌ 悪い例
    const users = []; // ユーザーの配列
    ```
@@ -153,7 +153,7 @@ describe('ユーザー認証', () => {
   it('無効なメールフォーマットでログインを拒否すべき', () => {
     // テスト実装
   });
-  
+
   it('5回失敗後にアカウントをロックすべき', () => {
     // テスト実装
   });
@@ -165,7 +165,7 @@ describe('ユーザー認証', () => {
 def test_payment_retry_logic():
     """
     決済システムが失敗したトランザクションをリトライすることをテスト
-    
+
     シナリオ:
     1. 最初の試行がネットワークエラーで失敗
     2. システムが1秒待機
@@ -198,14 +198,14 @@ function processUser(userData) {
 class UserRepository:
     def find_by_id(self, user_id: int) -> User:
         pass
-    
+
     def save(self, user: User) -> None:
         pass
 
 class OrderRepository:
     def find_by_id(self, order_id: int) -> Order:
         pass
-    
+
     def save(self, order: Order) -> None:
         pass
 ```

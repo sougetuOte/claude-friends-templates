@@ -7,16 +7,16 @@ graph TB
     subgraph "User Interface"
         UI[HTML/CSS Interface]
     end
-    
+
     subgraph "Application Logic"
         TM[Task Manager]
         EH[Event Handlers]
     end
-    
+
     subgraph "Data Layer"
         LS[LocalStorage]
     end
-    
+
     UI --> EH
     EH --> TM
     TM --> LS
@@ -89,7 +89,7 @@ graph TD
         Task2[☑ Write report]
         Task3[☐ Call mom]
     end
-    
+
     Header --> Input
     Input --> Stats
     Stats --> List
@@ -106,7 +106,7 @@ sequenceDiagram
     participant UI
     participant TaskManager
     participant Storage
-    
+
     User->>UI: Enter task & click Add
     UI->>TaskManager: addTask(description)
     TaskManager->>Storage: save(tasks)

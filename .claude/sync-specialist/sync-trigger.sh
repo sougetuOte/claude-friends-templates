@@ -42,7 +42,7 @@ check_enabled() {
         log_error "Config file not found: $CONFIG_FILE"
         exit 0  # Exit gracefully to not block user
     fi
-    
+
     # Check if sync specialist is enabled
     local enabled=$(jq -r '.sync_specialist.enabled' "$CONFIG_FILE" 2>/dev/null)
     if [ "$enabled" != "true" ]; then
@@ -62,20 +62,20 @@ process_hook_input() {
     else
         input=$(cat)
     fi
-    
+
     # Extract prompt from JSON input
     local prompt=""
     if [ -n "$input" ]; then
         prompt=$(echo "$input" | jq -r '.prompt // ""' 2>/dev/null)
         log_debug "Received prompt: $prompt"
     fi
-    
+
     # Check environment variable as fallback
     if [ -z "$prompt" ] && [ -n "$CLAUDE_PROMPT" ]; then
         prompt="$CLAUDE_PROMPT"
         log_debug "Using CLAUDE_PROMPT: $prompt"
     fi
-    
+
     echo "$prompt"
 }
 
@@ -84,7 +84,7 @@ process_hook_input() {
 # ============================
 is_agent_switch_command() {
     local prompt=$1
-    
+
     # Check if prompt contains agent switch command
     if echo "$prompt" | grep -qE "^/agent:(planner|builder)"; then
         return 0
@@ -98,23 +98,23 @@ is_agent_switch_command() {
 # ============================
 trigger_sync_async() {
     log_info "Triggering sync monitor asynchronously"
-    
+
     # Run sync-monitor in background with proper detachment
     (
         # Detach from parent process
         exec </dev/null
         exec >/dev/null 2>&1
-        
+
         # Small delay to ensure agent switch completes
         sleep 2
-        
+
         # Run sync monitor
         "$SCRIPT_DIR/sync-monitor.sh"
     ) &
-    
+
     # Detach the background process
     disown
-    
+
     log_info "Sync monitor triggered in background"
 }
 
@@ -123,33 +123,33 @@ trigger_sync_async() {
 # ============================
 main() {
     log_info "Sync trigger started"
-    
+
     # Check if enabled
     check_enabled
-    
+
     # Process hook input
     local prompt=$(process_hook_input)
-    
+
     if [ -z "$prompt" ]; then
         log_debug "No prompt detected"
         exit 0
     fi
-    
+
     # Check if this is an agent switch command
     if is_agent_switch_command "$prompt"; then
         log_info "Agent switch command detected: $prompt"
-        
+
         # Trigger sync asynchronously
         trigger_sync_async
-        
+
         # Output for hook (non-blocking)
         echo "Sync Specialist: エージェント切り替えを検知しました。バックグラウンドでhandover生成を開始します。"
     else
         log_debug "Not an agent switch command: $prompt"
     fi
-    
+
     log_info "Sync trigger completed"
-    
+
     # Always exit 0 to not block the user
     exit 0
 }

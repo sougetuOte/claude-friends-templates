@@ -24,7 +24,7 @@ check_test_file() {
     local source_file="$1"
     local base_name=$(basename "$source_file" | sed 's/\.[^.]*$//')
     local dir_name=$(dirname "$source_file")
-    
+
     # Common test file patterns
     local test_patterns=(
         "test_${base_name}.py"
@@ -36,7 +36,7 @@ check_test_file() {
         "test${base_name}.java"
         "${base_name}Test.java"
     )
-    
+
     # Check in common test directories
     local test_dirs=(
         "tests"
@@ -47,7 +47,7 @@ check_test_file() {
         "../test"
         "../__tests__"
     )
-    
+
     for test_dir in "${test_dirs[@]}"; do
         for pattern in "${test_patterns[@]}"; do
             local test_path="${dir_name}/${test_dir}/${pattern}"
@@ -56,7 +56,7 @@ check_test_file() {
             fi
         done
     done
-    
+
     return 1
 }
 
@@ -64,7 +64,7 @@ check_test_file() {
 log_skip_reason() {
     local reason="$1"
     local file="$2"
-    
+
     echo "[$TIMESTAMP] File: $file | Reason: $reason" >> "$TDD_SKIP_LOG"
 }
 
@@ -78,19 +78,19 @@ show_warning() {
 main() {
     local file_path="$1"
     local operation="$2"
-    
+
     # Skip if not a source code file
     case "$file_path" in
         *.md|*.txt|*.json|*.yml|*.yaml|*.sh|*.log)
             return 0
             ;;
     esac
-    
+
     # Check if test file exists
     if ! check_test_file "$file_path"; then
         if [ "$TEST_FIRST_WARNING" = "true" ]; then
             show_warning "No test found for $file_path"
-            
+
             # If enforcement is strict, require a reason
             if [ "$ENFORCEMENT" = "strict" ]; then
                 echo "TDD Enforcement: Please provide a reason for skipping test creation."
@@ -103,13 +103,13 @@ main() {
                 echo ""
                 echo -n "Select reason (1-5) or press Enter to cancel: "
                 read -r reason_choice
-                
+
                 case "$reason_choice" in
                     1) log_skip_reason "Prototype/Experimental" "$file_path" ;;
                     2) log_skip_reason "Configuration change" "$file_path" ;;
                     3) log_skip_reason "Refactoring" "$file_path" ;;
                     4) log_skip_reason "Non-functional" "$file_path" ;;
-                    5) 
+                    5)
                         echo -n "Please specify reason: "
                         read -r custom_reason
                         log_skip_reason "$custom_reason" "$file_path"
@@ -125,7 +125,7 @@ main() {
             fi
         fi
     fi
-    
+
     return 0
 }
 

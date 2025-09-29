@@ -32,7 +32,7 @@
 Morning: Plan today's work with Planner
   ↓
 Morning: Implement with Builder
-  ↓  
+  ↓
 Afternoon: Re-plan with Planner if stuck
   ↓
 Evening: Finish up with Builder

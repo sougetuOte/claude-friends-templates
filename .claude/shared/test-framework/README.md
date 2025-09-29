@@ -82,14 +82,14 @@ class UserServiceTest(TestCase):
     def setUp(self):
         self.user_service = UserService()
         self.mock_db = mock.create_database_mock()
-    
+
     def test_create_user(self):
         # Arrange
         user_data = {"name": "Test User", "email": "test@example.com"}
-        
+
         # Act
         result = self.user_service.create_user(user_data)
-        
+
         # Assert
         self.assert_success(result)
         self.assert_user_created(result.user)
@@ -105,15 +105,15 @@ test.describe('User Registration Flow', () => {
   test('should register new user successfully', async ({ page }) => {
     // Navigate to registration page
     await page.goto('/register');
-    
+
     // Fill registration form
     await page.fill('[name="username"]', 'testuser');
     await page.fill('[name="email"]', 'test@example.com');
     await page.fill('[name="password"]', 'SecurePass123!');
-    
+
     // Submit form
     await page.click('button[type="submit"]');
-    
+
     // Verify success
     await expect(page).toHaveURL('/dashboard');
     await expect(page.locator('.welcome-message')).toContainText('Welcome, testuser');
@@ -192,10 +192,10 @@ class TestUserAuthentication:
     class TestLogin:
         def test_successful_login_with_valid_credentials(self):
             pass
-        
+
         def test_failed_login_with_invalid_password(self):
             pass
-    
+
     class TestLogout:
         def test_successful_logout_clears_session(self):
             pass
@@ -248,19 +248,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Run Unit Tests
         run: |
           npm test:unit
-          
+
       - name: Run Integration Tests
         run: |
           npm test:integration
-          
+
       - name: Run E2E Tests
         run: |
           npm test:e2e
-          
+
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
 ```

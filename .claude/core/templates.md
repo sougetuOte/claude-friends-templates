@@ -27,7 +27,7 @@ Acceptance criteria: [Definition of done] #acceptance
 Review target: [File/Function] #review
 Check items:
 - [ ] Functionality check #functionality
-- [ ] Error handling #error  
+- [ ] Error handling #error
 - [ ] Performance #performance
 - [ ] Security #security
 - [ ] Testing #testing

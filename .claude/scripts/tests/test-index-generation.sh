@@ -41,7 +41,7 @@ assert_equals() {
     local expected="$1"
     local actual="$2"
     local message="$3"
-    
+
     if [ "$expected" = "$actual" ]; then
         echo -e "${GREEN}✓${NC} $message"
         ((PASSED++))
@@ -57,7 +57,7 @@ assert_equals() {
 assert_file_exists() {
     local file="$1"
     local message="$2"
-    
+
     if [ -f "$file" ]; then
         echo -e "${GREEN}✓${NC} $message"
         ((PASSED++))
@@ -73,7 +73,7 @@ assert_contains() {
     local file="$1"
     local pattern="$2"
     local message="$3"
-    
+
     if [ -f "$file" ] && grep -q "$pattern" "$file"; then
         echo -e "${GREEN}✓${NC} $message"
         ((PASSED++))
@@ -88,19 +88,19 @@ assert_contains() {
 test_basic_index_generation() {
     echo -e "\n${YELLOW}Test 1: index.mdの基本生成${NC}"
     setup
-    
+
     # ファイル構造を作成
     echo "# Builder Notes" > .claude/builder/notes.md
     echo "Content" >> .claude/builder/notes.md
     echo "# Summary" > .claude/builder/notes-summary.md
     echo "# Archive 1" > .claude/builder/archive/notes-2025-01-01.md
-    
+
     echo "# Planner Notes" > .claude/planner/notes.md
     echo "# Archive 2" > .claude/planner/archive/notes-2025-01-02.md
-    
+
     # index生成スクリプトを実行
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # アサーション
     assert_file_exists ".claude/builder/index.md" "Builder: index.mdが生成される"
     assert_file_exists ".claude/planner/index.md" "Planner: index.mdが生成される"
@@ -110,16 +110,16 @@ test_basic_index_generation() {
 test_index_content() {
     echo -e "\n${YELLOW}Test 2: index.mdの内容確認${NC}"
     setup
-    
+
     # 複数のファイルを作成
     echo "# Current Work" > .claude/builder/notes.md
     echo "# Summary of important items" > .claude/builder/notes-summary.md
     echo "# Old notes 1" > .claude/builder/archive/notes-2025-01-01.md
     echo "# Old notes 2" > .claude/builder/archive/notes-2025-01-02.md
-    
+
     # index生成スクリプトを実行
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # アサーション
     assert_contains ".claude/builder/index.md" "## 現在のファイル" "現在のファイルセクションが含まれる"
     assert_contains ".claude/builder/index.md" "notes.md" "notes.mdがリストされる"
@@ -131,19 +131,19 @@ test_index_content() {
 test_statistics_generation() {
     echo -e "\n${YELLOW}Test 3: 統計情報の生成${NC}"
     setup
-    
+
     # サイズの異なるファイルを作成
     for i in {1..100}; do
         echo "Line $i" >> .claude/builder/notes.md
     done
-    
+
     for i in {1..50}; do
         echo "Summary line $i" >> .claude/builder/notes-summary.md
     done
-    
+
     # index生成スクリプトを実行
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # アサーション
     assert_contains ".claude/builder/index.md" "## 統計情報" "統計情報セクションが含まれる"
     assert_contains ".claude/builder/index.md" "総ファイル数:" "ファイル数が表示される"
@@ -154,10 +154,10 @@ test_statistics_generation() {
 test_empty_directory() {
     echo -e "\n${YELLOW}Test 4: 空ディレクトリでの動作${NC}"
     setup
-    
+
     # 空のディレクトリで実行
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # アサーション
     assert_file_exists ".claude/builder/index.md" "空でもindex.mdが生成される"
     assert_contains ".claude/builder/index.md" "# Builder Index" "ヘッダーが含まれる"
@@ -167,17 +167,17 @@ test_empty_directory() {
 test_index_update() {
     echo -e "\n${YELLOW}Test 5: index.md更新時の動作${NC}"
     setup
-    
+
     # 初回生成
     echo "# Initial content" > .claude/builder/notes.md
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # ファイルを追加
     echo "# New archive" > .claude/builder/archive/notes-2025-03-01.md
-    
+
     # 再度実行
     INDEX_DIR="$TEST_DIR/.claude" "$UPDATE_INDEX_SCRIPT" >/dev/null 2>&1 || true
-    
+
     # アサーション
     assert_contains ".claude/builder/index.md" "notes-2025-03-01.md" "新しいファイルが追加される"
 }

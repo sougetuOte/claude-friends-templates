@@ -51,7 +51,7 @@
   - 推奨: 関数分割とearly return導入
   - 見積もり: 1時間
 
-### 🟠 High  
+### 🟠 High
 - [ ] `src/api/userService.js` - 重複コード: 3箇所
   - 推奨: 共通処理の抽出
   - 見積もり: 30分
@@ -88,16 +88,16 @@ rules:
     cognitive: 15
     maxLines: 100
     maxParams: 5
-  
+
   duplication:
     minLines: 20
     threshold: 0.8
-  
+
   naming:
     minLength: 3
     maxLength: 50
     pattern: "camelCase"
-  
+
   testing:
     coverageThreshold: 80
     requireTestFile: true
@@ -154,11 +154,11 @@ const createUserObject = (user, includeEmail) => {
         name: user.name,
         age: user.age
     };
-    
+
     if (includeEmail && user.email) {
         return { ...baseObject, email: user.email };
     }
-    
+
     return baseObject;
 };
 

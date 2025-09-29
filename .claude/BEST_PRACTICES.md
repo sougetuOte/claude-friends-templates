@@ -128,12 +128,12 @@ tasks:
     - Design API endpoints
     - Create architecture diagrams
     - Define data models
-    
+
   builder_owned:
     - Implement endpoints
     - Write tests
     - Handle errors
-    
+
   shared:
     - Review security implications
     - Optimize performance
@@ -182,19 +182,19 @@ except Exception as e:
 def process_payment(amount: float, currency: str) -> PaymentResult:
     """
     Process a payment transaction.
-    
+
     Args:
         amount: Payment amount
         currency: ISO 4217 currency code
-        
+
     Returns:
         PaymentResult with transaction details
-        
+
     Raises:
         ValidationError: Invalid amount or currency
         PaymentError: Payment processing failed
         NetworkError: Connection to payment provider failed
-        
+
     Error Codes:
         - PAY001: Invalid amount
         - PAY002: Unsupported currency
@@ -254,12 +254,12 @@ style_guide:
     indentation: 4_spaces
     max_line_length: 88
     quotes: double
-    
+
   javascript:
     indentation: 2_spaces
     semicolons: optional
     quotes: single
-    
+
   naming:
     files: kebab-case
     classes: PascalCase
@@ -292,7 +292,7 @@ def calculate_tax(amount, region):
     Calculate tax based on region.
     See: docs/tax-calculation.md for rates
     """
-    
+
 # In docs/tax-calculation.md
 Last updated: 2024-01-20
 Sync with: src/finance/tax.py#calculate_tax
@@ -304,14 +304,14 @@ Sync with: src/finance/tax.py#calculate_tax
 def parse_date_range(date_string: str) -> Tuple[date, date]:
     """
     Parse a date range string into start and end dates.
-    
+
     Examples:
         >>> parse_date_range("2024-01-01 to 2024-01-31")
         (date(2024, 1, 1), date(2024, 1, 31))
-        
+
         >>> parse_date_range("last week")
         (date(2024, 1, 14), date(2024, 1, 20))
-        
+
         >>> parse_date_range("Q1 2024")
         (date(2024, 1, 1), date(2024, 3, 31))
     """
@@ -327,7 +327,7 @@ def parse_date_range(date_string: str) -> Tuple[date, date]:
 # ❌ Bad: Premature optimization
 def get_users():
     # Complex caching logic without knowing if it's needed
-    
+
 # ✅ Good: Measure, then optimize
 import time
 
@@ -335,11 +335,11 @@ def get_users():
     start = time.time()
     users = db.query("SELECT * FROM users")
     duration = time.time() - start
-    
+
     if duration > 1.0:  # Slow query
         logger.warning(f"Slow query: get_users took {duration}s")
         # Now consider optimization
-    
+
     return users
 ```
 
@@ -388,14 +388,14 @@ def create_user(email, password):
     # Validate email
     if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
         raise ValidationError("Invalid email format")
-    
+
     # Validate password strength
     if len(password) < 8:
         raise ValidationError("Password too short")
-    
+
     # Hash password
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-    
+
     # Sanitize and insert
     return db.insert("users", {
         "email": email.lower().strip(),
@@ -415,7 +415,7 @@ database_users:
   app_read:
     permissions: ["SELECT"]
     tables: ["users", "products", "orders"]
-    
+
   app_write:
     permissions: ["SELECT", "INSERT", "UPDATE"]
     tables: ["users", "orders"]
@@ -432,7 +432,7 @@ class Config:
     MAX_LOGIN_ATTEMPTS = 5
     PASSWORD_MIN_LENGTH = 8
     REQUIRE_HTTPS = True
-    
+
     # Features
     ENABLE_REGISTRATION = False  # Opt-in
     ENABLE_API = False  # Opt-in
@@ -469,17 +469,17 @@ code_review_checklist:
     - Does it solve the problem?
     - Are edge cases handled?
     - Is error handling appropriate?
-    
+
   quality:
     - Is the code readable?
     - Are names descriptive?
     - Is it properly documented?
-    
+
   testing:
     - Are there sufficient tests?
     - Do tests cover edge cases?
     - Is coverage adequate?
-    
+
   security:
     - Is input validated?
     - Are secrets secure?

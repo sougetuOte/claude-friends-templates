@@ -33,7 +33,7 @@
 - **Recommended Tools**: Unify per project (npm/yarn/pnpm, pip/poetry/uv, etc.)
 - **Installation**: Recommend `[tool] add package` format
 - **Execution**: Recommend `[tool] run command` format
-- **Prohibited Practices**: 
+- **Prohibited Practices**:
   - Mixed usage (using multiple package managers together)
   - Using `@latest` syntax (version pinning recommended)
   - Global installation (keep everything within project)

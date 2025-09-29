@@ -27,7 +27,7 @@
 朝: Plannerで今日の計画
   ↓
 午前: Builderで実装
-  ↓  
+  ↓
 午後: 詰まったらPlannerで再計画
   ↓
 夕方: Builderで仕上げ
