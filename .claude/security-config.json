@@ -70,12 +70,26 @@
     }
   },
   "sbom": {
+    "format": "CycloneDX",
+    "output_file": "sbom.json",
+    "include_dev_dependencies": true,
+    "include_license_info": true,
     "enabled": true,
     "auto_generate": true,
-    "format": "spdx",
+    "schema_version": "1.5",
     "output_path": ".claude/security/sbom.json",
     "vulnerability_check": true,
     "cisa_compliance": true
+  },
+  "vulnerability_scanning": {
+    "pip_audit_enabled": true,
+    "bandit_enabled": true,
+    "safety_enabled": true,
+    "fail_on_vulnerabilities": false,
+    "severity_threshold": "medium",
+    "exclude_advisory_ids": [],
+    "ignore_unpinned": false,
+    "output_format": "json"
   },
   "sast": {
     "cvss_version": "4.0",

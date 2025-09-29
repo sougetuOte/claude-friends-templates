@@ -98,5 +98,5 @@ Contact the project administrator for configuration issues.
 
 ---
 
-**Last Updated**: 2025-09-10  
+**Last Updated**: 2025-09-10
 **Version**: 2.4.0
