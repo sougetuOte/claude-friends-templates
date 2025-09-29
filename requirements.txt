@@ -53,3 +53,9 @@ fastapi==0.115.6           # Modern API framework with automatic OpenAPI documen
 uvicorn==0.32.1            # ASGI server for FastAPI applications
 openapi-spec-validator==0.7.1  # OpenAPI specification validation
 pyyaml==6.0.2              # YAML parsing for OpenAPI specification files
+
+# Task Parallelization Analysis (Task 2.2.2)
+# -------------------------------------------
+networkx==3.4.2            # Graph algorithms and DAG operations for task dependency analysis
+graphviz==0.20.3           # Graph visualization for dependency graphs (optional visualization)
+libcst==1.5.1              # Concrete Syntax Tree for advanced code analysis with format preservation
