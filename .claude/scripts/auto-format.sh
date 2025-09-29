@@ -26,7 +26,7 @@ for file in "${FILES[@]}"; do
     if [ ! -f "$file" ]; then
         continue
     fi
-    
+
     case "$file" in
         *.py)
             if command -v ruff >/dev/null 2>&1; then

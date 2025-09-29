@@ -6,20 +6,20 @@ SBOM Generator
 CISA 2025標準準拠、SPDX形式対応
 """
 
-import os
 import json
 import hashlib
-import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Set
+from typing import Dict, List
 from dataclasses import dataclass, asdict
 import uuid
 import re
 
+
 @dataclass
 class Component:
     """コンポーネント情報"""
+
     name: str
     version: str
     type: str  # library, application, framework, etc.
@@ -33,12 +33,15 @@ class Component:
     external_refs: List[Dict[str, str]]
     vulnerability_status: str = "unknown"
 
+
 @dataclass
 class Relationship:
     """コンポーネント間の関係"""
+
     spdx_element_id: str
     relationship_type: str  # DEPENDS_ON, CONTAINS, etc.
     related_spdx_element: str
+
 
 class SBOMGenerator:
     """SBOM生成器"""
@@ -52,9 +55,9 @@ class SBOMGenerator:
     def load_config(self, config_path: str) -> dict:
         """設定ファイルの読み込み"""
         if Path(config_path).exists():
-            with open(config_path, 'r') as f:
+            with open(config_path, "r") as f:
                 config = json.load(f)
-                return config.get('sbom', {})
+                return config.get("sbom", {})
 
         # デフォルト設定
         return {
@@ -63,7 +66,7 @@ class SBOMGenerator:
             "format": "spdx",
             "output_path": ".claude/security/sbom.json",
             "vulnerability_check": True,
-            "cisa_compliance": True
+            "cisa_compliance": True,
         }
 
     def analyze_project(self, project_path: str = ".") -> None:
@@ -109,10 +112,10 @@ class SBOMGenerator:
     def parse_requirements_file(self, req_file: Path) -> None:
         """requirements.txtの解析"""
         try:
-            with open(req_file, 'r') as f:
+            with open(req_file, "r") as f:
                 for line in f:
                     line = line.strip()
-                    if line and not line.startswith('#'):
+                    if line and not line.startswith("#"):
                         self.parse_python_requirement(line, str(req_file))
         except Exception as e:
             print(f"Error parsing {req_file}: {e}")
@@ -120,7 +123,7 @@ class SBOMGenerator:
     def parse_python_requirement(self, requirement: str, source_file: str) -> None:
         """Python要件の解析"""
         # 基本的なパターンマッチング（pkg==1.0.0, pkg>=1.0.0等）
-        match = re.match(r'^([a-zA-Z0-9_-]+)([><=!~]+)?(.+)?', requirement)
+        match = re.match(r"^([a-zA-Z0-9_-]+)([><=!~]+)?(.+)?", requirement)
         if match:
             name = match.group(1)
             version = match.group(3) if match.group(3) else "unknown"
@@ -137,8 +140,12 @@ class SBOMGenerator:
                 copyright_text="NOASSERTION",
                 checksums={},
                 external_refs=[
-                    {"category": "PACKAGE_MANAGER", "type": "purl", "locator": f"pkg:pypi/{name}@{version}"}
-                ]
+                    {
+                        "category": "PACKAGE_MANAGER",
+                        "type": "purl",
+                        "locator": f"pkg:pypi/{name}@{version}",
+                    }
+                ],
             )
 
             self.components.append(component)
@@ -148,23 +155,25 @@ class SBOMGenerator:
         package_json = project_root / "package.json"
         if package_json.exists():
             try:
-                with open(package_json, 'r') as f:
+                with open(package_json, "r") as f:
                     data = json.load(f)
 
                 # dependencies
-                deps = data.get('dependencies', {})
+                deps = data.get("dependencies", {})
                 for name, version in deps.items():
                     self.add_npm_component(name, version, str(package_json))
 
                 # devDependencies
-                dev_deps = data.get('devDependencies', {})
+                dev_deps = data.get("devDependencies", {})
                 for name, version in dev_deps.items():
                     self.add_npm_component(name, version, str(package_json), dev=True)
 
             except Exception as e:
                 print(f"Error parsing package.json: {e}")
 
-    def add_npm_component(self, name: str, version: str, source_file: str, dev: bool = False) -> None:
+    def add_npm_component(
+        self, name: str, version: str, source_file: str, dev: bool = False
+    ) -> None:
         """NPMコンポーネントの追加"""
         component = Component(
             name=name,
@@ -178,8 +187,12 @@ class SBOMGenerator:
             copyright_text="NOASSERTION",
             checksums={},
             external_refs=[
-                {"category": "PACKAGE_MANAGER", "type": "purl", "locator": f"pkg:npm/{name}@{version}"}
-            ]
+                {
+                    "category": "PACKAGE_MANAGER",
+                    "type": "purl",
+                    "locator": f"pkg:npm/{name}@{version}",
+                }
+            ],
         )
 
         self.components.append(component)
@@ -189,11 +202,11 @@ class SBOMGenerator:
         dockerfile = project_root / "Dockerfile"
         if dockerfile.exists():
             try:
-                with open(dockerfile, 'r') as f:
+                with open(dockerfile, "r") as f:
                     content = f.read()
 
                 # FROM文の解析
-                from_patterns = re.findall(r'^FROM\s+([^\s]+)', content, re.MULTILINE)
+                from_patterns = re.findall(r"^FROM\s+([^\s]+)", content, re.MULTILINE)
                 for image in from_patterns:
                     self.add_docker_component(image, str(dockerfile))
 
@@ -203,8 +216,8 @@ class SBOMGenerator:
     def add_docker_component(self, image: str, source_file: str) -> None:
         """Dockerコンポーネントの追加"""
         # イメージ名とタグの分離
-        if ':' in image:
-            name, tag = image.rsplit(':', 1)
+        if ":" in image:
+            name, tag = image.rsplit(":", 1)
         else:
             name, tag = image, "latest"
 
@@ -220,21 +233,39 @@ class SBOMGenerator:
             copyright_text="NOASSERTION",
             checksums={},
             external_refs=[
-                {"category": "PACKAGE_MANAGER", "type": "purl", "locator": f"pkg:docker/{name}@{tag}"}
-            ]
+                {
+                    "category": "PACKAGE_MANAGER",
+                    "type": "purl",
+                    "locator": f"pkg:docker/{name}@{tag}",
+                }
+            ],
         )
 
         self.components.append(component)
 
     def analyze_static_files(self, project_root: Path) -> None:
         """静的ファイルの分析"""
-        static_extensions = {'.js', '.css', '.html', '.py', '.sh', '.md', '.json', '.yaml', '.yml'}
+        static_extensions = {
+            ".js",
+            ".css",
+            ".html",
+            ".py",
+            ".sh",
+            ".md",
+            ".json",
+            ".yaml",
+            ".yml",
+        }
 
         for file_path in project_root.rglob("*"):
-            if (file_path.is_file() and
-                file_path.suffix in static_extensions and
-                not any(exclude in str(file_path) for exclude in ['.git', '__pycache__', 'node_modules'])):
-
+            if (
+                file_path.is_file()
+                and file_path.suffix in static_extensions
+                and not any(
+                    exclude in str(file_path)
+                    for exclude in [".git", "__pycache__", "node_modules"]
+                )
+            ):
                 checksum = self.calculate_file_checksum(file_path)
 
                 component = Component(
@@ -248,7 +279,7 @@ class SBOMGenerator:
                     license_declared="NOASSERTION",
                     copyright_text="NOASSERTION",
                     checksums={"SHA256": checksum},
-                    external_refs=[]
+                    external_refs=[],
                 )
 
                 self.components.append(component)
@@ -267,7 +298,7 @@ class SBOMGenerator:
             license_declared="MIT",
             copyright_text="Copyright (c) 2025 claude-friends-templates",
             checksums={},
-            external_refs=[]
+            external_refs=[],
         )
 
         self.components.append(claude_component)
@@ -275,7 +306,7 @@ class SBOMGenerator:
     def calculate_file_checksum(self, file_path: Path) -> str:
         """ファイルのチェックサム計算"""
         try:
-            with open(file_path, 'rb') as f:
+            with open(file_path, "rb") as f:
                 content = f.read()
                 return hashlib.sha256(content).hexdigest()
         except Exception:
@@ -283,7 +314,7 @@ class SBOMGenerator:
 
     def check_vulnerabilities(self) -> None:
         """脆弱性チェック"""
-        if not self.config.get('vulnerability_check', True):
+        if not self.config.get("vulnerability_check", True):
             return
 
         # OSVデータベースとの照合（簡易版）
@@ -311,12 +342,12 @@ class SBOMGenerator:
             "documentNamespace": self.document_namespace,
             "creators": [
                 "Tool: claude-friends-templates-sbom-generator",
-                f"Organization: claude-friends-templates",
-                f"Created: {datetime.now().isoformat()}"
+                "Organization: claude-friends-templates",
+                f"Created: {datetime.now().isoformat()}",
             ],
             "created": datetime.now().isoformat(),
             "packages": [],
-            "relationships": []
+            "relationships": [],
         }
 
         # パッケージ情報の追加
@@ -331,7 +362,7 @@ class SBOMGenerator:
                 "licenseDeclared": component.license_declared,
                 "copyrightText": component.copyright_text,
                 "supplier": f"Organization: {component.supplier}",
-                "externalRefs": component.external_refs
+                "externalRefs": component.external_refs,
             }
 
             if component.checksums:
@@ -348,29 +379,84 @@ class SBOMGenerator:
 
         return document
 
-    def save_sbom(self, output_path: str = None) -> str:
+    def generate_cyclonedx_document(self) -> Dict:
+        """CycloneDX文書の生成"""
+        document = {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.5",
+            "serialNumber": f"urn:uuid:{uuid.uuid4()}",
+            "version": 1,
+            "metadata": {
+                "timestamp": datetime.now().isoformat(),
+                "tools": [
+                    {
+                        "vendor": "claude-friends-templates",
+                        "name": "sbom-generator",
+                        "version": "2.0.0"
+                    }
+                ]
+            },
+            "components": []
+        }
+
+        # コンポーネント情報の追加
+        for component in self.components:
+            cyclone_component = {
+                "type": "library" if component.type == "library" else "application",
+                "bom-ref": f"{component.name}@{component.version}",
+                "name": component.name,
+                "version": component.version,
+                "supplier": {
+                    "name": component.supplier
+                },
+                "purl": f"pkg:pypi/{component.name}@{component.version}",
+                "licenses": [
+                    {
+                        "license": {
+                            "name": component.license_concluded if component.license_concluded != "NOASSERTION" else "Unknown"
+                        }
+                    }
+                ]
+            }
+
+            if component.checksums:
+                cyclone_component["hashes"] = [
+                    {"alg": alg.upper(), "content": value}
+                    for alg, value in component.checksums.items()
+                ]
+
+            document["components"].append(cyclone_component)
+
+        return document
+
+    def save_sbom(self, output_path: str = None, format_type: str = "spdx") -> str:
         """SBOMの保存"""
         if output_path is None:
-            output_path = self.config.get('output_path', '.claude/security/sbom.json')
+            output_path = self.config.get("output_path", ".claude/security/sbom.json")
 
         # 脆弱性チェックの実行
         self.check_vulnerabilities()
 
-        # SPDX文書の生成
-        spdx_document = self.generate_spdx_document()
+        # フォーマットに応じた文書生成
+        if format_type.lower() == "cyclonedx":
+            document = self.generate_cyclonedx_document()
+        else:
+            document = self.generate_spdx_document()
 
         # ファイル保存
         output_file = Path(output_path)
         output_file.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(spdx_document, f, indent=2, ensure_ascii=False)
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(document, f, indent=2, ensure_ascii=False)
 
         print(f"SBOM generated: {output_file}")
         print(f"Components found: {len(self.components)}")
 
         # 脆弱性サマリー
-        vulnerable_components = [c for c in self.components if c.vulnerability_status == "vulnerable"]
+        vulnerable_components = [
+            c for c in self.components if c.vulnerability_status == "vulnerable"
+        ]
         if vulnerable_components:
             print(f"⚠️  Vulnerable components detected: {len(vulnerable_components)}")
             for comp in vulnerable_components:
@@ -393,10 +479,14 @@ class SBOMGenerator:
             suppliers[component.supplier] = suppliers.get(component.supplier, 0) + 1
 
             # ライセンス別集計
-            licenses[component.license_concluded] = licenses.get(component.license_concluded, 0) + 1
+            licenses[component.license_concluded] = (
+                licenses.get(component.license_concluded, 0) + 1
+            )
 
             # 脆弱性別集計
-            vulnerabilities[component.vulnerability_status] = vulnerabilities.get(component.vulnerability_status, 0) + 1
+            vulnerabilities[component.vulnerability_status] = (
+                vulnerabilities.get(component.vulnerability_status, 0) + 1
+            )
 
         return {
             "total_components": len(self.components),
@@ -404,24 +494,33 @@ class SBOMGenerator:
             "suppliers": suppliers,
             "licenses": licenses,
             "vulnerabilities": vulnerabilities,
-            "generated_at": datetime.now().isoformat()
+            "generated_at": datetime.now().isoformat(),
         }
 
 def main():
     """メイン処理"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="SBOM Generator")
+    parser.add_argument("--format", choices=["spdx", "cyclonedx"], default="spdx",
+                       help="SBOM format (default: spdx)")
+    parser.add_argument("--output", help="Output file path")
+    args = parser.parse_args()
+
     generator = SBOMGenerator()
 
     print("Analyzing project dependencies...")
     generator.analyze_project()
 
-    print("Generating SBOM...")
-    sbom_path = generator.save_sbom()
+    print(f"Generating SBOM in {args.format} format...")
+    sbom_path = generator.save_sbom(output_path=args.output, format_type=args.format)
 
     print("\nSummary Report:")
     summary = generator.generate_summary_report()
     print(json.dumps(summary, indent=2))
 
     return sbom_path
+
 
 if __name__ == "__main__":
     main()

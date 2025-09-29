@@ -58,25 +58,25 @@ show_header() {
 # 統計情報を表示
 show_statistics() {
     log_info "現在の状態を確認中..."
-    
+
     for agent in "builder" "planner"; do
         local notes_file=".claude/$agent/notes.md"
         if [ -f "$notes_file" ]; then
             local lines=$(wc -l < "$notes_file")
             local size=$(stat -c '%s' "$notes_file" 2>/dev/null || stat -f '%z' "$notes_file" 2>/dev/null || echo "0")
             local size_kb=$((size / 1024))
-            
+
             echo -e "  ${GREEN}▸${NC} $agent/notes.md:"
             echo "    - 行数: $lines / $ROTATION_MAX_LINES ($(( lines * 100 / ROTATION_MAX_LINES ))%)"
             echo "    - サイズ: ${size_kb}KB"
-            
+
             if [ "$lines" -gt "$ROTATION_MAX_LINES" ]; then
                 log_warning "$agent/notes.md はローテーションが必要です"
             fi
         else
             echo -e "  ${YELLOW}▸${NC} $agent/notes.md: 未作成"
         fi
-        
+
         # アーカイブ数
         local archive_count=$(ls -1 ".claude/$agent/archive"/*.md 2>/dev/null | wc -l)
         if [ "$archive_count" -gt 0 ]; then
@@ -91,7 +91,7 @@ do_check() {
     show_header
     log_info "チェックモードで実行中..."
     show_statistics
-    
+
     # 古いアーカイブのチェック
     if [ -n "$ROTATION_ARCHIVE_DAYS" ]; then
         log_info "${ROTATION_ARCHIVE_DAYS}日以上古いアーカイブをチェック中..."
@@ -105,14 +105,14 @@ do_check() {
             fi
         done
     fi
-    
+
     log_success "チェック完了"
 }
 
 # ローテーション実行
 do_rotate() {
     log_info "ローテーション処理を開始..."
-    
+
     if [ -f "$SCRIPT_DIR/rotate-notes.sh" ]; then
         bash "$SCRIPT_DIR/rotate-notes.sh"
         log_success "ローテーション完了"
@@ -125,7 +125,7 @@ do_rotate() {
 # インデックス更新
 do_index() {
     log_info "インデックス更新を開始..."
-    
+
     if [ -f "$SCRIPT_DIR/update-index.sh" ]; then
         bash "$SCRIPT_DIR/update-index.sh"
         log_success "インデックス更新完了"
@@ -140,9 +140,9 @@ cleanup_old_archives() {
     if [ -z "$ROTATION_ARCHIVE_DAYS" ]; then
         return 0
     fi
-    
+
     log_info "${ROTATION_ARCHIVE_DAYS}日以上古いアーカイブを削除中..."
-    
+
     local deleted_count=0
     for agent in "builder" "planner"; do
         if [ -d ".claude/$agent/archive" ]; then
@@ -155,7 +155,7 @@ cleanup_old_archives() {
             done < <(find ".claude/$agent/archive" -name "*.md" -mtime +${ROTATION_ARCHIVE_DAYS} 2>/dev/null)
         fi
     done
-    
+
     if [ "$deleted_count" -gt 0 ]; then
         log_success "$deleted_count 件の古いアーカイブを削除しました"
     fi
@@ -165,22 +165,22 @@ cleanup_old_archives() {
 do_all() {
     show_header
     show_statistics
-    
+
     # ローテーション
     do_rotate
-    
+
     # インデックス更新
     do_index
-    
+
     # 古いアーカイブのクリーンアップ（環境変数で有効化）
     if [ "${CLEANUP_OLD_ARCHIVES}" = "true" ]; then
         cleanup_old_archives
     fi
-    
+
     echo ""
     log_success "すべてのメンテナンス処理が完了しました"
     echo ""
-    
+
     # 完了後の状態を表示
     show_statistics
 }

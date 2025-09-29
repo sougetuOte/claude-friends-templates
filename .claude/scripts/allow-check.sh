@@ -15,37 +15,37 @@ log_attempt() {
 ALLOWED_PATTERNS=(
     # File operations
     "^(ls|cat|head|tail|grep|find|mkdir|touch|cp|mv|rm|chmod|chown)( |$)"
-    
+
     # Git - all common operations
     "^git( |$)"
-    
+
     # Node.js ecosystem
     "^(npm|yarn|pnpm|npx|node)( |$)"
-    
+
     # Python ecosystem
     "^(python|python3|pip|pip3|poetry|uv|conda)( |$)"
-    
+
     # Build tools
     "^(make|cmake|cargo|go|mvn|gradle|docker)( |$)"
-    
+
     # Text processing
     "^(awk|sed|sort|uniq|wc|cut|tr|jq)( |$)"
-    
+
     # Modern CLI tools
     "^(eza|batcat|bat|rg|fd|dust|z|fzf)( |$)"
-    
+
     # System info & monitoring
     "^(ps|top|htop|df|free|uname|whoami|pwd|env|date)( |$)"
-    
+
     # Network tools (safe operations)
     "^(curl|wget|ping|nslookup|dig)( |$)"
-    
+
     # Editors
     "^(nano|vim|vi|emacs|code)( |$)"
-    
+
     # Archive tools
     "^(tar|zip|unzip|gzip|gunzip)( |$)"
-    
+
     # Other development tools
     "^(ssh|scp|rsync|diff|patch)( |$)"
 )

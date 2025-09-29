@@ -15,15 +15,15 @@ echo "=== Session Completed: $timestamp ===" >> "$LOG_FILE"
 # Git状況の記録
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "Git Status:" >> "$LOG_FILE"
-    
+
     # 変更されたファイル数
     changed_files=$(git status --porcelain | wc -l)
     echo "  Changed files: $changed_files" >> "$LOG_FILE"
-    
+
     # ブランチ情報
     current_branch=$(git branch --show-current 2>/dev/null || echo "detached")
     echo "  Current branch: $current_branch" >> "$LOG_FILE"
-    
+
     # 最新コミットの情報
     if [ "$changed_files" -gt 0 ]; then
         echo "  Status: Working directory has changes" >> "$LOG_FILE"
@@ -39,15 +39,15 @@ fi
 if [ -f "$ACTIVITY_FILE" ]; then
     echo "" >> "$LOG_FILE"
     echo "Session Activity Summary:" >> "$LOG_FILE"
-    
+
     # 今日の活動を抽出（簡易版）
     today=$(date '+%Y-%m-%d')
     today_activities=$(grep "\\[$today" "$ACTIVITY_FILE" | tail -20)
-    
+
     if [ -n "$today_activities" ]; then
         echo "  Recent activities (last 20):" >> "$LOG_FILE"
         echo "$today_activities" | sed 's/^/    /' >> "$LOG_FILE"
-        
+
         # 簡単な統計
         tool_count=$(echo "$today_activities" | grep -o "Tool: [^]]*" | sort | uniq -c | sort -rn)
         echo "" >> "$LOG_FILE"

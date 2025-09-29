@@ -25,16 +25,16 @@ log_info "Tool: $tool_name"
 # Process file operations
 if [[ -n "$file_paths" ]]; then
     IFS=',' read -ra FILES <<< "$file_paths"
-    
+
     for file in "${FILES[@]}"; do
         if [[ -f "$file" ]]; then
             # Use shared utility to safely check file
             if check_file_readable "$file"; then
                 file_size=$(stat -c%s "$file" 2>/dev/null || echo "0")
                 file_ext="${file##*.}"
-                
+
                 log_info "File: $file (${file_size}B, .$file_ext)"
-                
+
                 # Categorize operation for metrics
                 case "$tool_name" in
                     "Edit"|"Write"|"MultiEdit")
@@ -50,7 +50,7 @@ if [[ -n "$file_paths" ]]; then
                         operation_type="OTHER"
                         ;;
                 esac
-                
+
                 # Log to metrics file with standardized format
                 {
                     timestamp=$(get_timestamp)

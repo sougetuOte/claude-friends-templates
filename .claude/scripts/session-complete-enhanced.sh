@@ -38,15 +38,15 @@ create_session_log() {
 Generated: $SESSION_END
 
 EOF
-    
+
     # Git status section
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         echo "Git Status:" >> "$LOG_FILE"
         echo "  Current branch: $(git branch --show-current 2>/dev/null || echo 'detached')" >> "$LOG_FILE"
-        
+
         local changed_files=$(git status --porcelain 2>/dev/null | wc -l)
         echo "  Changed files: $changed_files" >> "$LOG_FILE"
-        
+
         if [[ $changed_files -gt 0 ]]; then
             echo "  Status: Working directory has changes" >> "$LOG_FILE"
             echo "" >> "$LOG_FILE"
@@ -58,7 +58,7 @@ EOF
     else
         echo "Git Status: Not a git repository" >> "$LOG_FILE"
     fi
-    
+
     echo "" >> "$LOG_FILE"
 }
 
@@ -74,11 +74,11 @@ generate_work_summary() {
 - End time: $SESSION_END
 
 EOF
-    
+
     # Files modified section
     if [[ -f "$ACTIVITY_FILE" ]]; then
         echo "### Files Modified" >> "$SUMMARY_FILE"
-        
+
         # Extract file operations from activity log
         local file_ops=$(grep -E "Tool: (Edit|Write)" "$ACTIVITY_FILE" 2>/dev/null | tail -20 || echo "")
         if [[ -n "$file_ops" ]]; then
@@ -87,7 +87,7 @@ EOF
             echo "- No file modifications recorded" >> "$SUMMARY_FILE"
         fi
         echo "" >> "$SUMMARY_FILE"
-        
+
         # Commands executed section
         echo "### Commands Executed" >> "$SUMMARY_FILE"
         local commands=$(grep "Tool: Bash" "$ACTIVITY_FILE" 2>/dev/null | tail -10 || echo "")
@@ -98,15 +98,15 @@ EOF
         fi
         echo "" >> "$SUMMARY_FILE"
     fi
-    
+
     # Recent commits section (if in git repo)
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         echo "### Recent Commits" >> "$SUMMARY_FILE"
-        
+
         # Get commits from today
         local today=$(date '+%Y-%m-%d')
         local recent_commits=$(git log --since="$today 00:00:00" --oneline 2>/dev/null || echo "")
-        
+
         if [[ -n "$recent_commits" ]]; then
             echo "$recent_commits" | while IFS= read -r commit; do
                 # Analyze commit patterns
@@ -123,17 +123,17 @@ EOF
         fi
         echo "" >> "$SUMMARY_FILE"
     fi
-    
+
     # Task progress section
     local phase_todo="${CLAUDE_DIR}/shared/phase-todo.md"
     if [[ -f "$phase_todo" ]]; then
         echo "### Task Progress" >> "$SUMMARY_FILE"
-        
+
         # Count task statuses
         local completed=$(grep -c "\[x\]" "$phase_todo" 2>/dev/null || echo "0")
         local in_progress=$(grep -c "🟡" "$phase_todo" 2>/dev/null || echo "0")
         local not_started=$(grep -c "🔴" "$phase_todo" 2>/dev/null || echo "0")
-        
+
         echo "- Completed: $completed" >> "$SUMMARY_FILE"
         echo "- In Progress: $in_progress" >> "$SUMMARY_FILE"
         echo "- Not Started: $not_started" >> "$SUMMARY_FILE"
@@ -151,11 +151,11 @@ create_handover_notes() {
 Generated: $SESSION_END
 
 EOF
-    
+
     # Uncommitted changes section
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         echo "### Uncommitted Changes" >> "$HANDOVER_FILE"
-        
+
         local changes=$(git status --porcelain 2>/dev/null || echo "")
         if [[ -n "$changes" ]]; then
             echo "The following files have uncommitted changes:" >> "$HANDOVER_FILE"
@@ -167,10 +167,10 @@ EOF
         fi
         echo "" >> "$HANDOVER_FILE"
     fi
-    
+
     # Suggested next steps
     echo "### Suggested Next Steps" >> "$HANDOVER_FILE"
-    
+
     # Check for incomplete tasks
     local phase_todo="${CLAUDE_DIR}/shared/phase-todo.md"
     if [[ -f "$phase_todo" ]]; then
@@ -180,7 +180,7 @@ EOF
             echo "$incomplete_tasks" >> "$HANDOVER_FILE"
         fi
     fi
-    
+
     # Add recommendations based on git status
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         local uncommitted=$(git status --porcelain 2>/dev/null | wc -l)
@@ -192,14 +192,14 @@ EOF
             echo "3. Push committed changes to remote" >> "$HANDOVER_FILE"
         fi
     fi
-    
+
     echo "" >> "$HANDOVER_FILE"
 }
 
 # Display summary to user
 display_summary() {
     echo "✅ Session completed: $SESSION_END"
-    
+
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         local changed_files=$(git status --porcelain 2>/dev/null | wc -l)
         if [[ $changed_files -gt 0 ]]; then
@@ -207,7 +207,7 @@ display_summary() {
         else
             echo "🔄 No changes in working directory"
         fi
-        
+
         # Show recent commits
         local today=$(date '+%Y-%m-%d')
         local commit_count=$(git log --since="$today 00:00:00" --oneline 2>/dev/null | wc -l)
@@ -215,7 +215,7 @@ display_summary() {
             echo "📌 $commit_count commits today"
         fi
     fi
-    
+
     # Show task progress if available
     local phase_todo="${CLAUDE_DIR}/shared/phase-todo.md"
     if [[ -f "$phase_todo" ]]; then
@@ -225,7 +225,7 @@ display_summary() {
             echo "✅ Tasks: $completed/$total completed"
         fi
     fi
-    
+
     echo ""
     echo "📄 Session summary saved to: $SUMMARY_FILE"
     echo "📋 Handover notes saved to: $HANDOVER_FILE"
@@ -237,15 +237,15 @@ display_summary() {
 
 main() {
     log_info "Starting enhanced session complete hook"
-    
+
     # Generate all outputs
     create_session_log
     generate_work_summary
     create_handover_notes
-    
+
     # Display summary to user
     display_summary
-    
+
     log_info "Session complete hook finished successfully"
     exit 0
 }

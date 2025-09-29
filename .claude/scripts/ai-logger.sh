@@ -182,7 +182,7 @@ if [ "$exit_code" != "0" ] && [ -n "$output" ]; then
     if [ ${#output} -gt 1000 ]; then
         truncated_output="${truncated_output}... (truncated)"
     fi
-    
+
     error_entry=$(jq -nc \
         --arg timestamp "$timestamp" \
         --arg correlation_id "$correlation_id" \
@@ -203,7 +203,7 @@ if [ "$exit_code" != "0" ] && [ -n "$output" ]; then
             "environment": {},
             "ai_todo": "Analyze this error and suggest resolution"
         }')
-    
+
     echo "$error_entry" >> "$AI_LOG_FILE"
 fi
 

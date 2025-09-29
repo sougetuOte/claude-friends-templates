@@ -31,7 +31,7 @@ export ARCHIVE_DIR_NAME="archive"
 export NOTES_TEMPLATE_HEADER="# %AGENT% Notes
 
 ## 現在の作業
-- [ ] 
+- [ ]
 
 ## メモ
 

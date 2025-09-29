@@ -52,17 +52,17 @@ esac
 
 if [ "$SHOULD_UPDATE" = true ]; then
     echo -e "${BLUE}Memory update triggered: $UPDATE_REASON${NC}"
-    
+
     # Create memo directories if needed
     mkdir -p "$MEMO_PATH/0_metadata"
     mkdir -p "$MEMO_PATH/1_specs"
     mkdir -p "$MEMO_PATH/2_decisions"
     mkdir -p "$MEMO_PATH/3_context"
     mkdir -p "$MEMO_PATH/4_learnings"
-    
+
     # Generate memory entry ID
     ENTRY_ID="MEMO-$(date +%Y%m%d-%H%M%S)"
-    
+
     # Determine category based on context
     if [[ "$UPDATE_REASON" == *"error"* ]]; then
         CATEGORY="4_learnings"
@@ -77,10 +77,10 @@ if [ "$SHOULD_UPDATE" = true ]; then
         CATEGORY="3_context"
         SUBCATEGORY="snippets"
     fi
-    
+
     # Create memory entry
     MEMORY_FILE="${MEMO_PATH}/${CATEGORY}/${ENTRY_ID}.md"
-    
+
     {
         echo "---"
         echo "id: $ENTRY_ID"
@@ -98,7 +98,7 @@ if [ "$SHOULD_UPDATE" = true ]; then
         echo "- Time: $(date '+%H:%M:%S')"
         echo ""
         echo "## Content"
-        
+
         # Add relevant content based on tool
         case "$TOOL_NAME" in
             "Write"|"MultiEdit")
@@ -119,29 +119,29 @@ if [ "$SHOULD_UPDATE" = true ]; then
                 echo "Task description: ${CLAUDE_TASK_DESC:-none}"
                 ;;
         esac
-        
+
         echo ""
         echo "## Related"
         # Find related memories (simplified)
         echo "- Previous entries in ${CATEGORY}"
-        
+
     } > "$MEMORY_FILE"
-    
+
     # Update index
     INDEX_FILE="${MEMO_PATH}/0_metadata/index.md"
     if [ ! -f "$INDEX_FILE" ]; then
         echo "# Memory Bank Index" > "$INDEX_FILE"
         echo "" >> "$INDEX_FILE"
     fi
-    
+
     echo "- [$ENTRY_ID]($CATEGORY/${ENTRY_ID}.md) - $UPDATE_REASON - $(date '+%Y-%m-%d %H:%M')" >> "$INDEX_FILE"
-    
+
     echo -e "${GREEN}✅ Memory bank updated: $ENTRY_ID${NC}"
-    
+
     # Check memory bank size
     MEMO_SIZE=$(du -sh "$MEMO_PATH" 2>/dev/null | cut -f1)
     echo "Memory bank size: $MEMO_SIZE"
-    
+
     # Clean old entries if needed (keep last 100)
     ENTRY_COUNT=$(find "$MEMO_PATH" -name "MEMO-*.md" 2>/dev/null | wc -l)
     if [ $ENTRY_COUNT -gt 100 ]; then

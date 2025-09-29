@@ -26,10 +26,10 @@ COMMAND="${CLAUDE_COMMAND:-}"
 # Check if this is an agent switch command
 if [[ "$COMMAND" =~ ^/agent: ]]; then
     echo -e "${BLUE}Agent switch detected: $COMMAND${NC}"
-    
+
     # Extract agent type
     AGENT_TYPE=$(echo "$COMMAND" | sed 's/^\/agent://')
-    
+
     # Check current agent state
     if [ -f "${SYNC_PATH}/current-agent.txt" ]; then
         CURRENT_AGENT=$(cat "${SYNC_PATH}/current-agent.txt")
@@ -38,14 +38,14 @@ if [[ "$COMMAND" =~ ^/agent: ]]; then
         CURRENT_AGENT="unknown"
         echo "Initializing agent: $AGENT_TYPE"
     fi
-    
+
     # Create handover directory if needed
     mkdir -p "$HANDOVER_DIR"
-    
+
     # Generate handover filename
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
     HANDOVER_FILE="${HANDOVER_DIR}/handover-${TIMESTAMP}.md"
-    
+
     # Capture current context
     echo "Generating handover document..."
     {
@@ -73,10 +73,10 @@ if [[ "$COMMAND" =~ ^/agent: ]]; then
         fi
         echo ""
     } > "$HANDOVER_FILE"
-    
+
     # Update current agent
     echo "$AGENT_TYPE" > "${SYNC_PATH}/current-agent.txt"
-    
+
     # Check handover quality
     HANDOVER_SIZE=$(wc -c < "$HANDOVER_FILE")
     if [ $HANDOVER_SIZE -lt 100 ]; then
@@ -86,18 +86,18 @@ if [[ "$COMMAND" =~ ^/agent: ]]; then
         echo -e "${GREEN}✅ Handover document created: $(basename $HANDOVER_FILE)${NC}"
         EXIT_CODE=0
     fi
-    
+
     # Maintain handover history (keep last 5)
     HANDOVER_COUNT=$(ls -1 "$HANDOVER_DIR"/handover-*.md 2>/dev/null | wc -l)
     if [ $HANDOVER_COUNT -gt 5 ]; then
         ls -t "$HANDOVER_DIR"/handover-*.md | tail -n +6 | xargs rm -f
         echo "Cleaned old handover documents"
     fi
-    
+
     # Log the switch
     LOG_FILE="${SYNC_PATH}/switch.log"
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Switch: ${CURRENT_AGENT} → ${AGENT_TYPE}" >> "$LOG_FILE"
-    
+
     exit $EXIT_CODE
 fi
 
