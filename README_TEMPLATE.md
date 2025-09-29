@@ -160,7 +160,7 @@ Transform your solo development into a team experience with AI agents:
 
 ### Smart Agent Features
 - **Planner Special Mode**: Automatically switches to Feature Design Mode when planning new features
-- **Builder Special Modes**: 
+- **Builder Special Modes**:
   - Debug Mode: Activates when errors occur
   - Code Review Mode: Ensures quality after implementation
   - TDD Enforcement: Red→Green→Refactor cycle mandatory
@@ -278,23 +278,23 @@ The Claude Friends system simplifies development with just 4 core commands. All 
 09:00 /agent:planner    # Review progress and plan today's work
       → "Add user notifications feature"
       → Planner creates detailed spec with sequence diagrams
-      
+
 10:00 /agent:builder    # Start implementing new feature
       → Builder works on notification system
       → Error? Automatically switches to Debug Mode
-      
+
 14:00 /project:focus    # Deep focus on complex logic
-      
+
 16:00 /agent:builder    # Code review before wrapping up
       → "Review the notification implementation"
       → Builder analyzes code quality and suggests improvements
-      
+
 17:00 /project:daily    # Reflect and plan for tomorrow
 ```
 
 ### 👥 Human-AI Role Division
 
-#### Human Responsibilities  
+#### Human Responsibilities
 - **Strategic Decisions**: Work with Planner agent for high-level planning
 - **Requirements Definition**: Explain needs to Planner for detailed specs
 - **Quality Management**: Request Builder's Code Review Mode

@@ -115,7 +115,7 @@
 ### Special Modes (Integrated into Agents)
 The following modes are now integrated into the agent system:
 - **New Feature Design** → Use Planner's special mode
-- **Debug Mode** → Use Builder's special mode  
+- **Debug Mode** → Use Builder's special mode
 - **Code Review** → Use Builder's special mode
 
 Simply explain your needs to the active agent, and they will switch to the appropriate mode.

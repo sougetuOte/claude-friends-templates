@@ -1,7 +1,7 @@
 # ADR-[Number]: [Decision Title]
 
-Date: [YYYY-MM-DD]  
-Status: [Proposed | Accepted | Deprecated | Superseded]  
+Date: [YYYY-MM-DD]
+Status: [Proposed | Accepted | Deprecated | Superseded]
 Deciders: [Decision maker names]
 
 ## Context and Background
@@ -12,19 +12,19 @@ Deciders: [Decision maker names]
 
 ### Option 1: [Option Name]
 - **Overview**: [Option description]
-- **Pros**: 
+- **Pros**:
   - [Advantage 1]
   - [Advantage 2]
-- **Cons**: 
+- **Cons**:
   - [Disadvantage 1]
   - [Disadvantage 2]
 
 ### Option 2: [Option Name]
 - **Overview**: [Option description]
-- **Pros**: 
+- **Pros**:
   - [Advantage 1]
   - [Advantage 2]
-- **Cons**: 
+- **Cons**:
   - [Disadvantage 1]
   - [Disadvantage 2]
 
@@ -32,7 +32,7 @@ Deciders: [Decision maker names]
 
 **Choice**: [Selected option]
 
-**Reasons**: 
+**Reasons**:
 - [Reason for selection 1]
 - [Reason for selection 2]
 - [Reason for selection 3]
@@ -55,7 +55,7 @@ Deciders: [Decision maker names]
 ## Implementation Plan
 
 - [ ] [Implementation step 1]
-- [ ] [Implementation step 2] 
+- [ ] [Implementation step 2]
 - [ ] [Implementation step 3]
 
 ## Follow-up

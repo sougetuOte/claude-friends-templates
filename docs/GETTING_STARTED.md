@@ -128,7 +128,7 @@ graph LR
     B -->|Complete| C[Task Generation<br/>Planner]
     C -->|Handover| D[Implementation<br/>Builder]
     D -->|Feedback| E[Next Requirements<br/>Planner]
-    
+
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#bfb,stroke:#333,stroke-width:2px
@@ -141,14 +141,14 @@ graph LR
 A: Start with `/agent:planner` for requirements definition.
 
 ### Q: What should I create in each phase?
-A: 
+A:
 - **Requirements**: Project purpose, features, non-functional requirements
 - **Design**: Architecture, API, data models (with Mermaid diagrams)
 - **Tasks**: Phase-divided TDD tasks
 - **Implementation**: Code creation with Red-Green-Refactor cycle
 
 ### Q: When should I switch agents?
-A: 
+A:
 - **Planner → Builder**: After task generation
 - **Builder → Planner**: After phase completion, when adding new features
 

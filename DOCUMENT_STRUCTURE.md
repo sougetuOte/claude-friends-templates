@@ -7,18 +7,18 @@
 This project follows a **role-based document organization**:
 
 ### .claude/guidelines/
-**Purpose**: Quick reference for daily development  
-**Audience**: Developers actively working on the project  
+**Purpose**: Quick reference for daily development
+**Audience**: Developers actively working on the project
 **Characteristics**: Concise, practical, frequently referenced
 
 ### docs/
-**Purpose**: Detailed specifications, rules, and formal documentation  
-**Audience**: New team members, reviewers, architects  
+**Purpose**: Detailed specifications, rules, and formal documentation
+**Audience**: New team members, reviewers, architects
 **Characteristics**: Comprehensive, authoritative, versioned
 
 ### memo/
-**Purpose**: Work notes, analysis results, temporary documentation  
-**Audience**: Project maintainers, specific task owners  
+**Purpose**: Work notes, analysis results, temporary documentation
+**Audience**: Project maintainers, specific task owners
 **Characteristics**: Informal, evolving, task-specific
 
 ## 📋 Document Mapping
@@ -111,5 +111,5 @@ This project follows a **role-based document organization**:
 
 ---
 
-*Last updated: 2025-08-05*  
+*Last updated: 2025-08-05*
 *Maintainer: Claude Friends Template Team*

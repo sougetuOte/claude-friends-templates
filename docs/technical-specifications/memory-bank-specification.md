@@ -1,8 +1,8 @@
 # Memory Bank仕様文書
 
-**バージョン**: 1.0.0  
-**作成日**: 2025年9月17日  
-**対象**: claude-friends-templates Memory Bank System  
+**バージョン**: 1.0.0
+**作成日**: 2025年9月17日
+**対象**: claude-friends-templates Memory Bank System
 **準拠標準**: 2025年Intelligent Memory Management Standards
 
 ## 概要
@@ -21,7 +21,7 @@ graph TB
     Storage --> Active[Active Memory]
     Storage --> Archive[Archive Storage]
     Storage --> Index[Search Index]
-    
+
     Active --> Rotator[Rotation Manager]
     Rotator --> Archive
     Index --> Search[Search Engine]
@@ -195,7 +195,7 @@ calculate_length_score() {
     local min_chars=50
     local optimal_chars=1000
     local max_chars=10000
-    
+
     if [[ $char_count -lt $min_chars ]]; then
         echo "scale=2; $char_count / $min_chars * 0.5" | bc
     elif [[ $char_count -le $optimal_chars ]]; then
@@ -211,27 +211,27 @@ calculate_length_score() {
 calculate_structure_score() {
     local file_path="$1"
     local score=0
-    
+
     # ヘッダーの存在を確認
     if grep -q "^#" "$file_path"; then
         score=$(echo "$score + 2.0" | bc)
     fi
-    
+
     # リストの存在を確認
     if grep -q "^[*-]" "$file_path"; then
         score=$(echo "$score + 1.5" | bc)
     fi
-    
+
     # コードブロックの存在を確認
     if grep -q "\`\`\`" "$file_path"; then
         score=$(echo "$score + 2.5" | bc)
     fi
-    
+
     # リンクの存在を確認
     if grep -q "\[.*\](.*)"> "$file_path"; then
         score=$(echo "$score + 1.2" | bc)
     fi
-    
+
     # 最大値で正規化
     echo "scale=2; if ($score > 10) 10 else $score" | bc
 }
@@ -247,7 +247,7 @@ calculate_temporal_score() {
     local file_mtime=$(stat -c %Y "$file_path" 2>/dev/null || echo 0)
     local age_days=$(echo "($current_time - $file_mtime) / 86400" | bc)
     local half_life=7
-    
+
     # 指数減衰関数
     echo "scale=4; e(-0.693147 * $age_days / $half_life)" | bc -l
 }
@@ -256,7 +256,7 @@ calculate_temporal_score() {
 calculate_edit_frequency_score() {
     local file_path="$1"
     local metadata_file=".claude/memory/metadata/file_metadata.json"
-    
+
     if [[ -f "$metadata_file" ]]; then
         local edit_count
         edit_count=$(jq -r ".files[\"$file_path\"].edit_count // 0" "$metadata_file")
@@ -275,11 +275,11 @@ calculate_access_score() {
     local file_path="$1"
     local metadata_file=".claude/memory/metadata/file_metadata.json"
     local window_days=30
-    
+
     if [[ -f "$metadata_file" ]]; then
         local access_count
         access_count=$(jq -r ".files[\"$file_path\"].access_count_30d // 0" "$metadata_file")
-        
+
         # 対数スケーリング
         if [[ $access_count -eq 0 ]]; then
             echo "0.1"
@@ -301,22 +301,22 @@ calculate_relationship_score() {
     local internal_links=0
     local external_links=0
     local backlinks=0
-    
+
     # 内部リンクをカウント
     internal_links=$(grep -o "\[.*\]([^http].*)"> "$file_path" | wc -l)
-    
+
     # 外部リンクをカウント
     external_links=$(grep -o "\[.*\](http.*)"> "$file_path" | wc -l)
-    
+
     # 被リンク数を計算（簡易版）
     local file_name
     file_name=$(basename "$file_path")
     backlinks=$(find .claude/memory -name "*.md" -exec grep -l "$file_name" {} \; | wc -l)
-    
+
     # スコア計算
     local score
     score=$(echo "scale=2; ($internal_links * 0.6 + $external_links * 0.4 + $backlinks * 1.2) / 10" | bc)
-    
+
     # 最大値制限
     echo "scale=2; if ($score > 10) 10 else $score" | bc
 }
@@ -414,32 +414,32 @@ calculate_relationship_score() {
 perform_memory_rotation() {
     local rotation_type="$1"  # size_based|time_based|importance_based|manual
     local dry_run="${2:-false}"
-    
+
     log_info "Starting memory rotation: $rotation_type"
-    
+
     # ファイルリストを取得
     local files_to_analyze
     files_to_analyze=$(find .claude/memory/active -name "*.md" -type f)
-    
+
     local rotation_candidates=()
     local preservation_list=()
     local archive_list=()
-    
+
     # 各ファイルを分析
     while IFS= read -r file_path; do
         if [[ -z "$file_path" ]]; then
             continue
         fi
-        
+
         local importance_score
         importance_score=$(calculate_importance_score "$file_path")
-        
+
         local file_age_days
         file_age_days=$(get_file_age_days "$file_path")
-        
+
         local file_size_mb
         file_size_mb=$(get_file_size_mb "$file_path")
-        
+
         # ローテーション判定
         if should_preserve_file "$file_path" "$importance_score" "$file_age_days"; then
             preservation_list+=("$file_path")
@@ -447,14 +447,14 @@ perform_memory_rotation() {
             archive_list+=("$file_path")
             rotation_candidates+=("$file_path")
         fi
-        
+
     done <<< "$files_to_analyze"
-    
+
     # ローテーション実行
     if [[ "$dry_run" != "true" ]]; then
         execute_rotation "${rotation_candidates[@]}"
     fi
-    
+
     # 結果レポート
     generate_rotation_report "$rotation_type" "${preservation_list[@]}" "${archive_list[@]}"
 }
@@ -464,22 +464,22 @@ should_preserve_file() {
     local file_path="$1"
     local importance_score="$2"
     local file_age_days="$3"
-    
+
     # 高重要度ファイル
     if (( $(echo "$importance_score >= 8.0" | bc -l) )); then
         return 0
     fi
-    
+
     # 最近のファイル
     if [[ $file_age_days -le 7 ]]; then
         return 0
     fi
-    
+
     # ブックマークされたファイル
     if is_bookmarked_file "$file_path"; then
         return 0
     fi
-    
+
     return 1
 }
 
@@ -489,22 +489,22 @@ should_archive_file() {
     local importance_score="$2"
     local file_age_days="$3"
     local file_size_mb="$4"
-    
+
     # サイズベーストリガー
     if (( $(echo "$file_size_mb > 10" | bc -l) )); then
         return 0
     fi
-    
+
     # 重要度ベーストリガー
     if (( $(echo "$importance_score < 2.0" | bc -l) )) && [[ $file_age_days -gt 7 ]]; then
         return 0
     fi
-    
+
     # 時間ベーストリガー
     if [[ $file_age_days -gt 30 ]] && (( $(echo "$importance_score < 5.0" | bc -l) )); then
         return 0
     fi
-    
+
     return 1
 }
 ```
@@ -681,9 +681,9 @@ should_archive_file() {
 update_memory_indexes() {
     local update_type="$1"  # full|incremental|selective
     local target_files="$2" # specific files for selective update
-    
+
     log_info "Starting index update: $update_type"
-    
+
     case "$update_type" in
         "full")
             update_full_indexes
@@ -699,13 +699,13 @@ update_memory_indexes() {
             return 1
             ;;
     esac
-    
+
     # インデックス整合性チェック
     validate_index_consistency
-    
+
     # インデックス最適化
     optimize_indexes
-    
+
     log_info "Index update completed: $update_type"
 }
 
@@ -713,26 +713,26 @@ update_memory_indexes() {
 update_full_indexes() {
     local temp_dir=".claude/temp/index_update_$(date +%s)"
     mkdir -p "$temp_dir"
-    
+
     # 既存インデックスをバックアップ
     backup_existing_indexes "$temp_dir"
-    
+
     # 全ファイルをスキャン
     local all_files
     all_files=$(find .claude/memory/active -name "*.md" -type f)
-    
+
     # コンテンツインデックスを構築
     build_content_index "$all_files"
-    
+
     # キーワードインデックスを構築
     build_keyword_index "$all_files"
-    
+
     # 重要度インデックスを構築
     build_importance_index "$all_files"
-    
+
     # 時系列インデックスを構築
     build_temporal_index "$all_files"
-    
+
     # 一時ディレクトリをクリーンアップ
     rm -rf "$temp_dir"
 }
@@ -741,7 +741,7 @@ update_full_indexes() {
 build_content_index() {
     local files="$1"
     local index_file=".claude/memory/indexes/content_index.json"
-    
+
     # インデックスヘッダーを初期化
     jq -n '{
         "@schema": "https://claude-friends.dev/schemas/content-index/v1.0.0",
@@ -755,29 +755,29 @@ build_content_index() {
         },
         "files": {}
     }' > "$index_file"
-    
+
     local file_count=0
     local total_size=0
-    
+
     # 各ファイルを処理
     while IFS= read -r file_path; do
         if [[ -z "$file_path" ]]; then
             continue
         fi
-        
+
         process_file_for_content_index "$file_path" "$index_file"
         file_count=$((file_count + 1))
-        
+
         local file_size
         file_size=$(stat -c%s "$file_path" 2>/dev/null || echo 0)
         total_size=$((total_size + file_size))
-        
+
     done <<< "$files"
-    
+
     # 統計情報を更新
     local total_size_mb
     total_size_mb=$(echo "scale=2; $total_size / 1048576" | bc)
-    
+
     jq --arg file_count "$file_count" \
        --arg total_size_mb "$total_size_mb" \
        '.index_statistics.total_files = ($file_count | tonumber) |
@@ -802,7 +802,7 @@ search_memory_bank() {
     local search_type="${2:-content}"  # content|keyword|importance|recent
     local limit="${3:-10}"
     local format="${4:-json}"          # json|markdown|summary
-    
+
     case "$search_type" in
         "content")
             search_by_content "$query" "$limit" "$format"
@@ -831,19 +831,19 @@ search_by_content() {
     local query="$1"
     local limit="$2"
     local format="$3"
-    
+
     local results_file=".claude/temp/search_results_$(date +%s).json"
-    
+
     # grepでコンテンツ検索
     grep -r -i -n "$query" .claude/memory/active/ --include="*.md" | \
     while IFS=':' read -r file_path line_num content; do
         # ファイル情報を取得
         local importance_score
         importance_score=$(get_file_importance_score "$file_path")
-        
+
         local file_size
         file_size=$(stat -c%s "$file_path" 2>/dev/null || echo 0)
-        
+
         # 結果をJSON形式で追加
         jq -n \
             --arg file_path "$file_path" \
@@ -860,10 +860,10 @@ search_by_content() {
                 "match_type": "content"
             }' >> "$results_file"
     done
-    
+
     # 結果を重要度順でソートして返す
     format_search_results "$results_file" "$limit" "$format"
-    
+
     rm -f "$results_file"
 }
 ```
@@ -922,6 +922,6 @@ search_by_content() {
 
 ---
 
-**最終更新**: 2025年9月17日  
-**担当者**: Architecture Designer Agent  
+**最終更新**: 2025年9月17日
+**担当者**: Architecture Designer Agent
 **レビュー**: Phase 2.6.3 実装完了

@@ -344,7 +344,7 @@ Enhanced the Notes Management System with automatic rotation triggered by agent 
 #### 📦 Notes Management System for Agent Workspaces
 Comprehensive solution to prevent notes.md files from growing too large in `.claude/planner/` and `.claude/builder/` directories.
 
-- **Automatic Notes Rotation** 
+- **Automatic Notes Rotation**
   - Auto-archives notes.md when exceeding 500 lines (configurable)
   - Preserves archived notes with timestamps in `archive/` subdirectories
   - Generates smart summaries during rotation with key information extraction
@@ -447,13 +447,13 @@ This release brings comprehensive enhancements from the claude-kiro-template int
   - Automatic mock generation for dependencies
   - Real-time coverage tracking and reporting
   - Quality gates enforcing 80%+ coverage
-  
+
 - **Agent Coordination Optimization**:
   - Smart handoff compression for efficient context transfer
   - Parallel task execution analysis
   - Shared memory bank synchronization
   - Performance monitoring and bottleneck detection
-  
+
 - **Automated Quality Management**:
   - Refactoring scheduler with priority scoring
   - Design change impact analyzer
@@ -501,7 +501,7 @@ This is a major release introducing the Claude Friends system, transforming solo
   - **Planner Agent**: Strategic planning, requirement gathering, design documentation with Mermaid diagrams
   - **Builder Agent**: Implementation, testing, debugging, and code review
   - **Smart Mode Switching**: Agents automatically switch to specialized modes based on context
-- **Special Modes**: 
+- **Special Modes**:
   - Planner: Feature Design Mode (auto-activates for new features)
   - Builder: Debug Mode (auto-activates on errors) & Code Review Mode
 - **Intelligent Handoff System**: Smooth transitions between agents with mode recommendations
@@ -510,7 +510,7 @@ This is a major release introducing the Claude Friends system, transforming solo
 - **Mandatory TDD**: Test-Driven Development (t-wada style) is now strictly enforced
 
 ### Changed
-- **Major Command Consolidation**: 
+- **Major Command Consolidation**:
   - `/feature:plan` → Integrated into Planner's Feature Design Mode
   - `/debug:start` → Integrated into Builder's Debug Mode
   - `/review:check` → Integrated into Builder's Code Review Mode
@@ -519,7 +519,7 @@ This is a major release introducing the Claude Friends system, transforming solo
 - **Documentation**: Complete overhaul to reflect Claude Friends system
 
 ### Removed
-- **Deprecated Commands**: 
+- **Deprecated Commands**:
   - `/project:plan` (replaced by `/agent:planner`)
   - `/project:act` (replaced by `/agent:builder`)
   - Individual mode commands (now integrated into agents)

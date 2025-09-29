@@ -86,4 +86,3 @@ cat .claude/monitoring-config.json
 ---
 最終更新: 2025年09月17日
 担当: code-reviewer specialist
-

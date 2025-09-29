@@ -43,17 +43,17 @@ sed -i 's/\[Project Name\]/私の素晴らしいプロジェクト/g' CLAUDE.md 
 graph TD
     Start[プロジェクト開始] --> Init[テンプレート初期化]
     Init --> Planner[/agent:planner]
-    
+
     Planner --> Req[要件定義]
     Req -->|完了| NextQ1{「次どうすればいい？」}
     NextQ1 -->|Plannerが回答| Design[設計フェーズ]
-    
+
     Design -->|完了| NextQ2{「次どうすればいい？」}
     NextQ2 -->|Plannerが回答| Tasks[タスク生成]
-    
+
     Tasks -->|完了| NextQ3{「次どうすればいい？」}
     NextQ3 -->|Builderへ切り替え| Builder[/agent:builder]
-    
+
     Builder --> Impl[TDD実装]
     Impl -->|Phase完了| Review[レビュー]
     Review -->|次Phase| Impl

@@ -1,8 +1,8 @@
 # Subagent設定仕様定義
 
-**バージョン**: 1.0.0  
-**作成日**: 2025年9月17日  
-**対象**: claude-friends-templates Subagent System  
+**バージョン**: 1.0.0
+**作成日**: 2025年9月17日
+**対象**: claude-friends-templates Subagent System
 **準拠標準**: 2025年Multi-Agent Architecture Standards
 
 ## 概要
@@ -16,7 +16,7 @@
 ```mermaid
 graph TB
     MC[Main Coordinator] --> |spawn| PA[Planner Agent]
-    MC --> |spawn| BA[Builder Agent] 
+    MC --> |spawn| BA[Builder Agent]
     MC --> |spawn| SS[Sync Specialist]
     PA --> |message| SS
     BA --> |message| SS
@@ -669,6 +669,6 @@ graph TB
 
 ---
 
-**最終更新**: 2025年9月17日  
-**担当者**: Architecture Designer Agent  
+**最終更新**: 2025年9月17日
+**担当者**: Architecture Designer Agent
 **レビュー**: Phase 2.6.3 実装完了

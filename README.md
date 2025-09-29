@@ -21,7 +21,7 @@ $ /agent:planner
 "I want to add user notifications"
 "Switching to Feature Design Mode. Let me create a detailed spec with diagrams..."
 
-# Seamless handoff to your AI Builder  
+# Seamless handoff to your AI Builder
 $ /agent:builder
 "Got it! Starting with the login API. I'll follow the plan and implement JWT..."
 
@@ -175,17 +175,17 @@ graph LR
     A[Requirements<br/>📋] --> B[Design<br/>🎨]
     B --> C[Task Generation<br/>📝]
     C --> D[Implementation<br/>🔨]
-    
+
     subgraph "Planner Agent"
         A
         B
         C
     end
-    
+
     subgraph "Builder Agent"
         D
     end
-    
+
     D --> E{Phase<br/>Review}
     E -->|Pass| F[Next Phase]
     E -->|Issues| G[Refactoring]
@@ -401,9 +401,9 @@ The foundation for AI-powered development.
 
 ### 🔴🟢✅ Test-Driven Development (TDD) Integration
 - **Strict TDD Workflow**: Red-Green-Refactor cycle with task status tracking
-- **Visual Status Indicators**: 
+- **Visual Status Indicators**:
   - 🔴 Not Implemented (Red phase)
-  - 🟢 Minimally Implemented (Green phase)  
+  - 🟢 Minimally Implemented (Green phase)
   - ✅ Refactored (Refactor phase)
   - ⚠️ Blocked (After 3 failed attempts)
 - **TDD Commands**: `/tdd:start` to begin cycle, `/tdd:status` to check progress
@@ -527,7 +527,7 @@ A growing community of developers exploring the future of AI-powered development
 
 ## 🚀 Try It Out!
 
-Want to see Claude Friends in action? 
+Want to see Claude Friends in action?
 
 ### 📂 Working Examples (NEW!)
 Explore our **[examples/](examples/)** directory for complete, working code:

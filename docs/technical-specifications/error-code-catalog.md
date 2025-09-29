@@ -1,8 +1,8 @@
 # エラーコード一覧
 
-**バージョン**: 1.0.0  
-**作成日**: 2025年9月17日  
-**対象**: claude-friends-templates 全システム  
+**バージョン**: 1.0.0
+**作成日**: 2025年9月17日
+**対象**: claude-friends-templates 全システム
 **準拠標準**: 2025年Error Handling Best Practices
 
 ## 概要
@@ -459,7 +459,7 @@
 
 ---
 
-**最終更新**: 2025年9月17日  
-**担当者**: Architecture Designer Agent  
-**レビュー**: Phase 2.6.3 実装完了  
+**最終更新**: 2025年9月17日
+**担当者**: Architecture Designer Agent
+**レビュー**: Phase 2.6.3 実装完了
 **バージョン**: 1.0.0

@@ -1,8 +1,8 @@
 # Hook Input/Output仕様書
 
-**バージョン**: 1.0.0  
-**作成日**: 2025年9月17日  
-**対象**: claude-friends-templates Phase 2 Hook System  
+**バージョン**: 1.0.0
+**作成日**: 2025年9月17日
+**対象**: claude-friends-templates Phase 2 Hook System
 **準拠標準**: 2025年Hook Architecture Standards
 
 ## 概要
@@ -401,7 +401,7 @@ TASK_QUEUE_SIZE="100"                       # タスクキューサイズ
 ### 応答時間
 
 - **軽量Hook**: 1秒以内
-- **中程度Hook**: 10秒以内  
+- **中程度Hook**: 10秒以内
 - **重量Hook**: 60秒以内
 
 ### リソース使用量
@@ -458,6 +458,6 @@ TASK_QUEUE_SIZE="100"                       # タスクキューサイズ
 
 ---
 
-**最終更新**: 2025年9月17日  
-**担当者**: Architecture Designer Agent  
+**最終更新**: 2025年9月17日
+**担当者**: Architecture Designer Agent
 **レビュー**: Phase 2.6.3 実装完了
