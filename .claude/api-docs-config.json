@@ -1,0 +1,163 @@
+{
+  "openapi": {
+    "version": "3.0.0",
+    "title": "Claude Friends Templates API",
+    "description": "Comprehensive API documentation for claude-friends-templates project",
+    "version_api": "1.0.0",
+    "contact": {
+      "name": "Claude Friends Templates Team",
+      "url": "https://github.com/sougetuOte/claude-friends-templates",
+      "email": "support@claude-friends-templates.local"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8000",
+        "description": "Development server"
+      },
+      {
+        "url": "https://api.claude-friends-templates.com",
+        "description": "Production server"
+      }
+    ]
+  },
+  "swagger_ui": {
+    "enabled": true,
+    "path": "/docs",
+    "theme": "default",
+    "dark_mode": false,
+    "try_it_out": true,
+    "syntaxHighlight": {
+      "activate": true,
+      "theme": "agate"
+    },
+    "customization": {
+      "logo": {
+        "url": "https://claude-friends-templates.com/logo.png",
+        "altText": "Claude Friends Templates"
+      },
+      "favicon": "/favicon.ico"
+    }
+  },
+  "redoc": {
+    "enabled": true,
+    "path": "/redoc",
+    "theme": "default",
+    "hideDownloadButton": false,
+    "hideHostname": false,
+    "expandResponses": "200,201",
+    "requiredPropsFirst": true,
+    "sortPropsAlphabetically": true,
+    "payloadSampleIdx": 0
+  },
+  "scalar": {
+    "enabled": true,
+    "path": "/scalar",
+    "theme": "default",
+    "layout": "modern",
+    "showSidebar": true,
+    "hideModels": false,
+    "hideDownloadButton": false,
+    "customCss": null
+  },
+  "validation": {
+    "enabled": true,
+    "strict": true,
+    "validateExamples": true,
+    "validateResponses": true,
+    "validateRequests": true,
+    "spectral": {
+      "enabled": true,
+      "rulesets": ["oas"],
+      "custom_rules": []
+    },
+    "completeness": {
+      "min_coverage": 80,
+      "require_descriptions": true,
+      "require_examples": true,
+      "require_response_schemas": true
+    }
+  },
+  "ci_integration": {
+    "enabled": true,
+    "github_actions": {
+      "enabled": true,
+      "validate_on_pr": true,
+      "generate_on_push": true,
+      "deploy_docs": true,
+      "workflow_file": ".github/workflows/api-docs.yml"
+    },
+    "quality_gates": {
+      "fail_on_validation_errors": true,
+      "fail_on_low_coverage": false,
+      "coverage_threshold": 80
+    },
+    "artifacts": {
+      "upload_schema": true,
+      "upload_docs": true,
+      "retention_days": 30
+    }
+  },
+  "output": {
+    "formats": ["json", "yaml"],
+    "schema_file": "openapi.json",
+    "yaml_file": "openapi.yaml",
+    "docs_dir": "docs/api",
+    "static_files": {
+      "swagger_ui": "docs/api/swagger-ui",
+      "redoc": "docs/api/redoc",
+      "scalar": "docs/api/scalar"
+    },
+    "code_samples": {
+      "enabled": true,
+      "languages": ["python", "javascript", "curl", "typescript"],
+      "output_dir": "docs/api/samples"
+    }
+  },
+  "generation": {
+    "auto_discovery": {
+      "enabled": true,
+      "scan_directories": ["src", "app", "api"],
+      "include_patterns": ["*.py", "*.js", "*.ts"],
+      "exclude_patterns": ["*test*", "*spec*", "__pycache__"]
+    },
+    "code_analysis": {
+      "extract_docstrings": true,
+      "parse_type_hints": true,
+      "analyze_decorators": true,
+      "include_private": false
+    },
+    "schema_enhancement": {
+      "add_examples": true,
+      "infer_types": true,
+      "generate_descriptions": true,
+      "optimize_refs": true
+    }
+  },
+  "security": {
+    "schemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "global_security": ["bearer"],
+    "document_auth": true
+  },
+  "features": {
+    "interactive_testing": true,
+    "code_generation": true,
+    "mock_server": true,
+    "performance_testing": false,
+    "analytics": false
+  }
+}
