@@ -1,0 +1,29 @@
+{
+  "sync_id": "3b31e0a8-7a25-4a50-893a-4f9ae15c2265",
+  "timestamp": "2025-09-29T11:40:07.377837+00:00",
+  "agents": [
+    "planner",
+    "builder"
+  ],
+  "states": {
+    "planner": {
+      "agent": "planner",
+      "current_phase": "Phase 2",
+      "tasks_completed": [
+        "2.1.1",
+        "2.1.2"
+      ],
+      "tasks_in_progress": [
+        "2.2.1"
+      ],
+      "timestamp": "2025-09-29T20:40:07.367596",
+      "iteration": 2
+    },
+    "builder": {
+      "agent": "builder",
+      "current_task": "2.2.1",
+      "task_status": "in_progress",
+      "test_status": "green"
+    }
+  }
+}

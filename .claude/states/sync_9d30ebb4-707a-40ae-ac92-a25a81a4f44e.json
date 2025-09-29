@@ -1,0 +1,31 @@
+{
+  "sync_id": "9d30ebb4-707a-40ae-ac92-a25a81a4f44e",
+  "timestamp": "2025-09-29T11:40:07.379742+00:00",
+  "agents": [
+    "planner",
+    "builder"
+  ],
+  "states": {
+    "planner": {
+      "agent": "planner",
+      "current_phase": "Phase 2",
+      "tasks_completed": [
+        "2.1.1",
+        "2.1.2"
+      ],
+      "tasks_in_progress": [
+        "2.2.1"
+      ],
+      "timestamp": "2025-09-29T20:40:07.379108"
+    },
+    "builder": {
+      "agent": "builder",
+      "current_task": "2.2.1",
+      "test_status": "red",
+      "files_modified": [
+        "test_state_sync.py"
+      ],
+      "timestamp": "2025-09-29T20:40:07.379113"
+    }
+  }
+}
