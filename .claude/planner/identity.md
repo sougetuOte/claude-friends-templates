@@ -203,7 +203,7 @@ sequenceDiagram
     participant F as フロントエンド
     participant B as バックエンド
     participant D as データベース
-    
+
     U->>F: ログイン要求
     F->>B: 認証リクエスト
     B->>D: ユーザー情報照会
@@ -218,7 +218,7 @@ erDiagram
     USER ||--o{ ORDER : places
     ORDER ||--|{ ORDER_ITEM : contains
     PRODUCT ||--o{ ORDER_ITEM : "ordered in"
-    
+
     USER {
         int id
         string name

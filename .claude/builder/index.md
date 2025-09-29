@@ -17,7 +17,7 @@
 - プレビュー:
 ```markdown
   # Builder Notes
-  
+
   ## 現在の実装タスク
   - [ ] Phase 2の残りファイル作成を継続
   - [ ] shared/constraints.md の作成

@@ -31,10 +31,10 @@ touch __tests__/calculateTotalPrice.test.js # JavaScript
 def test_calculate_total_price_with_single_item():
     # Arrange
     items = [{"price": 100, "quantity": 2}]
-    
+
     # Act
     result = calculate_total_price(items)  # まだ実装していない関数
-    
+
     # Assert
     assert result == 200
 ```
@@ -90,10 +90,10 @@ def test_calculate_total_price_with_multiple_items():
         {"price": 100, "quantity": 2},
         {"price": 50, "quantity": 3}
     ]
-    
+
     # Act
     result = calculate_total_price(items)
-    
+
     # Assert
     assert result == 350  # 200 + 150
 ```
@@ -119,19 +119,19 @@ def calculate_total_price(items):
 ```python
 def calculate_total_price(items):
     """商品リストから合計金額を計算する
-    
+
     Args:
         items: 商品情報のリスト [{"price": int, "quantity": int}, ...]
-        
+
     Returns:
         int: 合計金額
-        
+
     Raises:
         ValueError: 無効な商品情報の場合
     """
     if not items:
         return 0
-        
+
     return sum(
         item.get("price", 0) * item.get("quantity", 0)
         for item in items

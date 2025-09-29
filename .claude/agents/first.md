@@ -43,7 +43,7 @@ requirements_check:
   - docs/requirements/index.md の存在
   - 要件の完成度（最低500文字）
   - 機能要件・非機能要件の明記
-  
+
 design_check:
   - docs/design/ ディレクトリの存在
   - architecture.md の存在
@@ -70,7 +70,7 @@ graph TD
     E -->|Yes| G{Tasks 完成?}
     G -->|No| H[Planner Agent 誘導]
     G -->|Yes| I[Builder Agent 起動許可]
-    
+
     D --> J[Requirements 完成後]
     J --> E
     F --> K[Design 完成後]
@@ -89,7 +89,7 @@ graph TD
 - [ ] 技術スタックが決定
 - [ ] 制約・前提条件が明記
 
-#### Design 品質基準  
+#### Design 品質基準
 - [ ] システム構成図が存在
 - [ ] API設計が完了
 - [ ] データベース設計が完了
@@ -133,7 +133,7 @@ graph TD
 
 2. **段階診断とガイダンス**
    - Requirements不足 → Requirements Agent誘導
-   - Design不足 → Planner Agent誘導  
+   - Design不足 → Planner Agent誘導
    - Tasks不足 → Planner Agent誘導
    - 全完了 → Builder Agent起動許可
 
@@ -162,7 +162,7 @@ graph TD
 
 ### 絶対に許可しないこと
 - Requirements未完了での Design着手
-- Design未完了での実装着手  
+- Design未完了での実装着手
 - 品質基準未達成での次段階移行
 
 ### 例外的に許可すること

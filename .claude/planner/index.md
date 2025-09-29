@@ -17,7 +17,7 @@
 - プレビュー:
 ```markdown
   # Planner Notes
-  
+
   ## 現在のPhase: Claude Friends導入
   - 開始日: 2025-07-11
   - 期限: 未設定（段階的導入）

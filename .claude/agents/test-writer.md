@@ -47,10 +47,10 @@ describe('FeatureName', () => {
   it('should behave specifically when given specific input', () => {
     // Arrange
     const input = 'specific value';
-    
+
     // Act
     const result = functionUnderTest(input);
-    
+
     // Assert
     expect(result).toBe('expected output');
   });
