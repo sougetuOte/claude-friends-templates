@@ -13,22 +13,21 @@ Following 2025 multi-agent coordination best practices:
 """
 
 import argparse
+import base64
 import json
 import os
 import sys
 import uuid
 import hashlib
 import gzip
-import tempfile
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Union
+from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, asdict
 import re
 
 # Python 3.12 features
-from typing import override
 
 # Constants for 2025 handover system
 HANDOVER_SCHEMA_VERSION = "2.0.0"
@@ -39,6 +38,7 @@ DEFAULT_COMPRESSION_RATIO = 0.3
 @dataclass
 class HandoverMetadata:
     """Handover metadata following 2025 best practices"""
+
     id: str
     schema_version: str
     created_at: str
@@ -51,6 +51,7 @@ class HandoverMetadata:
 @dataclass
 class TraceInfo:
     """Trace information for 2025 observability"""
+
     trace_id: str
     correlation_id: str
     parent_span_id: Optional[str] = None
@@ -60,6 +61,7 @@ class TraceInfo:
 @dataclass
 class ProvenanceInfo:
     """Provenance tracking for audit and replay"""
+
     created_by: str
     creation_timestamp: str
     source_files_modified: List[str]
@@ -80,11 +82,11 @@ class HandoverGenerator:
         if not Path(prompt_file).exists():
             return {"error": "Prompt file not found"}
 
-        with open(prompt_file, 'r') as f:
+        with open(prompt_file, "r") as f:
             content = f.read()
 
         # Detect agent switch pattern
-        agent_pattern = r'/agent:(planner|builder|reviewer|architect|first)'
+        agent_pattern = r"/agent:(planner|builder|reviewer|architect|first)"
         match = re.search(agent_pattern, content)
 
         if match:
@@ -95,7 +97,7 @@ class HandoverGenerator:
             return {
                 "switch_detected": True,
                 "target_agent": target_agent,
-                "pattern_matched": match.group(0)
+                "pattern_matched": match.group(0),
             }
 
         return {"switch_detected": False}
@@ -106,32 +108,40 @@ class HandoverGenerator:
             # Git status
             status_result = subprocess.run(
                 ["git", "status", "--short"],
-                capture_output=True, text=True, cwd=self.project_root
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
 
             # Current branch
             branch_result = subprocess.run(
                 ["git", "branch", "--show-current"],
-                capture_output=True, text=True, cwd=self.project_root
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
 
             # Modified files
             diff_result = subprocess.run(
                 ["git", "diff", "--name-only"],
-                capture_output=True, text=True, cwd=self.project_root
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
 
             return {
                 "status": status_result.stdout.strip(),
                 "current_branch": branch_result.stdout.strip(),
-                "modified_files": diff_result.stdout.strip().split('\n') if diff_result.stdout.strip() else []
+                "modified_files": diff_result.stdout.strip().split("\n")
+                if diff_result.stdout.strip()
+                else [],
             }
         except Exception as e:
             return {
                 "status": "N/A",
                 "current_branch": "N/A",
                 "modified_files": [],
-                "error": str(e)
+                "error": str(e),
             }
 
     def get_test_status(self) -> str:
@@ -139,13 +149,15 @@ class HandoverGenerator:
         try:
             result = subprocess.run(
                 ["python", "-m", "pytest", "--collect-only", "-q"],
-                capture_output=True, text=True, cwd=self.project_root
+                capture_output=True,
+                text=True,
+                cwd=self.project_root,
             )
             if result.returncode == 0:
                 return "tests_available"
             else:
                 return "no_tests"
-        except:
+        except Exception:
             return "unknown"
 
     def extract_recent_activities(self, agent: str) -> List[str]:
@@ -156,11 +168,11 @@ class HandoverGenerator:
             return ["No recent activities found"]
 
         try:
-            with open(notes_file, 'r') as f:
+            with open(notes_file, "r") as f:
                 content = f.read()
 
             # Extract recent activities section
-            lines = content.split('\n')
+            lines = content.split("\n")
             in_activities = False
             activities = []
 
@@ -168,7 +180,7 @@ class HandoverGenerator:
                 if "最近の活動" in line or "Recent Activities" in line:
                     in_activities = True
                     continue
-                elif line.startswith('## ') and in_activities:
+                elif line.startswith("## ") and in_activities:
                     break
                 elif in_activities and line.strip():
                     activities.append(line.strip())
@@ -185,17 +197,17 @@ class HandoverGenerator:
             return "No current task"
 
         try:
-            with open(notes_file, 'r') as f:
+            with open(notes_file, "r") as f:
                 content = f.read()
 
             # Look for current task pattern
-            task_pattern = r'現在のタスク[:：]\s*(.+)'
+            task_pattern = r"現在のタスク[:：]\s*(.+)"
             match = re.search(task_pattern, content)
             if match:
                 return match.group(1).strip()
 
             # Alternative pattern
-            task_pattern2 = r'Current Task[:：]\s*(.+)'
+            task_pattern2 = r"Current Task[:：]\s*(.+)"
             match2 = re.search(task_pattern2, content)
             if match2:
                 return match2.group(1).strip()
@@ -204,7 +216,9 @@ class HandoverGenerator:
         except:
             return "Error reading current task"
 
-    def calculate_priority(self, blockers: List[str], complexity: str = "normal") -> str:
+    def calculate_priority(
+        self, blockers: List[str], complexity: str = "normal"
+    ) -> str:
         """Calculate handover priority"""
         if len(blockers) > 0:
             return "high"
@@ -213,7 +227,9 @@ class HandoverGenerator:
         else:
             return "normal"
 
-    def generate_ai_hints(self, from_agent: str, to_agent: str, complexity: str = "normal") -> Dict[str, Any]:
+    def generate_ai_hints(
+        self, from_agent: str, to_agent: str, complexity: str = "normal"
+    ) -> Dict[str, Any]:
         """Generate AI hints for receiving agent"""
         hints = {
             "priority": self.calculate_priority([], complexity),
@@ -222,51 +238,100 @@ class HandoverGenerator:
             "potential_blockers": [],
             "debugging_hints": [
                 "Check recent test results",
-                "Verify Git status before proceeding"
+                "Verify Git status before proceeding",
             ],
             "performance_considerations": [
                 "Monitor resource usage",
-                "Consider parallel execution where possible"
+                "Consider parallel execution where possible",
             ],
             "security_notes": [
                 "Validate all inputs",
-                "Check for sensitive data in handover"
-            ]
+                "Check for sensitive data in handover",
+            ],
         }
 
         # Agent-specific hints
         if to_agent == "builder":
             hints["suggested_approach"] = "Focus on implementation and testing"
-            hints["debugging_hints"].append("Run TDD cycle if implementing new features")
+            hints["debugging_hints"].append(
+                "Run TDD cycle if implementing new features"
+            )
         elif to_agent == "planner":
             hints["suggested_approach"] = "Focus on strategy and planning"
-            hints["debugging_hints"].append("Review project requirements and constraints")
+            hints["debugging_hints"].append(
+                "Review project requirements and constraints"
+            )
 
         return hints
 
-    def compress_context(self, context_data: Dict[str, Any], compression_ratio: float = 0.3) -> Dict[str, Any]:
-        """Compress large context data"""
-        # Convert to JSON string
-        json_str = json.dumps(context_data, indent=2)
-        original_size = len(json_str.encode('utf-8'))
+    def compress_context(
+        self,
+        context_data: Dict[str, Any],
+        compression_level: int = 6,
+        compress_fields: Optional[List[str]] = None,
+    ) -> Dict[str, Any]:
+        """Compress large context data with configurable compression level"""
+        # Handle selective field compression
+        if compress_fields:
+            compressed_fields = {}
+            result = {}
 
-        # Compress with gzip
-        compressed_data = gzip.compress(json_str.encode('utf-8'))
+            for field in compress_fields:
+                if field in context_data:
+                    field_json = json.dumps(context_data[field])
+                    compressed = gzip.compress(
+                        field_json.encode("utf-8"), compresslevel=compression_level
+                    )
+                    compressed_fields[field] = base64.b64encode(compressed).decode()
+
+            # Copy non-compressed fields
+            for key, value in context_data.items():
+                if key not in compress_fields:
+                    result[key] = value
+
+            result["compressed_fields"] = compressed_fields
+            return result
+
+        # Full context compression
+        json_str = json.dumps(context_data, indent=2)
+        original_size = len(json_str.encode("utf-8"))
+
+        # Compress with gzip using specified compression level
+        compressed_data = gzip.compress(
+            json_str.encode("utf-8"), compresslevel=compression_level
+        )
         compressed_size = len(compressed_data)
 
-        # Calculate actual compression ratio
-        actual_ratio = compressed_size / original_size if original_size > 0 else 1.0
+        # Calculate actual compression ratio (how much was saved)
+        actual_ratio = (
+            1.0 - (compressed_size / original_size) if original_size > 0 else 0.0
+        )
 
         return {
             "compressed": True,
-            "compression_info": {
-                "original_size": original_size,
-                "compressed_size": compressed_size,
-                "compression_ratio": actual_ratio,
-                "algorithm": "gzip"
-            },
-            "data": compressed_data.hex()  # Store as hex string
+            "compressed_data": base64.b64encode(
+                compressed_data
+            ).decode(),  # Use base64 instead of hex
+            "original_size": original_size,
+            "compressed_size": compressed_size,
+            "compression_ratio": actual_ratio,
+            "algorithm": "gzip",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
         }
+
+    def decompress_context(self, compressed_data: str) -> Dict[str, Any]:
+        """Decompress context data from base64 encoded gzip"""
+        try:
+            # Decode base64
+            compressed_bytes = base64.b64decode(compressed_data)
+
+            # Decompress gzip
+            decompressed_bytes = gzip.decompress(compressed_bytes)
+
+            # Parse JSON
+            return json.loads(decompressed_bytes.decode("utf-8"))
+        except (base64.binascii.Error, gzip.BadGzipFile) as e:
+            raise Exception(f"Invalid compressed data: {str(e)}")
 
     def create_handover_document(
         self,
@@ -281,7 +346,8 @@ class HandoverGenerator:
         task_complexity: str = "normal",
         compress_context_data: Optional[str] = None,
         compression_ratio: float = 0.3,
-        use_template: Optional[str] = None
+        use_template: Optional[str] = None,
+        compress_large_context: bool = False,
     ) -> Dict[str, Any]:
         """Create handover document following 2025 best practices"""
 
@@ -300,14 +366,14 @@ class HandoverGenerator:
             from_agent=from_agent,
             to_agent=to_agent,
             agent_session_id=str(uuid.uuid4()),
-            handover_type="template" if use_template else "standard"
+            handover_type="template" if use_template else "standard",
         )
 
         # Trace information
         trace_info = TraceInfo(
             trace_id=trace_id,
             correlation_id=correlation_id,
-            session_id=str(uuid.uuid4())
+            session_id=str(uuid.uuid4()),
         )
 
         # Base handover structure
@@ -319,20 +385,41 @@ class HandoverGenerator:
                 "completed_tasks": self.extract_recent_activities(from_agent),
                 "current_task": context or self.get_current_task(from_agent),
                 "blockers": [],
-                "next_steps": [f"Continue work as {to_agent}"]
+                "next_steps": [f"Continue work as {to_agent}"],
             },
             "context": {
                 "task_description": context or "Agent handover",
-                "agent_specific_context": {} if use_template else {"note": "Standard handover"}
-            }
+                "agent_specific_context": {}
+                if use_template
+                else {"note": "Standard handover"},
+            },
         }
+
+        # Handle large context compression
+        if compress_large_context and context:
+            # Check if context is large (either string or when converted to JSON)
+            context_size = (
+                len(context) if isinstance(context, str) else len(json.dumps(context))
+            )
+            if context_size > 1000:  # Only compress if context > 1KB
+                # Store compressed context
+                if isinstance(context, str):
+                    # For string context, create a dict to compress
+                    handover["compressed_context"] = self.compress_context(
+                        {"context": context}
+                    )
+                else:
+                    # For dict context, compress directly
+                    handover["compressed_context"] = self.compress_context(context)
+                # Keep original context for compatibility
+                handover["context"] = context
 
         # Add template-specific fields
         if use_template:
             handover["metadata"]["source_agent_type"] = use_template
             handover["context"]["agent_specific_context"] = {
                 "template_used": use_template,
-                "specialized_fields": f"Fields specific to {use_template} agent"
+                "specialized_fields": f"Fields specific to {use_template} agent",
             }
 
         # Provenance tracking
@@ -344,7 +431,7 @@ class HandoverGenerator:
                 source_files_modified=git_status.get("modified_files", []),
                 tools_used=["handover-generator", "git"],
                 session_state={"active": True},
-                environment_snapshot=dict(os.environ)
+                environment_snapshot=dict(os.environ),
             )
             handover["provenance"] = asdict(provenance)
 
@@ -357,23 +444,31 @@ class HandoverGenerator:
                 "modified_files": git_status.get("modified_files", []),
                 "test_status": self.get_test_status(),
                 "task_progress": "in_progress",
-                "environment_vars": {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE_")},
-                "active_tools": ["git", "pytest", "python"]
+                "environment_vars": {
+                    k: v for k, v in os.environ.items() if not k.startswith("CLAUDE_")
+                },
+                "active_tools": ["git", "pytest", "python"],
             }
 
         # AI hints
         if generate_ai_hints:
-            handover["ai_hints"] = self.generate_ai_hints(from_agent, to_agent, task_complexity)
+            handover["ai_hints"] = self.generate_ai_hints(
+                from_agent, to_agent, task_complexity
+            )
 
         # Context compression
         if compress_context_data:
             try:
-                with open(compress_context_data, 'r') as f:
+                with open(compress_context_data, "r") as f:
                     large_context = json.load(f)
-                compressed_result = self.compress_context(large_context, compression_ratio)
+                compressed_result = self.compress_context(
+                    large_context, compression_ratio
+                )
                 handover["context"]["compressed_data"] = compressed_result
                 # Extract compression_info to top level of context for easier access
-                handover["context"]["compression_info"] = compressed_result["compression_info"]
+                handover["context"]["compression_info"] = compressed_result[
+                    "compression_info"
+                ]
             except:
                 handover["context"]["compression_error"] = "Failed to load context file"
 
@@ -382,24 +477,26 @@ class HandoverGenerator:
     def validate_handover(self, handover_file: str) -> Dict[str, Any]:
         """Validate handover document"""
         try:
-            with open(handover_file, 'r') as f:
+            with open(handover_file, "r") as f:
                 handover = json.load(f)
 
             # Check schema version
             if handover.get("schema_version") != HANDOVER_SCHEMA_VERSION:
                 return {
                     "is_valid": False,
-                    "error": f"Invalid schema version. Expected {HANDOVER_SCHEMA_VERSION}"
+                    "error": f"Invalid schema version. Expected {HANDOVER_SCHEMA_VERSION}",
                 }
 
             # Check required fields
             required_fields = ["metadata", "trace_info", "summary", "context"]
-            missing_fields = [field for field in required_fields if field not in handover]
+            missing_fields = [
+                field for field in required_fields if field not in handover
+            ]
 
             if missing_fields:
                 return {
                     "is_valid": False,
-                    "error": f"Missing required fields: {missing_fields}"
+                    "error": f"Missing required fields: {missing_fields}",
                 }
 
             return {"is_valid": True}
@@ -409,7 +506,7 @@ class HandoverGenerator:
     def verify_integrity(self, handover_file: str) -> Dict[str, Any]:
         """Verify handover integrity with checksum"""
         try:
-            with open(handover_file, 'rb') as f:
+            with open(handover_file, "rb") as f:
                 content = f.read()
 
             checksum = hashlib.sha256(content).hexdigest()
@@ -421,7 +518,7 @@ class HandoverGenerator:
                 "is_valid": validation_result["is_valid"],
                 "checksum": checksum,
                 "file_size": len(content),
-                "validation_details": validation_result
+                "validation_details": validation_result,
             }
         except Exception as e:
             return {"is_valid": False, "error": str(e)}
@@ -433,13 +530,11 @@ class HandoverGenerator:
         for agent in agents:
             try:
                 handover = self.create_handover_document(
-                    from_agent=agent,
-                    to_agent="coordinator",
-                    capture_state=True
+                    from_agent=agent, to_agent="coordinator", capture_state=True
                 )
 
                 output_file = Path(output_dir) / f"handover_{agent}.json"
-                with open(output_file, 'w') as f:
+                with open(output_file, "w") as f:
                     json.dump(handover, f, indent=2)
 
                 results[agent] = {"status": "success", "file": str(output_file)}
@@ -451,7 +546,9 @@ class HandoverGenerator:
 
 def main():
     """Main CLI interface"""
-    parser = argparse.ArgumentParser(description="Agent Handover Generator - 2025 Best Practices")
+    parser = argparse.ArgumentParser(
+        description="Agent Handover Generator - 2025 Best Practices"
+    )
 
     # Detection mode
     parser.add_argument("--detect-switch", help="Detect agent switch from prompt file")
@@ -465,10 +562,27 @@ def main():
     parser.add_argument("--trace-id", help="Trace ID for observability")
     parser.add_argument("--correlation-id", help="Correlation ID for tracking")
     parser.add_argument("--context", help="Context description")
-    parser.add_argument("--include-provenance", action="store_true", default=True, help="Include provenance tracking (default: enabled)")
-    parser.add_argument("--capture-state", action="store_true", default=True, help="Capture state snapshot (default: enabled)")
-    parser.add_argument("--generate-ai-hints", action="store_true", default=True, help="Generate AI hints (default: enabled)")
-    parser.add_argument("--task-complexity", choices=["low", "normal", "high"], default="normal")
+    parser.add_argument(
+        "--include-provenance",
+        action="store_true",
+        default=True,
+        help="Include provenance tracking (default: enabled)",
+    )
+    parser.add_argument(
+        "--capture-state",
+        action="store_true",
+        default=True,
+        help="Capture state snapshot (default: enabled)",
+    )
+    parser.add_argument(
+        "--generate-ai-hints",
+        action="store_true",
+        default=True,
+        help="Generate AI hints (default: enabled)",
+    )
+    parser.add_argument(
+        "--task-complexity", choices=["low", "normal", "high"], default="normal"
+    )
 
     # Compression
     parser.add_argument("--compress-context", help="Compress large context file")
@@ -479,7 +593,9 @@ def main():
     parser.add_argument("--verify-integrity", help="Verify handover integrity")
 
     # Batch operations
-    parser.add_argument("--batch-generate", action="store_true", help="Batch generate handovers")
+    parser.add_argument(
+        "--batch-generate", action="store_true", help="Batch generate handovers"
+    )
     parser.add_argument("--agents", help="Comma-separated list of agents")
     parser.add_argument("--output-dir", help="Output directory for batch operations")
 
@@ -531,13 +647,13 @@ def main():
                 task_complexity=args.task_complexity,
                 compress_context_data=args.compress_context,
                 compression_ratio=args.compression_ratio,
-                use_template=args.use_template
+                use_template=args.use_template,
             )
 
             # Ensure output directory exists
             Path(args.output).parent.mkdir(parents=True, exist_ok=True)
 
-            with open(args.output, 'w') as f:
+            with open(args.output, "w") as f:
                 json.dump(handover, f, indent=2)
 
             return 0
