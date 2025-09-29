@@ -1,8 +1,8 @@
 # [Project/Feature Name] 設計書
 
-作成日: [YYYY-MM-DD]  
-作成者: Planner Agent  
-バージョン: [1.0]  
+作成日: [YYYY-MM-DD]
+作成者: Planner Agent
+バージョン: [1.0]
 ステータス: [Draft | Review | Approved | Implemented]
 
 ## 1. 設計概要
@@ -34,17 +34,17 @@ graph TB
         UI[UI Components]
         State[State Management]
     end
-    
+
     subgraph "Backend"
         API[API Gateway]
         BL[Business Logic]
         DA[Data Access]
     end
-    
+
     subgraph "Database"
         DB[(Database)]
     end
-    
+
     UI --> State
     State --> API
     API --> BL
@@ -55,7 +55,7 @@ graph TB
 ### 2.2 コンポーネント設計
 #### Component A: [コンポーネント名]
 - **責務**: [単一責任の原則に基づく責務]
-- **インターフェース**: 
+- **インターフェース**:
   ```typescript
   interface ComponentA {
     method1(param: Type): ReturnType;
@@ -76,7 +76,7 @@ sequenceDiagram
     participant API
     participant Service
     participant Database
-    
+
     User->>Frontend: アクション
     Frontend->>API: リクエスト
     API->>Service: 処理要求
@@ -99,14 +99,14 @@ classDiagram
         +deleteUser(id: string): void
         +findUser(id: string): User
     }
-    
+
     class UserRepository {
         <<interface>>
         +save(user: User): User
         +findById(id: string): User
         +delete(id: string): void
     }
-    
+
     class User {
         +id: string
         +name: string
@@ -114,7 +114,7 @@ classDiagram
         +createdAt: Date
         +validate(): boolean
     }
-    
+
     UserService --> UserRepository
     UserService --> User
 ```
@@ -176,7 +176,7 @@ stateDiagram-v2
 
 ### 4.1 パフォーマンス設計
 - **目標応答時間**: 95%tile < 200ms
-- **キャッシュ戦略**: 
+- **キャッシュ戦略**:
   - Redis for session data
   - CDN for static assets
 - **最適化ポイント**:
@@ -187,7 +187,7 @@ stateDiagram-v2
 ### 4.2 セキュリティ設計
 - **認証**: JWT with refresh token
 - **認可**: Role-based access control (RBAC)
-- **暗号化**: 
+- **暗号化**:
   - Data at rest: AES-256
   - Data in transit: TLS 1.3
 - **入力検証**: すべての入力をサニタイズ
@@ -240,19 +240,19 @@ describe('UserService.createUser', () => {
   it('正常系: 有効なデータでユーザーを作成できる', () => {
     // Given
     const userData = { name: 'Test', email: 'test@example.com' };
-    
+
     // When
     const user = userService.createUser(userData);
-    
+
     // Then
     expect(user.id).toBeDefined();
     expect(user.name).toBe('Test');
   });
-  
+
   it('異常系: 無効なメールアドレスでエラー', () => {
     // Given
     const userData = { name: 'Test', email: 'invalid' };
-    
+
     // When/Then
     expect(() => userService.createUser(userData))
       .toThrow(ValidationError);

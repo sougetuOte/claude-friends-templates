@@ -1,8 +1,8 @@
 # ADR-[Number]: [Decision Title]
 
-Date: [YYYY-MM-DD]  
-Status: [Proposed | Accepted | Deprecated | Superseded]  
-Deciders: [Decision maker names]  
+Date: [YYYY-MM-DD]
+Status: [Proposed | Accepted | Deprecated | Superseded]
+Deciders: [Decision maker names]
 Technical Lead: [Technical lead name]
 
 ## Context and Background
@@ -26,10 +26,10 @@ Technical Lead: [Technical lead name]
 
 ### Option 1: [Option Name]
 - **Overview**: [Option description]
-- **Pros**: 
+- **Pros**:
   - [Advantage 1]
   - [Advantage 2]
-- **Cons**: 
+- **Cons**:
   - [Disadvantage 1]
   - [Disadvantage 2]
 - **Estimated Effort**: [Time/Resources needed]
@@ -37,10 +37,10 @@ Technical Lead: [Technical lead name]
 
 ### Option 2: [Option Name]
 - **Overview**: [Option description]
-- **Pros**: 
+- **Pros**:
   - [Advantage 1]
   - [Advantage 2]
-- **Cons**: 
+- **Cons**:
   - [Disadvantage 1]
   - [Disadvantage 2]
 - **Estimated Effort**: [Time/Resources needed]
@@ -55,7 +55,7 @@ Technical Lead: [Technical lead name]
 
 **Choice**: [Selected option]
 
-**Reasons**: 
+**Reasons**:
 - [Primary reason for selection]
 - [Secondary reason]
 - [Additional justification]
@@ -122,7 +122,7 @@ Technical Lead: [Technical lead name]
 ## Follow-up
 
 - **Review Schedule**: [When to review the decision - e.g., 3 months]
-- **Success Metrics**: 
+- **Success Metrics**:
   - [Measurable metric 1]
   - [Measurable metric 2]
 - **Monitoring**: [What to monitor after implementation]
@@ -154,7 +154,7 @@ Technical Lead: [Technical lead name]
 
 ---
 
-**Template Version**: 1.0  
+**Template Version**: 1.0
 **Based on**: Michael Nygard's ADR template, enhanced with claude-kiro-template practices
 
 **Note**: This ADR records an important decision that will affect future technical choices. When changing or deprecating, clearly state the reasons in a new ADR and link back to this one.

@@ -71,7 +71,7 @@ claude-kiro-templateのTask Execution Checklistsとclaude-friends-templatesのTD
 ### コミット・プッシュ
 - [ ] 適切なコミットメッセージでコミット
   - Red Phase: `test: add failing test for [feature]`
-  - Green Phase: `feat: implement [feature] to pass test`  
+  - Green Phase: `feat: implement [feature] to pass test`
   - Refactor Phase: `refactor: [description]`
 - [ ] コミット前にpre-commitフックが通る
 - [ ] プッシュ前にCI/CDが通ることを確認
@@ -97,7 +97,7 @@ claude-kiro-templateのTask Execution Checklistsとclaude-friends-templatesのTD
 - テストが正しい理由で失敗することを確認
 - テストの説明で期待動作を文書化
 
-#### 4.2 🟢 Green Phase  
+#### 4.2 🟢 Green Phase
 - テストを通すための最小限のコードを書く
 - テストを通すことのみに集中
 - この段階での過度な設計は避ける

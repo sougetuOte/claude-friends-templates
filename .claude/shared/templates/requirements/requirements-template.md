@@ -1,8 +1,8 @@
 # [Project Name] 要件定義書
 
-作成日: [YYYY-MM-DD]  
-作成者: [Planner/User Name]  
-バージョン: [1.0]  
+作成日: [YYYY-MM-DD]
+作成者: [Planner/User Name]
+バージョン: [1.0]
 ステータス: [Draft | Review | Approved]
 
 ## 1. プロジェクト概要

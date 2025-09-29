@@ -199,7 +199,7 @@ class TestAsyncUserService:
         # Arrange
         user_id = '123'
         expected_user = {'id': '123', 'name': 'John Doe'}
-        
+
         with patch('user_service.api_call') as mock_api:
             mock_api.return_value = expected_user
 
@@ -323,7 +323,7 @@ def user_factory():
 def test_user_creation(valid_user, user_factory):
     # 固定データ使用
     result1 = create_user(valid_user)
-    
+
     # 動的データ生成
     admin_data = user_factory(role='admin', name='Admin')
     result2 = create_user(admin_data)
@@ -342,7 +342,7 @@ changed_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js
 if [ -n "$changed_files" ]; then
   echo "Running tests for changed files..."
   npm test -- --findRelatedTests $changed_files
-  
+
   # テストが失敗した場合はコミットを阻止
   if [ $? -ne 0 ]; then
     echo "Tests failed. Commit aborted."
@@ -368,18 +368,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          
+
       - name: Install dependencies
         run: npm install
-        
+
       - name: Run tests
         run: npm test -- --coverage
-        
+
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         with:

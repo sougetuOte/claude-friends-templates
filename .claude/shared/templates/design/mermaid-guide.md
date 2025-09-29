@@ -67,14 +67,14 @@ sequenceDiagram
     participant G as API Gateway
     participant A as Auth Service
     participant S as Service
-    
+
     C->>G: Request + Token
     G->>A: Validate Token
     A-->>G: Token Valid
     G->>S: Forward Request
     S-->>G: Response
     G-->>C: Response
-    
+
     Note over A: トークン検証には<br/>有効期限チェックも含む
 ```
 
@@ -102,7 +102,7 @@ classDiagram
         +getEmail() string
         +authenticate(password) boolean
     }
-    
+
     class UserService {
         -userRepository: UserRepository
         +createUser(data) User
@@ -110,7 +110,7 @@ classDiagram
         +updateUser(id, data) User
         +deleteUser(id) void
     }
-    
+
     class UserRepository {
         <<interface>>
         +save(user) User
@@ -118,7 +118,7 @@ classDiagram
         +update(user) User
         +delete(id) void
     }
-    
+
     UserService --> UserRepository : uses
     UserService --> User : creates
 ```
@@ -144,7 +144,7 @@ erDiagram
         string name
         datetime created_at
     }
-    
+
     Order ||--|{ OrderItem : contains
     Order {
         string id PK
@@ -153,7 +153,7 @@ erDiagram
         string status
         datetime ordered_at
     }
-    
+
     Product ||--o{ OrderItem : included_in
     Product {
         string id PK
@@ -161,7 +161,7 @@ erDiagram
         decimal price
         integer stock
     }
-    
+
     OrderItem {
         string id PK
         string order_id FK
@@ -193,7 +193,7 @@ stateDiagram-v2
     発送済み --> 配達完了 : 配達確認
     配達完了 --> [*]
     キャンセル --> [*]
-    
+
     note right of 支払待ち
         24時間以内に
         支払いがない場合
@@ -218,17 +218,17 @@ gantt
 gantt
     title 新機能開発スケジュール
     dateFormat YYYY-MM-DD
-    
+
     section 設計フェーズ
     要件定義     :des1, 2024-01-01, 7d
     設計書作成   :des2, after des1, 5d
     設計レビュー :des3, after des2, 2d
-    
+
     section 開発フェーズ
     環境構築     :dev1, after des3, 3d
     API開発      :dev2, after dev1, 10d
     フロント開発 :dev3, after dev1, 12d
-    
+
     section テストフェーズ
     単体テスト   :test1, after dev2, 5d
     統合テスト   :test2, after dev3, 5d
@@ -287,18 +287,18 @@ graph TB
         Web[Webアプリ]
         Mobile[モバイルアプリ]
     end
-    
+
     subgraph "Backend"
         LB[ロードバランサー]
         API1[APIサーバー1]
         API2[APIサーバー2]
     end
-    
+
     subgraph "Data Layer"
         Cache[(Redis)]
         DB[(PostgreSQL)]
     end
-    
+
     Web --> LB
     Mobile --> LB
     LB --> API1
@@ -316,7 +316,7 @@ sequenceDiagram
     participant F as Frontend
     participant B as Backend
     participant D as Database
-    
+
     U->>F: ログイン情報入力
     F->>B: POST /auth/login
     B->>D: ユーザー検証

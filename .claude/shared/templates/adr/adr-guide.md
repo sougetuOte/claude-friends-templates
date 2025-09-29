@@ -66,10 +66,10 @@ graph TD
 ```markdown
 ### Option 1: JWT (JSON Web Tokens)
 - **Overview**: ステートレスなトークンベース認証
-- **Pros**: 
+- **Pros**:
   - スケーラブル（サーバー側でセッション管理不要）
   - マイクロサービス間で共有しやすい
-- **Cons**: 
+- **Cons**:
   - トークンの無効化が困難
   - トークンサイズが大きい
 ```
@@ -79,7 +79,7 @@ graph TD
 ## Decision
 **Choice**: JWT with Refresh Token
 
-**Reasons**: 
+**Reasons**:
 - マイクロサービスアーキテクチャとの親和性が高い
 - 既存の認証基盤からの移行が段階的に可能
 - 業界標準で、多くのライブラリがサポート
