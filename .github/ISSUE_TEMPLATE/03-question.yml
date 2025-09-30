@@ -1,0 +1,96 @@
+name: ❓ Question / Support
+description: Ask a question or request support
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! Please provide details about your question below.
+
+        **Note**: For general discussions, consider using [GitHub Discussions](https://github.com/sougetuOte/claude-friends-templates/discussions) instead.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Please describe your question in detail...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What area does your question relate to?
+      options:
+        - Getting Started
+        - Agent Configuration
+        - Handover System
+        - Quality Checks
+        - TDD / Testing
+        - Documentation
+        - Deployment
+        - Performance
+        - Security
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context / Background
+      description: Provide any relevant context that might help us understand your question
+      placeholder: |
+        What are you trying to achieve?
+        What have you tried so far?
+    validations:
+      required: false
+
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What Have You Tried?
+      description: Have you attempted any solutions or consulted the documentation?
+      placeholder: |
+        - I checked the README
+        - I searched existing issues
+        - I tried...
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (if relevant)
+      description: Please provide information about your environment (if relevant to your question)
+      value: |
+        - Python version: [e.g., 3.12.8]
+        - OS: [e.g., Ubuntu 22.04, macOS 14.0]
+        - Claude Code version: [e.g., 1.0.0]
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context or screenshots that might help
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission Checklist
+      description: Please ensure you've completed these checks before submitting
+      options:
+        - label: I have checked the documentation (README, BEST_PRACTICES, etc.)
+          required: true
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: This is not a bug report (use the Bug Report template for bugs)
+          required: true
