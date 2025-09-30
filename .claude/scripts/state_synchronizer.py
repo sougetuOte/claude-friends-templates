@@ -6,11 +6,10 @@ Handles state synchronization between Planner and Builder agents
 
 import json
 import uuid
-import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
-import os
+from typing import Dict, Any, List, Optional
+import fcntl
 
 
 class StateSynchronizer:
@@ -20,10 +19,17 @@ class StateSynchronizer:
         """Initialize state synchronizer
 
         Args:
-            state_dir: Directory to store state files (defaults to .claude/states)
+            state_dir: Project root directory or state directory path.
+                      If provided, state files will be stored in {state_dir}/.claude/states
+                      If not provided, uses .claude/states relative to current directory
         """
         if state_dir:
-            self.state_dir = Path(state_dir)
+            base_dir = Path(state_dir)
+            # If state_dir looks like a project root, append .claude/states
+            if not base_dir.name == "states":
+                self.state_dir = base_dir / ".claude" / "states"
+            else:
+                self.state_dir = base_dir
         else:
             self.state_dir = Path(".claude/states")
 
@@ -50,7 +56,7 @@ class StateSynchronizer:
             "state_id": state_id,
             "agent": agent,
             "timestamp": timestamp,
-            "data": state
+            "data": state,
         }
 
         # Save to file
@@ -58,22 +64,80 @@ class StateSynchronizer:
         agent_dir.mkdir(exist_ok=True)
 
         state_file = agent_dir / f"state_{state_id}.json"
-        with open(state_file, 'w') as f:
+        with open(state_file, "w") as f:
             json.dump(state_with_metadata, f, indent=2, default=str)
 
         # Also save as current state
         current_file = agent_dir / "current.json"
-        with open(current_file, 'w') as f:
+        with open(current_file, "w") as f:
             json.dump(state_with_metadata, f, indent=2, default=str)
 
         return {
             "success": True,
             "state_id": state_id,
             "timestamp": timestamp,
-            "agent": agent
+            "agent": agent,
         }
 
-    def load_state(self, agent: str, state_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    def update_state(self, agent: str, state: Dict[str, Any]) -> Dict[str, Any]:
+        """Atomically update agent state with file locking
+
+        Args:
+            agent: Agent name
+            state: State update (partial or full)
+
+        Returns:
+            Update result with metadata
+        """
+        agent_dir = self.state_dir / agent
+        agent_dir.mkdir(exist_ok=True, parents=True)
+
+        current_file = agent_dir / "current.json"
+        lock_file = agent_dir / ".lock"
+
+        # Acquire exclusive lock
+        with open(lock_file, "w") as lock_fd:
+            try:
+                fcntl.flock(lock_fd.fileno(), fcntl.LOCK_EX)
+
+                # Read current state
+                if current_file.exists():
+                    with open(current_file, "r") as f:
+                        current_data = json.load(f)
+                else:
+                    current_data = {
+                        "state_id": str(uuid.uuid4()),
+                        "agent": agent,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "data": {},
+                    }
+
+                # Merge state update
+                current_data["data"].update(state)
+                current_data["timestamp"] = datetime.now(timezone.utc).isoformat()
+                current_data["last_updated_by"] = agent
+
+                # Write atomically (write to temp file, then rename)
+                temp_file = current_file.with_suffix(".tmp")
+                with open(temp_file, "w") as f:
+                    json.dump(current_data, f, indent=2, default=str)
+
+                temp_file.replace(current_file)
+
+                return {
+                    "success": True,
+                    "state_id": current_data["state_id"],
+                    "timestamp": current_data["timestamp"],
+                    "agent": agent,
+                }
+
+            finally:
+                # Release lock
+                fcntl.flock(lock_fd.fileno(), fcntl.LOCK_UN)
+
+    def load_state(
+        self, agent: str, state_id: Optional[str] = None
+    ) -> Optional[Dict[str, Any]]:
         """Load agent state from storage
 
         Args:
@@ -93,7 +157,7 @@ class StateSynchronizer:
         if not state_file.exists():
             return None
 
-        with open(state_file, 'r') as f:
+        with open(state_file, "r") as f:
             state_with_metadata = json.load(f)
 
         # Return the data part, but include agent info
@@ -102,7 +166,9 @@ class StateSynchronizer:
 
         return state_data
 
-    def synchronize_states(self, agents: List[str], timeout_ms: int = 5000) -> Dict[str, Any]:
+    def synchronize_states(
+        self, agents: List[str], timeout_ms: int = 5000
+    ) -> Dict[str, Any]:
         """Synchronize states between multiple agents
 
         Args:
@@ -127,7 +193,7 @@ class StateSynchronizer:
             return {
                 "synchronized": False,
                 "error": "Some agents have no state",
-                "sync_id": sync_id
+                "sync_id": sync_id,
             }
 
         # Create sync record
@@ -135,19 +201,19 @@ class StateSynchronizer:
             "sync_id": sync_id,
             "timestamp": timestamp,
             "agents": agents,
-            "states": agent_states
+            "states": agent_states,
         }
 
         # Save sync record
         sync_file = self.state_dir / f"sync_{sync_id}.json"
-        with open(sync_file, 'w') as f:
+        with open(sync_file, "w") as f:
             json.dump(sync_record, f, indent=2, default=str)
 
         return {
             "synchronized": True,
             "sync_id": sync_id,
             "agents": agents,
-            "timestamp": timestamp
+            "timestamp": timestamp,
         }
 
     def detect_conflicts(self, agents: List[str]) -> List[Dict[str, Any]]:
@@ -177,19 +243,24 @@ class StateSynchronizer:
             # Check if both have current_task
             if "current_task" in planner_state and "current_task" in builder_state:
                 if "task_status" in planner_state and "task_status" in builder_state:
-                    if planner_state.get("task_status") != builder_state.get("task_status"):
-                        conflicts.append({
-                            "field": "current_task.task_status",
-                            "agents": {
-                                "planner": planner_state.get("task_status"),
-                                "builder": builder_state.get("task_status")
+                    if planner_state.get("task_status") != builder_state.get(
+                        "task_status"
+                    ):
+                        conflicts.append(
+                            {
+                                "field": "current_task.task_status",
+                                "agents": {
+                                    "planner": planner_state.get("task_status"),
+                                    "builder": builder_state.get("task_status"),
+                                },
                             }
-                        })
+                        )
 
         return conflicts
 
-    def resolve_conflicts(self, conflicts: List[Dict[str, Any]],
-                         resolution_strategy: str = "latest") -> Dict[str, Any]:
+    def resolve_conflicts(
+        self, conflicts: List[Dict[str, Any]], resolution_strategy: str = "latest"
+    ) -> Dict[str, Any]:
         """Resolve conflicts between states
 
         Args:
@@ -239,20 +310,23 @@ class StateSynchronizer:
             return []
 
         # Get all state files
-        state_files = sorted(agent_dir.glob("state_*.json"),
-                           key=lambda x: x.stat().st_mtime,
-                           reverse=True)
+        state_files = sorted(
+            agent_dir.glob("state_*.json"),
+            key=lambda x: x.stat().st_mtime,
+            reverse=True,
+        )
 
         history = []
         for state_file in state_files[:limit]:
-            with open(state_file, 'r') as f:
+            with open(state_file, "r") as f:
                 state_data = json.load(f)
                 history.append(state_data.get("data", {}))
 
         return history
 
-    def calculate_diff(self, old_state: Dict[str, Any],
-                      new_state: Dict[str, Any]) -> Dict[str, Any]:
+    def calculate_diff(
+        self, old_state: Dict[str, Any], new_state: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Calculate differences between two states
 
         Args:
@@ -262,21 +336,14 @@ class StateSynchronizer:
         Returns:
             Dictionary with added, modified, and removed fields
         """
-        diff = {
-            "added": {},
-            "modified": {},
-            "removed": {}
-        }
+        diff = {"added": {}, "modified": {}, "removed": {}}
 
         # Find added and modified fields
         for key, new_value in new_state.items():
             if key not in old_state:
                 diff["added"][key] = new_value
             elif old_state[key] != new_value:
-                diff["modified"][key] = {
-                    "old": old_state[key],
-                    "new": new_value
-                }
+                diff["modified"][key] = {"old": old_state[key], "new": new_value}
 
         # Find removed fields
         for key in old_state:
@@ -298,10 +365,7 @@ class StateSynchronizer:
         try:
             # Validate update (check for invalid fields)
             if "invalid_field" in update and update["invalid_field"] is None:
-                return {
-                    "success": False,
-                    "error": "Invalid field in update"
-                }
+                return {"success": False, "error": "Invalid field in update"}
 
             # Load current state
             current_state = self.load_state(agent) or {}
@@ -313,16 +377,10 @@ class StateSynchronizer:
             # Save atomically
             result = self.save_state(agent, updated_state)
 
-            return {
-                "success": True,
-                "state_id": result["state_id"]
-            }
+            return {"success": True, "state_id": result["state_id"]}
 
         except Exception as e:
-            return {
-                "success": False,
-                "error": str(e)
-            }
+            return {"success": False, "error": str(e)}
 
     def register_agent(self, agent: str, callback_url: str) -> None:
         """Register an agent for state change notifications
@@ -333,7 +391,7 @@ class StateSynchronizer:
         """
         self.registered_agents[agent] = {
             "callback_url": callback_url,
-            "registered_at": datetime.now(timezone.utc).isoformat()
+            "registered_at": datetime.now(timezone.utc).isoformat(),
         }
 
     def broadcast_change(self, change: Dict[str, Any]) -> Dict[str, Any]:
@@ -355,15 +413,18 @@ class StateSynchronizer:
             "success": True,
             "notified_agents": notified_agents,
             "timestamp": timestamp,
-            "change": change
+            "change": change,
         }
 
-    def create_checkpoint(self, agent: str, description: str) -> Dict[str, Any]:
+    def create_checkpoint(
+        self, agent: str, state: Optional[Dict[str, Any]] = None, description: str = ""
+    ) -> Dict[str, Any]:
         """Create a checkpoint for state recovery
 
         Args:
             agent: Agent name
-            description: Checkpoint description
+            state: State to checkpoint (if None, uses current state from load_state)
+            description: Optional checkpoint description
 
         Returns:
             Checkpoint information
@@ -371,21 +432,24 @@ class StateSynchronizer:
         checkpoint_id = str(uuid.uuid4())
         timestamp = datetime.now(timezone.utc).isoformat()
 
-        # Get current state
-        current_state = self.load_state(agent)
+        # Use provided state or load current state
+        if state is None:
+            current_state = self.load_state(agent)
+        else:
+            current_state = state
 
         # Store checkpoint
         checkpoint = {
             "checkpoint_id": checkpoint_id,
             "agent": agent,
-            "description": description,
+            "description": description if isinstance(description, str) else state,
             "timestamp": timestamp,
-            "state": current_state
+            "state": current_state,
         }
 
         # Save checkpoint
         checkpoint_file = self.state_dir / f"checkpoint_{checkpoint_id}.json"
-        with open(checkpoint_file, 'w') as f:
+        with open(checkpoint_file, "w") as f:
             json.dump(checkpoint, f, indent=2, default=str)
 
         # Store in memory for quick access
@@ -395,7 +459,7 @@ class StateSynchronizer:
             "checkpoint_id": checkpoint_id,
             "description": description,
             "timestamp": timestamp,
-            "agent": agent
+            "agent": agent,
         }
 
     def restore_checkpoint(self, agent: str, checkpoint_id: str) -> Dict[str, Any]:
@@ -414,22 +478,22 @@ class StateSynchronizer:
         else:
             checkpoint_file = self.state_dir / f"checkpoint_{checkpoint_id}.json"
             if not checkpoint_file.exists():
-                return {
-                    "success": False,
-                    "error": "Checkpoint not found"
-                }
+                return {"success": False, "error": "Checkpoint not found"}
 
-            with open(checkpoint_file, 'r') as f:
+            with open(checkpoint_file, "r") as f:
                 checkpoint = json.load(f)
 
         # Restore state
         restored_state = checkpoint["state"]
-        self.save_state(agent, restored_state)
+        if restored_state:
+            self.save_state(agent, restored_state)
 
         return {
             "success": True,
             "checkpoint_id": checkpoint_id,
-            "restored_at": datetime.now(timezone.utc).isoformat()
+            "restored_at": datetime.now(timezone.utc).isoformat(),
+            "description": checkpoint.get("description", {}),
+            "state": restored_state,
         }
 
     def begin_transaction(self) -> str:
@@ -443,12 +507,13 @@ class StateSynchronizer:
             "id": transaction_id,
             "started_at": datetime.now(timezone.utc).isoformat(),
             "updates": [],
-            "status": "pending"
+            "status": "pending",
         }
         return transaction_id
 
-    def update_in_transaction(self, transaction_id: str, agent: str,
-                             update: Dict[str, Any]) -> None:
+    def update_in_transaction(
+        self, transaction_id: str, agent: str, update: Dict[str, Any]
+    ) -> None:
         """Add an update to a transaction
 
         Args:
@@ -457,10 +522,9 @@ class StateSynchronizer:
             update: Update to apply
         """
         if transaction_id in self.transactions:
-            self.transactions[transaction_id]["updates"].append({
-                "agent": agent,
-                "update": update
-            })
+            self.transactions[transaction_id]["updates"].append(
+                {"agent": agent, "update": update}
+            )
 
     def commit_transaction(self, transaction_id: str) -> Dict[str, Any]:
         """Commit a transaction (apply all updates atomically)
@@ -472,10 +536,7 @@ class StateSynchronizer:
             Commit result
         """
         if transaction_id not in self.transactions:
-            return {
-                "success": False,
-                "error": "Transaction not found"
-            }
+            return {"success": False, "error": "Transaction not found"}
 
         transaction = self.transactions[transaction_id]
         updates_applied = 0
@@ -503,7 +564,7 @@ class StateSynchronizer:
             return {
                 "success": True,
                 "transaction_id": transaction_id,
-                "updates_applied": updates_applied
+                "updates_applied": updates_applied,
             }
 
         except Exception as e:
@@ -512,7 +573,7 @@ class StateSynchronizer:
             return {
                 "success": False,
                 "error": str(e),
-                "updates_applied": updates_applied
+                "updates_applied": updates_applied,
             }
 
     def rollback_transaction(self, transaction_id: str) -> Dict[str, Any]:
@@ -525,17 +586,11 @@ class StateSynchronizer:
             Rollback result
         """
         if transaction_id not in self.transactions:
-            return {
-                "success": False,
-                "error": "Transaction not found"
-            }
+            return {"success": False, "error": "Transaction not found"}
 
         self.transactions[transaction_id]["status"] = "rolled_back"
 
-        return {
-            "success": True,
-            "transaction_id": transaction_id
-        }
+        return {"success": True, "transaction_id": transaction_id}
 
 
 # Utility functions
@@ -559,7 +614,7 @@ if __name__ == "__main__":
     planner_state = {
         "current_phase": "Phase 2",
         "tasks_completed": ["2.1.1", "2.1.2"],
-        "timestamp": datetime.now(timezone.utc).isoformat()
+        "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
     result = sync.save_state("planner", planner_state)
