@@ -1,0 +1,11 @@
+{
+  "retention": {
+    "active_days": 7,
+    "archive_days": 30,
+    "min_retention_days": 3
+  },
+  "archive": {
+    "compression": "gzip",
+    "compression_level": 6
+  }
+}
