@@ -32,6 +32,8 @@ python-dotenv==1.0.1       # Environment variable management
 pytest==8.4.1             # Testing framework
 pytest-cov==6.2.1         # Coverage integration for pytest
 coverage==7.6.9           # Code coverage measurement
+pytest-benchmark==5.1.0   # Performance benchmarking and regression testing
+pytest-asyncio==1.0.0     # Async testing support (Python 3.12+ optimized)
 
 # Code Quality and Metrics
 # -------------------------
