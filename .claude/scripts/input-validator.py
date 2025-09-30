@@ -6,14 +6,15 @@ Claude Code Input Validator
 2025年AI Security ベストプラクティス準拠
 """
 
-import re
+import hashlib
 import json
 import logging
+import re
+import tempfile
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
-from dataclasses import dataclass
-import hashlib
 
 
 @dataclass
@@ -39,7 +40,7 @@ class InputValidator:
     def load_config(self, config_path: str) -> dict:
         """設定ファイルの読み込み"""
         if Path(config_path).exists():
-            with open(config_path, "r") as f:
+            with open(config_path) as f:
                 config = json.load(f)
                 return config.get("input_validation", {})
 
@@ -368,8 +369,9 @@ class InputValidator:
             issues.append("パストラバーサル攻撃の試行")
             risk_score += 0.7
 
-        # 絶対パスの制限
-        if file_path.startswith("/") and not file_path.startswith("/tmp"):
+        # 絶対パスの制限 (OS依存の一時ディレクトリを使用)
+        temp_dir = tempfile.gettempdir()
+        if file_path.startswith("/") and not file_path.startswith(temp_dir):
             issues.append("制限されたパスへのアクセス試行")
             risk_score += 0.5
 
@@ -430,7 +432,7 @@ class InputValidator:
 
         violations = []
         try:
-            with open(log_file, "r") as f:
+            with open(log_file) as f:
                 for line in f:
                     if line.strip():
                         violations.append(json.loads(line))

@@ -139,7 +139,14 @@ class AIOptimizedLogger:
             name: Logger name (typically module name)
         """
         self.name = name
-        self.log_file = Path.home() / ".claude" / "ai-activity.jsonl"
+
+        # Support AI_LOG_FILE environment variable for test isolation
+        log_file_path = os.environ.get("AI_LOG_FILE")
+        if log_file_path:
+            self.log_file = Path(log_file_path)
+        else:
+            self.log_file = Path.home() / ".claude" / "ai-activity.jsonl"
+
         self.log_file.parent.mkdir(parents=True, exist_ok=True)
         self.context_var: contextvars.ContextVar[Optional[LogContext]] = (
             contextvars.ContextVar("log_context", default=None)

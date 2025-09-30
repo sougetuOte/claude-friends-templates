@@ -14,18 +14,18 @@ Following 2025 multi-agent coordination best practices:
 
 import argparse
 import base64
+import gzip
+import hashlib
 import json
 import os
+import re
+import subprocess
 import sys
 import uuid
-import hashlib
-import gzip
-import subprocess
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Optional
-from dataclasses import dataclass, asdict
-import re
+from typing import Any, Dict, List, Optional
 
 # Python 3.12 features
 
@@ -82,7 +82,7 @@ class HandoverGenerator:
         if not Path(prompt_file).exists():
             return {"error": "Prompt file not found"}
 
-        with open(prompt_file, "r") as f:
+        with open(prompt_file) as f:
             content = f.read()
 
         # Detect agent switch pattern
@@ -173,7 +173,7 @@ class HandoverGenerator:
             return ["No recent activities found"]
 
         try:
-            with open(notes_file, "r") as f:
+            with open(notes_file) as f:
                 content = f.read()
 
             # Extract recent activities section
@@ -207,7 +207,7 @@ class HandoverGenerator:
             return "No current task"
 
         try:
-            with open(notes_file, "r") as f:
+            with open(notes_file) as f:
                 content = f.read()
 
             # Look for current task pattern
@@ -238,7 +238,7 @@ class HandoverGenerator:
             return []
 
         try:
-            with open(notes_file, "r") as f:
+            with open(notes_file) as f:
                 content = f.read()
 
             # Look for Blockers section (supports both English and Japanese)
@@ -546,16 +546,19 @@ class HandoverGenerator:
         # Context compression from file (--compress-context FILE)
         if compress_context_data:
             try:
-                with open(compress_context_data, "r") as f:
+                with open(compress_context_data) as f:
                     large_context = json.load(f)
+                # compression_ratio is 0.0-1.0, map to compression_level 1-9
+                # Higher ratio = more compression = higher level
+                compression_level = max(1, min(9, int(compression_ratio * 10)))
                 compressed_result = self.compress_context(
-                    large_context, compression_ratio
+                    large_context, compression_level
                 )
                 handover["context"]["compressed_data"] = compressed_result
-                # Extract compression_info to top level of context for easier access
-                handover["context"]["compression_info"] = compressed_result[
-                    "compression_info"
-                ]
+                # Extract compression_info from compressed_result (all keys are compression info)
+                handover["context"]["compression_info"] = {
+                    k: v for k, v in compressed_result.items() if k != "compressed_data"
+                }
             except Exception as e:
                 handover["context"]["compression_error"] = (
                     f"Failed to compress context: {str(e)}"
@@ -566,7 +569,7 @@ class HandoverGenerator:
     def validate_handover(self, handover_file: str) -> Dict[str, Any]:
         """Validate handover document"""
         try:
-            with open(handover_file, "r") as f:
+            with open(handover_file) as f:
                 handover = json.load(f)
 
             # Check schema version
