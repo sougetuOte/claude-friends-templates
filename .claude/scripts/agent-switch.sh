@@ -11,7 +11,13 @@ set -uo pipefail
 # Constants
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
-readonly HANDOVER_GENERATOR="$SCRIPT_DIR/handover-generator.py"
+
+# Use optimized handover generator if available (1.5x faster)
+if [[ -f "$SCRIPT_DIR/handover-generator-optimized.py" ]]; then
+    readonly HANDOVER_GENERATOR="$SCRIPT_DIR/handover-generator-optimized.py"
+else
+    readonly HANDOVER_GENERATOR="$SCRIPT_DIR/handover-generator.py"
+fi
 
 # Arguments
 FROM_AGENT="${1:-}"
@@ -42,6 +48,15 @@ esac
 
 # Log the switch
 echo "[INFO] Agent switch detected: $FROM_AGENT → $TO_AGENT"
+
+# Log to AI logger if available
+if command -v python3 &> /dev/null && [[ -f "$SCRIPT_DIR/log_agent_event.py" ]]; then
+    python3 "$SCRIPT_DIR/log_agent_event.py" INFO "Agent switch initiated" \
+        agent="$FROM_AGENT" \
+        operation="agent_switch" \
+        from_agent="$FROM_AGENT" \
+        to_agent="$TO_AGENT" 2>/dev/null || true
+fi
 
 # Check for concurrent handover lock
 LOCK_FILE="$PROJECT_DIR/.claude/.handover.lock"
@@ -97,8 +112,30 @@ if [[ -f "$HANDOVER_GENERATOR" ]]; then
         if [[ -n "$latest_handover" ]]; then
             echo "[INFO] Handover file: $latest_handover"
         fi
+
+        # Log success to AI logger
+        if command -v python3 &> /dev/null && [[ -f "$SCRIPT_DIR/log_agent_event.py" ]]; then
+            python3 "$SCRIPT_DIR/log_agent_event.py" INFO "Agent switch completed successfully" \
+                agent="$TO_AGENT" \
+                operation="agent_switch" \
+                from_agent="$FROM_AGENT" \
+                to_agent="$TO_AGENT" \
+                handover_file="$latest_handover" 2>/dev/null || true
+        fi
     else
         echo "[ERROR] Handover generation failed with exit code $exit_code" >&2
+
+        # Log error to AI logger
+        if command -v python3 &> /dev/null && [[ -f "$SCRIPT_DIR/log_agent_event.py" ]]; then
+            python3 "$SCRIPT_DIR/log_agent_event.py" ERROR "Agent switch failed" \
+                agent="$FROM_AGENT" \
+                operation="agent_switch" \
+                from_agent="$FROM_AGENT" \
+                to_agent="$TO_AGENT" \
+                exit_code="$exit_code" \
+                error="Handover generation failed" 2>/dev/null || true
+        fi
+
         exit $exit_code
     fi
 else
